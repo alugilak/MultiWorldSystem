@@ -1,0 +1,420 @@
+helpmenuTitel: HELP MultiWorldSystem [1-9]
+helpmenuTitel2: HELP MultiWorldSystem [2-9]
+helpmenuTitel3: HELP MultiWorldSystem [3-9]
+helpmenuTitel4: HELP MultiWorldSystem [4-9]
+helpmenuTitel5: HELP MultiWorldSystem [5-9]
+helpmenuTitel6: HELP MultiWorldSystem [6-9]
+helpmenuTitel7: HELP MultiWorldSystem [7-9]
+helpmenuTitel8: HELP MultiWorldSystem [8-9]
+helpmenuTitel9: HELP MultiWorldSystem [9-9]
+
+mwsdayH1: set time to day
+mwsdayH2: use this command
+mwsdayHcmd: /day
+
+mwsnightH1: set time to night
+mwsnightH2: use this command
+mwsnightHcmd: /night
+
+
+mwsPlayerWorldH1: create your own World. You are the Owner from this world.
+mwsPlayerWorldH2: use this command
+mwsPlayerWorldHcmd: /cpworld
+
+mwsplworldaddMembH1: Add Builder to your own World with gamemode 1 and 2 permissions
+mwsplworldaddMembH2: use this command
+mwsplworldaddMembHcmd: /owbuilder+
+
+mwdeleteWorldH1: remove Builder from your own World with gamemode 1 and 2 permissions
+mwdeleteWorldH2: use this command
+mwdeleteWorldHcmd: /owbuilder-
+
+mwsCommandSignH1: Create Signs with Commands
+mwsCommandSignH2: you can let your User create her own signs with commands.
+mwsCommandSignH3: in the config.yml Line0 and SetLine0Command must be the same word! in Line 2 comes the Command without /.
+mwsCommandSignH4: In Line 3 can you wrote what you want! Line4 must be free for the Playername
+mwsCommandSignH5: Give the player permissions to use and set the signs! They can create her own signs with the commands they have permissions for!
+
+mwschatcolorH1: Chatcolor
+mwschatcolorH2: use this command
+mwschatcolorHcmd: /chatcolor help
+
+mwrelconfH1: to reload the config files
+mwrelconfH2: use this command
+mwrelconfHcmd: /mwsr
+
+mwemptyWwMVH1: to create an empty world enter this command
+mwemptyWwMVcmd1: /mv create <desire world name> <normal> <-g> <MultiWorldSystem>
+
+mwemptyWautoCreateMV1: a world automatically named
+mwemptyWautoCreateMV2: emptyWorld
+mwemptyWautoCreateMV3: create with
+mwemptyWautoCreateMVcmd: /ewca
+
+mwemptyUnlautoCreateMV1: to unload the automatically created world from multivers
+mwemptyUnlautoCreateMV2: use this command
+mwemptyUnlautoCreateMVcmd: /ewua
+
+mwemptyRemautoCreateMV1: to remove the automatically created world from multivers
+mwemptyRemautoCreateMV2: use this command
+mwemptyRemautoCreateMVcmd: /ewra
+
+mwemptyDelautoCreateMV1: to delete the automatically created world from multivers
+mwemptyDelautoCreateMV2: use this command
+mwemptyDelautoCreateMVcmd: /ewda
+
+mwfCreateH1: create a flat World
+mwfCreateH2: use this command
+mwfCreateHcmd: /cflat <Worldname>
+
+
+mwiCreateH1: to create a AMPLIFIED World
+mwiCreateH2: use this command
+mwiCreateHcmd: /camp <Worldname>
+
+mwnCreateH1: to create a normal World
+mwnCreateH2: use this command
+mwnCreateHcmd: /cnormal <Worldname>
+
+mwlbCreateH1: to create a large Biome World
+mwlbCreateH2: use this command
+mwlbCreateHcmd: /clb <Worldname>
+
+mwv1CreateH1: to create a flat World
+mwv1CreateH2: use this command
+mwv1CreateHcmd: /cv1 <Worldname>
+
+mwskyCreateH1: to create a empty World
+mwskyCreateH2: use this command
+mwskyCreateHcmd: /csky <Worldname>
+
+mwloadWorldH1: to load a World 
+mwloadWorldH2: use this command
+mwloadWorldHcmd: /wload <Worldname>
+
+mwlistWorldH1: to list Worlds
+mwlistWorldH2: use this command
+mwlistWorldHcmd: /wlist
+
+mwlistWorldaH1: to list all Worlds from worlds.yml
+mwlistWorldaH2: use this command
+mwlistWorldaHcmd: /wlistall
+
+mwunloadWorldH1: to unload a World 
+mwunloadWorldH2: use this command
+mwunloadWorldHcmd: /wunload <Worldname>
+
+mwdeleteWorldH1: to delete a World with Folder 
+mwdeleteWorldH2: use this command
+mwdeleteWorldHcmd: /wdelete <Worldname>
+
+mwrenameWorldH1: to rename a World with Folder 
+mwrenameWorldH2: use this command
+mwrenameWorldHcmd: /wrename <Worldname>
+
+mwstatsWorldH1: to show stats of a World 
+mwstatsWorldH2: use this command
+mwstatsWorldHcmd: /wstats <Worldname>
+
+mwsetSpawnH1: to set a Spawn
+mwsetSpawnH2: use this command
+mwsetSpawnHcmd: /sspawn
+
+mwsetHubH1: to set a Hub
+mwsetHubH2: use this command
+mwsetHubHcmd: /shub
+
+mwsetHomeH1: to set a Home
+mwsetHomeH2: use this command
+mwsetHomeHcmd: /shome
+
+mwdelHomeH1: to delete your home or other player home
+mwdelHomeH2: use this command
+mwdelHomeHcmd: /dhome /dhome <player>
+
+mwsetWarpH1: to set a Warppoint
+mwsetWarpH2: use this command
+mwsetWarpHcmd: /swarp
+
+mwgoSpawnH1: to teleport to Spawn
+mwgoSpawnH2: use this command
+mwgoSpawnHcmd: /spawn
+
+mwgoHubH1: teleport to Hub
+mwgoHubH2: use this command
+mwgoHubHcmd: /hub
+
+mwgoHomeH1: teleport to your home or other player home
+mwgoHomeH2: use this command
+mgoHomeHcmd: /home  /home <playername>
+
+mwgoWarpH1: teleport to Warppoint
+mwgoWarpH2: use this command
+mwgoWarpHcmd: /w <Warpname>
+
+mwedelWarpH1: to delete Warppoint
+mwdelWarpH2: use this command
+mwdelWarpHcmd: /dwarp <Warpname>
+
+mwtptoplH1: teleport to player
+mwtptoplH2: use this command
+mwtptoplHcmd: /to <Playername>
+
+mwtppltomeH1: teleport a player to you
+mwtppltomeH2: use this command
+mwtppltomeHcmd: /tome <Playername>
+
+mwtpxyzH1: teleport you to location
+mwtpxyzH2: use this command
+mwtpxyzHcmd: /xyz <x> <y> <z>
+
+mwtpworldH1: teleport you to world
+mwtpworldH2: use this command
+mwtpworldHcmd: /wtp <worldname>
+
+mwsetBlockH1: to spawn a stone block at your position
+mwsetBlockH1: use this command
+mwsetBlockHcmd: /block 
+
+mwsetgmH1: to change your gamemode
+mwsetgmH2: use this command
+mwsetgmHcmd: /g0 /g1 /g2
+
+mwdelInvH1: to delete your inventory
+mwdelInvH2: use this command
+mwdelInvHcmd: /cinv
+
+mwkillH1: to kill a player
+mwkillH2: use this command
+mwkillHcmd: /peng <playername>
+
+mwwcH1: to clear the Weather
+mwwcH2: use this command
+mwwcHcmd: /wclear
+
+mwrainH1: set weather to rainy
+mwrainH2: use this command
+mwrainHcmd: /rain
+
+mwstormH1: set weather to storm
+mwstormH2: use this command
+mwstormHcmd: /storm
+
+mwgiveH1: to give player items
+mwgiveH2: use this command
+mwgiveHcmd: /gi <playername> <itemname/id> <amount>
+
+mwhealH1: to heal a player
+mwhealH2: use this command
+mwhealHcmd: /heal / heal <playername>
+
+mwflyH1: to set flymode on or off
+mwflyH2: use this command
+mwflyHcmd: /f or /f <player>
+
+mwflyspeedH1: to set flyspeed
+mwflyspeedH2: use this command
+mwflyspeedHcmd: /fs <20 or 30 or ....>
+
+mwwalkspeedH1: to set walkspeed
+mwwalkspeedH2: use this command
+mwwalkspeedHcmd: /ws <20 or 30 or ....>
+
+mwsetgroupsH1: to set 15 Pex Groups with Inherited permissions
+mwsetgroupsH2: use this command
+mwsetgroupsHcmd: /gset
+
+mwdiscordH1: show your Discordchanel
+mwdiscordH2: use this command
+mwdiscordHcmd: /discord
+
+mwsdiscordH1: set your Discordchanel
+mwsdiscordH2: use this command
+mwsdiscordHcmd: /sdiscord
+
+mwswwwH1: show your Homepage
+mwswwwH2: use this command
+mwswwwHcmd: /shomepage
+
+mwskickH1: you can kick player
+mwskickH2: use this command
+mwskickHcmd: /kick <player>
+
+mwwwwH1: show your Homepage
+mwwwwH2: use this command
+mwwwwHcmd: /homepage
+
+mwsetMotdHeadH1: To set Header for MotD
+mwsetMotdHeadH2: use this command
+mwsetMotdHeadHcmd: /smotd <text>
+
+mwsetsysMotdHeadH1: To set AdminHeader for MotD for broadcast
+mwsetsysMotdHeadH2: use this command
+mwsetsysMotdHeadHcmd: /sysmotd <text>
+
+mwsetMotdl1HeadH1: To set Line 1 for MotD
+mwsetMotdl1HeadH2: use this command
+mwsetMotdl1HeadHcmd: /motdl1 <text>
+
+mwsetMotdl2HeadH1: To set Line 2 for MotD
+mwsetMotdl2HeadH2: use this command
+mwsetMotdl2HeadHcmd: /motdl2 <text>
+
+mwsetMotdl3HeadH1: To set Line 3 for MotD
+mwsetMotdl3HeadH2: use this command
+mwsetMotdl3HeadHcmd: /motdl3 <text>
+
+mwsetMotdl4HeadH1: To set Line 4 for MotD
+mwsetMotdl4HeadH2: use this command
+mwsetMotdl4HeadHcmd: /motdl4 <text>
+
+mwsetMotdl5HeadH1: To set Line 5 for MotD
+mwsetMotdl5HeadH2: use this command
+mwsetMotdl5HeadHcmd: /motdl5 <text>
+
+mwsrepairH1: repair your armor
+mwsrepairH2: use this command
+mwsrepairHcmd: /mwsrepair
+
+helpmenuEnchantTitel: Enchant Items [0-3]
+helpmenuPoitionTitel: Poitions Effect [0-1]
+ARROW_DAMAGE1: Provides extra damage when shooting arrows from bows
+ARROW_DAMAGE2: use this command
+ARROW_DAMAGEcmd: /arrowdamage <value> <lore> <Displayname>
+
+ARROW_FIRE1: Sets entities on fire when hit by arrows shot from a bow
+ARROW_FIRE2: use this command
+ARROW_FIREcmd: /arrowfire <value> <lore> <Displayname>
+
+ARROW_INFINITE1: Provides infinite arrows when shooting a bow
+ARROW_INFINITE2: use this command
+ARROW_INFINITEcmd: /arrowinfinite <value> <lore> <Displayname>
+
+ARROW_KNOCKBACK1: Provides a knockback when an entity is hit by an arrow from a bow
+ARROW_KNOCKBACK2: use this command
+ARROW_KNOCKBACKcmd: /arrowknockback <value> <lore> <Displayname>
+
+FIRE_ASPECT1: When attacking a target, has a chance to set them on fire
+FIRE_ASPECT2: use this command
+FIRE_ASPECTcmd: /fireaspect <value> <lore> <Displayname>
+
+DAMAGE_ALL1: Increases damage against all targets
+DAMAGE_ALL2: use this command
+DAMAGE_ALLcmd: /damageall <value> <lore> <Displayname>
+
+DAMAGE_ARTHROPODS1: Increases damage against arthropod targets
+DAMAGE_ARTHROPODS2: use this command
+DAMAGE_ARTHROPODScmd: /arthropode <value> <lore> <Displayname>
+
+DEPTH_STRIDER1: Increases walking speed while in water
+DEPTH_STRIDER2: use this command
+DEPTH_STRIDERcmd: /depthstrider <value> <lore> <Displayname>
+
+DAMAGE_UNDEAD1: Increases damage against undead targets
+DAMAGE_UNDEAD2: use this command
+DAMAGE_UNDEADcmd: /undead <value> <lore> <Displayname>
+
+DIG_SPEED1: Increases the rate at which you mine/dig
+DIG_SPEED2: use this command
+DIG_SPEEDcmd: /digspeed <value> <lore> <Displayname>
+
+DURABILITY1: Decreases the rate at which a tool looses durability
+DURABILITY2: use this command
+DURABILITYcmd: /durability <value> <lore> <Displayname> 
+
+KNOCKBACK1: All damage to other targets will knock them back when hit
+KNOCKBACK2: use this command
+KNOCKBACKcmd: /knockback <value> <lore> <Displayname>
+
+legArmorToughness1: Armor bonus of an Entity and Armor durability bonus of an Entity.
+legArmorToughness: use this command
+legArmorToughnesscmd: /atleg+ <valueArmor> <valueToughness>
+
+helmetArmorToughness1: Armor bonus of an Entity and Armor durability bonus of an Entity.
+helmetArmorToughness2: use this command
+helmetArmorToughnesscmd: /athelm+ <valueArmor> <valueToughness>
+
+cheastArmorToughness1: Armor bonus of an Entity and Armor durability bonus of an Entity.
+cheastArmorToughness2: use this command
+cheastArmorToughnesscmd: /atchest+ <valueArmor> <valueToughness>
+
+bootsArmorToughness1: Armor bonus of an Entity and Armor durability bonus of an Entity.
+bootsArmorToughness2: use this command
+bootsArmorToughnesscmd: /atboots+ <valueArmor> <valueToughness>
+
+Toughness1: Armor durability bonus of an Entity.
+Toughness2: use this command
+Toughnesscmd: /tough+ <valueToughness>
+
+Armor1: Armor bonus of an Entity
+Armor2: use this command
+Armorcmd: armor+ <valueArmor>
+
+DAMAGE_RESISTANCE1: Decreases damage dealt to an entity.
+DAMAGE_RESISTANCE2: use this command
+DAMAGE_RESISTANCEcmd: /damageresi <value> and or <player>
+
+LOOT_BONUS_BLOCKS1: Provides a chance of gaining extra loot when destroying blocks
+LOOT_BONUS_BLOCKS2: use this command
+LOOT_BONUS_BLOCKScmd: /lootbonusblock <value> <lore> <Displayname>
+
+LOOT_BONUS_MOBS1: Provides a chance of gaining extra loot when killing monsters
+LOOT_BONUS_MOBS2: use this command
+LOOT_BONUS_MOBScmd: /lootbonusmob <value> <lore> <Displayname>
+
+LUCK1: Decreases odds of catching worthless junk
+LUCK2: use this command
+LUCKcmd: /luck <value> <lore> <Displayname>
+
+LURE1: Increases rate of fish biting your hook
+LURE2: use this command
+LUREcmd: /lure <value> <lore> <Displayname>
+
+MENDING1: Allows mending the item using experience orbs
+MENDING2: use this command
+MENDINGcmd: /mending <value> <lore> <Displayname>
+
+OXYGEN1: Decreases the rate of air loss whilst underwater
+OXYGEN2: use this command
+OXYGENcmd: /oxygen <value> <lore> <Displayname>
+
+WATER_WORKER1: Increases the speed at which a player may mine underwate
+WATER_WORKER2: use this command
+WATER_WORKERcmd: /waterwalker <value> <lore> <Displayname>
+
+FAST_DIGGING1: Increases dig speed.
+FAST_DIGGING2: use this command
+FAST_DIGGINGcmd: /digging <value> and or <player>
+
+NIGHT_VISION1: Allows an entity to see in the dark.
+NIGHT_VISION2: use this command
+NIGHT_VISIONcmd: /nightvision <value> and or <player>
+
+FIRE_RESISTANCE1: Stops fire damage.
+FIRE_RESISTANCE2: use this command
+FIRE_RESISTANCEcmd: /fireresi <value> and or <player>
+
+ATTACK_DAMAGE1: Attack damage of an Entity.
+ATTACK_DAMAGE2: use this command
+ATTACK_DAMAGEcmd: /attack+ <value>
+
+ATTACK_SPEED1: Attack speed of an Entity.
+ATTACK_SPEED2: use this command
+ATTACK_SPEEDcmd: /speed+ <value>
+
+REMOVE_POITION1: remove all Poition Effects
+REMOVE_POITION2: use this command
+REMOVE_POITIONcmd: /poitionremove <player>
+
+ABSORPTION1: Increases the maximum health of an entity with health that cannot be regenerated, but is refilled every 30 seconds.
+ABSORPTION2: use this command
+ABSORPTIONcmd: /absorption <value> and or <player>
+
+CONFUSION1: Warps vision on the client.
+CONFUSION2: use this command
+CONFUSIONcmd: /confusion <value> and or <player>
+
+GLOWING1: Outlines the entity so that it can be seen from afar.
+GLOWING2: use this command
+GLOWINGcmd: /glowing <value> and or <player>
+

@@ -1,0 +1,19 @@
+Line0: command
+invalidline1: Fehler
+invalidline2: Fehler
+invalidline3: Fehler
+invalidLinePlayer: Fehler
+MissingPermissonUse: Fehler
+MissingPermCrPl: Fehler
+MissingPermnDelPl: Fehler
+MisPermCrLi1: Fehler
+MisPermCrLi2: Fehler
+MisPermCrLi3: Fehler
+MisPermCrLi4: Fehler
+SetLine0Command: command
+mwssigncreate: mws.sign.create
+mwssignuse: mws.sign.use
+mwssigndel: mws.sign.del
+title-name: '&a[MWS SIGNS]:&f'
+MWS: MultiWorldSystem
+Perms: mws.sign.use

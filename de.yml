@@ -1,0 +1,281 @@
+helpmenuTitel: HELP MultiWorldSystem [1-9]
+helpmenuTitel2: HELP MultiWorldSystem [2-9]
+helpmenuTitel3: HELP MultiWorldSystem [3-9]
+helpmenuTitel4: HELP MultiWorldSystem [4-9]
+helpmenuTitel5: HELP MultiWorldSystem [5-9]
+helpmenuTitel6: HELP MultiWorldSystem [6-9]
+helpmenuTitel7: HELP MultiWorldSystem [7-9]
+helpmenuTitel8: HELP MultiWorldSystem [8-9]
+helpmenuTitel9: HELP MultiWorldSystem [9-9]
+
+mwsdayH1: Zeit auf Tag stellen
+mwsdayH2: Benutze diesen Befehl
+mwsdayHcmd: /day
+
+mwsnightH1: Zeit auf Nacht stellen
+mwsnightH2: Benutze diesen Befehl
+mwsnightHcmd: /night
+
+
+mwsPlayerWorldH1: Eine eigene Welt erstellen mit Ownerrechten und hinzufügen von Buildern
+mwsPlayerWorldH2: Benutze diesen Befehl
+mwsPlayerWorldHcmd: /cpworld
+
+mwsplworldaddMembH1: einen Spieler mit Bau und GM1 und GM0 Rechten hinzufügen
+mwsplworldaddMembH2: Benutze diesen Befehl
+mwsplworldaddMembHcmd: /owbuilder+
+
+mwsplworlddelMembH1: einen Spieler mit Bau und GM1 und GM0 Rechten entfernen
+mwsplworlddelMembH2: Benutze diesen Befehl
+mwsplworlddelMembH3: /owbuilder-
+
+mwdeleteWorldH1: einen Spieler mit Bau und GM1 und GM0 Rechten entfernen
+mwdeleteWorldH2: Benutze diesen Befehl
+mwdeleteWorldHcmd: /owbuilder-
+
+mwsCommandSignH1: Erstelle Schilder mit Befehlen
+mwsCommandSignH2: Spieler können eigene Schilder erstellen mit Befehlen
+mwsCommandSignH3: In der config.yml Line0 und SetLine0Command kann der Titel und in Line 2 kommt der Befehl ohne /.
+mwsCommandSignH4: In Line3 kann rein was man mag
+mwsCommandSignH5: Erteile den Spielern die Rechte und sie können Befehle auf Schilder setzten wofür sie selber die Rechte besitzen.!
+
+mwschatcolorH1: Den eigenen Namen im Chat farbig
+mwschatcolorH2: Benutze diesen Befehl
+mwschatcolorHcmd: /chatcolor help
+
+mwrelconfH1: die config Dateien neu laden
+mwrelconfH2: Benutze diesen Befehl
+mwrelconfHcmd: /mwsr
+
+mwemptyWwMVH1: eine leere Welt erstellen mit Multivers
+mwemptyWwMVcmd1: /mv create <Wunschname> <normal> <-g> <MultiWorldSystem>
+
+mwemptyWautoCreateMV1: Eine leere Welt mit Multivers mit diesem Namen
+mwemptyWautoCreateMV2: emptyWorld
+mwemptyWautoCreateMV3: erstellen. Benutze diesen Befehl
+mwemptyWautoCreateMVcmd: /ewca
+
+mwemptyUnlautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld entladen.
+mwemptyUnlautoCreateMV2: Benutze diesen Befehl
+mwemptyUnlautoCreateMVcmd: /ewua
+
+mwemptyRemautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld aus der Multivers config entfernen.
+mwemptyRemautoCreateMV2: Benutze diesen Befehl
+mwemptyRemautoCreateMVcmd: /ewra
+
+mwemptyDelautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld aus Multivers löschen
+mwemptyDelautoCreateMV2: Benutze diesen Befehl
+mwemptyDelautoCreateMVcmd: /ewda
+
+mwfCreateH1: Eine flache Welt erstellen inkl. Warp Punkt
+mwfCreateH2: Benutze diesen Befehl
+mwfCreateHcmd: /cflat <Worldname>
+
+
+mwiCreateH1: Eine AMPLIFIED Welt erstellen inkl. Warp Punkt
+mwiCreateH2: Benutze diesen Befehl
+mwiCreateHcmd: /camp <Worldname>
+
+mwnCreateH1: Eine normale Welt erstellen inkl. Warp Punkt
+mwnCreateH2: Benutze diesen Befehl
+mwnCreateHcmd: /cnormal <Worldname>
+
+mwlbCreateH1: Eine große Biome Welt erstellen inkl. Warp Punkt
+mwlbCreateH2: Benutze diesen Befehl
+mwlbCreateHcmd: /clb <Worldname>
+
+mwv1CreateH1: Eine flache Welt erstellen inkl. Warp Punkt
+mwv1CreateH2: Benutze diesen Befehl
+mwv1CreateHcmd: /cv1 <Worldname>
+
+mwskyCreateH1: Eine leere Welt erstellen inkl. Warp Punkt
+mwskyCreateH2: Benutze diesen Befehl
+mwskyCreateHcmd: /csky <Worldname>
+
+mwloadWorldH1: Einen Weltordner laden 
+mwloadWorldH2: Benutze diesen Befehl
+mwloadWorldHcmd: /wload <Worldname>
+
+mwlistWorldH1: geladene Welten auflisten
+mwlistWorldH2: Benutze diesen Befehl
+mwlistWorldHcmd: /wlist
+
+mwlistWorldaH1: Alle Welten auflisten die mit dem MultiWorldSystem erstellt wurden.
+mwlistWorldaH2: Benutze diesen Befehl
+mwlistWorldaHcmd: /wlistall
+
+mwunloadWorldH1: Eine Welt entladen 
+mwunloadWorldH2: Benutze diesen Befehl
+mwunloadWorldHcmd: /wunload <Worldname>
+
+mwdeleteWorldH1: Eine Welt inkl. Ordner löschen 
+mwdeleteWorldH2: Benutze diesen Befehl
+mwdeleteWorldHcmd: /wdelete <Worldname>
+
+mwrenameWorldH1: Eine Welt inkl. Ordner umbenennen 
+mwrenameWorldH2: Benutze diesen Befehl
+mwrenameWorldHcmd: /wrename <Worldname>
+
+mwstatsWorldH1: Die Werte einer Welt anzeigen 
+mwstatsWorldH2: Benutze diesen Befehl
+mwstatsWorldHcmd: /wstats <Worldname>
+
+mwsetSpawnH1: Einen Spawn setzen
+mwsetSpawnH2: Benutze diesen Befehl
+mwsetSpawnHcmd: /sspawn
+
+mwsetHubH1: Einen Hub setzen
+mwsetHubH2: Benutze diesen Befehl
+mwsetHubHcmd: /shub
+
+mwsetHomeH1: Dein Home setzen
+mwsetHomeH2: Benutze diesen Befehl
+mwsetHomeHcmd: /shome
+
+mwdelHomeH1: Dein Home oder das eines Spielers löschen
+mwdelHomeH2: Benutze diesen Befehl
+mwdelHomeHcmd: /dhome /dhome <player>
+
+mwsetWarpH1: Einen Warppunkt setzen
+mwsetWarpH2: Benutze diesen Befehl
+mwsetWarpHcmd: /swarp
+
+mwgoSpawnH1: Zum Spawn teleportieren
+mwgoSpawnH2: Benutze diesen Befehl
+mwgoSpawnHcmd: /spawn
+
+mwgoHubH1: Zum Hub teleportieren
+mwgoHubH2: Benutze diesen Befehl
+mwgoHubHcmd: /hub
+
+mwgoHomeH1: Zu deinem oder dem home eines Spielers teleportieren
+mwgoHomeH2: Benutze diesen Befehl
+mwgoHomeHcmd: /home  /home <playername>
+
+mwgoWarpH1: Zu einem Warppunkt teleportieren
+mwgoWarpH2: Benutze diesen Befehl
+mwgoWarpHcmd: /w <Warpname>
+
+mwedelWarpH1: Einen Warppunkt löschen
+mwdelWarpH2: Benutze diesen Befehl
+mwdelWarpHcmd: /dwarp <Warpname>
+
+mwtptoplH1: zu einem Spieler teleportieren
+mwtptoplH2: Benutze diesen Befehl
+mwtptoplHcmd: /to <Playername>
+
+mwtppltomeH1: Einen Spieler zu dir teleportieren
+mwtppltomeH2: Benutze diesen Befehl
+mwtppltomeHcmd: /tome <Playername>
+
+mwtpxyzH1: Zu einer bestimmten Koordinate teleportieren
+mwtpxyzH2: Benutze diesen Befehl
+mwtpxyzHcmd: /xyz <x> <y> <z>
+
+mwtpworldH1: Zu einer Welt teleportieren
+mwtpworldH2: Benutze diesen Befehl
+mwtpworldHcmd: /wtp <worldname>
+
+mwsetBlockH1: Einen Block an deiner stelle spawnen lassen
+mwsetBlockH1: Benutze diesen Befehl
+mwsetBlockHcmd: /block 
+
+mwsetgmH1: Deinen Spielmodus wechseln
+mwsetgmH2: Benutze diesen Befehl
+mwsetgmHcmd: /g0 /g1 /g2
+
+mwdelInvH1: Dein Inventar löschen
+mwdelInvH2: Benutze diesen Befehl
+mwdelInvHcmd: /cinv
+
+mwkillH1: Einen Spieler töten
+mwkillH2: Benutze diesen Befehl
+mwkillHcmd: /peng <playername>
+
+mwwcH1: Das Wetter auf klar stellen
+mwwcH2: Benutze diesen Befehl
+mwwcHcmd: /wclear
+
+mwrainH1: Regen machen
+mwrainH2: Benutze diesen Befehl
+mwrainHcmd: /rain
+
+mwstormH1: Sturm machen
+mwstormH2: Benutze diesen Befehl
+mwstormHcmd: /storm
+
+mwgiveH1: Spielern Gegenstände geben
+mwgiveH2: Benutze diesen Befehl
+mwgiveHcmd: /gi <playername> <itemname/id> <amount>
+
+mwhealH1: Einen Spieler heilen
+mwhealH2: Benutze diesen Befehl
+mwhealHcmd: /heal / heal <playername>
+
+mwflyH1: Fliegen an und abstellen
+mwflyH2: Benutze diesen Befehl
+mwflyHcmd: /f or /f <player>
+
+mwflyspeedH1: Fluggeschwindigkeit festlegen
+mwflyspeedH2: Benutze diesen Befehl
+mwflyspeedHcmd: /fs <20 oder 30 oder ....>
+
+mwwalkspeedH1: Laufgeschwindigkeit festlegen
+mwwalkspeedH2: Benutze diesen Befehl
+mwwalkspeedHcmd: /ws <20 odr 30 odr ....>
+
+mwsetgroupsH1: 15 Pex Gruppen mit Erbrechten erstellen
+mwsetgroupsH2: Benutze diesen Befehl
+mwsetgroupsHcmd: /gset
+
+mwdiscordH1: Deinen Discordkanal anzeigen
+mwdiscordH2: Benutze diesen Befehl
+mwdiscordHcmd: /discord
+
+mwsdiscordH1: Deine Discordkanalüberschrift setzen
+mwsdiscordH2: Benutze diesen Befehl
+mwsdiscordHcmd: /sdiscord
+
+mwswwwH1: Deine Homepageüberschrift setzen
+mwswwwH2: Benutze diesen Befehl
+mwswwwHcmd: /shomepage
+
+mwskickH1: Einen Spieler kicken
+mwskickH2: Benutze diesen Befehl
+mwskickHcmd: /kick <player>
+
+mwwwwH1: Deine Homepage anzeigen
+mwwwwH2: Benutze diesen Befehl
+mwwwwHcmd: /homepage
+
+mwsetMotdHeadH1: Überschrift für MotD festlegen
+mwsetMotdHeadH2: Benutze diesen Befehl
+mwsetMotdHeadHcmd: /smotd <text>
+
+mwsetsysMotdHeadH1: Eine MotD Broadcasten
+mwsetsysMotdHeadH2: Benutze diesen Befehl
+mwsetsysMotdHeadHcmd: /sysmotd <text>
+
+mwsetMotdl1HeadH1: Line 1 von MotD erstellen
+mwsetMotdl1HeadH2: Benutze diesen Befehl
+mwsetMotdl1HeadHcmd: /motdl1 <text>
+
+mwsetMotdl2HeadH1: Line 2 von MotD erstellen
+mwsetMotdl2HeadH2: Benutze diesen Befehl
+mwsetMotdl2HeadHcmd: /motdl2 <text>
+
+mwsetMotdl3HeadH1: Line 3 von MotD erstellen
+mwsetMotdl3HeadH2: Benutze diesen Befehl
+mwsetMotdl3HeadHcmd: /motdl3 <text>
+
+mwsetMotdl4HeadH1: Line 4 von MotD erstellen
+mwsetMotdl4HeadH2: Benutze diesen Befehl
+mwsetMotdl4HeadHcmd: /motdl4 <text>
+
+mwsetMotdl5HeadH1: Line 5 von MotD erstellen
+mwsetMotdl5HeadH2: Benutze diesen Befehl
+mwsetMotdl5HeadHcmd: /motdl5 <text>
+
+mwsrepairH1: Deine Ausrüstung reparieren
+mwsrepairH2: Benutze diesen Befehl
+mwsrepairHcmd: /mwsrepair

@@ -1,0 +1,530 @@
+name: MultiWorldSystem
+version: 3.6.4
+author: Alugilak
+main: de.emptyWorld.main.leerWelt
+
+commands:
+         lootbonusblock:
+                    description: Provides a chance of gaining extra loot when destroying blocks
+                    usage: /<command> <value> <lore> <Displayname>
+         lootbonusmob:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         luck:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         lure:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         mending:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         oxygen:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         waterwalker:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+                                                                                                                                            
+         frostwalker:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <value> <lore> <Displayname>
+         glowing:
+                    description: Outlines the entity so that it can be seen from afar.
+                    usage: /<command> <amount> <player>
+         confusion:
+                    description: Warps vision on the client.
+                    usage: /<command> <amount> <player>
+         absorption:
+                    description: Increases the maximum health of an entity with health that cannot be regenerated, but is refilled every 30 seconds.  
+                    usage: /<command> <amount> <player>
+         dmall+:
+                    description: Armor durability and Armor bonus  
+                    usage: /<command> <amount> <amount>
+         atboots+:
+                    description: Armor durability and Armor bonus  
+                    usage: /<command> <amount> <amount>
+         athelm+:
+                    description: Armor durability and Armor bonus  
+                    usage: /<command> <amount> <amount>
+         atleg+:
+                    description: Armor durability and Armor bonus  
+                    usage: /<command> <amount> <amount>                                        
+         atchest+:
+                    description: Armor durability and Armor bonus  
+                    usage: /<command> <amount> 
+         tough+:
+                    description: Armor durability bonus  
+                    usage: /<command> <amount> 
+         armor+:
+                    description: Armor bonus 
+                    usage: /<command> <amount>
+         spdm+:
+                    description: entchant your mainHand Item with ATTACK SPEED and DAMAGE 
+                    usage: /<command> <amountSpeed> <amountdamage>
+         attack+:
+                    description: entchant your mainHand Item with ATTACK DAMAGE 
+                    usage: /<command> <amount>                            
+         speed+:
+                    description: entchant your mainHand Item with ATTACK SPEED 
+                    usage: /<command> <amount>                              
+         mwsenchant:
+                    description: enchant Helpmenu 
+                    usage: /<command> 
+         mwsenchant1:
+                    description: enchant Helpmenu 
+                    usage: /<command> 
+         mwsenchant2:
+                    description: enchant Helpmenu 
+                    usage: /<command> 
+         mwsenchant3:
+                    description: enchant Helpmenu 
+                    usage: /<command>                                         
+         mwspoition:
+                    description: enchant Helpmenu 
+                    usage: /<command>                                         
+         durability:
+                    description: entchant your mainHand Item with DURABILITY 
+                    usage: /<command> <value> <lore> <Displayname>
+                         
+         digspeed:
+                    description: entchant your mainHand Item with DIG_SPEED 
+                    usage: /<command> <value> <lore> <Displayname>
+                               
+         depthstrider:
+                    description: entchant your mainHand Item with DEPTH_STRIDER 
+                    usage: /<command> <value> <lore> <Displayname>
+                               
+         damageall:
+                    description: entchant your mainHand Item with DAMAGE_ALL 
+                    usage: /<command> <value> <lore> <Displayname>
+                            
+         knockback:
+                    description: entchant your mainHand Item with KNOCKBACK 
+                    usage: /<command> <value> <lore> <Displayname>
+                              
+         undead:
+                    description: entchant your mainHand Item with DAMAGE_UNDEAD 
+                    usage: /<command> <value> <lore> <Displayname>
+                                
+         arthropode:
+                    description: entchant your mainHand Item with DAMAGE_ARTHROPODS 
+                    usage: /<command> <value> <lore> <Displayname>
+
+         arrowknockback:
+                    description: entchant your mainHand Item with ARROW_KNOCKBACK 
+                    usage: /<command> <value> <lore> <Displayname>
+                               
+         arrowinfinite:
+                    description: entchant your mainHand Item with ARROW_INFINITE 
+                    usage: /<command> <value> <lore> <Displayname>
+
+         arrowdamage:
+                    description: entchant your mainHand Item with ARROW_DAMAGE 
+                    usage: /<command> <value> <lore> <Displayname>
+
+         arrowfire:
+                    description: entchant your mainHand Item with ARROW_FIRE 
+                    usage: /<command> <value> <lore> <Displayname>
+                                                                                                                                                                                                          
+         fireaspect:
+                    description: entchant your mainHand Item with FIRE ASPECT 
+                    usage: /<command> <value> <lore> <Displayname>                                                                                                                                                                               
+         chatcolor:
+                    description: change your name Color in Chat
+                    usage: /<command>
+         cpworld:
+                    description: create a playerworld with build permissions!
+                    usage: /<command>
+         owbuilder+:
+                    description: World Owner can add Members with build and gamemode 1 + 0 permissions
+                    usage: /<command>
+         nightvision:
+                    description: Nightvision
+                    usage: /<command> <value> and /or <playername>
+         fireresi:
+                    description: FIRE RESISTANCE Stops fire damage.
+                    usage: /<command> <value> and or <playername> 
+         damageresi:
+                    description: Decreases damage dealt to an entity
+                    usage: /<command>  <value> and /or <playername>
+         digging:
+                    description: Increases dig speed.
+                    usage: /<command> <value> and /or <playername>                                        
+         poitionremove:
+                    description: remove poition effects
+                    usage: /<command>                     
+         owbuilder-:
+                    description: World Owner can remove Members with build and gamemode 1 + 0 permissions
+                    usage: /<command>                                         
+         wchat:
+                    description: aktivate per WorldChat
+                    usage: /<command>
+         mwshelp:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp1:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp2:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp3:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp4:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp5:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp6:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp7:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp8:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelp9:
+                    description: Helpmenu
+                    usage: /<command>                                                                                                                                                                                    
+         mwshelpDe1:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe2:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe3:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe4:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe5:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe6:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe7:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe8:
+                    description: Helpmenu
+                    usage: /<command>
+         mwshelpDe9:
+                    description: Helpmenu
+                    usage: /<command>                                                                                                                                           
+                                                                           
+         wtp:
+                    description: tp to world
+                    usage: /<command> <world>
+              
+              
+         wdelete:
+                    description: creates a World with name emptyWorld
+                    usage: /<command>
+
+         kick:
+                    description: ban a player
+                    usage: /<command> <player>
+              
+                 
+
+         ewca:
+                    description: create empty world automatic with multiverse.
+                    usage: /<command>                     
+
+         ewua:
+                    description: unload the World with name emptyWorld from Multivers
+                    usage: /<command> 
+
+         ewra:
+                    description: remove the World with name emptyWorld from Multivers
+                    usage: /<command>
+
+         ewda:
+                    description: delete the World with name emptyWorld from Multivers an the Folder from Server
+                    usage: /<command> 
+
+         block:
+                    description: set a Stone by side you
+                    usage: /<command> 
+
+         g1:
+                    description: gamemode to creativ
+                    usage: /<command> 
+
+         g0:
+                    description: set gamemode to survival
+                    usage: /<command> 
+
+         g2:
+                    description: set gamemode to spectator
+                    usage: /<command> 
+
+         cinv:
+                    description: clean your inventory
+                    usage: /<command> 
+      
+         wclear:
+                    description: set weather clear
+                    usage: /<command>
+         rain:
+                    description: set weather rainy
+                    usage: /<command>                     
+         storm:
+                    description: set weather storm
+                    usage: /<command> 
+         day:
+                    description: set the time to 0
+                    usage: /<command>  
+         night:
+                    description: set the time to 2000
+                    usage: /<command>                      
+         cflat:
+                    description: create a flat World without Multiverse
+                    usage: /<command> <worldname>  
+                   
+
+         clb:
+                    description: create a large Biome World without Multiverse
+                    usage: /<command> <worldname>  
+                   
+
+         cnormal:
+                    description: create a normal World without Multiverse
+                    usage: /<command>  <worldname>  
+                   
+      
+         camp:
+                    description: create a Island World without Multiverse
+                    usage: /<command> <worldname>  
+            
+
+         cv1:
+                    description: create a Minecraft 1.1 World without Multiverse
+                    usage: /<command>   <worldname>  
+
+                                        
+         world:
+                    description: list local World and player
+                    usage: /<command>          
+         gset:
+                    description: create pex group system
+                    usage: /<command>    
+         peng:
+                    description: kill player
+                    usage: /<command>         
+         sspawn:
+                    usage: /<command>
+                    description: Set the spawn.
+         spawn:
+                    usage: /<command>
+                    description: Go to the spawn.
+         swarp:
+                    usage: /<command>
+                    description: Create a warp.
+         w:
+                    usage: /<command>
+                    description: Go to a warp.
+         dwarp:
+                    usage: /<command>                    
+                    description: Delete a warp.
+                    
+         warplist:
+                    usage: /<command>                    
+                    description: list all warps.                    
+
+         mwsr:
+                    usage: /<command>                    
+                    description: Data reload.
+         fs:
+                    usage: /<command>                    
+                    description: fly speed   
+         walk:
+                    usage: /<command>                    
+                    description: walk speed 
+         csky:
+                    usage: /<command>  <worldname>                  
+                    description: create clean World  
+         shome:
+                    usage: /<command>                    
+                    description: set home   
+         home:
+                    usage: /<command>                  
+                    description: teleport to own or other player home
+         tophome:
+                    usage: /<command>  <player>                  
+                    description: teleport to other player home                     
+         dhome:   
+                    usage: /<command>                  
+                    description: delete home
+         shub:
+                    usage: /<command>                    
+                    description: set hub   
+         hub:
+                    usage: /<command>                    
+                    description: teleport to hub  
+         discord:
+                    usage: /<command>                    
+                    description: schow the discordchanel
+         homepage:
+                    usage: /<command>                    
+                    description: schow the Homepage URL
+         sdiscord:
+                    usage: /<command>                    
+                    description: set the discordchanel
+         shomepage:
+                    usage: /<command>                    
+                    description: set the Homepage URL                      
+         heal:
+                    usage: /<command>                    
+                    description: heal a player
+
+         to:
+                    usage: /<command> <player>                   
+                    description: tp to a player
+         tome:
+                    usage: /<command> <player>                  
+                    description: tp player to you
+
+         f:
+                    usage: /<command>                  
+                    description: set fly on or off
+         gi:
+                    usage: /<command>                  
+                    description: give items     
+
+         xyz:
+                    usage: /<command>                  
+                    description: teleport player to y x z     
+                    
+         smotd:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         sysmotd:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         motdl1:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         motdl2:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         motdl3:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         motdl4:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin
+         motdl5:
+                    usage: /<command>                  
+                    description: set the motd for playerjoin                                                                                                    
+         wload:
+                    usage: /<command>                  
+                    description: load world     
+         wstats:
+                    usage: /<command> <world>    
+                    description: world stats   
+         wtp:
+                    usage: /<command> <player>                  
+                    description: tp player to you
+
+         wdelete:
+                    usage: /<command> <world>                 
+                    description: delete world
+         wunload:
+                    usage: /<command> <world>                 
+                    description: unload world     
+
+         wlist:
+                    usage: /<command>               
+                    description: list world     
+                    
+         wren:
+                    usage: /<command>  <world>                
+                    description: rename world
+   
+         mwsr:
+                    usage: /<command>                  
+                    description: reload all config files
+                            
+         setHelp:   
+                    usage: /<command>                  
+                    description: reload all config files
+         wlistall:   
+                    usage: /<command>                  
+                    description: list all worlds from config file.
+         permlist:   
+                    usage: /<command>                  
+                    description: list all permissions from config file.
+         mwsrepair:   
+                    usage: /<command>                  
+                    description: repair Item in Hand                                                            
+                                                                            
+        
+permissions:
+     mws.*:
+       children:
+       mws.weather.clear: op
+       mws.rain.use: op
+       mws.storm.use: op
+       mws.give.use: op
+       mws.fly.set: true
+       mws.use: op
+       mws.fly.use: op
+       mws.walk.use: op
+       mws.gm0.use: op
+       mws.gm1.use: op
+       mws.gm2.use: op
+       mws.heal.use: op
+       mws.inv.clear: op
+       mws.day.use: op
+       mws.night.use: op
+       mws.group.set: op
+       mws.kill.use: op
+       mws.spawn.set: op
+       mws.warp.set: op
+       mws.home.set: op
+       mws.hometo.use: true
+       mws.hub.set: op
+       mws.dw.use: op
+       mws.mwsr.use: op
+       mws.wlhelp.use: op
+       mws.flat.create: op
+       mws.lb.create: op
+       mws.normal.create: op
+       mws.amplified.create: op
+       mws.v1.create: op
+       mws.sky.create: op
+       mws.block.set: op       
+       mws.discord.use: true
+       mws.homepage.use: true
+       mws.tpto.use: op
+       mws.tpme.use: op
+       mws.tpxyz.use: op
+       mws.worldtp.use: true
+       mws.giveitem.use: op
+       mws.warp.list: true
+       mws.world.load: op
+       mws.world.unl: op
+       mws.ewda.use: op
+       mws.ewra.use: op
+       mws.ewua.use: op
+       mws.ewca.use: op
+       mws.allworlds.use: op
+       mws.giveitem.use: op
+       mws.help.use: true
+       mws.world.list: true
+       mws.sign.set: op
+       mws.hub.use: true
+       mws.homepage.set: op
+       mws.discord.set: op
+       mws.world.rename: op
+       mws.warp.use: true
+       mws.world.player: false
+       permissions.build: false
+       mws.world.pladdmem: false
