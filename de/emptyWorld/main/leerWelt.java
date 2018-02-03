@@ -36,9 +36,16 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
+
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import de.emptyWorld.main.pex.permGroup;
+import de.emptyWorld.main.pex.defaultGroupset;
+import de.emptyWorld.main.pex.permPlayer;
+import de.emptyWorld.main.pex.permPlayerWorld;
 import de.emptyWorld.main.enchants.lootBonusBlock;
 import de.emptyWorld.main.enchants.lotBonusMob;
 import de.emptyWorld.main.enchants.luck;
@@ -180,6 +187,8 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
+	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);
+
 	    reloadConfig();
 		  this.settings.reloadData();
 		  this.settings.reloaddeData();
@@ -200,12 +209,27 @@ public class leerWelt  extends JavaPlugin  implements Listener
 
 
 
-
+  public WorldGuardPlugin getWorldGuard()
+  {
+    Plugin wplugin = getServer().getPluginManager().getPlugin("WorldGuard");
+    if ((wplugin == null) || (!(wplugin instanceof WorldGuardPlugin))) {
+      return null;
+    }
+    return (WorldGuardPlugin)wplugin;
+  }
 
 
 
 
 public void InitComs() {
+	getCommand("dgroup+").setExecutor(new permGroup(this));
+	getCommand("dgroupw+").setExecutor(new permGroup(this));
+	getCommand("group+").setExecutor(new permGroup(this));
+	getCommand("group-").setExecutor(new permGroup(this));
+	getCommand("ppw-").setExecutor(new permPlayerWorld(this));
+	getCommand("ppw+").setExecutor(new permPlayerWorld(this));
+	getCommand("pp-").setExecutor(new permPlayer(this));
+	getCommand("pp+").setExecutor(new permPlayer(this));
 	getCommand("lootbonusblock").setExecutor(new lootBonusBlock(this));	
 	getCommand("lootbonusMob").setExecutor(new lotBonusMob(this));	
 	getCommand("luck").setExecutor(new luck(this));	
@@ -247,6 +271,7 @@ public void InitComs() {
 	  getCommand("w").setExecutor(new warps(this));
 	  getCommand("f").setExecutor(new fly(this));
 	  getCommand("dwarp").setExecutor(new delwarp(this));
+	  getCommand("mwsgroups").setExecutor(new customcreates(this));
 	  getCommand("mwshelp").setExecutor(new customcreates(this));
 	  getCommand("mwshelp1").setExecutor(new customcreates(this));
 	  getCommand("mwshelp2").setExecutor(new customcreates(this));
@@ -316,6 +341,7 @@ public void InitComs() {
 } 
 
   public leerWelt() {}
+  
   ConsoleCommandSender console = Bukkit.getConsoleSender();
   public ChunkGenerator getDefaultWorldGenerator(String worldName, String id)
   {

@@ -527,7 +527,7 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsetMotdl5HeadH2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsetMotdl5HeadHcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	          return true;
-	  }
+	  }}
 	        if (cmd.getName().equalsIgnoreCase("mwshelp9")) {			
 	            if (!sender.hasPermission((String) this.settings.getpermData().get("mwshelp"))) {
 	            	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshelp")) + " " + ChatColor.GREEN + ((String) this.settings.getsysoData().get("permError")));
@@ -575,9 +575,12 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");}
 	        if (cmd.getName().equalsIgnoreCase("mwsenchant1")) {
-	            sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel")) + ChatColor.YELLOW + "****");
+	            sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel1")) + ChatColor.YELLOW + "****");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_DAMAGE1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_DAMAGE2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("ATTACK_DAMAGEcmd")));
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_DAMAGE_Speed1")));
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_DAMAGE_Speed2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("ATTACK_DAMAGE_Speedcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_SPEED1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("ATTACK_SPEED2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("ATTACK_SPEEDcmd")));
@@ -605,7 +608,7 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");}
 	        if (cmd.getName().equalsIgnoreCase("mwsenchant2")) {
-	            sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel")) + ChatColor.YELLOW + "****");
+	            sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel2")) + ChatColor.YELLOW + "****");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("DAMAGE_ARTHROPODS1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("DAMAGE_ARTHROPODS2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("DAMAGE_ARTHROPODScmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
@@ -635,7 +638,7 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");}
 	        if (cmd.getName().equalsIgnoreCase("mwsenchant3")) {
-	        sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel")) + ChatColor.YELLOW + "****");
+	        sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuEnchantTitel3")) + ChatColor.YELLOW + "****");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("LURE1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("LURE2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("LUREcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
@@ -648,15 +651,6 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("WATER_WORKER1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("WATER_WORKER2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("WATER_WORKERcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
-	        
-	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
-	        
-	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
-	        
-	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
-	        
-	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
-	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	        sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin! (look at Help for /mwsPoition");
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");}  
@@ -689,5 +683,35 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin!");
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
-	        return true;}}
-return true;}}
+	        return true;}
+  if (cmd.getName().equalsIgnoreCase("mwsgroups")) {	
+      sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuGroupsTitel")) + ChatColor.YELLOW + "****");	            
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addPermissionPlayer1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addPermissionPlayer2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("addPermissionPlayercmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("removePermissionPlayer1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("removePermissionPlayer2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("removePermissionPlayercmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addPermissionPlayerWorld1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addPermissionPlayerWorld2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("addPermissionPlayerWorldcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("removePermissionPlayerWorld1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("removePermissionPlayerWorld2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("removePermissionPlayerWorldcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addGroup1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("addGroup2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("addGroupcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("deleteGroup1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("deleteGroup2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("deleteGroupcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("setdefaultGroup1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("setdefaultGroup2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("setdefaultGroupcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("setdefaultGroupWorld1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("setdefaultGroupWorld2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("setdefaultGroupWorldcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin!");
+  sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
+  sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+  return true;}
+return false;}}

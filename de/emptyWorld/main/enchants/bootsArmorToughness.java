@@ -54,7 +54,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 		  		
 	    		     ItemStack item = new ItemStack (p.getInventory().getItemInMainHand());
 	    		     ItemMeta itemmeta = item.getItemMeta();
-	    		    		 itemmeta.setDisplayName(ChatColor.GOLD + (String)this.settings.getpData().get("ARMOR_TOUGHNESS_DisplayName_MYTHIC"));
+	    		     itemmeta.setDisplayName(ChatColor.GOLD + (String)this.settings.getpData().get("ARMOR_TOUGHNESS_DisplayName_MYTHIC"));
 	    		    		 itemmeta.setLore(Arrays.asList(((String)this.settings.getpData().get("ARMOR_TOUGHNESS_LORE"))));
 	    		    		 item.setItemMeta(itemmeta);
 	    		net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(item);	    		

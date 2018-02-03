@@ -62,7 +62,7 @@ List<String> wlu = new ArrayList<String>();
       b.type(WorldType.NORMAL);
       b.generateStructures(true);      
       this.world = b.createWorld();
-      this.settings.getwData().set("worlds." + p.getName() + ".type", "NORMAL​");
+      this.settings.getwData().set("worlds." + p.getName() + ".type", "NORMAL");
       this.settings.getwData().set("worlds." + p.getName() + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + p.getName() + ".pvp", "true");
       this.settings.getwData().set("worlds." + p.getName() + ".difficulty", "NORMAL");

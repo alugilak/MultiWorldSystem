@@ -1,9 +1,37 @@
 name: MultiWorldSystem
-version: 3.6.4
+version: 3.6.6
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         mwsgroups:
+                    description: MWS pex Groupmanager addon Helpmenu
+                    usage: /<mwsgroups> 
+         dgroup+:
+                    description: Set the default Group
+                    usage: /<dgroup+> <groupname>
+         dgroupw+:
+                    description: Set the default Group for a world
+                    usage: /<dgroupw+> <groupname> <worldname>                   
+         group+:
+                    description: Create a Group with pex
+                    usage: /<group+> <groupname>
+         group-:
+                    description: Delete a Group with pex
+                    usage: /<group-> <groupname>
+         ppw+:
+                    description: set pex permission to a player for a world
+                    usage: /<ppw+> <permission> <player>
+         ppw-:
+                    description: delete pex permission for a player for a world
+                    usage: /<ppw-> <permission> <player>                    
+         pp-:
+                    description: remove pex permission from a player
+                    usage: /<pp-> <permission> <player>
+         pp+:
+                    description: set pex permission to a player
+                    usage: /<pp+> <permission> <player>
+
          lootbonusblock:
                     description: Provides a chance of gaining extra loot when destroying blocks
                     usage: /<command> <value> <lore> <Displayname>

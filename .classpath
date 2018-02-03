@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Server/plugins/worldedit-bukkit-6.1.7.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/plugins1/PlaceholderAPI-2.8.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/plugins1/PermissionsEx.jar"/>
+	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Testserver/plugins/worldguard-6.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

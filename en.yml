@@ -8,6 +8,41 @@ helpmenuTitel7: HELP MultiWorldSystem [7-9]
 helpmenuTitel8: HELP MultiWorldSystem [8-9]
 helpmenuTitel9: HELP MultiWorldSystem [9-9]
 
+
+helpmenuGroupsTitel: MWS Pex Groupmanager addon
+addPermissionPlayer1: set pex permission to a player
+addPermissionPlayer2: use this command
+addPermissionPlayercmd: /<pp+> <permission> <player>
+
+removePermissionPlayer1: remove pex permission from a player
+removePermissionPlayer2: use this command
+removePermissionPlayercmd: /<pp-> <permission> <player>
+
+addPermissionPlayerWorld1: set pex permission to a player for a world
+addPermissionPlayerWorld2: use this command
+addPermissionPlayerWorldcmd: /<ppw+> <permission> <player>
+
+removePermissionPlayerWorld1: delete pex permission for a player for a world
+removePermissionPlayerWorld2: use this command
+removePermissionPlayerWorldcmd: /<ppw-> <permission> <player>
+
+addGroup1: Create a Group with pex
+addGroup2: use this command
+addGroupcmd: /<group+> <groupname>
+
+deleteGroup1: Delete a Group with pex
+deleteGroup2: use this command
+deleteGroupcmd: /<group-> <groupname>
+
+setdefaultGroup1: Set the default Group
+setdefaultGroup2: use this command
+setdefaultGroupcmd: /<dgroup+> <groupname>
+
+setdefaultGroupWorld1: Set the default Group for a world
+setdefaultGroupWorld2: use this command
+setdefaultGroupWorldcmd: /<dgroupw+> <groupname> <worldname>
+
+
 mwsdayH1: set time to day
 mwsdayH2: use this command
 mwsdayHcmd: /day
@@ -110,7 +145,7 @@ mwdeleteWorldHcmd: /wdelete <Worldname>
 
 mwrenameWorldH1: to rename a World with Folder 
 mwrenameWorldH2: use this command
-mwrenameWorldHcmd: /wrename <Worldname>
+mwrenameWorldHcmd: /wren <Worldname>
 
 mwstatsWorldH1: to show stats of a World 
 mwstatsWorldH2: use this command
@@ -277,6 +312,9 @@ mwsrepairH2: use this command
 mwsrepairHcmd: /mwsrepair
 
 helpmenuEnchantTitel: Enchant Items [0-3]
+helpmenuEnchantTitel1: Enchant Items [1-3]
+helpmenuEnchantTitel2: Enchant Items [2-3]
+helpmenuEnchantTitel3: Enchant Items [3-3]
 helpmenuPoitionTitel: Poitions Effect [0-1]
 ARROW_DAMAGE1: Provides extra damage when shooting arrows from bows
 ARROW_DAMAGE2: use this command
@@ -401,6 +439,10 @@ ATTACK_DAMAGEcmd: /attack+ <value>
 ATTACK_SPEED1: Attack speed of an Entity.
 ATTACK_SPEED2: use this command
 ATTACK_SPEEDcmd: /speed+ <value>
+
+ATTACK_DAMAGE_Speed1: Attack damage and Speed of an Entity.
+ATTACK_DAMAGE_Speed2: use this command
+ATTACK_DAMAGE_Speedcmd: /spdm+ <speedvalue> <damagevalue>
 
 REMOVE_POITION1: remove all Poition Effects
 REMOVE_POITION2: use this command
