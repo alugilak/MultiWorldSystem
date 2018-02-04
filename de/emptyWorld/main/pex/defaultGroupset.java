@@ -50,7 +50,7 @@ List<String> wlu = new ArrayList<String>();
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
-        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwscplayerworld")) + " " + ((String)this.settings.getsysoData().get("permError")));
+        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsgroup")) + " " + ((String)this.settings.getsysoData().get("permError")));
         p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
       } StringBuilder str = new StringBuilder();
@@ -67,7 +67,7 @@ List<String> wlu = new ArrayList<String>();
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
-        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwscplayerworld")) + " " + ((String)this.settings.getsysoData().get("permError")));
+        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsgroup")) + " " + ((String)this.settings.getsysoData().get("permError")));
         p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
       } StringBuilder str = new StringBuilder();

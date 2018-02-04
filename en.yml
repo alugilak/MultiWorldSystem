@@ -9,6 +9,54 @@ helpmenuTitel8: HELP MultiWorldSystem [8-9]
 helpmenuTitel9: HELP MultiWorldSystem [9-9]
 
 
+mwsbreathpoition1: Allows breathing underwater
+mwsbreathpoition2: use this command
+mwsbreathpoitioncmd: /breath <value> and /or <playername>
+
+mwsspeedpoition1: Increases movement speed
+mwsspeedpoition2: use this command
+mwsspeedpoitioncmd: /speed <value> and /or <playername>
+
+mwsregenerationpoition1: Regenerates health
+mwsregenerationpoition2: use this command
+mwsregenerationpoitioncmd: /regeneration <value> and /or <playername>
+
+mwslevitationpoition1: Causes the entity to float into the air
+mwslevitationpoition2: use this command
+mwslevitationpoitioncmd: /levitation <value> and /or <playername>
+
+mwsjumppoition1: Increases jump height
+mwsjumppoition2: use this command
+mwsjumppoitioncmd: /jump <value> and /or <playername>
+
+mwsinvisiblepoition1: Grants invisibility
+mwsinvisiblepoition2: use this command
+mwsinvisiblepoitioncmd: /invisible <value> and /or <playername>
+
+mwspoisonpoition1: Deals damage to an entity over time
+mwspoisonpoition2: use this command
+mwspoisonpoitioncmd: /poison <value> and /or <playername>
+#
+mwspermaddgroup1: Add Permission to a Group
+mwspermaddgroup2: use this command
+mwspermaddgroupcmd: /pg+ <permission> <group>
+
+mwspermdelgroup1: remove Permission from a Group
+mwspermdelgroup2: use this command
+mwspermdelgroupcmd: /pg- <permission> <group>
+
+mwspermaddgroupw1: Add Permission to a Group for a world
+mwspermaddgroupw2: use this command
+mwspermaddgroupwcmd: /pgw+ <permission> <world> <group>
+
+mwspermdelgroupw1: remove Permission from a Group for a world
+mwspermdelgroupw2: use this command
+mwspermdelgroupwcmd: /pgw- <permission> <world> <group>
+
+ItemBank1: Open a Player ItemBank
+ItemBank2: use this command
+ItemBankcmd: /bankopen
+
 helpmenuGroupsTitel: MWS Pex Groupmanager addon
 addPermissionPlayer1: set pex permission to a player
 addPermissionPlayer2: use this command
@@ -16,15 +64,15 @@ addPermissionPlayercmd: /<pp+> <permission> <player>
 
 removePermissionPlayer1: remove pex permission from a player
 removePermissionPlayer2: use this command
-removePermissionPlayercmd: /<pp-> <permission> <player>
+removePermissionPlayercmd: /pp- <permission> <player>
 
 addPermissionPlayerWorld1: set pex permission to a player for a world
 addPermissionPlayerWorld2: use this command
-addPermissionPlayerWorldcmd: /<ppw+> <permission> <player>
+addPermissionPlayerWorldcmd: /ppw+ <permission> <world> <player>
 
 removePermissionPlayerWorld1: delete pex permission for a player for a world
 removePermissionPlayerWorld2: use this command
-removePermissionPlayerWorldcmd: /<ppw-> <permission> <player>
+removePermissionPlayerWorldcmd: /ppw- <permission> <world> <player>
 
 addGroup1: Create a Group with pex
 addGroup2: use this command
@@ -60,9 +108,9 @@ mwsplworldaddMembH1: Add Builder to your own World with gamemode 1 and 2 permiss
 mwsplworldaddMembH2: use this command
 mwsplworldaddMembHcmd: /owbuilder+
 
-mwdeleteWorldH1: remove Builder from your own World with gamemode 1 and 2 permissions
-mwdeleteWorldH2: use this command
-mwdeleteWorldHcmd: /owbuilder-
+mwsplworlddelMembH1: remove Builder from your own World with gamemode 1 and 2 permissions
+mwsplworlddelMembH2: use this command
+mwsplworlddelMembHcmd: /owbuilder-
 
 mwsCommandSignH1: Create Signs with Commands
 mwsCommandSignH2: you can let your User create her own signs with commands.
@@ -187,7 +235,7 @@ mwgoWarpH1: teleport to Warppoint
 mwgoWarpH2: use this command
 mwgoWarpHcmd: /w <Warpname>
 
-mwedelWarpH1: to delete Warppoint
+mwdelWarpH1: to delete Warppoint
 mwdelWarpH2: use this command
 mwdelWarpHcmd: /dwarp <Warpname>
 
@@ -316,6 +364,7 @@ helpmenuEnchantTitel1: Enchant Items [1-3]
 helpmenuEnchantTitel2: Enchant Items [2-3]
 helpmenuEnchantTitel3: Enchant Items [3-3]
 helpmenuPoitionTitel: Poitions Effect [0-1]
+helpmenuPoitionTitel1: Poitions Effect [1-1]
 ARROW_DAMAGE1: Provides extra damage when shooting arrows from bows
 ARROW_DAMAGE2: use this command
 ARROW_DAMAGEcmd: /arrowdamage <value> <lore> <Displayname>

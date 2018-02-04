@@ -12,7 +12,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -86,7 +85,8 @@ public class Shop implements Listener
       
       Chest chest = (Chest)block.getState();
       World welt = spieler.getWorld();
-      Block chestBlock = welt.getBlockAt(loc);
+      @SuppressWarnings("unused")
+	Block chestBlock = welt.getBlockAt(loc);
       
       List<ItemStack> drops = event.getDrops();
       for (ItemStack i : drops)

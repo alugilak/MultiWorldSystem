@@ -33,6 +33,10 @@ public class einstellungen
   File perm;
   FileConfiguration sysodata ;
   File syso;
+  FileConfiguration cpdata ;
+  File cp;
+  FileConfiguration bdata ;
+  File b;
   
 leerWelt plugin;
 World world;
@@ -48,14 +52,15 @@ World world;
     if (!p.getDataFolder().exists()) {
       p.getDataFolder().mkdir();
       }
-
+    this.cp = new File(p.getDataFolder(), "permcommands.yml");
     this.en = new File(p.getDataFolder(), "en.yml");
     this.de = new File(p.getDataFolder(), "de.yml");
     this.dfile = new File(p.getDataFolder(), "warpsAndspawns.yml");
     this.wfile = new File(p.getDataFolder(), "worlds.yml");
     this.pfile = new File(p.getDataFolder(), "enchant.yml");
     this.perm = new File(p.getDataFolder(), "permsList.yml");
-    this.syso = new File(p.getDataFolder(), "SystemOut.yml"); 
+    this.syso = new File(p.getDataFolder(), "SystemOut.yml");
+    this.b = new File(p.getDataFolder(), "bank.yml"); 
     if (!this.syso.exists()) {
         try
         {
@@ -68,7 +73,19 @@ World world;
       }
       this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
       
-      {
+      {if (!this.b.exists()) {
+          try
+          {
+            this.b.createNewFile();
+          }
+          catch (IOException d)
+          {
+            Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen bank.yml!");
+          }
+        }
+        this.bdata = YamlConfiguration.loadConfiguration(this.b);
+        
+        {
     if (!this.perm.exists()) {
         try
         {
@@ -82,6 +99,19 @@ World world;
       this.permdata = YamlConfiguration.loadConfiguration(this.perm);
 
       {
+    	  if (!this.cp.exists()) {
+    	        try
+    	        {
+    	          this.cp.createNewFile();
+    	        }
+    	        catch (IOException d)
+    	        {
+    	          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen System/permsList.yml!");
+    	        }
+    	      }
+    	      this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
+    	      
+    	      {
     if (!this.de.exists()) {
         try
         {
@@ -150,11 +180,19 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}
-    	      }public FileConfiguration getsysoData()
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}
+    	      }public FileConfiguration getcpData()
+    	      {
+    	          return this.cpdata;
+    	        } 
+  public FileConfiguration getsysoData()
     	      {
     	          return this.sysodata;
     	        } 
+  public FileConfiguration getbData()
+  {
+      return this.bdata;
+    } 
       public FileConfiguration getpermData()
       {
         return this.permdata;
@@ -179,6 +217,26 @@ World world;
   {
     return this.pdata;
   }
+  public void savecpData()
+  {
+    try
+    {
+      this.cpdata.save(this.cp);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern System/permsList.yml!");
+    }}
+  public void savebData()
+  {
+    try
+    {
+      this.bdata.save(this.b);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern bank.yml!");
+    }}
   public void savepermData()
   {
     try
@@ -256,6 +314,14 @@ World world;
   {
     return this.p.getDescription();
   }
+  public void reloadcpData()
+  {
+    this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
+  }
+  public void reloadbData()
+  {
+    this.bdata = YamlConfiguration.loadConfiguration(this.b);
+  }
   public void reloadsysoData()
   {
     this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
@@ -285,8 +351,16 @@ World world;
     this.pdata = YamlConfiguration.loadConfiguration(this.pfile);
   }
   public void savedeDefaultConfig() {
-	
+		
 	  this.dedata = YamlConfiguration.loadConfiguration(this.de);
+  }
+  public void savebDefaultConfig() {
+		
+	  this.bdata = YamlConfiguration.loadConfiguration(this.b);
+  }
+  public void savecpDefaultConfig() {
+	
+	  this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
   }
   public void saveDefaultConfig() {
 		
@@ -299,6 +373,10 @@ World world;
   public void savesysoDefaultConfig() {
 		
 	  this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
+  }
+  public void copycpDefaults() {
+		
+	  this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
   }
 
 }

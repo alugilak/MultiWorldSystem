@@ -17,7 +17,7 @@ import org.bukkit.entity.Player;
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.leerWelt;
 
-public class permPlayerWorld implements CommandExecutor
+public class permGoupWorld implements CommandExecutor
 { ConsoleCommandSender console = Bukkit.getConsoleSender();
 List<String> wl = new ArrayList<String>();
 List<String> wll = new ArrayList<String>();
@@ -34,7 +34,7 @@ List<String> wlu = new ArrayList<String>();
 	  leerWelt plugin;
 	  World world;
   
-  public permPlayerWorld(leerWelt instance)
+  public permGoupWorld(leerWelt instance)
   {
 
     plugin = instance;
@@ -46,7 +46,7 @@ List<String> wlu = new ArrayList<String>();
     Player p = (Player)sender; 
    
     
-    if (cmd.getName().equalsIgnoreCase("ppw+"))
+    if (cmd.getName().equalsIgnoreCase("pgw+"))
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
@@ -57,13 +57,13 @@ List<String> wlu = new ArrayList<String>();
 	   for (int i = 0; i < args.length; i++) {
 	        str.append(args[i] + " ");
     }	if (args.length <= 2) {	
-		  p.sendMessage("&eUse /ppw- <permission> <world> <player>");
+		  p.sendMessage("&eUse /pgw+ <permission> <world> <group>");
 		  	return false;}
   if (args.length == 3);{      
-      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user" + " " + args[2] + " " + "add" + " " + args[0] + " " + args[1]);}
-  p.sendMessage("set permission" + " " + args[0] + " " + "to player" + " " + args[2] + " " + "for World" + " " + args[1]);
+      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex group" + " " + args[2] + " " + "add" + " " + args[0] + " " + args[1]);}
+  p.sendMessage("set permission" + " " + args[0] + " " + "to group" + " " + args[2] + " " + "for World" + " " + args[1]);
   return true;}
-    if (cmd.getName().equalsIgnoreCase("ppw-"))
+    if (cmd.getName().equalsIgnoreCase("pgw-"))
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
@@ -74,11 +74,11 @@ List<String> wlu = new ArrayList<String>();
 	   for (int i = 0; i < args.length; i++) {
 	        str.append(args[i] + " ");
     }	if (args.length <= 2) {	
-		  p.sendMessage("&eUse /ppw- <permission> <world> <player>");
+		  p.sendMessage("&eUse /ppw- <permission> <world> <group>");
 		  	return false;}
   if (args.length == 3);{      
-      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex user" + " " + args[2] + " " + "remove" + " " + args[0] + " " + args[1]);}
-  p.sendMessage("remove permission" + " " + args[0] + " " + "from player" + " " + args[2] + " " + "for World" + " " + args[1]);
+      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex group" + " " + args[2] + " " + "remove" + " " + args[0] + " " + args[1]);}
+  p.sendMessage("remove permission" + " " + args[0] + " " + "from group" + " " + args[2] + " " + "for World" + " " + args[1]);
   return true;}
     
 	return false;}}

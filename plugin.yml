@@ -1,9 +1,57 @@
 name: MultiWorldSystem
-version: 3.6.6
+version: 3.7.1
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         mwspoition1:
+                    description: Poition Helpmenu 1
+                    usage: /mwspoition1
+         breath:
+                    description: Allows breathing underwater
+                    usage: /breath <value> and /or <playername>
+         speed:
+                    description: Increases movement speed
+                    usage: /speed <value> and /or <playername>
+         regeneration:
+                    description: Regenerates health
+                    usage: /regeneration <value> and /or <playername>
+         levitation:
+                    description: Causes the entity to float into the air
+                    usage: /levitation <value> and /or <playername>
+         jump:
+                    description: Increases jump height
+                    usage: /jump <value> and /or <playername>
+         invisible:
+                    description: Grants invisibility
+                    usage: /invisible <value> and /or <playername>
+         poison:
+                    description: Deals damage to an entity over time
+                    usage: /poison <value> and /or <playername> 
+         pgw-:
+                    description: remove group permissions
+                    usage: /pgw- <permission> <groupname> 
+         pgw+:
+                    description: give a group permissions
+                    usage: /pgw+ <permission> <groupname> 
+         pg-:
+                    description: remove group permissions
+                    usage: /pg- <permission> <groupname> 
+         pg+:
+                    description: give a group permissions
+                    usage: /pg+  <permission> <groupname>
+         bankopen:
+                    description: open everywhere your bank
+                    usage: /bankopen
+         bank:
+                    description: first argument for banking
+                    usage: /bank This command ist alone without function
+         setbank:
+                    description: set bank on a chest
+                    usage: /bank setbank
+         permsl:
+                    description: List all permissions and commands from this plugin
+                    usage: /<permsl>
          mwsgroups:
                     description: MWS pex Groupmanager addon Helpmenu
                     usage: /<mwsgroups> 
@@ -486,9 +534,6 @@ commands:
          wlistall:   
                     usage: /<command>                  
                     description: list all worlds from config file.
-         permlist:   
-                    usage: /<command>                  
-                    description: list all permissions from config file.
          mwsrepair:   
                     usage: /<command>                  
                     description: repair Item in Hand                                                            

@@ -50,16 +50,16 @@ List<String> wlu = new ArrayList<String>();
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
-        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwscplayerworld")) + " " + ((String)this.settings.getsysoData().get("permError")));
+        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsgroup")) + " " + ((String)this.settings.getsysoData().get("permError")));
         p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
       } StringBuilder str = new StringBuilder();
 	   for (int i = 0; i < args.length; i++) {
 	        str.append(args[i] + " ");
-    }	if (args.length <= 1) {	
+    }	if (args.length <= 0) {	
 		  p.sendMessage("Use /group+ <groupname> ");
 		  	return false;}
-  if (args.length == 2);{      
+  if (args.length == 1);{      
       Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex group" + " " + args[0] + " " + "create");}
   p.sendMessage("Group" + " " + args[0] + " " + "created");
   return true;}
@@ -67,16 +67,16 @@ List<String> wlu = new ArrayList<String>();
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsgroup")))
       {
-        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwscplayerworld")) + " " + ((String)this.settings.getsysoData().get("permError")));
+        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsgroup")) + " " + ((String)this.settings.getsysoData().get("permError")));
         p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
       } StringBuilder str = new StringBuilder();
 	   for (int i = 0; i < args.length; i++) {
 	        str.append(args[i] + " ");
-    }	if (args.length <= 1) {	
+    }	if (args.length <= 0) {	
 		  p.sendMessage("Use /group- <groupname> ");
 		  	return false;}
-  if (args.length == 2);{      
+  if (args.length == 1);{      
       Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "pex group" + " " + args[0] + " " + "delete");}
   p.sendMessage("Group" + " " + args[0] + " " + "deleted");
   return true;}

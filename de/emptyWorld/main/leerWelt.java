@@ -1,9 +1,17 @@
 package de.emptyWorld.main;
 
+import de.emptyWorld.main.poitions.jump;
+import de.emptyWorld.main.poitions.levitation;
+import de.emptyWorld.main.poitions.speed;
+import de.emptyWorld.main.poitions.regeneration;
+import de.emptyWorld.main.poitions.poison;
+import de.emptyWorld.main.poitions.invisibility;
+import de.emptyWorld.main.enchants.waterbreathing;
 
 import de.emptyWorld.main.poitions.glowing;
 import de.emptyWorld.main.poitions.confusion;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,17 +38,24 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
-
+import de.emptyWorld.main.pex.permGoupWorld;
+import de.emptyWorld.main.pex.permslist;
+import de.emptyWorld.main.pex.groupperms;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import de.emptyWorld.main.pex.permGroup;
 import de.emptyWorld.main.pex.defaultGroupset;
@@ -78,7 +93,6 @@ import de.emptyWorld.main.warplist;
 import de.emptyWorld.main.warpset;
 import de.emptyWorld.main.worldlist;
 import de.emptyWorld.main.delwarp;
-import de.emptyWorld.main.showpermissions;
 import de.emptyWorld.main.repair;
 import de.emptyWorld.main.teleportxyz;
 import de.emptyWorld.main.homepage;
@@ -88,6 +102,7 @@ import de.emptyWorld.main.groupset;
 import de.emptyWorld.main.playerWorlds;
 import de.emptyWorld.main.bans;
 import de.emptyWorld.main.peng;
+import de.emptyWorld.main.bank.ChestBank;
 import de.emptyWorld.main.enchants.frostwalker;
 import de.emptyWorld.main.enchants.arrowdamage;
 import de.emptyWorld.main.enchants.arrowfire;
@@ -115,7 +130,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
 {
 	Scoreboard board;
 	
-	
+	 private static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
 	
 	  einstellungen settings = einstellungen.getInstance();
 	  FileConfiguration data; 
@@ -125,6 +140,8 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	  FileConfiguration endata;
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
+	  FileConfiguration cpdata;
+	  FileConfiguration bdata ;
 	  
 	   private static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
@@ -133,8 +150,9 @@ public class leerWelt  extends JavaPlugin  implements Listener
   File de;
   File en;
   File perm;
-  File syso; 
- 
+  File syso;
+  File cp;
+  File b;
   World world;
   
 
@@ -149,7 +167,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    PluginDescriptionFile desc = getDescription();
 	    
 	    log.info(desc.getName() + " " + desc.getVersion() + "  " + " Wird ausgeschaltet!");
-	    
+	    this.saveConfig();
 
 	}
 
@@ -165,14 +183,16 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	  
 	
 	  	InitComs();
-	
+	  	this.bdata = getConfig();
 	    this.data = getConfig();
 	    this.wdata = getConfig();
 	    this.pdata = getConfig();
 	    this.dedata = getConfig();
 	    this.endata = getConfig();
 	    this.permdata = getConfig();
-	    this.sysodata = getConfig();	 
+	    this.sysodata = getConfig();
+	    this.cpdata = getConfig();
+	    this.bdata.options().copyDefaults(true);
 	    this.pdata.options().copyDefaults(true);
 	    this.wdata.options().copyDefaults(true);
 	    this.data.options().copyDefaults(true);
@@ -180,16 +200,34 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.endata.options().copyDefaults(true);
 	    this.permdata.options().copyDefaults(true);
 	    this.sysodata.options().copyDefaults(true);
+	    this.cpdata.options().copyDefaults(true);
 	    this.settings.setup(this);
+	    this.settings.savebData();
+	    this.settings.savecpData();
+	    this.settings.saveData();
+	    this.settings.savedeData();
+	    this.settings.saveenData();
+	    this.settings.savepermData();
+	    this.settings.savesysoData();
+	    this.settings.savewData();
+	    this.settings.savepData();
+	    this.settings.savebData();
+	    saveResource("permcommands.yml", true);
+	    saveResource("enchant.yml", true);
+	    saveResource("en.yml", true);
+	    saveResource("de.yml", true);
+	    saveResource("SystemOut.yml", true);
+	    saveResource("permsList.yml", true);
+	    saveResource("bank.yml", true);
 	    this.saveConfig();
 	    saveConfig();	    
-	    getConfig().options().copyDefaults(true);  
+	    	getConfig().options().copyDefaults(true);  
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);
-
-	    reloadConfig();
+	    
+	      reloadConfig();
 		  this.settings.reloadData();
 		  this.settings.reloaddeData();
 		  this.settings.reloadenData();
@@ -197,6 +235,8 @@ public class leerWelt  extends JavaPlugin  implements Listener
 		  this.settings.reloadpData();
 		  this.settings.reloadpermData();
 		  this.settings.reloadsysoData();
+		  this.settings.reloadcpData();		  
+		 
 
 
      
@@ -222,8 +262,22 @@ public class leerWelt  extends JavaPlugin  implements Listener
 
 
 public void InitComs() {
-	getCommand("dgroup+").setExecutor(new permGroup(this));
-	getCommand("dgroupw+").setExecutor(new permGroup(this));
+	getCommand("breath").setExecutor(new waterbreathing(this));
+	getCommand("speed").setExecutor(new speed(this));
+	getCommand("regeneration").setExecutor(new regeneration(this));
+	getCommand("levitation").setExecutor(new levitation(this));
+	getCommand("jump").setExecutor(new jump(this));
+	getCommand("invisible").setExecutor(new invisibility(this));
+	getCommand("poison").setExecutor(new poison(this));
+	getCommand("pgw-").setExecutor(new permGoupWorld(this));
+	getCommand("pgw+").setExecutor(new permGoupWorld(this));
+	getCommand("pg-").setExecutor(new groupperms(this));
+	getCommand("pg+").setExecutor(new groupperms(this));
+	getCommand("bank").setExecutor(new ChestBank(this));
+	getCommand("setbank").setExecutor(new ChestBank(this));	
+	getCommand("permsl").setExecutor(new permslist(this));
+	getCommand("dgroup+").setExecutor(new defaultGroupset(this));
+	getCommand("dgroupw+").setExecutor(new defaultGroupset(this));
 	getCommand("group+").setExecutor(new permGroup(this));
 	getCommand("group-").setExecutor(new permGroup(this));
 	getCommand("ppw-").setExecutor(new permPlayerWorld(this));
@@ -296,6 +350,7 @@ public void InitComs() {
 	  getCommand("mwsenchant2").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant3").setExecutor(new customcreates(this));
 	  getCommand("mwspoition").setExecutor(new customcreates(this));
+	  getCommand("mwspoition1").setExecutor(new customcreates(this));
 	  getCommand("smotd").setExecutor(new motd(this));
 	  getCommand("sysmotd").setExecutor(new motd(this));
 	  getCommand("motdl1").setExecutor(new motd(this));
@@ -306,7 +361,6 @@ public void InitComs() {
 	  getCommand("wlist").setExecutor(new worlds(this));
 	  getCommand("gi").setExecutor(new giveitem(this));
 	  getCommand("wlistall").setExecutor(new worldlist(this));
-	  getCommand("permlist").setExecutor(new showpermissions(this));
 	  getCommand("mwsrepair").setExecutor(new repair(this));
 	  getCommand("hub").setExecutor(new homes(this));
 	  getCommand("discord").setExecutor(new homepage(this));
@@ -347,22 +401,109 @@ public void InitComs() {
   {
     return new AirWorldGenerator();
   }
+  @EventHandler
+  public boolean playerCLickEvent(PlayerInteractEvent event)
+  {
+    if (event.getClickedBlock().getType().equals(Material.CHEST))
+    {
+      Block chest = event.getClickedBlock();
+      Player player = event.getPlayer();
+      if ((this.settings.getbData().getDouble("chest.x") == chest.getLocation().getX()) && (this.settings.getbData().getDouble("chest.y") == chest.getLocation().getY()) && (this.settings.getbData().getDouble("chest.z") == chest.getLocation().getZ()))
+      {
+        event.setCancelled(true);
+        if (!event.getPlayer().hasPermission(((String)this.settings.getpermData().get("mwsbanking"))))
+        {
+          player.sendMessage(ChatColor.DARK_RED + "You don't have permission!");
+          return false;
+        }        
+        Inventory inventory = Bukkit.createInventory(player, 54, ((String)this.settings.getbData().get("BankName")));
+        for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+        {
+          
+          inventory.setItem(slotIndex, (this.settings.getbData().getItemStack(player.getUniqueId().toString() + ".item" + slotIndex)));
+        }
+        player.openInventory(inventory);
+        playerBank.put(player, inventory);
+      }
+    }
+	return true;
+  }
   
- 
+  public static HashMap<Player, Inventory> getPlayerBank()
+  {
+    return playerBank;
+  }
+
+  @EventHandler
+  public void entityDamageEvent(EntityDamageEvent event)
+  {
+    if (((event.getEntity() instanceof Player)) && (getPlayerBank().containsKey(event.getEntity()))) {
+      if (this.settings.getbData().getBoolean("PlayerImmuneInBank")) {
+        event.setCancelled(true);}}
+      }
 	  @EventHandler
 	  public void PlayerJoin(PlayerLoginEvent event) {
-		  Player p = event.getPlayer();
-		  p.setGameMode(GameMode.SURVIVAL);
-  }
+		  
+		  
+		  if (!this.settings.getbData().contains(event.getPlayer().getUniqueId().toString())) {
+		      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+		      {
+		    	  this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, new ItemStack(Material.AIR));
+		        
+		    	  this.settings.savebData();}
+		      Player p = event.getPlayer();
+			  p.setGameMode(GameMode.SURVIVAL);}}
+  
 	  
-	  
-	    	
+	  @EventHandler
+	  public void inventoryCloseEvent(InventoryCloseEvent event)
+	  {
+	    if (((event.getPlayer() instanceof Player)) && 
+	      (getPlayerBank().containsKey(event.getPlayer())))
+	    {
+	      Inventory inventory = (Inventory)getPlayerBank().get(event.getPlayer());
+	      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+	      {
+	        ItemStack itemStack;	        
+	        if (inventory.getItem(slotIndex) == null) {
+	          itemStack = new ItemStack(Material.AIR);
+	        } else {
+	          itemStack = new ItemStack(inventory.getItem(slotIndex));
+	        }
+	        this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, itemStack);
+	        this.settings.savebData();
+	      }
+	      ((Player)event.getPlayer()).sendMessage(ChatColor.GREEN + "[MWS] Saved " + event.getPlayer().getName() + "'s chest bank.");
+	      
+	      getPlayerBank().remove(event.getPlayer());
+	    }
+	  }
+	  @EventHandler
+	  public void onExplode(EntityExplodeEvent event)
+	  {
+	    double x = this.settings.getbData().getDouble("chest.x");
+	    double y = this.settings.getbData().getDouble("chest.y");
+	    double z = this.settings.getbData().getDouble("chest.z");
+	    String world = this.settings.getbData().getString("chest.world");
+	    
+	    Location chestLocation = new Location(Bukkit.getWorld(world), x, y, z);
+	    for (Block block : event.blockList())
+	    {
+	      Bukkit.broadcastMessage("realy");
+	      if (block.getLocation() == chestLocation)
+	      {
+	        Bukkit.broadcastMessage("what");
+	        event.blockList().remove(block);
+	      }
+	    }
+	  }
 	  
   @EventHandler
   public void onJoin(PlayerJoinEvent e) {
-	 
+
 	  Player p = e.getPlayer();
 	  p.setGameMode(GameMode.SURVIVAL); 
+
 	  
   
   String motd = (String) this.settings.getsysoData().get("Motd"); 
@@ -404,7 +545,8 @@ public void InitComs() {
   String MissingPermissionCreatePlayer = getConfig().getString("MissingPermCrPl");
   String MissingPermissionDestoyPlayer = getConfig().getString("MissingPermnDelPl");
  	 
-
+  
+  
 	@EventHandler	
 		public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
 		{
@@ -427,7 +569,7 @@ public void InitComs() {
 		  ew.getRecipients().addAll(recipients);
 		}
 		
-
+    
 	
   @org.bukkit.event.EventHandler
   public void OnSignChange(SignChangeEvent event) {
@@ -716,9 +858,23 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
         
         return true;}}
        
-  }    
+  }if (cmd.getName().equalsIgnoreCase("bankopen"))
+  {
+      if (!sender.hasPermission((String)this.settings.getpermData().get("mwsbanking")))
+      {Player player = (Player)sender;
+    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwshomes")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
+        return false;
+      }  else {  Inventory inventory = Bukkit.createInventory(p, 54, this.settings.getbData().getString("BankName"));
+      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+        inventory.setItem(slotIndex, this.settings.getbData().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex));      
+      p.openInventory(inventory);
+      playerBank.put(p, inventory);
+    }
+  
+	return true;
 
-    
+  }
   
     if (cmd.getName().equalsIgnoreCase("cflat"))
     {
@@ -751,7 +907,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       this.world.setGameRuleValue("doFireTick", "false");
       this.world.setTime(6000L);
       this.settings.getwData().set("worlds." + args[0] + ".=="  , ((String)this.settings.getsysoData().get("SystemName")));
-      this.settings.getwData().set("worlds." + args[0] + ".type", "FLATâ€‹");
+      this.settings.getwData().set("worlds." + args[0] + ".type", "FLAT");
       this.settings.getwData().set("worlds." + args[0] + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".pvp", "false");
       this.settings.getwData().set("worlds." + args[0] + ".difficulty", "NORMAL");
@@ -829,7 +985,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       this.world.setGameRuleValue("doFireTick", "true");
       this.world.setGameRuleValue("showDeathMessages", "true");
       this.settings.getwData().set("worlds." + args[0] + ".=="  , ((String)this.settings.getsysoData().get("SystemName")));
-      this.settings.getwData().set("worlds." + args[0] + ".type", "LARGE_BIOMESâ€‹" + "'");
+      this.settings.getwData().set("worlds." + args[0] + ".type", "LARGE_BIOMES" + "'");
       this.settings.getwData().set("worlds." + args[0] + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".seed", "");
       this.settings.getwData().set("worlds." + args[0] + ".pvp", "true");
@@ -894,7 +1050,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       b.generateStructures(true);
       b.generateStructures(true);getCommand("cnormal");
       this.world = b.createWorld();
-      this.settings.getwData().set("worlds." + args[0] + ".type", "NORMALâ€‹");
+      this.settings.getwData().set("worlds." + args[0] + ".type", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".pvp", "true");
       this.settings.getwData().set("worlds." + args[0] + ".difficulty", "NORMAL");
@@ -941,7 +1097,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       b.generateStructures(true);
       b.generateStructures(true);getCommand("camp");
       this.world = b.createWorld();
-      this.settings.getwData().set("worlds." + args[0] + ".type", "AMPLIFIEDâ€‹");
+      this.settings.getwData().set("worlds." + args[0] + ".type", "AMPLIFIED");
       this.settings.getwData().set("worlds." + args[0] + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".pvp", "true");
       this.settings.getwData().set("worlds." + args[0] + ".difficulty", "NORMAL");
@@ -990,7 +1146,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       b.generateStructures(true);getCommand("cv1");
       this.world = b.createWorld();
       loc = p.getLocation();
-      this.settings.getwData().set("worlds." + args[0] + ".type", "VERSION_1_1â€‹");
+      this.settings.getwData().set("worlds." + args[0] + ".type", "VERSION_1_1");
       this.settings.getwData().set("worlds." + args[0] + ".environment", "NORMAL");
       this.settings.getwData().set("worlds." + args[0] + ".pvp", "true");
       this.settings.getwData().set("worlds." + args[0] + ".difficulty", "NORMAL");
