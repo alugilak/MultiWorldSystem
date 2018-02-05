@@ -1,9 +1,18 @@
 name: MultiWorldSystem
-version: 3.7.1
+version: 3.7.5
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         possave:
+                    description: save the location from a player
+                    usage: /possave
+         posload:
+                    description: teleports a player to the saved position
+                    usage: /posload                    
+         back:
+                    description: teleports a player to the deatpoint
+                    usage: /back
          mwspoition1:
                     description: Poition Helpmenu 1
                     usage: /mwspoition1
@@ -43,6 +52,12 @@ commands:
          bankopen:
                     description: open everywhere your bank
                     usage: /bankopen
+         vipbank:
+                    description: open everywhere your bank
+                    usage: /bankopen1                    
+         killmob:
+                    description: kill all mobs in your world
+                    usage: /killmob                    
          bank:
                     description: first argument for banking
                     usage: /bank This command ist alone without function
@@ -265,7 +280,10 @@ commands:
                     usage: /<command>
          mwshelp9:
                     description: Helpmenu
-                    usage: /<command>                                                                                                                                                                                    
+                    usage: /<command>    
+         mwshelp10:
+                    description: Helpmenu
+                    usage: /<command>                                                                                                                                                                                                      
          mwshelpDe1:
                     description: Helpmenu
                     usage: /<command>

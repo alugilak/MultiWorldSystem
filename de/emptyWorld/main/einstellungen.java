@@ -37,6 +37,8 @@ public class einstellungen
   File cp;
   FileConfiguration bdata ;
   File b;
+  FileConfiguration b2data ;
+  File b2;
   
 leerWelt plugin;
 World world;
@@ -61,6 +63,7 @@ World world;
     this.perm = new File(p.getDataFolder(), "permsList.yml");
     this.syso = new File(p.getDataFolder(), "SystemOut.yml");
     this.b = new File(p.getDataFolder(), "bank.yml"); 
+    this.b2 = new File(p.getDataFolder(), "vipbank.yml");
     if (!this.syso.exists()) {
         try
         {
@@ -83,9 +86,22 @@ World world;
             Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen bank.yml!");
           }
         }
-        this.bdata = YamlConfiguration.loadConfiguration(this.b);
+        this.b2data = YamlConfiguration.loadConfiguration(this.b2);
         
         {
+        	if (!this.b2.exists()) {
+                try
+                {
+                  this.b2.createNewFile();
+                }
+                catch (IOException d)
+                {
+                  Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen bank2.yml!");
+                }
+              }
+              this.bdata = YamlConfiguration.loadConfiguration(this.b);
+              
+              {
     if (!this.perm.exists()) {
         try
         {
@@ -180,7 +196,7 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}
     	      }public FileConfiguration getcpData()
     	      {
     	          return this.cpdata;
@@ -192,6 +208,10 @@ World world;
   public FileConfiguration getbData()
   {
       return this.bdata;
+    } 
+  public FileConfiguration getb2Data()
+  {
+      return this.b2data;
     } 
       public FileConfiguration getpermData()
       {
@@ -226,6 +246,16 @@ World world;
     catch (IOException d)
     {
       Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern System/permsList.yml!");
+    }}
+  public void saveb2Data()
+  {
+    try
+    {
+      this.b2data.save(this.b2);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern bank2.yml!");
     }}
   public void savebData()
   {
@@ -322,6 +352,10 @@ World world;
   {
     this.bdata = YamlConfiguration.loadConfiguration(this.b);
   }
+  public void reloadb2Data()
+  {
+    this.b2data = YamlConfiguration.loadConfiguration(this.b2);
+  }
   public void reloadsysoData()
   {
     this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
@@ -357,6 +391,10 @@ World world;
   public void savebDefaultConfig() {
 		
 	  this.bdata = YamlConfiguration.loadConfiguration(this.b);
+  }
+  public void saveb2DefaultConfig() {
+		
+	  this.b2data = YamlConfiguration.loadConfiguration(this.b2);
   }
   public void savecpDefaultConfig() {
 	

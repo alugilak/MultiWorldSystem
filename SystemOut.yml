@@ -1,4 +1,8 @@
 SystemName: MultiWorldSystem
+mwspossave: Your Location was saved
+mwsNopossave: An Error with Saving! Please speak with a Admin!
+mwsNoposload: No Location found to load! Please set a save first with /possave
+mwsposload: Teleporting to saved Position .........
 flyonText: Du darfst nun Fliegen
 flyoffText: Das Fliegen ist nun wieder aus
 SpawnParticle: true
@@ -15,6 +19,7 @@ MisPermCrLi1: Fehler
 MisPermCrLi2: Fehler
 MisPermCrLi3: Fehler
 MisPermCrLi4: Fehler
+mwsbeaplayer: you must be a player
 SetLine0Command: command
 JoinItemLore: Welcome Present
 BanMessage: §cDu bist gebannt. Beantrage einen §6Entbannungsantrag §cauf unserer Seite §ebansystem.info

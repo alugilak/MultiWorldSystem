@@ -1,5 +1,9 @@
 permissions:
-- mws.bank.use = /bank setbank /bankopen
+- mws.pos.save = /possave /posload
+- mws.back.tp = /back
+- mws.kill.mob = /killmob
+- mws.ban.vip = /vipbank
+- mws.bank.use = /bankopen
 - mws.rain.use = /rain
 - mws.storm.use = /storm
 - mws.flyspeed.set = /fs

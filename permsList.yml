@@ -1,4 +1,8 @@
+mwspossave: mws.pos.save
+mwsback: mws.back.tp
 mwsbanking: mws.bank.use
+mwskillmobs: mws.kill.mob
+mwsvipbanking: mws.bank.vip
 mwsgrave: mws.grave.use
 mwsrain: mws.rain.use 
 mwsstorm: mws.storm.use 

@@ -44,6 +44,8 @@ World world;
       sender.sendMessage(ChatColor.AQUA + "/permsl " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/wlist " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/warplist " + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + "/vipbank " + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + "/bankopen " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.GOLD + "the german help menu is disabled until complete translation" + ChatColor.RED);
       
       sender.sendMessage(ChatColor.YELLOW + "********************************************************");
@@ -502,8 +504,10 @@ World world;
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsrepairH1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsrepairH2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsrepairHcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
-
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsback1")));
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsback2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsbackcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+
 	        return true;
 	  }
 	        if (cmd.getName().equalsIgnoreCase("mwshelp8")) {			
@@ -516,8 +520,7 @@ World world;
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsetsysMotdHeadH1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsetsysMotdHeadH2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsetsysMotdHeadHcmd")));
-	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
-	        
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");	        
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsetMotdl1HeadH1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsetMotdl1HeadH2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsetMotdl1HeadHcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
@@ -539,7 +542,7 @@ World world;
 	            if (!sender.hasPermission((String) this.settings.getpermData().get("mwshelp"))) {
 	            	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshelp")) + " " + ChatColor.GREEN + ((String) this.settings.getsysoData().get("permError")));
 	                return true;}
-	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+	            sender.sendMessage(ChatColor.YELLOW + "*********************" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuTitel9")) + ChatColor.YELLOW + "********************");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsPlayerWorldH1")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsPlayerWorldH2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsPlayerWorldHcmd")));
 	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
@@ -551,6 +554,31 @@ World world;
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsCommandSignH1")) + " " + ((String) this.settings.getenData().get("mwsCommandSignH2")));
 	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsCommandSignH3")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsCommandSignH4")));
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwskillallmobs1")));
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwskillallmobs2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwskillallmobscmd")));
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+	        sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin!");
+	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
+	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+	        return true;
+	    }
+	        if (cmd.getName().equalsIgnoreCase("mwshelp10")) {			
+	            if (!sender.hasPermission((String) this.settings.getpermData().get("mwshelp"))) {
+	            	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshelp")) + " " + ChatColor.GREEN + ((String) this.settings.getsysoData().get("permError")));
+	                return true;}
+	            sender.sendMessage(ChatColor.YELLOW + "*********************" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("helpmenuTitel10")) + ChatColor.YELLOW + "********************");
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwssavepos1")));
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwssavepos2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwssaveposcmd")));
+	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsloadpos1")));
+	        sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsloadpos2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsloadposcmd")));
+	        sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+	        
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+	        
+	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+	        
 	        sender.sendMessage(ChatColor.YELLOW + "********************************************************");
 	        sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin!");
 	        sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");

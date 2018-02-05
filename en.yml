@@ -1,13 +1,30 @@
-helpmenuTitel: HELP MultiWorldSystem [1-9]
-helpmenuTitel2: HELP MultiWorldSystem [2-9]
-helpmenuTitel3: HELP MultiWorldSystem [3-9]
-helpmenuTitel4: HELP MultiWorldSystem [4-9]
-helpmenuTitel5: HELP MultiWorldSystem [5-9]
-helpmenuTitel6: HELP MultiWorldSystem [6-9]
-helpmenuTitel7: HELP MultiWorldSystem [7-9]
-helpmenuTitel8: HELP MultiWorldSystem [8-9]
-helpmenuTitel9: HELP MultiWorldSystem [9-9]
+helpmenuTitel: HELP MultiWorldSystem [1-10]
+helpmenuTitel2: HELP MultiWorldSystem [2-10]
+helpmenuTitel3: HELP MultiWorldSystem [3-10]
+helpmenuTitel4: HELP MultiWorldSystem [4-10]
+helpmenuTitel5: HELP MultiWorldSystem [5-10]
+helpmenuTitel6: HELP MultiWorldSystem [6-10]
+helpmenuTitel7: HELP MultiWorldSystem [7-10]
+helpmenuTitel8: HELP MultiWorldSystem [8-10]
+helpmenuTitel9: HELP MultiWorldSystem [9-10]
+helpmenuTitel10: HELP MultiWorldSystem [9-10]
 
+mwssavepos1: save your Position
+mwssavepos2: use this command
+mwssaveposcmd: /possave
+
+mwsloadpos1: Load your saved Position
+mwsloadpos2: use this command
+mwsloadposcmd: /posload
+
+
+mwsback1: teleports a player back to his death location
+mwsback2: use this command
+mwsbackcmd: /back
+
+mwskillallmobs1: Kill all mobs in the world
+mwskillallmobs2: use this command
+mwskillallmobscmd: /killlmob
 
 mwsbreathpoition1: Allows breathing underwater
 mwsbreathpoition2: use this command

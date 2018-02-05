@@ -1,5 +1,7 @@
 package de.emptyWorld.main;
 
+import de.emptyWorld.main.commands.killmobs;
+import de.emptyWorld.main.commands.back;
 import de.emptyWorld.main.poitions.jump;
 import de.emptyWorld.main.poitions.levitation;
 import de.emptyWorld.main.poitions.speed;
@@ -7,7 +9,6 @@ import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
 import de.emptyWorld.main.poitions.invisibility;
 import de.emptyWorld.main.enchants.waterbreathing;
-
 import de.emptyWorld.main.poitions.glowing;
 import de.emptyWorld.main.poitions.confusion;
 import java.util.ArrayList;
@@ -52,7 +53,6 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scoreboard.Scoreboard;
 import de.emptyWorld.main.pex.permGoupWorld;
 import de.emptyWorld.main.pex.permslist;
 import de.emptyWorld.main.pex.groupperms;
@@ -124,13 +124,18 @@ import de.emptyWorld.main.enchants.cheastArmorToughness;
 import de.emptyWorld.main.enchants.helmetArmorToughness;
 import de.emptyWorld.main.enchants.legArmorToughness;
 import de.emptyWorld.main.enchants.bootsArmorToughness;
+import de.emptyWorld.main.commands.possave;
+import de.emptyWorld.main.commands.posload;
 
 
 public class leerWelt  extends JavaPlugin  implements Listener
 {
-	Scoreboard board;
+	public static Inventory inv = null;
+
+	
 	
 	 private static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
+	 private static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
 	
 	  einstellungen settings = einstellungen.getInstance();
 	  FileConfiguration data; 
@@ -141,8 +146,8 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
 	  FileConfiguration cpdata;
-	  FileConfiguration bdata ;
-	  
+	  FileConfiguration bdata;
+	  FileConfiguration b2data;
 	   private static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
   File wfile;
@@ -153,13 +158,14 @@ public class leerWelt  extends JavaPlugin  implements Listener
   File syso;
   File cp;
   File b;
+  File b2;
   World world;
   
 
   List<String> wl = new ArrayList<String>();
   List<String> wll = new ArrayList<String>();
   List<String> wlu = new ArrayList<String>();
-  
+
   
   
 	  public void onDisable()
@@ -180,9 +186,10 @@ public class leerWelt  extends JavaPlugin  implements Listener
 
   {		 
 	      
-	  
+	 
 	
 	  	InitComs();
+	  	this.b2data = getConfig();
 	  	this.bdata = getConfig();
 	    this.data = getConfig();
 	    this.wdata = getConfig();
@@ -192,6 +199,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.permdata = getConfig();
 	    this.sysodata = getConfig();
 	    this.cpdata = getConfig();
+	    this.b2data.options().copyDefaults(true);
 	    this.bdata.options().copyDefaults(true);
 	    this.pdata.options().copyDefaults(true);
 	    this.wdata.options().copyDefaults(true);
@@ -212,13 +220,13 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.settings.savewData();
 	    this.settings.savepData();
 	    this.settings.savebData();
+	    this.settings.saveb2Data();
 	    saveResource("permcommands.yml", true);
 	    saveResource("enchant.yml", true);
 	    saveResource("en.yml", true);
 	    saveResource("de.yml", true);
 	    saveResource("SystemOut.yml", true);
 	    saveResource("permsList.yml", true);
-	    saveResource("bank.yml", true);
 	    this.saveConfig();
 	    saveConfig();	    
 	    	getConfig().options().copyDefaults(true);  
@@ -227,16 +235,21 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);
 	    
+	    
+	    
 	      reloadConfig();
-		  this.settings.reloadData();
 		  this.settings.reloaddeData();
 		  this.settings.reloadenData();
-		  this.settings.reloadwData();
 		  this.settings.reloadpData();
 		  this.settings.reloadpermData();
 		  this.settings.reloadsysoData();
-		  this.settings.reloadcpData();		  
-		 
+		  this.settings.reloadcpData();	
+		  this.settings.reloadbData();	
+		  this.settings.reloadb2Data();	
+		  
+		    
+		    
+		
 
 
      
@@ -262,6 +275,10 @@ public class leerWelt  extends JavaPlugin  implements Listener
 
 
 public void InitComs() {
+	getCommand("possave").setExecutor(new possave(this));
+	getCommand("posload").setExecutor(new posload(this));
+	getCommand("back").setExecutor(new back(this));
+	getCommand("killmob").setExecutor(new killmobs(this));
 	getCommand("breath").setExecutor(new waterbreathing(this));
 	getCommand("speed").setExecutor(new speed(this));
 	getCommand("regeneration").setExecutor(new regeneration(this));
@@ -336,6 +353,7 @@ public void InitComs() {
 	  getCommand("mwshelp7").setExecutor(new customcreates(this));
 	  getCommand("mwshelp8").setExecutor(new customcreates(this));
 	  getCommand("mwshelp9").setExecutor(new customcreates(this));
+	  getCommand("mwshelp10").setExecutor(new customcreates(this));
 	  getCommand("mwshelpDe1").setExecutor(new customcreates(this));
 	  getCommand("mwshelpDe2").setExecutor(new customcreates(this));
 	  getCommand("mwshelpDe3").setExecutor(new customcreates(this));
@@ -401,68 +419,55 @@ public void InitComs() {
   {
     return new AirWorldGenerator();
   }
-  @EventHandler
-  public boolean playerCLickEvent(PlayerInteractEvent event)
-  {
-    if (event.getClickedBlock().getType().equals(Material.CHEST))
-    {
-      Block chest = event.getClickedBlock();
-      Player player = event.getPlayer();
-      if ((this.settings.getbData().getDouble("chest.x") == chest.getLocation().getX()) && (this.settings.getbData().getDouble("chest.y") == chest.getLocation().getY()) && (this.settings.getbData().getDouble("chest.z") == chest.getLocation().getZ()))
-      {
-        event.setCancelled(true);
-        if (!event.getPlayer().hasPermission(((String)this.settings.getpermData().get("mwsbanking"))))
-        {
-          player.sendMessage(ChatColor.DARK_RED + "You don't have permission!");
-          return false;
-        }        
-        Inventory inventory = Bukkit.createInventory(player, 54, ((String)this.settings.getbData().get("BankName")));
-        for (int slotIndex = 0; slotIndex != 54; slotIndex++)
-        {
-          
-          inventory.setItem(slotIndex, (this.settings.getbData().getItemStack(player.getUniqueId().toString() + ".item" + slotIndex)));
-        }
-        player.openInventory(inventory);
-        playerBank.put(player, inventory);
-      }
-    }
-	return true;
-  }
-  
+ 
   public static HashMap<Player, Inventory> getPlayerBank()
   {
     return playerBank;
+  }
+  public static HashMap<Player, Inventory> getPlayerBank2()
+  {
+    return playerBank2;
   }
 
   @EventHandler
   public void entityDamageEvent(EntityDamageEvent event)
   {
     if (((event.getEntity() instanceof Player)) && (getPlayerBank().containsKey(event.getEntity()))) {
-      if (this.settings.getbData().getBoolean("PlayerImmuneInBank")) {
+      if (getConfig().getBoolean("PlayerImmuneInBank")) {
         event.setCancelled(true);}}
+    if (((event.getEntity() instanceof Player)) && (getPlayerBank2().containsKey(event.getEntity()))) {
+        if (getConfig().getBoolean("PlayerImmuneInVipBank")) {
+          event.setCancelled(true);}}
       }
 	  @EventHandler
-	  public void PlayerJoin(PlayerLoginEvent event) {
-		  
-		  
+	  public void PlayerJoin(PlayerLoginEvent event) {		  
+		int b1 = getConfig().getInt("Slots");		  
 		  if (!this.settings.getbData().contains(event.getPlayer().getUniqueId().toString())) {
-		      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+		      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
 		      {
 		    	  this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, new ItemStack(Material.AIR));
-		        
 		    	  this.settings.savebData();}
+		    	  			  
+			int b2 = getConfig().getInt("VipSlots");
+		      if (!this.settings.getb2Data().contains(event.getPlayer().getUniqueId().toString())) {
+			      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
+			      {
+			    	  this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex1, new ItemStack(Material.AIR));
+			        
+			    	  this.settings.saveb2Data();}
 		      Player p = event.getPlayer();
-			  p.setGameMode(GameMode.SURVIVAL);}}
+			  p.setGameMode(GameMode.SURVIVAL);}}}
   
-	  
+	    
 	  @EventHandler
 	  public void inventoryCloseEvent(InventoryCloseEvent event)
 	  {
 	    if (((event.getPlayer() instanceof Player)) && 
 	      (getPlayerBank().containsKey(event.getPlayer())))
 	    {
+		 int b1 = getConfig().getInt("Slots");
 	      Inventory inventory = (Inventory)getPlayerBank().get(event.getPlayer());
-	      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+	      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
 	      {
 	        ItemStack itemStack;	        
 	        if (inventory.getItem(slotIndex) == null) {
@@ -473,10 +478,30 @@ public void InitComs() {
 	        this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, itemStack);
 	        this.settings.savebData();
 	      }
-	      ((Player)event.getPlayer()).sendMessage(ChatColor.GREEN + "[MWS] Saved " + event.getPlayer().getName() + "'s chest bank.");
+	      ((Player)event.getPlayer()).sendMessage(ChatColor.YELLOW + getConfig().getString("PlayerBankSaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("PlayerBankSaveMesssageTitel2"));
 	      
 	      getPlayerBank().remove(event.getPlayer());
 	    }
+	    if (((event.getPlayer() instanceof Player)) && 
+	  	      (getPlayerBank2().containsKey(event.getPlayer())))
+	  	    {
+			 int b2 = getConfig().getInt("VipSlots");
+	  	      Inventory inventory1 = (Inventory)getPlayerBank2().get(event.getPlayer());
+	  	      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
+	  	      {
+	  	        ItemStack itemStack1;	        
+	  	        if (inventory1.getItem(slotIndex1) == null) {
+	  	          itemStack1 = new ItemStack(Material.AIR);
+	  	        } else {
+	  	          itemStack1 = new ItemStack(inventory1.getItem(slotIndex1));
+	  	        }
+	  	        this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex1, itemStack1);
+	  	        this.settings.saveb2Data();
+	  	      }
+	  	      ((Player)event.getPlayer()).sendMessage(ChatColor.YELLOW + getConfig().getString("VipBankSaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("VipBankSaveMesssageTitel2"));
+	  	      
+	  	      getPlayerBank2().remove(event.getPlayer());
+	  	    }
 	  }
 	  @EventHandler
 	  public void onExplode(EntityExplodeEvent event)
@@ -497,6 +522,28 @@ public void InitComs() {
 	      }
 	    }
 	  }
+	  
+	  @EventHandler
+	  public void onExplodeB2(EntityExplodeEvent eventB2)
+	  {  
+		 double x = this.settings.getb2Data().getDouble("chest.x");
+	    double y = this.settings.getb2Data().getDouble("chest.y");
+	    double z = this.settings.getb2Data().getDouble("chest.z");
+	    String world = this.settings.getb2Data().getString("chest.world");
+	    
+	    Location chestLocation = new Location(Bukkit.getWorld(world), x, y, z);
+	    for (Block block : eventB2.blockList())
+	    {
+	      Bukkit.broadcastMessage("realy");
+	      if (block.getLocation() == chestLocation)
+	      {
+	        Bukkit.broadcastMessage("what");
+	        eventB2.blockList().remove(block);
+	      }
+	 	    }
+	 	  }
+	  
+	  
 	  
   @EventHandler
   public void onJoin(PlayerJoinEvent e) {
@@ -681,10 +728,10 @@ public void InitComs() {
   public void onChat(AsyncPlayerChatEvent e)
   {
   Player p = e.getPlayer(); 
-  if ((p.isOp()) || (p.hasPermission((String)this.settings.getpermData().get("mwsChatColorSet")))) // Wenn der Player Op oder die Permission "lobby.chatcolor" besitzt darf er diesen Befehl (/color) ausführen .
+  if ((p.isOp()) || (p.hasPermission((String)this.settings.getpermData().get("mwsChatColorSet")))) 
   {
   String msg = e.getMessage();
-  e.setMessage(ChatColor.translateAlternateColorCodes('&', msg)); // Dafür das es so aus gegeben wird wie es oben angezeigt wird .
+  e.setMessage(ChatColor.translateAlternateColorCodes('&', msg));
   }
   }
 
@@ -862,11 +909,13 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
   {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsbanking")))
       {Player player = (Player)sender;
-    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwshomes")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsbanking")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
         player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
-      }  else {  Inventory inventory = Bukkit.createInventory(p, 54, this.settings.getbData().getString("BankName"));
-      for (int slotIndex = 0; slotIndex != 54; slotIndex++)
+      }  else {  
+	  int b1 = getConfig().getInt("Slots");
+    	  Inventory inventory = Bukkit.createInventory(p, b1, getConfig().getString("BankName"));
+      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
         inventory.setItem(slotIndex, this.settings.getbData().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex));      
       p.openInventory(inventory);
       playerBank.put(p, inventory);
@@ -875,7 +924,24 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	return true;
 
   }
-  
+  if (cmd.getName().equalsIgnoreCase("vipbank"))
+  {
+      if (!sender.hasPermission((String)this.settings.getpermData().get("mwsvipbanking")))
+      {Player player = (Player)sender;
+    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsvipbanking")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
+        return false;
+      }  else { 
+	 int b2 = getConfig().getInt("VipSlots");
+    	  Inventory inventory1 = Bukkit.createInventory(p, b2, getConfig().getString("VipBankName"));
+      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
+        inventory1.setItem(slotIndex1, this.settings.getb2Data().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex1));      
+      p.openInventory(inventory1);
+      playerBank2.put(p, inventory1);
+    }  
+	return true;
+
+  }
     if (cmd.getName().equalsIgnoreCase("cflat"))
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsfcreate")))
@@ -1400,11 +1466,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       Command.broadcastCommandMessage(sender, ((String)this.settings.getsysoData().get("weatherstorm")));
       return true;
       }
-  		
-		return false;}}
-
-
-  	
+return false;}}
+ 
   	
   		
  

@@ -60,7 +60,11 @@ public class Shop implements Listener
   {
     Player spieler = event.getEntity();
     Location loc = spieler.getLocation();
-    
+    this.settings.getData().set("death." + spieler.getName() + ".world", spieler.getLocation().getWorld().getName());
+    this.settings.getData().set("death." + spieler.getName() + ".x", Double.valueOf(spieler.getLocation().getX()));
+    this.settings.getData().set("death." + spieler.getName() + ".y", Double.valueOf(spieler.getLocation().getY()));
+    this.settings.getData().set("death." + spieler.getName() + ".z", Double.valueOf(spieler.getLocation().getZ()));
+    this.settings.saveData();
     WorldGuardPlugin worldGuard = getWorldGuard();
     LocalPlayer lplayer = worldGuard.wrapPlayer(spieler);
     
@@ -103,10 +107,10 @@ public class Shop implements Listener
       for (ItemStack i : drops) {
         i.setTypeId(0);
       }
-      s.setLine(0, ChatColor.RED + "*****************");
-      s.setLine(1, ChatColor.GOLD + "  ##" + ChatColor.RED + "R.I.P" + ChatColor.GOLD + "##");
-      s.setLine(2, ChatColor.AQUA + " " + spieler.getName());
-      s.setLine(3, ChatColor.RED + "*****************");
+      s.setLine(0, plugin.getConfig().getString("GraveLine0"));
+      s.setLine(1, plugin.getConfig().getString("GraveLine1"));
+      s.setLine(2, plugin.getConfig().getString("GraveLine2") + spieler.getName());
+      s.setLine(3, plugin.getConfig().getString("GraveLine3"));
       s.update();      
       
     }

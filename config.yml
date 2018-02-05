@@ -1,3 +1,4 @@
+#--------------------------------------------------------CommandSigns
 Line0: command
 invalidline1: Fehler
 invalidline2: Fehler
@@ -17,3 +18,20 @@ mwssigndel: mws.sign.del
 title-name: '&a[MWS SIGNS]:&f'
 MWS: MultiWorldSystem
 Perms: mws.sign.use
+#----------------------------------------------------------Gravelines
+GraveLine0: §5------R.I.P------
+GraveLine1: mwsrepair
+GraveLine2: §e
+GraveLine3: §6*****************
+
+#-----------------------------------------------------------Player&Vip Bank
+PlayerBankSaveMessageTitel: MultiWorldSystem Saved
+PlayerBankSaveMesssageTitel2: his bank
+VipBankSaveMessageTitel: MultiWorldSystem Saved
+VipBankSaveMesssageTitel2: his VIP bank
+BankName: MultiWorldSystem ITEM Bank
+PlayerImmuneInBank: true
+Slots: 54
+VipBankName: MultiWorldSystem VIP ITEM Bank
+PlayerImmuneInVipBank: true
+VipSlots: 54
