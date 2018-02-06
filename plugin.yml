@@ -1,9 +1,58 @@
 name: MultiWorldSystem
-version: 3.7.5
+version: 3.7.9
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         healthbar:
+                    description: show entity healthbar 
+                    usage: /healthbar on  /healthbar off
+         creeper:
+                    description: Creeper Blockdestroy on (true = block destroy off) and  off (aktivate block destroy) 
+                    usage: /crepper true  /creeper false
+
+         pshelp:
+                    description: Helpmenu for the playershop 
+                    usage: /pshelp
+         ps:
+                    description: main command playershop. not usable alone
+                    usage: /ps                     
+         v:
+                    description: visit a player Shop
+                    usage: /ps v
+         create:
+                    description: create a Playershop
+                    usage: /ps create
+         upgrade:
+                    description: reload config
+                    usage: /ps upgrade 
+         delete:
+                    description: deelete a player Shop
+                    usage: /ps delete
+         remove:
+                    description: remove a item from playershop
+                    usage: /ps remove <playername> <ItemID from the Gui Shop>
+         s:
+                    description: sell
+                    usage: /ps s
+         b:
+                    description: buy
+                    usage: /ps b
+                               
+         mwssetshoptp:
+                    description: set a playershop TP Point for a SignShop
+                    usage: /mwssetshoptp
+         mwsshoptp:
+                    description: teleport to a Player SignShop
+                    usage: /mwsshoptp
+         mwsdelshoptp:
+                    description: delete a Player Shop TeleportPoint
+                    usage: /mwsdeltpshop 
+                                       
+
+
+
+                                                            
          possave:
                     description: save the location from a player
                     usage: /possave

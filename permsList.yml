@@ -1,3 +1,15 @@
+mwshealthbar: mws.heal.bar
+creeper: mws.creeper.use
+mwsshopsell: mws.shop.sell
+mwsshopbuy: mws.shop.buy
+mwsshopcreate: mws.shop.create
+mwsshopdelete: mws.shop.delete
+mwsshopremove: mws.shop.remove 
+mwsshoptp: mws.shop.tp
+mwsshoptpdel: mws.shop.tpd
+mwsshoptpadmin: mws.shop.tpa
+mwsshops: mws.shop.tps
+mwsshop: mws.shop.use
 mwspossave: mws.pos.save
 mwsback: mws.back.tp
 mwsbanking: mws.bank.use

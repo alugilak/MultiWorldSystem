@@ -1,4 +1,16 @@
 permissions:
+- mws.heal.bar = /healthbar on /healthbar off
+- mws.creeper.use = /creaper true  /creeper false
+- mws.shop.buy = /permission to buy in Shop from a player
+- mws.shop.sell = /ps s <itemname> <amoind> <price>
+- mws.shop.create = ps create
+- mws.shop.delete = ps delete
+- mws.shop.remove = ps remove
+- mws.shop.tpd = /mwsdelshop
+- mws.shop.tpa = /mwsdelshop <pplayername>
+- mws.shop.tp = /mwsshoptp
+- mws.shop.tps = /mwssetshop
+- mws.shop.use = /ps v <playername> /
 - mws.pos.save = /possave /posload
 - mws.back.tp = /back
 - mws.kill.mob = /killmob

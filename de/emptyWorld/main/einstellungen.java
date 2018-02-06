@@ -39,6 +39,8 @@ public class einstellungen
   File b;
   FileConfiguration b2data ;
   File b2;
+  FileConfiguration sdata ;
+  File s;
   
 leerWelt plugin;
 World world;
@@ -64,6 +66,7 @@ World world;
     this.syso = new File(p.getDataFolder(), "SystemOut.yml");
     this.b = new File(p.getDataFolder(), "bank.yml"); 
     this.b2 = new File(p.getDataFolder(), "vipbank.yml");
+    this.s = new File(p.getDataFolder(), "shops.yml");
     if (!this.syso.exists()) {
         try
         {
@@ -76,7 +79,22 @@ World world;
       }
       this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
       
-      {if (!this.b.exists()) {
+      {
+    	  if (!this.s.exists()) {
+              try
+              {
+                this.s.createNewFile();
+              }
+              catch (IOException d)
+              {
+                Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen shops.yml!");
+              }
+            }
+            this.sdata = YamlConfiguration.loadConfiguration(this.s);
+            
+            {
+    	  
+    	  if (!this.b.exists()) {
           try
           {
             this.b.createNewFile();
@@ -196,7 +214,7 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}
     	      }public FileConfiguration getcpData()
     	      {
     	          return this.cpdata;
@@ -205,6 +223,10 @@ World world;
     	      {
     	          return this.sysodata;
     	        } 
+  public FileConfiguration getsData()
+  {
+      return this.sdata;
+    } 
   public FileConfiguration getbData()
   {
       return this.bdata;
@@ -246,6 +268,16 @@ World world;
     catch (IOException d)
     {
       Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern System/permsList.yml!");
+    }}
+  public void savesData()
+  {
+    try
+    {
+      this.sdata.save(this.s);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern shops.yml!");
     }}
   public void saveb2Data()
   {
@@ -348,6 +380,10 @@ World world;
   {
     this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
   }
+  public void reloadsData()
+  {
+    this.sdata = YamlConfiguration.loadConfiguration(this.s);
+  }
   public void reloadbData()
   {
     this.bdata = YamlConfiguration.loadConfiguration(this.b);
@@ -395,6 +431,10 @@ World world;
   public void saveb2DefaultConfig() {
 		
 	  this.b2data = YamlConfiguration.loadConfiguration(this.b2);
+  }
+  public void savesDefaultConfig() {
+		
+	  this.sdata = YamlConfiguration.loadConfiguration(this.s);
   }
   public void savecpDefaultConfig() {
 	

@@ -7,7 +7,48 @@ helpmenuTitel6: HELP MultiWorldSystem [6-10]
 helpmenuTitel7: HELP MultiWorldSystem [7-10]
 helpmenuTitel8: HELP MultiWorldSystem [8-10]
 helpmenuTitel9: HELP MultiWorldSystem [9-10]
-helpmenuTitel10: HELP MultiWorldSystem [9-10]
+helpmenuTitel10: HELP MultiWorldSystem [10-10]
+
+mwsplayershopHelpTitel: Helpmenu Player Shop
+
+mwshealtbar1: enabled or disabled Healthbar over Entitys
+mwshealtbar2: use this command
+mwshealtbarcmd: /healthbar on /healthbar off
+
+mwspscreate1: Player can create a GUI player shop
+mwspscreate2: use this command
+mwspscreatecmd: /ps create
+
+mwspssell1: Player can set items from his inventory to the shop
+mwspssell2: use this command
+mwspssellcmd: /ps s <ITEMNAME> <AMOUNT> <PRICE>
+
+mwspsremove1: Let remove Items froms the Sell Shop
+mwspsremove2: use this command
+mwspsremove1cmd: /ps remove <playername> <ITEM ID from the GUI SHOP>
+
+mwspsdelete1: Delete a playershop
+mwspsdelete2: use this command
+mwspsdeletecmd: /ps delete
+
+creeperblock1: Creeper Blockdestroy on (true = block destroy off) and  off (aktivate block destroy)
+creeperblock2: use this command
+creeperblockcmd: /creeper true  /creeper false
+
+mwssetshoptp1: set a playershop TP Point for a SignShop
+mwssetshoptp2: use this command
+mwssetshoptpcmd: /mwssetshoptp
+
+mwsshoptp1: teleport to a Player SignShop
+mwsshoptp2: use this command
+mwsshoptpcmd: /mwsshoptp <playername>
+
+mwsdelshoptp1: delete a Player Shop TeleportPoint
+mwsdelshoptp2: use this command
+mwsdelshoptpcmd: /mwsdelshoptp
+
+
+
 
 mwssavepos1: save your Position
 mwssavepos2: use this command

@@ -1,10 +1,31 @@
 package de.emptyWorld.main;
 
+import java.util.logging.Logger;
+import org.bukkit.ChatColor;
+import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 import de.emptyWorld.main.commands.killmobs;
+import de.emptyWorld.main.signshop.pshop;
+import de.emptyWorld.main.commands.creeperexplodeblocker;
+import de.emptyWorld.main.signshop.cmd_shop;
 import de.emptyWorld.main.commands.back;
 import de.emptyWorld.main.poitions.jump;
 import de.emptyWorld.main.poitions.levitation;
 import de.emptyWorld.main.poitions.speed;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.economy.EconomyResponse;
 import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
 import de.emptyWorld.main.poitions.invisibility;
@@ -16,43 +37,48 @@ import java.util.HashMap;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Set;
+import java.util.UUID;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
 import org.bukkit.Effect;
+import org.bukkit.EntityEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.block.Block;
+import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.Sign;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
+import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.SignChangeEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.metadata.MetadataValue;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.util.Vector;
+
 import de.emptyWorld.main.pex.permGoupWorld;
 import de.emptyWorld.main.pex.permslist;
 import de.emptyWorld.main.pex.groupperms;
@@ -128,12 +154,40 @@ import de.emptyWorld.main.commands.possave;
 import de.emptyWorld.main.commands.posload;
 
 
-public class leerWelt  extends JavaPlugin  implements Listener
+public class leerWelt extends JavaPlugin implements Listener, Entity
 {
+	  private boolean display = false;
+	    private static int SCALE = 30;
+	   
+	static leerWelt plugin = (leerWelt) Bukkit.getServer().getPluginManager().getPlugin("MultiWorldSystem");
+    @EventHandler
+    public void onEntityExplode(EntityExplodeEvent event) {
+  	  Boolean ntrue = (getConfig().getBoolean("creeper"));
+        if (event.getEntity() instanceof Creeper){
+        float explosionPower = 0F;
+        event.setCancelled(ntrue);
+        event.getLocation().getWorld().createExplosion(event.getLocation(), explosionPower);
+        }}
 	public static Inventory inv = null;
+	public static Economy econ = null;
+	  
+	  String prefix = "[Shop]";
+	  org.bukkit.configuration.ConfigurationSection seller = getConfig().getConfigurationSection("shops");
+	  Inventory shopList = org.bukkit.Bukkit.createInventory(null, 54, ChatColor.GREEN + "Shop Items");
+	  
+	  private boolean setupEconomy() {
+	  
+	    RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+	    if (rsp == null) {
+	      return false;
+	    }
+	    econ = (Economy)rsp.getProvider();
+	    
+	    return econ != null;
+	  }
+	    
 
-	
-	
+	  
 	 private static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
 	 private static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
 	
@@ -148,7 +202,8 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	  FileConfiguration cpdata;
 	  FileConfiguration bdata;
 	  FileConfiguration b2data;
-	   private static Logger log = Logger.getLogger("ZauschCraft");
+	  FileConfiguration sdata;
+	   public static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
   File wfile;
   File pfile;
@@ -159,6 +214,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
   File cp;
   File b;
   File b2;
+  File s;
   World world;
   
 
@@ -174,7 +230,18 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    
 	    log.info(desc.getName() + " " + desc.getVersion() + "  " + " Wird ausgeschaltet!");
 	    this.saveConfig();
-
+	    this.settings.savesData();
+	    this.settings.savebData();
+	    this.settings.savecpData();
+	    this.settings.saveData();
+	    this.settings.savedeData();
+	    this.settings.saveenData();
+	    this.settings.savepermData();
+	    this.settings.savesysoData();
+	    this.settings.savewData();
+	    this.settings.savepData();
+	    this.settings.savebData();
+	    this.settings.saveb2Data();
 	}
 
 
@@ -185,10 +252,14 @@ public class leerWelt  extends JavaPlugin  implements Listener
   public void onEnable()
 
   {		 
-	      
+	  plugin = this;
+		
+		
+		reloadConfig(); 
 	 
 	
 	  	InitComs();
+	  	this.sdata = getConfig();
 	  	this.b2data = getConfig();
 	  	this.bdata = getConfig();
 	    this.data = getConfig();
@@ -199,6 +270,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.permdata = getConfig();
 	    this.sysodata = getConfig();
 	    this.cpdata = getConfig();
+	    this.sdata.options().copyDefaults(true);
 	    this.b2data.options().copyDefaults(true);
 	    this.bdata.options().copyDefaults(true);
 	    this.pdata.options().copyDefaults(true);
@@ -210,6 +282,7 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    this.sysodata.options().copyDefaults(true);
 	    this.cpdata.options().copyDefaults(true);
 	    this.settings.setup(this);
+	    this.settings.savesData();
 	    this.settings.savebData();
 	    this.settings.savecpData();
 	    this.settings.saveData();
@@ -227,17 +300,17 @@ public class leerWelt  extends JavaPlugin  implements Listener
 	    saveResource("de.yml", true);
 	    saveResource("SystemOut.yml", true);
 	    saveResource("permsList.yml", true);
+	    saveResource("shops.yml", true);
+	    saveResource("config.yml", true);	
 	    this.saveConfig();
 	    saveConfig();	    
-	    	getConfig().options().copyDefaults(true);  
+	    getConfig().options().copyDefaults(true);
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);
-	    
-	    
-	    
-	      reloadConfig();
+	    getServer().getPluginManager().registerEvents(new cmd_shop(this), this);
+	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	    
 		  this.settings.reloaddeData();
 		  this.settings.reloadenData();
 		  this.settings.reloadpData();
@@ -246,9 +319,19 @@ public class leerWelt  extends JavaPlugin  implements Listener
 		  this.settings.reloadcpData();	
 		  this.settings.reloadbData();	
 		  this.settings.reloadb2Data();	
-		  
-		    
-		    
+		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
+		  getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
+		  pm.registerEvents(this, this); 
+		
+		  if (!setupEconomy()) {		  
+		      getServer().getPluginManager().enablePlugin(this);
+		      return;
+		    }
+		    if ((getConfig().getString("shop_price") == null) && (getConfig().getString("upgrade_price") == null)) {
+		    	getConfig().set("shop_price", Integer.valueOf(2500));
+		    	getConfig().set("upgrade_price", Integer.valueOf(500));
+		      saveConfig();
+		    }
 		
 
 
@@ -275,6 +358,10 @@ public class leerWelt  extends JavaPlugin  implements Listener
 
 
 public void InitComs() {
+	getCommand("creeper").setExecutor(new creeperexplodeblocker(this));
+	getCommand("mwsshoptp").setExecutor(new pshop(this));
+	getCommand("mwsdelshoptp").setExecutor(new pshop(this));
+	getCommand("mwssetshoptp").setExecutor(new pshop(this));
 	getCommand("possave").setExecutor(new possave(this));
 	getCommand("posload").setExecutor(new posload(this));
 	getCommand("back").setExecutor(new back(this));
@@ -369,6 +456,7 @@ public void InitComs() {
 	  getCommand("mwsenchant3").setExecutor(new customcreates(this));
 	  getCommand("mwspoition").setExecutor(new customcreates(this));
 	  getCommand("mwspoition1").setExecutor(new customcreates(this));
+	  getCommand("pshelp").setExecutor(new customcreates(this));
 	  getCommand("smotd").setExecutor(new motd(this));
 	  getCommand("sysmotd").setExecutor(new motd(this));
 	  getCommand("motdl1").setExecutor(new motd(this));
@@ -407,10 +495,13 @@ public void InitComs() {
 	  getCommand("undead").setExecutor(new damageundead(this));
 	  getCommand("knockback").setExecutor(new knockback(this));
 	  getCommand("damageall").setExecutor(new damageall(this));
-	  getCommand("depthstrider").setExecutor(new damagedeathstrider(this));
+	  getCommand("depthstrider").setExecutor(new damagedeathstrider(this));}
 
 	 
-} 
+
+public void reload() {
+	  Bukkit.getPluginManager().disablePlugin(plugin);
+	  Bukkit.getPluginManager().enablePlugin(plugin);} 
 
   public leerWelt() {}
   
@@ -429,6 +520,78 @@ public void InitComs() {
     return playerBank2;
   }
 
+  
+  @EventHandler
+  public void onInvClick(InventoryClickEvent e) {
+    Player player = (Player)e.getWhoClicked();
+    Inventory inventory = e.getInventory();
+    if (inventory.getName().equals(shopList.getName())) {
+      e.setCancelled(true);
+      player.closeInventory();
+      shopList.clear();
+    }
+  }
+  
+  @EventHandler
+  public void onInvClose(InventoryCloseEvent e) {
+    Inventory inventory = e.getInventory();
+    if (inventory.getName().equals(shopList.getName())) {
+      shopList.clear();
+    }
+  }
+  
+  public void showHealth(LivingEntity entity) {
+	    if (!this.display) {
+	        return;
+	    }	    
+	    int maxHealth = (int)entity.getMaxHealth();
+	    int currentHealth = (int)entity.getHealth();
+	    String entityName = entity.getType().toString();
+	    String text = this.makeBarGraph(currentHealth, maxHealth, entityName);
+	    entity.setCustomName(text);
+	}
+
+	public String makeBarGraph(int x, int y, String prefix) {
+	    int i;
+	    int percent = (int)((float)x / (float)y * (float)SCALE);
+	    StringBuilder output = new StringBuilder(12 + SCALE + prefix.length());
+	    output.append((Object)ChatColor.GOLD);
+	    output.append(prefix);
+	    output.append(" [");
+	    output.append((Object)ChatColor.GREEN);
+	    if (percent > 0) {
+	        for (i = 0; i < percent; ++i) {
+	            output.append("|");
+	        }
+	    }
+	    output.append((Object)ChatColor.DARK_GRAY);
+	    if (percent < SCALE) {
+	        for (i = 0; i < SCALE - percent; ++i) {
+	            output.append("|");
+	        }
+	    }
+	    output.append((Object)ChatColor.GOLD);
+	    output.append("]");
+	    return output.toString();
+	}
+
+	@EventHandler
+	public void onEntityDamage(EntityDamageEvent event) {
+	    if (event.getEntity() instanceof LivingEntity) {
+	        LivingEntity entity = (LivingEntity)event.getEntity();
+	        this.showHealth(entity);
+	    }
+	}
+
+	@EventHandler
+	public void onEntityTarget(EntityTargetEvent event) {
+	    if (event.getEntity() instanceof LivingEntity) {
+	        LivingEntity entity = (LivingEntity)event.getEntity();
+	        this.showHealth(entity);
+	    }
+	}
+	
+  
   @EventHandler
   public void entityDamageEvent(EntityDamageEvent event)
   {
@@ -503,47 +666,9 @@ public void InitComs() {
 	  	      getPlayerBank2().remove(event.getPlayer());
 	  	    }
 	  }
-	  @EventHandler
-	  public void onExplode(EntityExplodeEvent event)
-	  {
-	    double x = this.settings.getbData().getDouble("chest.x");
-	    double y = this.settings.getbData().getDouble("chest.y");
-	    double z = this.settings.getbData().getDouble("chest.z");
-	    String world = this.settings.getbData().getString("chest.world");
-	    
-	    Location chestLocation = new Location(Bukkit.getWorld(world), x, y, z);
-	    for (Block block : event.blockList())
-	    {
-	      Bukkit.broadcastMessage("realy");
-	      if (block.getLocation() == chestLocation)
-	      {
-	        Bukkit.broadcastMessage("what");
-	        event.blockList().remove(block);
-	      }
-	    }
-	  }
-	  
-	  @EventHandler
-	  public void onExplodeB2(EntityExplodeEvent eventB2)
-	  {  
-		 double x = this.settings.getb2Data().getDouble("chest.x");
-	    double y = this.settings.getb2Data().getDouble("chest.y");
-	    double z = this.settings.getb2Data().getDouble("chest.z");
-	    String world = this.settings.getb2Data().getString("chest.world");
-	    
-	    Location chestLocation = new Location(Bukkit.getWorld(world), x, y, z);
-	    for (Block block : eventB2.blockList())
-	    {
-	      Bukkit.broadcastMessage("realy");
-	      if (block.getLocation() == chestLocation)
-	      {
-	        Bukkit.broadcastMessage("what");
-	        eventB2.blockList().remove(block);
-	      }
-	 	    }
-	 	  }
-	  
-	  
+	 
+
+
 	  
   @EventHandler
   public void onJoin(PlayerJoinEvent e) {
@@ -1348,7 +1473,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	      }
 	      }
 		}
-
+	 
 	    if (cmd.getName().equalsIgnoreCase("shub"))
 	    {
 	      if (!sender.hasPermission((String)this.settings.getpermData().get("mwshubs")))
@@ -1438,6 +1563,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       return true;}
   
   
+  
   if (cmd.getName().equalsIgnoreCase("rain")) {
 	  Player player = (Player) sender;
 	  World world = p.getWorld();
@@ -1465,8 +1591,911 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 
       Command.broadcastCommandMessage(sender, ((String)this.settings.getsysoData().get("weatherstorm")));
       return true;
+      }if (cmd.getName().equalsIgnoreCase("healthbar"))
+	    {
+	      if (!sender.hasPermission((String)this.settings.getpermData().get("mwshealthbar")))
+	      {
+	    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwshealthbar")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+	        p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
+	        return false;}
+        if (args.length > 0) {
+            if (args[0].equals("on")) {
+                this.display = true;
+                p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("mwshealthbaron")));
+            }
+            if (args[0].equals("off")) {
+                this.display = false;
+                p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("mwshealthbaroff")));
+            }
+        }
+        return true;
+    }
+  if ((cmd.getName().equalsIgnoreCase("ps")) && ((sender instanceof Player))) {
+      if ((args.length <= 0) || (args.length < 1)) {
+        return false;
       }
-return false;}}
+      new cmd_shop(this).cmd(sender, cmd, commandLabel, args);
+      return true; }
+    if ((sender instanceof ConsoleCommandSender)) {
+      sender.sendMessage(prefix + "Try this command as player!");
+    }
+    
+    return true;}
+ 
+public void buyItem(Player buyer, OfflinePlayer seller, int ID)
+{
+  Inventory inv = buyer.getInventory();
+  if ((getConfig().getItemStack("shops." + seller.getName() + "." + ID + ".item") != null) && (econ.getBalance(seller.getName()) >= getConfig().getInt("shops." + seller + "." + ID + ".price"))) {
+    ItemStack buyItem = new ItemStack(getConfig().getItemStack("shops." + seller.getName() + "." + ID + ".item"));
+    inv.addItem(new ItemStack[] { buyItem });
+    buyer.sendMessage(ChatColor.GREEN + "You have successfully bought " + buyItem.getAmount() + " of " + buyItem.getType() + " from " + seller.getName() + "! Price: $" + getConfig().getInt(new StringBuilder("shops.").append(seller.getName()).append(".").append(ID).append(".price").toString()));
+    saveConfig();
+    EconomyResponse r = econ.withdrawPlayer(buyer.getName(), getConfig().getInt("shops." + seller.getName() + "." + ID + ".price"));
+    EconomyResponse resp = econ.depositPlayer(seller.getName(), getConfig().getInt("shops." + seller.getName() + "." + ID + ".price"));
+    if ((r.transactionSuccess()) || (resp.transactionSuccess())) {
+      log.info("A PlayerShop transaction successfully completed!");
+    }
+    getConfig().set("shops." + seller.getName() + "." + ID, null);
+    getConfig().set("shops." + seller.getName() + ".items_on_sale", Integer.valueOf(getConfig().getInt("shops." + seller.getName() + ".items_on_sale") - 1));
+    saveConfig();
+  } else {
+    buyer.sendMessage(ChatColor.RED + "This is the item has been sold or not it was nothing!");
+  }
+}
+
+
+
+
+
+
+@Override
+public List<MetadataValue> getMetadata(String arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public boolean hasMetadata(String arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void removeMetadata(String arg0, Plugin arg1) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setMetadata(String arg0, MetadataValue arg1) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void sendMessage(String arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void sendMessage(String[] arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public PermissionAttachment addAttachment(Plugin arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public PermissionAttachment addAttachment(Plugin arg0, int arg1) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public PermissionAttachment addAttachment(Plugin arg0, String arg1, boolean arg2, int arg3) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public boolean hasPermission(String arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean hasPermission(Permission arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isPermissionSet(String arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isPermissionSet(Permission arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void recalculatePermissions() {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void removeAttachment(PermissionAttachment arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public boolean isOp() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void setOp(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public String getCustomName() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public void setCustomName(String arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public boolean addPassenger(Entity arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean addScoreboardTag(String arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean eject() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public int getEntityId() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public float getFallDistance() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public int getFireTicks() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public double getHeight() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public EntityDamageEvent getLastDamageCause() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Location getLocation() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Location getLocation(Location arg0) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public int getMaxFireTicks() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public List<Entity> getNearbyEntities(double arg0, double arg1, double arg2) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Entity getPassenger() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public List<Entity> getPassengers() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public PistonMoveReaction getPistonMoveReaction() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public int getPortalCooldown() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public Set<String> getScoreboardTags() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public int getTicksLived() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public EntityType getType() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public UUID getUniqueId() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Entity getVehicle() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public Vector getVelocity() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public double getWidth() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+
+
+
+@Override
+public World getWorld() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public boolean hasGravity() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isCustomNameVisible() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isDead() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isEmpty() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isGlowing() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isInsideVehicle() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isInvulnerable() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isOnGround() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isSilent() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean isValid() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean leaveVehicle() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void playEffect(EntityEffect arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void remove() {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public boolean removePassenger(Entity arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean removeScoreboardTag(String arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void setCustomNameVisible(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setFallDistance(float arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setFireTicks(int arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setGlowing(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setGravity(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setInvulnerable(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setLastDamageCause(EntityDamageEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public boolean setPassenger(Entity arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public void setPortalCooldown(int arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setSilent(boolean arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setTicksLived(int arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public void setVelocity(Vector arg0) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+
+
+
+@Override
+public Spigot spigot() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+
+
+@Override
+public boolean teleport(Location arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean teleport(Entity arg0) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean teleport(Location arg0, TeleportCause arg1) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+
+
+
+
+
+@Override
+public boolean teleport(Entity arg0, TeleportCause arg1) {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+}
+
+
+
+
+
  
   	
   		

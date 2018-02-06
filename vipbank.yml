@@ -1,3 +1,5 @@
 Vipbank: MultiWorldSystem VIP ITEM Bank
 PlayerImmuneInVipBank: true
+level: 1
+upgrade_price: 500
 Slots: 54

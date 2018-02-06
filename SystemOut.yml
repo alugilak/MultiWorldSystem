@@ -1,8 +1,12 @@
 SystemName: MultiWorldSystem
+creeperFalse: you have activated Creeper Blockdestroy explosion
+creeperTrue: you have activated Creeper Blockdestroy explosion
 mwspossave: Your Location was saved
 mwsNopossave: An Error with Saving! Please speak with a Admin!
 mwsNoposload: No Location found to load! Please set a save first with /possave
 mwsposload: Teleporting to saved Position .........
+mwshealthbaron: Healthbar over Entitys enabled
+mwshealthbaroff: Healthbar over Entitys disabled
 flyonText: Du darfst nun Fliegen
 flyoffText: Das Fliegen ist nun wieder aus
 SpawnParticle: true

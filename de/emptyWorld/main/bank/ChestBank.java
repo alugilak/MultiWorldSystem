@@ -69,5 +69,7 @@ public class ChestBank implements CommandExecutor
     }
   }
   
-return false;}}}
+return false;}
+
+}}
 

@@ -1,4 +1,4 @@
-#--------------------------------------------------------CommandSigns
+creeper: true
 Line0: command
 invalidline1: Fehler
 invalidline2: Fehler
@@ -18,20 +18,35 @@ mwssigndel: mws.sign.del
 title-name: '&a[MWS SIGNS]:&f'
 MWS: MultiWorldSystem
 Perms: mws.sign.use
-#----------------------------------------------------------Gravelines
-GraveLine0: §5------R.I.P------
-GraveLine1: mwsrepair
-GraveLine2: §e
-GraveLine3: §6*****************
 
-#-----------------------------------------------------------Player&Vip Bank
+GraveLine0: §e------R.I.P------
+GraveLine1: mwsrepair
+GraveLine2: 
+GraveLine3: §e-----------------
+
 PlayerBankSaveMessageTitel: MultiWorldSystem Saved
 PlayerBankSaveMesssageTitel2: his bank
 VipBankSaveMessageTitel: MultiWorldSystem Saved
 VipBankSaveMesssageTitel2: his VIP bank
 BankName: MultiWorldSystem ITEM Bank
 PlayerImmuneInBank: true
+Plevel: 1
+Pupgrade_price: 500
 Slots: 54
 VipBankName: MultiWorldSystem VIP ITEM Bank
 PlayerImmuneInVipBank: true
+Vlevel: 1
+Vupgrade_price: 500
 VipSlots: 54
+
+shopseterror1: Shop successfully set.
+shopplno: have not a shop.
+shopuse: Use /mwsshop <player>
+shopremoved: Shop deleted from config.
+
+shopLine1: PlayersShop
+shopvisit: v
+shopbuy: b
+shopsell: s
+
+shops: {}

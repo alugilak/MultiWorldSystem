@@ -38,6 +38,8 @@ World world;
       sender.sendMessage(ChatColor.AQUA + " /mwshelp1 - /mwshelp9" + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + " /mwsenchant - /mwsenchant3" + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + " /mwspoition - /mwspoition1" + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + " /pshelp" + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + " /healthbar on" + ChatColor.LIGHT_PURPLE + " " + "/healtbar off");
       sender.sendMessage(ChatColor.YELLOW + "********************************************************");
       sender.sendMessage(ChatColor.AQUA + "/mwsgroups" + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + " /chatcolor help" + ChatColor.LIGHT_PURPLE);
@@ -46,6 +48,8 @@ World world;
       sender.sendMessage(ChatColor.AQUA + "/warplist " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/vipbank " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/bankopen " + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + ((String) this.settings.getenData().get("creeperblock1")));
+      sender.sendMessage(ChatColor.AQUA + ((String) this.settings.getenData().get("creeperblock2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("creeperblockcmd")));
       sender.sendMessage(ChatColor.GOLD + "the german help menu is disabled until complete translation" + ChatColor.RED);
       
       sender.sendMessage(ChatColor.YELLOW + "********************************************************");
@@ -785,6 +789,40 @@ World world;
   sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspermdelgroupw2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwspermdelgroupwcmd")));
   sender.sendMessage(ChatColor.YELLOW + "********************************************************");
   sender.sendMessage(ChatColor.GREEN + "I hope you have fun with this Plugin!");
+  sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
+  sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
+  return true;}
+  if (cmd.getName().equalsIgnoreCase("pshelp")) {	
+      sender.sendMessage(ChatColor.YELLOW + "****" + ChatColor.DARK_RED + ((String) this.settings.getenData().get("mwsplayershopHelpTitel")) + ChatColor.YELLOW + "****");	            
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspscreate1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspscreate2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwspscreatecmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspssell1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspssell2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwspssellcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspsremove1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspsremove2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwspsremove1cmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspsdelete1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwspsdelete2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwspsdeletecmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwssetshoptp1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwssetshoptp2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwssetshoptpcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsshoptp1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsshoptp2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsshoptpcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsdelshoptp1")));
+  sender.sendMessage(ChatColor.GREEN + ((String) this.settings.getenData().get("mwsdelshoptp2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("mwsdelshoptpcmd")));
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.YELLOW + "to create a ShopShild proceed as follows! in the 2 row of shields this command!\r\n" + 
+  		"ps v <playername>\r\n" + 
+  		"Example with first row in golden letters:\r\n" + 
+  		"\r\n" + 
+  		"&ETherinausShop\r\n" + 
+  		"ps v Therinau");
+  sender.sendMessage(ChatColor.YELLOW + "********************************************************");
+  sender.sendMessage(ChatColor.GREEN + "With /ps upgrade you can upgrade the Slotamount!");
   sender.sendMessage(ChatColor.GREEN + "Please inform me" + ChatColor.YELLOW + " " + "if you found a bug" + " " + "https://www.spigotmc.org/threads/multiworldsystem-spigot-1-8.297346/");
   sender.sendMessage(ChatColor.YELLOW + "*********************************************************");
   return true;}
