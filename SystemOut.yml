@@ -1,4 +1,6 @@
 SystemName: MultiWorldSystem
+shopexistError: This shop doesn't exist!
+shopSellError: /ps s <itemname> <amount> <price> / If you have enough Items to sell?
 creeperFalse: you have activated Creeper Blockdestroy explosion
 creeperTrue: you have activated Creeper Blockdestroy explosion
 mwspossave: Your Location was saved

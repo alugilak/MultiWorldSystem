@@ -231,8 +231,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    log.info(desc.getName() + " " + desc.getVersion() + "  " + " Wird ausgeschaltet!");
 	    this.saveConfig();
 	    this.settings.savesData();
-	    this.settings.savebData();
-	    this.settings.savecpData();
+	    this.settings.savebData();	    
 	    this.settings.saveData();
 	    this.settings.savedeData();
 	    this.settings.saveenData();
@@ -430,6 +429,7 @@ public void InitComs() {
 	  getCommand("f").setExecutor(new fly(this));
 	  getCommand("dwarp").setExecutor(new delwarp(this));
 	  getCommand("mwsgroups").setExecutor(new customcreates(this));
+	  getCommand("mwsgroupsDe").setExecutor(new customcreates(this));
 	  getCommand("mwshelp").setExecutor(new customcreates(this));
 	  getCommand("mwshelp1").setExecutor(new customcreates(this));
 	  getCommand("mwshelp2").setExecutor(new customcreates(this));
@@ -449,7 +449,16 @@ public void InitComs() {
 	  getCommand("mwshelpDe6").setExecutor(new customcreates(this));
 	  getCommand("mwshelpDe7").setExecutor(new customcreates(this));
 	  getCommand("mwshelpDe8").setExecutor(new customcreates(this));
-	  getCommand("mwshelpDe9").setExecutor(new customcreates(this)); 	 
+	  getCommand("mwshelpDe9").setExecutor(new customcreates(this)); 	
+	  getCommand("mwshelpDe10").setExecutor(new customcreates(this)); 
+	  getCommand("mwsenchantDe").setExecutor(new customcreates(this));
+	  getCommand("mwsenchantDe1").setExecutor(new customcreates(this));
+	  getCommand("mwsenchantDe2").setExecutor(new customcreates(this));
+	  getCommand("mwsenchantDe3").setExecutor(new customcreates(this));
+	  getCommand("mwspoitionDe").setExecutor(new customcreates(this));
+	  getCommand("mwspoitionDe1").setExecutor(new customcreates(this));
+	  getCommand("pshelpDe").setExecutor(new customcreates(this));
+	  
 	  getCommand("mwsenchant").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant1").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant2").setExecutor(new customcreates(this));

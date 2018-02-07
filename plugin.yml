@@ -1,5 +1,5 @@
 name: MultiWorldSystem
-version: 3.7.9
+version: 3.8.0
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
@@ -14,6 +14,9 @@ commands:
          pshelp:
                     description: Helpmenu for the playershop 
                     usage: /pshelp
+         pshelpDe:
+                    description: Hilfemenue Player Shop 
+                    usage: /pshelp                    
          ps:
                     description: main command playershop. not usable alone
                     usage: /ps                     
@@ -62,6 +65,9 @@ commands:
          back:
                     description: teleports a player to the deatpoint
                     usage: /back
+         mwspoitionDe1:
+                    description: Poition Hilfemenue 1
+                    usage: /mwspoition1                    
          mwspoition1:
                     description: Poition Helpmenu 1
                     usage: /mwspoition1
@@ -116,6 +122,9 @@ commands:
          permsl:
                     description: List all permissions and commands from this plugin
                     usage: /<permsl>
+         mwsgroupsDE:
+                    description: MWS pex Groupmanager addon Helpmenu
+                    usage: /<mwsgroups>                    
          mwsgroups:
                     description: MWS pex Groupmanager addon Helpmenu
                     usage: /<mwsgroups> 
@@ -207,7 +216,22 @@ commands:
                     usage: /<command> <amount>                            
          speed+:
                     description: entchant your mainHand Item with ATTACK SPEED 
-                    usage: /<command> <amount>                              
+                    usage: /<command> <amount>
+         mwsenchantDe:
+                    description: Verzauberung Hilfemenue 
+                    usage: /<command>     
+         mwsenchantDe1:
+                    description: Verzauberung Hilfemenue 
+                    usage: /<command> 
+         mwsenchantDe2:
+                    description: Verzauberung Hilfemenue 
+                    usage: /<command> 
+         mwsenchantDE3:
+                    description: Verzauberung Hilfemenue 
+                    usage: /<command>                                         
+         mwspoitionDe:
+                    description: enchant Helpmenu 
+                    usage: /<command>                                                                   
          mwsenchant:
                     description: enchant Helpmenu 
                     usage: /<command> 
@@ -359,7 +383,10 @@ commands:
                     usage: /<command>
          mwshelpDe9:
                     description: Helpmenu
-                    usage: /<command>                                                                                                                                           
+                    usage: /<command>
+         mwshelpDe10:
+                    description: Helpmenu
+                    usage: /<command>                                                                                                                                                                 
                                                                            
          wtp:
                     description: tp to world

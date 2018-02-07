@@ -8,6 +8,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.block.Block;
@@ -243,6 +244,9 @@ public class cmd_shop implements org.bukkit.event.Listener
 	      }
 	      
 	      if ((args[0].equalsIgnoreCase("v")) && (player.hasPermission(((String) this.settings.getpermData().getString("mwsshop"))))) {
+	    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsshop")) + " " + ((String)this.settings.getsysoData().get("permError")));
+	    	  player.getWorld().playEffect(player.getLocation(), Effect.BLAZE_SHOOT, 50);
+	    	  return false ;}
 	        if (args.length == 2) {
 	          if (plugin.getConfig().getString("shops." + args[1] + ".level") != null) {
 	            int level = plugin.getConfig().getInt("shops." + sender.getName() + ".level");
@@ -275,16 +279,15 @@ public class cmd_shop implements org.bukkit.event.Listener
 	              }
 	            }
 	            
-
 	            player.openInventory(shopList);
 	          } else {
-	            player.sendMessage(ChatColor.RED + "This shop doesn't exist!");
+	        	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("shopexistError")));
 	          }
 	        } else {
-	          player.sendMessage(ChatColor.RED + "Usage: /shop v <player>");
+	        	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("shopSellError")));
+	          
 	        }
 	      }
-	    }
 	    
 
 	    if ((args[0].equalsIgnoreCase("remove")) && (player.hasPermission(((String) this.settings.getpermData().getString("mwsshopremove"))))) {

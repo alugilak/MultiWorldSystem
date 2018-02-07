@@ -1,281 +1,565 @@
-helpmenuTitel: HELP MultiWorldSystem [1-9]
-helpmenuTitel2: HELP MultiWorldSystem [2-9]
-helpmenuTitel3: HELP MultiWorldSystem [3-9]
-helpmenuTitel4: HELP MultiWorldSystem [4-9]
-helpmenuTitel5: HELP MultiWorldSystem [5-9]
-helpmenuTitel6: HELP MultiWorldSystem [6-9]
-helpmenuTitel7: HELP MultiWorldSystem [7-9]
-helpmenuTitel8: HELP MultiWorldSystem [8-9]
-helpmenuTitel9: HELP MultiWorldSystem [9-9]
+helpmenuTitel: HELP MultiWorldSystem [1-10]
+helpmenuTitel2: HELP MultiWorldSystem [2-10]
+helpmenuTitel3: HELP MultiWorldSystem [3-10]
+helpmenuTitel4: HELP MultiWorldSystem [4-10]
+helpmenuTitel5: HELP MultiWorldSystem [5-10]
+helpmenuTitel6: HELP MultiWorldSystem [6-10]
+helpmenuTitel7: HELP MultiWorldSystem [7-10]
+helpmenuTitel8: HELP MultiWorldSystem [8-10]
+helpmenuTitel9: HELP MultiWorldSystem [9-10]
+helpmenuTitel10: HELP MultiWorldSystem [10-10]
 
-mwsdayH1: Zeit auf Tag stellen
-mwsdayH2: Benutze diesen Befehl
+mwsplayershopHelpTitel: Hilfemenue Spieler Shop
+
+mwshealtbar1: aktiviert oder deaktiviert Healthbar ueber Entitaeten
+mwshealtbar2: benutze diesen Befehl
+mwshealtbarcmd: /healthbar on /healthbar off
+
+mwspscreate1: Der Spieler kann einen GUI-Player-Shop erstellen
+mwspscreate2: benutze diesen Befehl
+mwspscreatecmd: /ps create
+
+mwspssell1: Der Spieler kann Gegenstaende aus seinem Inventar in den Shop legen
+mwspssell2: benutze diesen Befehl
+mwspssellcmd: /ps s <ITEMNAME> <AMOUNT> <PRICE>
+
+mwspsremove1: Lassen Sie Artikel aus dem Spieler-Shop entfernen
+mwspsremove2: benutze diesen Befehl
+mwspsremove1cmd: /ps remove <playername> <ITEM ID from the GUI SHOP>
+
+mwspsdelete1: Loesche einen Playershop
+mwspsdelete2: benutze diesen Befehl
+mwspsdeletecmd: /ps delete
+
+creeperblock1: Creeper Blockzerstoerung ein (true = Block zerstoeren aus) und false (Block zerstoeren an)
+creeperblock2: benutze diesen Befehl
+creeperblockcmd: /creeper true  /creeper false
+
+mwssetshoptp1: Setze einen Playshop Teleport Punkt uer einen SignShop
+mwssetshoptp2: benutze diesen Befehl
+mwssetshoptpcmd: /mwssetshoptp
+
+mwsshoptp1: teleportiere zu einem Player SignShop
+mwsshoptp2: benutze diesen Befehl
+mwsshoptpcmd: /mwsshoptp <playername>
+
+mwsdelshoptp1: Loesche einen Spieler Shop Teleport Punkt
+mwsdelshoptp2: benutze diesen Befehl
+mwsdelshoptpcmd: /mwsdelshoptp
+
+mwssavepos1: Speichere deine Position
+mwssavepos2: benutze diesen Befehl
+mwssaveposcmd: /possave
+
+mwsloadpos1: Laden Sie Ihre gespeicherte Position
+mwsloadpos2: benutze diesen Befehl
+mwsloadposcmd: /posload
+
+
+mwsback1: teleportiert einen Spieler an seinen Todesort zurueck
+mwsback2: benutze diesen Befehl
+mwsbackcmd: /back
+
+mwskillallmobs1: Toete alle Mobs der Welt
+mwskillallmobs2: benutze diesen Befehl
+mwskillallmobscmd: /killlmob
+
+mwsbreathpoition1: Ermoeglicht das Atmen unter Wasser
+mwsbreathpoition2: benutze diesen Befehl
+mwsbreathpoitioncmd: /breath <value> and /or <playername>
+
+mwsspeedpoition1: Erhoeht die Bewegungsgeschwindigkeit
+mwsspeedpoition2: benutze diesen Befehl
+mwsspeedpoitioncmd: /speed <value> and /or <playername>
+
+mwsregenerationpoition1: Regeneriert die Gesundheit
+mwsregenerationpoition2: benutze diesen Befehl
+mwsregenerationpoitioncmd: /regeneration <value> and /or <playername>
+
+mwslevitationpoition1: Bewirkt, dass das Objekt in die Luft schwebt
+mwslevitationpoition2: benutze diesen Befehl
+mwslevitationpoitioncmd: /levitation <value> and /or <playername>
+
+mwsjumppoition1: Erhoeht die Sprunghoehe
+mwsjumppoition2: benutze diesen Befehl
+mwsjumppoitioncmd: /jump <value> and /or <playername>
+
+mwsinvisiblepoition1: Gewaehrt Unsichtbarkeit
+mwsinvisiblepoition2: benutze diesen Befehl
+mwsinvisiblepoitioncmd: /invisible <value> and /or <playername>
+
+mwspoisonpoition1: uegt einer Entitaet im Laufe der Zeit Schaden zu
+mwspoisonpoition2: benutze diesen Befehl
+mwspoisonpoitioncmd: /poison <value> and /or <playername>
+
+mwspermaddgroup1: uegen Sie eine Berechtigung zu einer Gruppe hinzu
+mwspermaddgroup2: benutze diesen Befehl
+mwspermaddgroupcmd: /pg+ <permission> <group>
+
+mwspermdelgroup1: Entfernen Sie die Berechtigung von einer Gruppe
+mwspermdelgroup2: benutze diesen Befehl
+mwspermdelgroupcmd: /pg- <permission> <group>
+
+mwspermaddgroupw1: uegen Sie einer Gruppe eine Berechtigung uer eine Welt hinzu
+mwspermaddgroupw2: benutze diesen Befehl
+mwspermaddgroupwcmd: /pgw+ <permission> <world> <group>
+
+mwspermdelgroupw1: Entferne Erlaubnis von einer Gruppe uer eine Welt
+mwspermdelgroupw2: benutze diesen Befehl
+mwspermdelgroupwcmd: /pgw- <permission> <world> <group>
+
+ItemBank1: �ffnen Sie einen Player ItemBank
+ItemBank2: benutze diesen Befehl
+ItemBankcmd: /bankopen
+
+helpmenuGroupsTitel: MWS Pex Groupmanager Addon
+addPermissionPlayer1: setze pex Erlaubnis uer einen Spieler
+addPermissionPlayer2: benutze diesen Befehl
+addPermissionPlayercmd: /<pp+> <permission> <player>
+
+removePermissionPlayer1: entferne pex-Erlaubnis von einem Spieler
+removePermissionPlayer2: benutze diesen Befehl
+removePermissionPlayercmd: /pp- <permission> <player>
+
+addPermissionPlayerWorld1: setze pex Erlaubnis uer einen Spieler uer eine Welt
+addPermissionPlayerWorld2: benutze diesen Befehl
+addPermissionPlayerWorldcmd: /ppw+ <permission> <world> <player>
+
+removePermissionPlayerWorld1: loesche Pex-Erlaubnis uer einen Spieler uer eine Welt
+removePermissionPlayerWorld2: benutze diesen Befehl
+removePermissionPlayerWorldcmd: /ppw- <permission> <world> <player>
+
+addGroup1: Erstelle eine Gruppe mit pex
+addGroup2: benutze diesen Befehl
+addGroupcmd: /<group+> <groupname>
+
+deleteGroup1: Loeschen Sie eine Gruppe mit pex
+deleteGroup2: benutze diesen Befehl
+deleteGroupcmd: /<group-> <groupname>
+
+setdefaultGroup1: Legen Sie die Standardgruppe fest
+setdefaultGroup2: benutze diesen Befehl
+setdefaultGroupcmd: /<dgroup+> <groupname>
+
+setdefaultGroupWorld1: Legen Sie die Standardgruppe uer eine Welt fest
+setdefaultGroupWorld2: benutze diesen Befehl
+setdefaultGroupWorldcmd: /<dgroupw+> <groupname> <worldname>
+
+
+mwsdayH1: stelle die Zeit auf den Tag ein
+mwsdayH2: benutze diesen Befehl
 mwsdayHcmd: /day
 
-mwsnightH1: Zeit auf Nacht stellen
-mwsnightH2: Benutze diesen Befehl
+mwsnightH1: setze die Zeit auf die Nacht
+mwsnightH2: benutze diesen Befehl
 mwsnightHcmd: /night
 
 
-mwsPlayerWorldH1: Eine eigene Welt erstellen mit Ownerrechten und hinzufügen von Buildern
-mwsPlayerWorldH2: Benutze diesen Befehl
+mwsPlayerWorldH1: Erschaffe deine eigene Welt. Du bist der Besitzer dieser Welt.
+mwsPlayerWorldH2: benutze diesen Befehl
 mwsPlayerWorldHcmd: /cpworld
 
-mwsplworldaddMembH1: einen Spieler mit Bau und GM1 und GM0 Rechten hinzufügen
-mwsplworldaddMembH2: Benutze diesen Befehl
+mwsplworldaddMembH1: uegen Sie Bauer mit den Berechtigungen gamemode 1 und 2 zu Ihrer eigenen Welt hinzu
+mwsplworldaddMembH2: benutze diesen Befehl
 mwsplworldaddMembHcmd: /owbuilder+
 
-mwsplworlddelMembH1: einen Spieler mit Bau und GM1 und GM0 Rechten entfernen
-mwsplworlddelMembH2: Benutze diesen Befehl
-mwsplworlddelMembH3: /owbuilder-
+mwsplworlddelMembH1: Entferne den Erbauer mit den Berechtigungen gamemode 1 und 2 aus deiner eigenen Welt
+mwsplworlddelMembH2: benutze diesen Befehl
+mwsplworlddelMembHcmd: /owbuilder-
 
-mwdeleteWorldH1: einen Spieler mit Bau und GM1 und GM0 Rechten entfernen
-mwdeleteWorldH2: Benutze diesen Befehl
-mwdeleteWorldHcmd: /owbuilder-
+mwsCommandSignH1: Erstellen Sie Schild mit Befehlen
+mwsCommandSignH2: Sie koennen Ihren Benutzer ihre eigenen Schilder mit Befehlen erstellen lassen.
+mwsCommandSignH3: In der ersten Linie muss der Befehl stehen ohne /
+mwsCommandSignH4: In allen anderen Lines kann geschrieben werden was man will. Manche Befehle lassen nur die erste Linie zu. Austesten!
+mwsCommandSignH5: Gib dem Spieler die Erlaubnis, die Schilder zu benutzen und zu setzen! Sie koennen ihre eigenen Schilder mit den Befehlen erstellen, uer die sie Berechtigungen haben!
 
-mwsCommandSignH1: Erstelle Schilder mit Befehlen
-mwsCommandSignH2: Spieler können eigene Schilder erstellen mit Befehlen
-mwsCommandSignH3: In der config.yml Line0 und SetLine0Command kann der Titel und in Line 2 kommt der Befehl ohne /.
-mwsCommandSignH4: In Line3 kann rein was man mag
-mwsCommandSignH5: Erteile den Spielern die Rechte und sie können Befehle auf Schilder setzten wofür sie selber die Rechte besitzen.!
-
-mwschatcolorH1: Den eigenen Namen im Chat farbig
-mwschatcolorH2: Benutze diesen Befehl
+mwschatcolorH1: Chatcolor
+mwschatcolorH2: benutze diesen Befehl
 mwschatcolorHcmd: /chatcolor help
 
-mwrelconfH1: die config Dateien neu laden
-mwrelconfH2: Benutze diesen Befehl
+mwrelconfH1: um die Konfigurationsdateien neu zu laden
+mwrelconfH2: benutze diesen Befehl
 mwrelconfHcmd: /mwsr
 
-mwemptyWwMVH1: eine leere Welt erstellen mit Multivers
-mwemptyWwMVcmd1: /mv create <Wunschname> <normal> <-g> <MultiWorldSystem>
+mwemptyWwMVH1: Um eine leere Welt zu erstellen, geben Sie diesen Befehl ein
+mwemptyWwMVcmd1: /mv create <desire world name> <normal> <-g> <MultiWorldSystem>
 
-mwemptyWautoCreateMV1: Eine leere Welt mit Multivers mit diesem Namen
+mwemptyWautoCreateMV1: eine Welt automatisch benannt
 mwemptyWautoCreateMV2: emptyWorld
-mwemptyWautoCreateMV3: erstellen. Benutze diesen Befehl
+mwemptyWautoCreateMV3: create with
 mwemptyWautoCreateMVcmd: /ewca
 
-mwemptyUnlautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld entladen.
-mwemptyUnlautoCreateMV2: Benutze diesen Befehl
+mwemptyUnlautoCreateMV1: um die automatisch erstellte Welt von Multivers zu entladen
+mwemptyUnlautoCreateMV2: benutze diesen Befehl
 mwemptyUnlautoCreateMVcmd: /ewua
 
-mwemptyRemautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld aus der Multivers config entfernen.
-mwemptyRemautoCreateMV2: Benutze diesen Befehl
+mwemptyRemautoCreateMV1: um die automatisch erstellte Welt aus Multivers zu entfernen
+mwemptyRemautoCreateMV2: benutze diesen Befehl
 mwemptyRemautoCreateMVcmd: /ewra
 
-mwemptyDelautoCreateMV1: Die automatisch erstellte leere Welt emptyWorld aus Multivers löschen
-mwemptyDelautoCreateMV2: Benutze diesen Befehl
+mwemptyDelautoCreateMV1: um die automatisch erstellte Welt aus Multivers zu loeschen
+mwemptyDelautoCreateMV2: benutze diesen Befehl
 mwemptyDelautoCreateMVcmd: /ewda
 
-mwfCreateH1: Eine flache Welt erstellen inkl. Warp Punkt
-mwfCreateH2: Benutze diesen Befehl
+mwfCreateH1: Erschaffe eine flache Welt
+mwfCreateH2: benutze diesen Befehl
 mwfCreateHcmd: /cflat <Worldname>
 
 
-mwiCreateH1: Eine AMPLIFIED Welt erstellen inkl. Warp Punkt
-mwiCreateH2: Benutze diesen Befehl
+mwiCreateH1: um eine VERSTÄRKTE Welt zu erschaffen
+mwiCreateH2: benutze diesen Befehl
 mwiCreateHcmd: /camp <Worldname>
 
-mwnCreateH1: Eine normale Welt erstellen inkl. Warp Punkt
-mwnCreateH2: Benutze diesen Befehl
+mwnCreateH1: um eine normale Welt zu erschaffen
+mwnCreateH2: benutze diesen Befehl
 mwnCreateHcmd: /cnormal <Worldname>
 
-mwlbCreateH1: Eine große Biome Welt erstellen inkl. Warp Punkt
-mwlbCreateH2: Benutze diesen Befehl
+mwlbCreateH1: um eine grosse Biom-Welt zu schaffen
+mwlbCreateH2: benutze diesen Befehl
 mwlbCreateHcmd: /clb <Worldname>
 
-mwv1CreateH1: Eine flache Welt erstellen inkl. Warp Punkt
-mwv1CreateH2: Benutze diesen Befehl
+mwv1CreateH1: um eine Welt Minecraft 1.1 zu erstellen
+mwv1CreateH2: benutze diesen Befehl
 mwv1CreateHcmd: /cv1 <Worldname>
 
-mwskyCreateH1: Eine leere Welt erstellen inkl. Warp Punkt
-mwskyCreateH2: Benutze diesen Befehl
+mwskyCreateH1: um eine leere Welt zu erschaffen
+mwskyCreateH2: benutze diesen Befehl
 mwskyCreateHcmd: /csky <Worldname>
 
-mwloadWorldH1: Einen Weltordner laden 
-mwloadWorldH2: Benutze diesen Befehl
+mwloadWorldH1: um eine Welt zu laden
+mwloadWorldH2: benutze diesen Befehl
 mwloadWorldHcmd: /wload <Worldname>
 
-mwlistWorldH1: geladene Welten auflisten
-mwlistWorldH2: Benutze diesen Befehl
+mwlistWorldH1: um Welten aufzulisten
+mwlistWorldH2: benutze diesen Befehl
 mwlistWorldHcmd: /wlist
 
-mwlistWorldaH1: Alle Welten auflisten die mit dem MultiWorldSystem erstellt wurden.
-mwlistWorldaH2: Benutze diesen Befehl
+mwlistWorldaH1: um alle Welten von worlds.yml aufzulisten
+mwlistWorldaH2: benutze diesen Befehl
 mwlistWorldaHcmd: /wlistall
 
-mwunloadWorldH1: Eine Welt entladen 
-mwunloadWorldH2: Benutze diesen Befehl
+mwunloadWorldH1: um eine Welt zu entladen
+mwunloadWorldH2: benutze diesen Befehl
 mwunloadWorldHcmd: /wunload <Worldname>
 
-mwdeleteWorldH1: Eine Welt inkl. Ordner löschen 
-mwdeleteWorldH2: Benutze diesen Befehl
+mwdeleteWorldH1: um eine Welt mit Ordner zu loeschen
+mwdeleteWorldH2: benutze diesen Befehl
 mwdeleteWorldHcmd: /wdelete <Worldname>
 
-mwrenameWorldH1: Eine Welt inkl. Ordner umbenennen 
-mwrenameWorldH2: Benutze diesen Befehl
-mwrenameWorldHcmd: /wrename <Worldname>
+mwrenameWorldH1: Um eine Welt mit Ordner umzubenennen
+mwrenameWorldH2: benutze diesen Befehl
+mwrenameWorldHcmd: /wren <Worldname>
 
-mwstatsWorldH1: Die Werte einer Welt anzeigen 
-mwstatsWorldH2: Benutze diesen Befehl
+mwstatsWorldH1: um Statistiken einer Welt zu zeigen
+mwstatsWorldH2: benutze diesen Befehl
 mwstatsWorldHcmd: /wstats <Worldname>
 
-mwsetSpawnH1: Einen Spawn setzen
-mwsetSpawnH2: Benutze diesen Befehl
+mwsetSpawnH1: um einen Spawn zu setzen
+mwsetSpawnH2: benutze diesen Befehl
 mwsetSpawnHcmd: /sspawn
 
-mwsetHubH1: Einen Hub setzen
-mwsetHubH2: Benutze diesen Befehl
+mwsetHubH1: um einen Hub zu setzen
+mwsetHubH2: benutze diesen Befehl
 mwsetHubHcmd: /shub
 
-mwsetHomeH1: Dein Home setzen
-mwsetHomeH2: Benutze diesen Befehl
+mwsetHomeH1: ein Zuhause setzen
+mwsetHomeH2: benutze diesen Befehl
 mwsetHomeHcmd: /shome
 
-mwdelHomeH1: Dein Home oder das eines Spielers löschen
-mwdelHomeH2: Benutze diesen Befehl
+mwdelHomeH1: um dein Zuhause oder einen anderen Spieler nach Hause teleport  zu loeschen
+mwdelHomeH2: benutze diesen Befehl
 mwdelHomeHcmd: /dhome /dhome <player>
 
-mwsetWarpH1: Einen Warppunkt setzen
-mwsetWarpH2: Benutze diesen Befehl
+mwsetWarpH1: einen Warppoint setzen
+mwsetWarpH2: benutze diesen Befehl
 mwsetWarpHcmd: /swarp
 
-mwgoSpawnH1: Zum Spawn teleportieren
-mwgoSpawnH2: Benutze diesen Befehl
+mwgoSpawnH1: zu Spawn teleportieren
+mwgoSpawnH2: benutze diesen Befehl
 mwgoSpawnHcmd: /spawn
 
-mwgoHubH1: Zum Hub teleportieren
-mwgoHubH2: Benutze diesen Befehl
+mwgoHubH1: teleportiere nach Hub
+mwgoHubH2: benutze diesen Befehl
 mwgoHubHcmd: /hub
 
-mwgoHomeH1: Zu deinem oder dem home eines Spielers teleportieren
-mwgoHomeH2: Benutze diesen Befehl
-mwgoHomeHcmd: /home  /home <playername>
+mwgoHomeH1: teleportiere zu dir nach Hause oder nach Hause eines Mitspielers
+mwgoHomeH2: benutze diesen Befehl
+mgoHomeHcmd: /home  /home <playername>
 
-mwgoWarpH1: Zu einem Warppunkt teleportieren
-mwgoWarpH2: Benutze diesen Befehl
+mwgoWarpH1: teleportiere zum Warppoint
+mwgoWarpH2: benutze diesen Befehl
 mwgoWarpHcmd: /w <Warpname>
 
-mwedelWarpH1: Einen Warppunkt löschen
-mwdelWarpH2: Benutze diesen Befehl
+mwdelWarpH1: Warpoint loeschen
+mwdelWarpH2: benutze diesen Befehl
 mwdelWarpHcmd: /dwarp <Warpname>
 
-mwtptoplH1: zu einem Spieler teleportieren
-mwtptoplH2: Benutze diesen Befehl
+mwtptoplH1: teleportiere zum Spieler
+mwtptoplH2: benutze diesen Befehl
 mwtptoplHcmd: /to <Playername>
 
-mwtppltomeH1: Einen Spieler zu dir teleportieren
-mwtppltomeH2: Benutze diesen Befehl
+mwtppltomeH1: teleportiere einen Spieler zu dir
+mwtppltomeH2: benutze diesen Befehl
 mwtppltomeHcmd: /tome <Playername>
 
-mwtpxyzH1: Zu einer bestimmten Koordinate teleportieren
-mwtpxyzH2: Benutze diesen Befehl
+mwtpxyzH1: teleportiere dich zum Standort x y z
+mwtpxyzH2: benutze diesen Befehl
 mwtpxyzHcmd: /xyz <x> <y> <z>
 
-mwtpworldH1: Zu einer Welt teleportieren
-mwtpworldH2: Benutze diesen Befehl
+mwtpworldH1: teleportiere dich zur Welt
+mwtpworldH2: benutze diesen Befehl
 mwtpworldHcmd: /wtp <worldname>
 
-mwsetBlockH1: Einen Block an deiner stelle spawnen lassen
-mwsetBlockH1: Benutze diesen Befehl
+mwsetBlockH1: um einen Steinblock an deiner Position zu spawnen
+mwsetBlockH1: benutze diesen Befehl
 mwsetBlockHcmd: /block 
 
-mwsetgmH1: Deinen Spielmodus wechseln
-mwsetgmH2: Benutze diesen Befehl
+mwsetgmH1: um deinen Spielmodus zu aendern
+mwsetgmH2: benutze diesen Befehl
 mwsetgmHcmd: /g0 /g1 /g2
 
-mwdelInvH1: Dein Inventar löschen
-mwdelInvH2: Benutze diesen Befehl
+mwdelInvH1: um dein Inventar zu loeschen
+mwdelInvH2: benutze diesen Befehl
 mwdelInvHcmd: /cinv
 
-mwkillH1: Einen Spieler töten
-mwkillH2: Benutze diesen Befehl
+mwkillH1: einen Spieler toeten
+mwkillH2: benutze diesen Befehl
 mwkillHcmd: /peng <playername>
 
-mwwcH1: Das Wetter auf klar stellen
-mwwcH2: Benutze diesen Befehl
+mwwcH1: um das schlechte  Wetter zu entfernen
+mwwcH2: benutze diesen Befehl
 mwwcHcmd: /wclear
 
-mwrainH1: Regen machen
-mwrainH2: Benutze diesen Befehl
+mwrainH1: setze das Wetter auf Regen
+mwrainH2: benutze diesen Befehl
 mwrainHcmd: /rain
 
-mwstormH1: Sturm machen
-mwstormH2: Benutze diesen Befehl
+mwstormH1: setze Wetter auf Sturm
+mwstormH2: benutze diesen Befehl
 mwstormHcmd: /storm
 
-mwgiveH1: Spielern Gegenstände geben
-mwgiveH2: Benutze diesen Befehl
+mwgiveH1: um Spieler Gegenstaende zu geben
+mwgiveH2: benutze diesen Befehl
 mwgiveHcmd: /gi <playername> <itemname/id> <amount>
 
-mwhealH1: Einen Spieler heilen
-mwhealH2: Benutze diesen Befehl
+mwhealH1: um einen Spieler zu heilen
+mwhealH2: benutze diesen Befehl
 mwhealHcmd: /heal / heal <playername>
 
-mwflyH1: Fliegen an und abstellen
-mwflyH2: Benutze diesen Befehl
+mwflyH1: um den FlyMode ein- oder auszuschalten
+mwflyH2: benutze diesen Befehl
 mwflyHcmd: /f or /f <player>
 
-mwflyspeedH1: Fluggeschwindigkeit festlegen
-mwflyspeedH2: Benutze diesen Befehl
-mwflyspeedHcmd: /fs <20 oder 30 oder ....>
+mwflyspeedH1: Fluggeschwindigkeit einstellen
+mwflyspeedH2: benutze diesen Befehl
+mwflyspeedHcmd: /fs <20 or 30 or ....>
 
-mwwalkspeedH1: Laufgeschwindigkeit festlegen
-mwwalkspeedH2: Benutze diesen Befehl
-mwwalkspeedHcmd: /ws <20 odr 30 odr ....>
+mwwalkspeedH1: Laufgeschwindigkeit einstellen
+mwwalkspeedH2: benutze diesen Befehl
+mwwalkspeedHcmd: /ws <20 or 30 or ....>
 
-mwsetgroupsH1: 15 Pex Gruppen mit Erbrechten erstellen
-mwsetgroupsH2: Benutze diesen Befehl
+mwsetgroupsH1: Legen Sie 15 Pex-Gruppen mit vererbten Berechtigungen fest
+mwsetgroupsH2: benutze diesen Befehl
 mwsetgroupsHcmd: /gset
 
-mwdiscordH1: Deinen Discordkanal anzeigen
-mwdiscordH2: Benutze diesen Befehl
+mwdiscordH1: Zeig deine Discordchanel
+mwdiscordH2: benutze diesen Befehl
 mwdiscordHcmd: /discord
 
-mwsdiscordH1: Deine Discordkanalüberschrift setzen
-mwsdiscordH2: Benutze diesen Befehl
+mwsdiscordH1: setze deine Discordchanel Header
+mwsdiscordH2: benutze diesen Befehl
 mwsdiscordHcmd: /sdiscord
 
-mwswwwH1: Deine Homepageüberschrift setzen
-mwswwwH2: Benutze diesen Befehl
+mwswwwH1: setze deine Homepage Header
+mwswwwH2: benutze diesen Befehl
 mwswwwHcmd: /shomepage
 
-mwskickH1: Einen Spieler kicken
-mwskickH2: Benutze diesen Befehl
+mwskickH1: einen Spieler kicken
+mwskickH2: benutze diesen Befehl
 mwskickHcmd: /kick <player>
 
-mwwwwH1: Deine Homepage anzeigen
-mwwwwH2: Benutze diesen Befehl
+mwwwwH1: zeige deine Homepage
+mwwwwH2: benutze diesen Befehl
 mwwwwHcmd: /homepage
 
-mwsetMotdHeadH1: Überschrift für MotD festlegen
-mwsetMotdHeadH2: Benutze diesen Befehl
+mwsetMotdHeadH1: Um Header fuer MotD zu setzen
+mwsetMotdHeadH2: benutze diesen Befehl
 mwsetMotdHeadHcmd: /smotd <text>
 
-mwsetsysMotdHeadH1: Eine MotD Broadcasten
-mwsetsysMotdHeadH2: Benutze diesen Befehl
+mwsetsysMotdHeadH1: So legen Sie AdminHeader uer MotD uer Broadcast fest
+mwsetsysMotdHeadH2: benutze diesen Befehl
 mwsetsysMotdHeadHcmd: /sysmotd <text>
 
-mwsetMotdl1HeadH1: Line 1 von MotD erstellen
-mwsetMotdl1HeadH2: Benutze diesen Befehl
+mwsetMotdl1HeadH1: Um Linie 1 fuer MotD zu setzen
+mwsetMotdl1HeadH2: benutze diesen Befehl
 mwsetMotdl1HeadHcmd: /motdl1 <text>
 
-mwsetMotdl2HeadH1: Line 2 von MotD erstellen
-mwsetMotdl2HeadH2: Benutze diesen Befehl
+mwsetMotdl2HeadH1: Um Linie 2 fuer MotD zu setzen
+mwsetMotdl2HeadH2: benutze diesen Befehl
 mwsetMotdl2HeadHcmd: /motdl2 <text>
 
-mwsetMotdl3HeadH1: Line 3 von MotD erstellen
-mwsetMotdl3HeadH2: Benutze diesen Befehl
+mwsetMotdl3HeadH1: Um Zeile 3 fuer MotD zu setzen
+mwsetMotdl3HeadH2: benutze diesen Befehl
 mwsetMotdl3HeadHcmd: /motdl3 <text>
 
-mwsetMotdl4HeadH1: Line 4 von MotD erstellen
-mwsetMotdl4HeadH2: Benutze diesen Befehl
+mwsetMotdl4HeadH1: Um Linie 4 fuer MotD zu setzen
+mwsetMotdl4HeadH2: benutze diesen Befehl
 mwsetMotdl4HeadHcmd: /motdl4 <text>
 
-mwsetMotdl5HeadH1: Line 5 von MotD erstellen
-mwsetMotdl5HeadH2: Benutze diesen Befehl
+mwsetMotdl5HeadH1: Um Zeile 5 fuer MotD zu setzen
+mwsetMotdl5HeadH2: benutze diesen Befehl
 mwsetMotdl5HeadHcmd: /motdl5 <text>
 
-mwsrepairH1: Deine Ausrüstung reparieren
-mwsrepairH2: Benutze diesen Befehl
+mwsrepairH1: repariere deine Items
+mwsrepairH2: benutze diesen Befehl
 mwsrepairHcmd: /mwsrepair
+
+helpmenuEnchantTitel: Gegenstaende verzaubern [0-3]
+helpmenuEnchantTitel1: Gegenstaende verzaubern [1-3]
+helpmenuEnchantTitel2: Gegenstaende verzaubern [2-3]
+helpmenuEnchantTitel3: Gegenstaende verzaubern [3-3]
+helpmenuPoitionTitel: Poitions Effect [0-1]
+helpmenuPoitionTitel1: Poitions Effect [1-1]
+ARROW_DAMAGE1: Bietet zusaetzlichen Schaden beim Schiessen von Pfeilen aus Boegen
+ARROW_DAMAGE2: benutze diesen Befehl
+ARROW_DAMAGEcmd: /arrowdamage <value> <lore> <Displayname>
+
+ARROW_FIRE1: Setzt Objekte in Brand, wenn sie von einem Bogen getroffen werden
+ARROW_FIRE2: benutze diesen Befehl
+ARROW_FIREcmd: /arrowfire <value> <lore> <Displayname>
+
+ARROW_INFINITE1: Bietet unendliche Pfeile beim Schiessen eines Bogens
+ARROW_INFINITE2: benutze diesen Befehl
+ARROW_INFINITEcmd: /arrowinfinite <value> <lore> <Displayname>
+
+ARROW_KNOCKBACK1: Bietet einen Rueckstoss, wenn eine Einheit von einem Pfeil getroffen wird
+ARROW_KNOCKBACK2: benutze diesen Befehl
+ARROW_KNOCKBACKcmd: /arrowknockback <value> <lore> <Displayname>
+
+FIRE_ASPECT1: Wenn du ein Ziel angreifst, hast du die Chance, es in Brand zu setzen
+FIRE_ASPECT2: benutze diesen Befehl
+FIRE_ASPECTcmd: /fireaspect <value> <lore> <Displayname>
+
+DAMAGE_ALL1: Erhoeht den Schaden gegen alle Ziele
+DAMAGE_ALL2: benutze diesen Befehl
+DAMAGE_ALLcmd: /damageall <value> <lore> <Displayname>
+
+DAMAGE_ARTHROPODS1: Erhoeht den Schaden gegen Ziele von Arthropoden
+DAMAGE_ARTHROPODS2: benutze diesen Befehl
+DAMAGE_ARTHROPODScmd: /arthropode <value> <lore> <Displayname>
+
+DEPTH_STRIDER1: Erhoeht die Gehgeschwindigkeit im Wasser
+DEPTH_STRIDER2: benutze diesen Befehl
+DEPTH_STRIDERcmd: /depthstrider <value> <lore> <Displayname>
+
+DAMAGE_UNDEAD1: Erhoeht den Schaden gegen untote Ziele
+DAMAGE_UNDEAD2: benutze diesen Befehl
+DAMAGE_UNDEADcmd: /undead <value> <lore> <Displayname>
+
+DIG_SPEED1: Erhoeht die Rate, mit der du Abbaust
+DIG_SPEED2: benutze diesen Befehl
+DIG_SPEEDcmd: /digspeed <value> <lore> <Displayname>
+
+DURABILITY1: Verringert die Geschwindigkeit, mit der ein Werkzeug die Haltbarkeit verliert
+DURABILITY2: benutze diesen Befehl
+DURABILITYcmd: /durability <value> <lore> <Displayname> 
+
+KNOCKBACK1: Jeglicher Schaden an anderen Zielen wird sie zurueckschlagen, wenn sie getroffen werden
+KNOCKBACK2: benutze diesen Befehl
+KNOCKBACKcmd: /knockback <value> <lore> <Displayname>
+
+legArmorToughness1: Ruestungsbonus eines Entitaets- und Ruestungsdauerbonus einer Entitaet. Beine
+legArmorToughness: benutze diesen Befehl
+legArmorToughnesscmd: /atleg+ <valueArmor> <valueToughness>
+
+helmetArmorToughness1: Ruestungsbonus eines Entitaets- und Ruestungsdauerbonus einer Entitaet. Helm
+helmetArmorToughness2: benutze diesen Befehl
+helmetArmorToughnesscmd: /athelm+ <valueArmor> <valueToughness>
+
+cheastArmorToughness1: Ruestungsbonus eines Entitaets- und Ruestungsdauerbonus einer Entitaet. Brust
+cheastArmorToughness2: benutze diesen Befehl
+cheastArmorToughnesscmd: /atchest+ <valueArmor> <valueToughness>
+
+bootsArmorToughness1: Ruestungsbonus eines Entitaets- und Ruestungsdauerbonus einer Entitaet. Stiefel
+bootsArmorToughness2: benutze diesen Befehl
+bootsArmorToughnesscmd: /atboots+ <valueArmor> <valueToughness>
+
+Toughness1: Haltbarkeitsbonus
+Toughness2: benutze diesen Befehl
+Toughnesscmd: /tough+ <valueToughness>
+
+Armor1: Ruestungsbonus
+Armor2: benutze diesen Befehl
+Armorcmd: armor+ <valueArmor>
+
+DAMAGE_RESISTANCE1: Verringert den Schaden, der einem Wesen zugeuegt wird.
+DAMAGE_RESISTANCE2: benutze diesen Befehl
+DAMAGE_RESISTANCEcmd: /damageresi <value> and or <player>
+
+LOOT_BONUS_BLOCKS1: Bietet eine Chance, zusaetzliche Beute zu erhalten, wenn Sie Bloecke zerstoeren
+LOOT_BONUS_BLOCKS2: benutze diesen Befehl
+LOOT_BONUS_BLOCKScmd: /lootbonusblock <value> <lore> <Displayname>
+
+LOOT_BONUS_MOBS1: Bietet eine Chance, zusaetzliche Beute zu erhalten, wenn man Monster toetet
+LOOT_BONUS_MOBS2: benutze diesen Befehl
+LOOT_BONUS_MOBScmd: /lootbonusmob <value> <lore> <Displayname>
+
+LUCK1: Verringert die Wahrscheinlichkeit, wertlosen Muell zu erbeuten
+LUCK2: benutze diesen Befehl
+LUCKcmd: /luck <value> <lore> <Displayname>
+
+LURE1: Erhoeht die Rate der Fische, die Ihren Haken beissen
+LURE2: benutze diesen Befehl
+LUREcmd: /lure <value> <lore> <Displayname>
+
+MENDING1: Erlaubt das Ausbessern des Gegenstandes mit Erfahrungskugeln
+MENDING2: benutze diesen Befehl
+MENDINGcmd: /mending <value> <lore> <Displayname>
+
+OXYGEN1: Verringert die Luftverlustrate unter Wasser
+OXYGEN2: benutze diesen Befehl
+OXYGENcmd: /oxygen <value> <lore> <Displayname>
+
+WATER_WORKER1: Erhoeht die Geschwindigkeit, mit der ein Spieler unter Wasser gehen kann
+WATER_WORKER2: benutze diesen Befehl
+WATER_WORKERcmd: /waterwalker <value> <lore> <Displayname>
+
+FAST_DIGGING1: Erhoeht die Grabgeschwindigkeit.
+FAST_DIGGING2: benutze diesen Befehl
+FAST_DIGGINGcmd: /digging <value> and or <player>
+
+NIGHT_VISION1: Ermoeglicht einer Entitaet, im Dunkeln zu sehen.
+NIGHT_VISION2: benutze diesen Befehl
+NIGHT_VISIONcmd: /nightvision <value> and or <player>
+
+FIRE_RESISTANCE1: Stoppt Feuerschaden.
+FIRE_RESISTANCE2: benutze diesen Befehl
+FIRE_RESISTANCEcmd: /fireresi <value> and or <player>
+
+ATTACK_DAMAGE1: Angriffsschaden einer Entitaet.
+ATTACK_DAMAGE2: benutze diesen Befehl
+ATTACK_DAMAGEcmd: /attack+ <value>
+
+ATTACK_SPEED1: Angriffsgeschwindigkeit einer Entitaet.
+ATTACK_SPEED2: benutze diesen Befehl
+ATTACK_SPEEDcmd: /speed+ <value>
+
+ATTACK_DAMAGE_Speed1: Angriffsschaden und Geschwindigkeit einer Entitaet.
+ATTACK_DAMAGE_Speed2: benutze diesen Befehl
+ATTACK_DAMAGE_Speedcmd: /spdm+ <speedvalue> <damagevalue>
+
+REMOVE_POITION1: Entferne alle Auswirkungs-Effekte
+REMOVE_POITION2: benutze diesen Befehl
+REMOVE_POITIONcmd: /poitionremove <player>
+
+ABSORPTION1: Erhoeht die maximale Gesundheit einer Entitaet mit Gesundheit, die nicht regeneriert werden kann, aber alle 30 Sekunden neu aufgeuellt wird.
+ABSORPTION2: benutze diesen Befehl
+ABSORPTIONcmd: /absorption <value> and or <player>
+
+CONFUSION1: Warpt Vision auf dem Client.
+CONFUSION2: benutze diesen Befehl
+CONFUSIONcmd: /confusion <value> and or <player>
+
+GLOWING1: Skizziert die Entitaet so, dass sie von weitem zu sehen ist.
+GLOWING2: benutze diesen Befehl
+GLOWINGcmd: /glowing <value> and or <player>
