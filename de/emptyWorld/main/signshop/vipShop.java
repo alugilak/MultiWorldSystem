@@ -1,33 +1,36 @@
 package de.emptyWorld.main.signshop;
 
-import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.inventory.Inventory;
-import net.milkbowl.vault.economy.EconomyResponse;
+import java.util.ArrayList;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.HumanEntity;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.leerWelt;
 import de.emptyWorld.main.loadworld;
-import java.util.ArrayList;
-import java.util.UUID;
+import de.emptyWorld.main.signshop.cmd_shop.signState;
+import net.milkbowl.vault.economy.EconomyResponse;
 
-public class cmd_shop implements org.bukkit.event.Listener
+public class vipShop implements org.bukkit.event.Listener
 {
 	  Inventory shopList;
 	  loadworld loader;
@@ -44,20 +47,18 @@ public class cmd_shop implements org.bukkit.event.Listener
 	  leerWelt plugin;
 	  World world;
 	  
-	  public cmd_shop(leerWelt instance)
+	  public vipShop(leerWelt instance)
 	  {
 
 	    plugin = instance;
 	  }
-	  public EconomyResponse withdrawPlayer(OfflinePlayer player, double amount) {
-		return null;
-	}
+	  
 	  public static enum signState {
 	    VALID,  NOT_VALID;
 	  }
 	  public UUID getUUID(String player) {			
 			if(Bukkit.getServer().getPlayer(player) == null){
-				return Bukkit.getServer().getOfflinePlayer(player).getUniqueId();
+				return Bukkit.getServer().getOfflinePlayer(player).getPlayer().getUniqueId();
 			} else {
 				return Bukkit.getServer().getPlayer(player).getUniqueId(); 
 			}
@@ -74,7 +75,7 @@ public class cmd_shop implements org.bukkit.event.Listener
 	        String name = inventory.getName();
 	        String[] split = name.split("'");
 	        String seller_name = split[0].toString();
-	        OfflinePlayer seller = Bukkit.getServer().getOfflinePlayer(seller_name);
+	        OfflinePlayer seller = Bukkit.getOfflinePlayer(seller_name);
 	        if (item.hasItemMeta()) {
 	          ItemMeta meta = item.getItemMeta();
 	          if (!player.getInventory().contains(item)) {
@@ -107,8 +108,7 @@ public class cmd_shop implements org.bukkit.event.Listener
 	  {
 	    Player placer = e.getPlayer();
 	    
-        
-	    if (((e.getBlock().getType() == Material.SIGN) || (e.getBlock().getType() == Material.WALL_SIGN)))  {
+	    if ((e.getBlock().getType() == Material.SIGN) || (e.getBlock().getType() == Material.WALL_SIGN)) {
 	      String line1 = e.getLine(0);
 	      String line2 = e.getLine(1);
 	      String line3 = e.getLine(2);
@@ -243,8 +243,10 @@ public class cmd_shop implements org.bukkit.event.Listener
 	        }
 	      }
 	      
-	      if ((args[0].equalsIgnoreCase("v"))) {
-	    	 
+	      if ((args[0].equalsIgnoreCase("v")) && (player.hasPermission(((String) this.settings.getpermData().getString("mwsshopvisit"))))) {
+	    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsshopvisit")) + " " + ((String)this.settings.getsysoData().get("permError")));
+	    	  player.getWorld().playEffect(player.getLocation(), Effect.BLAZE_SHOOT, 50);
+	    	  return true ;}
 	        if (args.length == 2) {
 	          if (this.settings.getsData().getString("shops." + args[1] + ".level") != null) {
 	            int level = this.settings.getsData().getInt("shops." + sender.getName() + ".level");
@@ -259,7 +261,7 @@ public class cmd_shop implements org.bukkit.event.Listener
 	              max_items = 54;
 	            }
 	            shopList = Bukkit.createInventory(null, max_items, args[1] + "'s shop");
-	          org.bukkit.configuration.ConfigurationSection shop = this.settings.getsData().getConfigurationSection("shops." + args[1]);
+	            org.bukkit.configuration.ConfigurationSection shop = this.settings.getsData().getConfigurationSection("shops." + args[1]);
 	            for (String ID : shop.getKeys(false)) {
 	              if (this.settings.getsData().getItemStack("shops." + args[1] + "." + ID + ".item") != null) {
 	                ItemStack item = new ItemStack(this.settings.getsData().getItemStack("shops." + args[1] + "." + ID + ".item"));
@@ -277,7 +279,7 @@ public class cmd_shop implements org.bukkit.event.Listener
 	              }
 	            }
 	            
-	            ((HumanEntity) sender).openInventory(shopList);
+	            player.openInventory(shopList);
 	          } else {
 	        	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("shopexistError")));
 	          }
@@ -333,7 +335,7 @@ public class cmd_shop implements org.bukkit.event.Listener
 	          int shop_price = this.settings.getsData().getInt("shop_price");
 	          EconomyResponse r = leerWelt.econ.bankWithdraw(sender.getName(), shop_price);
 	          if (r.transactionSuccess()) {
-	        	  leerWelt.log.info("A PlayerShop transaction successfully completed!");
+	            leerWelt.log.info("A PlayerShop transaction successfully completed!");
 	          }
 	          this.settings.getsData().set("shops." + sender.getName() + ".level", Integer.valueOf(1));
 	          this.settings.getsData().set("shops." + sender.getName() + ".items_on_sale", Integer.valueOf(0));
@@ -351,11 +353,10 @@ public class cmd_shop implements org.bukkit.event.Listener
 	        int level = this.settings.getsData().getInt("shops." + sender.getName() + ".level");
 	        int max_level = 4;
 	        if (level != max_level) {
-	        	
 	          int upgrade_price = this.settings.getsData().getInt("upgrade_price");
 	          EconomyResponse r = leerWelt.econ.bankWithdraw(sender.getName(), upgrade_price);
 	          if (r.transactionSuccess()) {
-	            leerWelt.log.info("A PlayerShop transaction successfully completed!");
+	        	  leerWelt.log.info("A PlayerShop transaction successfully completed!");
 	          }
 	          this.settings.getsData().set("shops." + sender.getName() + ".level", Integer.valueOf(level + 1));
 	          this.settings.savesData();
@@ -370,5 +371,4 @@ public class cmd_shop implements org.bukkit.event.Listener
 	    
 	    return true;
 	  }
-		return false;}}
-	
+	}

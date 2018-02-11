@@ -57,7 +57,7 @@ List<String> wlu = new ArrayList<String>();
       if (args.length == 0)
 
       {
-	     sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " Â»" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("CreateWait")));   	  
+	     sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("CreateWait")));   	  
       WorldCreator b = new WorldCreator(p.getName());
       b.type(WorldType.NORMAL);
       b.generateStructures(true);      
@@ -106,13 +106,13 @@ List<String> wlu = new ArrayList<String>();
       
       
       sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.BLUE + "World & folder" + " " + p.getName() + " " + "create");
-      sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " Â»" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("Warpcreate")) + " " + ChatColor.GOLD + p.getName());
+      sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("Warpcreate")) + " " + ChatColor.GOLD + p.getName());
       return true;
     }
     if (args.length == 1)
 
     {
-  	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " Â»" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("keinen Namen eingeben!")));
+  	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("keinen Namen eingeben!")));
   	  
   	return false;
     }}

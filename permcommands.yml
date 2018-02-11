@@ -1,4 +1,5 @@
 permissions:
+- mws.gui.use = GuiCommand use
 - mws.heal.bar = /healthbar on /healthbar off
 - mws.creeper.use = /creaper true  /creeper false
 - mws.shop.buy = /permission to buy in Shop from a player

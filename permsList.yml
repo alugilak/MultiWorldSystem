@@ -1,3 +1,4 @@
+mwsguiuse: mws.gui.use
 mwshealthbar: mws.heal.bar
 creeper: mws.creeper.use
 mwsshopsell: mws.shop.sell
@@ -10,6 +11,8 @@ mwsshoptpdel: mws.shop.tpd
 mwsshoptpadmin: mws.shop.tpa
 mwsshops: mws.shop.tps
 mwsshop: mws.shop.use
+mwsshop2: mws.buyinv.use
+mwsshopvisit: mws.shop.vis
 mwspossave: mws.pos.save
 mwsback: mws.back.tp
 mwsbanking: mws.bank.use

@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/plugins1/PermissionsEx.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Testserver/plugins/worldguard-6.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Testserver/plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/servertut/plugins/SpigotUpdater_v1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

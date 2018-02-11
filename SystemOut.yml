@@ -9,48 +9,48 @@ mwsNoposload: No Location found to load! Please set a save first with /possave
 mwsposload: Teleporting to saved Position .........
 mwshealthbaron: Healthbar over Entitys enabled
 mwshealthbaroff: Healthbar over Entitys disabled
-flyonText: Du darfst nun Fliegen
-flyoffText: Das Fliegen ist nun wieder aus
+flyonText: Now you can fly
+flyoffText: Now you cant fly use
 SpawnParticle: true
 Line0: command
-invalidline1: Fehler
-invalidline2: Fehler
-invalidline3: Fehler
-invalidLinePlayer: Fehler
-MissingPermissonUse: Fehler
-MissingPermCrPl: Fehler
-MissingPermnDelPl: Fehler
+invalidline1: Error
+invalidline2: Error
+invalidline3: Error
+invalidLinePlayer: Error
+MissingPermissonUse: Error
+MissingPermCrPl: Error
+MissingPermnDelPl: Error
 permErrorSigns: You not have permission to use Sign commands
-MisPermCrLi1: Fehler
-MisPermCrLi2: Fehler
-MisPermCrLi3: Fehler
-MisPermCrLi4: Fehler
+MisPermCrLi1: Error
+MisPermCrLi2: Error
+MisPermCrLi3: Error
+MisPermCrLi4: Error
 mwsbeaplayer: you must be a player
 SetLine0Command: command
 JoinItemLore: Welcome Present
-BanMessage: §cDu bist gebannt. Beantrage einen §6Entbannungsantrag §cauf unserer Seite §ebansystem.info
+BanMessage: §cYou are kicked.
 repairError1: please use only /repair or mwsrepair
 mwsrepairoff: repair mode disabled.
 mwsrepairon: Your item is repaired
-gamemodeChange: Dein Gamemode wurde gewechselt
+gamemodeChange: Your Gamemode is changing
 woldexistErr: World does not exist or is unloaded
 worldtpload: World Does Exist, Now loading...
-loadWorlds: geladene Welten
+loadWorlds: loading world
 worldtwcatch: Load World ........
 teleportTrue: You have been teleported to 
 theWorp: The warp
 theHome: The Home
-homecreated: Home wurde erstellt
-homedelfine: Home wurde gelöscht
+homecreated: Home is created
+homedelfine: Home is deleted
 theHub: The Hub
 notExist: does not exist
 mwsNightwatch: Night Vision Enabled
 theSpawn:
-wTpHelp: /mwtp <Weltname>
+wTpHelp: /mwtp <worldname>
 worldtppermerr: permission error
 worlddelete: Attempting to delete
-worlddeleteError: Fehler wurde beim Löschen verursacht
-worlddeleteErrorIs: Fehler lautet
+worlddeleteError: it was a error with deleting
+worlddeleteErrorIs: Error is
 worldplayerremove: Removing players from
 worlddelePlayertp: and teleporting them to default world
 worldnoexist: World no longer exists 
@@ -61,71 +61,71 @@ worldloadError: Loading the world has failed
 SysConfigReload: Config files reloaded
 permError: You have no permission to do that Please talk with a Serveradmin
 tptoError: Kein Spieler gefunden
-tptoInfo: Es wurde erfolgreich zu dir teleportiert, der Mitspieler
-tpmeInfo: Du wurdest erfolgreich zu diesem Mitspieler teleportiert
-tpmeError: Kein Spieler gefunden
-tpmeInfo: Du wurdest erfolgreich zu diesem Mitspieler teleportiert
-tpworldInfo: "erfolgreich zu dieser Welt teleportiert ..."
-flyonText: Du darfst nun Fliegen
-flyoffText: Das Fliegen ist nun wieder aus
-ItemGiven: Item wurde hinzugefüht
-itemAmount: Bitte Menge eingeben
-plOff: Player ist nicht online
-noitemName: Es gibt kein Item oder Spieler mit dem Namen
-Warpcreate: Warppunkt erstellt
-warpwelcome: Willkommen am Warppunkt
+tptoInfo: This player was teleporting to you
+tpmeInfo: You are now teleorting to this player
+tpmeError: There is no player online with this name
+tpmeInfo: You are teleporting to
+tpworldInfo: "teleporting to player ..."
+flyonText: you can now fly
+flyoffText: fly is now off
+ItemGiven: Item was given
+itemAmount: pleayse type amount
+plOff: no player with this name online
+noitemName: There is no Item or player online with this name
+Warpcreate: Warppoint created
+warpwelcome: welcome at warp
 Folder: world & folder
-worldRename: Versuche die Welt umzubenennen......
-worldrenameError: Fehler wurde beim Umbenennen verursacht
+worldRename: rename the world......
+worldrenameError: error with rename
 worldRenameGo: Renaming File...
-worldRename1: Umbenannt  
+worldRename1: renamed  
 worldRename2: in
 worldunloadError: Unable to unload world
-unloadErrorMsg: Fehler beim Entladen der Welt. )
-unloadWorldTrue: Welt entladen
+unloadErrorMsg: error with unloading 
+unloadWorldTrue: world unloaded
 Filefound: Found. File.
 FilenotExist: File Does not exist aborting
 permList: §7List of all §6MultiWorldSystem Permission List§7
 permListCmd: §c/permlist
 onlyPlayer: Not for Console
 foldercreate: create
-CreateWait: Bitte warten, die Welt wird erstellt Dies kann je nach System länger dauern Eine Mitteilung erscheint im Chat nach erfolgreicher Erstellung
-mwErrorWName: Bitte gib einen Namen ein wie die Welt heißt
+CreateWait: Please wait, the world is being created This may take longer depending on the system A message will appear in the chat after successful creation
+mwErrorWName: Please enter a name as the world is called
 mvEWGautoCreateType: normal
 mvEWGautoCreateName: emptyWorld
 mvEWGautoCreateMessage: emptyWorld erfolgreich erstellt
-mwSetBlock: Einen Steinblock an deiner Position spawnen lassen
-InvetoryCleanMessage: Dein Inventar wurde gelöscht von §e
-MWwGSetDayMessage: den Tag eingeschaltet
-PlaySpeedWalkSet1: Laugschwindigkeit gesetzt
-WalkPlayer: Laufgeschwindigkeit
-PlayFlySpeedSet1: Flugeschwindigkeit gesetzt
+mwSetBlock: Let a stone block spawn at your location
+InvetoryCleanMessage: Your inventory has been deleted by §e
+MWwGSetDayMessage: set day
+PlaySpeedWalkSet1: set walkingspeed
+WalkPlayer: walkspeed
+PlayFlySpeedSet1: set flyspeed
 weatherrain: Changed weather to rainy 
 weatherstorm: Changed weather to storm 
 weatherclear: Changed weather to clear
-setday: In Tagmodus gewechselt
-setnight: In Nachtmodus gewechselt
-HealError: Du musst /heal <playername> eingeben
-Healmsg: Du wurdest geheilt von
-Healoffmsg: du musst einen Spieler angeben
+setday: set day
+setnight: set night
+HealError: You must enter / heal <playername>
+Healmsg: You were healed by
+Healoffmsg: you have to specify a player
 homepageURL: http://www.zauschcraft.de
-homepageText: Unser Forum findest du unter
-DiscordText: Unseren Discord Kanal findest du hier
+homepageText: You can find our forum under
+DiscordText: You can find our Discord channel here
 DiscordChanel: https://discordapp.com/invite/6Gtgvv
-mwscerrorName: Bitte gib einen Namen ein wie die Welt hei�en soll
-Hubwelcome: Wollkommen im Hub
-Hubset: Hub wurde gesetzt
-Spawnset: Spawn wurde gesetzt
-SpawnWelcome: Willkommen am Spawn
-Delay: einen Moment bitte....
-Warpcreate: Du hast einen Warp gesetzt
+mwscerrorName: Please enter a name for how the world should be called
+Hubwelcome: Wollkommen in the hub
+Hubset: Hub was set
+Spawnset: Spawn has been set
+SpawnWelcome: Welcome to the spawn
+Delay: one moment please....
+Warpcreate: You have a warp lawt
 FlyPlayerCmd: /fs
-PlaySpeedSet1: Flugeschwindigkeit gesetzt
-FlyPlayerCmd1: kein Komma oder Punkt bei der Geschwindigkeit setzten Nur 10 20 30
-WalkPlayer: Laufgeschwindigkeit
+PlaySpeedSet1: Flight speed set
+FlyPlayerCmd1: no comma or point at the speed set only 10 20 30
+WalkPlayer: Walking Speed
 WalkPlayerCmd: /walk
-PlaySpeedWalkSet1: Laugschwindigkeit gesetzt
-WalkPlayerCmd1: kein Komma oder Punkt bei der Geschwindigkeit setzten Nur 10 20 30
+PlaySpeedWalkSet1: Laugschwindigkeit set
+WalkPlayerCmd1: no comma or point at the speed set only 10 20 30
 mwskill: Please use a player
 Group1: User
 Group2: Mitglied
@@ -159,10 +159,10 @@ mwsabsorption: ABSORPTION activated
 mwspoitionremove: all Poitions deactivated
 mwsconfusion: CONFUSION activated
 mwsglowing: GLOWING activated
-Motd: '&eHallo schön das du zuschaust '
-Line1: '&edies ist eine Vorschau auf die neuste Version '
-Line2: '&eDu wirst sehen es hat sich &eeiniges geändert wie dieser Motd Manager '
-Line3: '&eDu kannst bis zu &e6 unterschiedliche Lines machen '
-Line4: '&eDiese werden in der SystemOut gespeichert '
-Line5: '&e hinzugekommen für ein besseres nutzen '
+Motd: '&aWelcome to ZauschCraft '
+Line1: '&bthis server uses the MultiWorld system '
+Line2: '&aUse your own warehouse /bankopen '
+Line3: '&bor create a cheap shop with /ps create '
+Line4: '&dMany functions are available with MultiWorldSystem '
+Line5: '&b for owner = /mwsgui '
 Motdsys: '§fTest1 '

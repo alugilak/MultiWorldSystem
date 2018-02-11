@@ -51,11 +51,11 @@ World world;
       sender.sendMessage(ChatColor.AQUA + "/wlist " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/warplist " + ChatColor.LIGHT_PURPLE);
       sender.sendMessage(ChatColor.AQUA + "/vipbank " + ChatColor.LIGHT_PURPLE);
-      sender.sendMessage(ChatColor.AQUA + "/bankopen " + ChatColor.LIGHT_PURPLE);
+      sender.sendMessage(ChatColor.AQUA + "/mwsgui" + ChatColor.LIGHT_PURPLE + "opens a Gui with both Banking slots");
       sender.sendMessage(ChatColor.AQUA + ((String) this.settings.getenData().get("creeperblock1")));
       sender.sendMessage(ChatColor.AQUA + ((String) this.settings.getenData().get("creeperblock2")) + ChatColor.YELLOW + " " + ((String) this.settings.getenData().get("creeperblockcmd")));
-      sender.sendMessage(ChatColor.GOLD + "Das deutsche Hilfemenue ist nun integriert und aktiviert!" + ChatColor.RED);
-      
+      sender.sendMessage(ChatColor.GOLD + "Manueller Updatecheck für dies Plugin = /mwsupdate" + ChatColor.RED);
+      sender.sendMessage(ChatColor.GOLD + "Plugin Updatechecker = /mwsupdate" + ChatColor.RED);
       sender.sendMessage(ChatColor.YELLOW + "********************************************************");
       return true;}
 	  

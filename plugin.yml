@@ -1,9 +1,18 @@
 name: MultiWorldSystem
-version: 3.8.0
+version: 3.8.8
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         ps2:
+                    description: Items buy from Shop. 
+                    usage: /ps2 out of function at this time
+         mwscommands:
+                    description: check from spigot if there a Update for MultiworldSystem. 
+                    usage: /mwsupdate
+         mwsupdate:
+                    description: check from spigot if there a Update for MultiworldSystem. 
+                    usage: /mwsupdate
          healthbar:
                     description: show entity healthbar 
                     usage: /healthbar on  /healthbar off

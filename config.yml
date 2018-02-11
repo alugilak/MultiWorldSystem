@@ -1,3 +1,4 @@
+checkForUpdates: true
 creeper: true
 Line0: command
 invalidline1: Fehler
@@ -18,9 +19,9 @@ mwssigndel: mws.sign.del
 title-name: '&a[MWS SIGNS]:&f'
 MWS: MultiWorldSystem
 Perms: mws.sign.use
-
+#if you do commands on gravesign, please only 0 line Rip Name and 1 line command. 2 and 3 let it empty!
 GraveLine0: §e------R.I.P------
-GraveLine1: mwsrepair
+GraveLine1: 
 GraveLine2: 
 GraveLine3: §e-----------------
 
@@ -28,6 +29,8 @@ PlayerBankSaveMessageTitel: MultiWorldSystem Saved
 PlayerBankSaveMesssageTitel2: his bank
 VipBankSaveMessageTitel: MultiWorldSystem Saved
 VipBankSaveMesssageTitel2: his VIP bank
+Shop2SaveMessageTitel: Shop Buy Chest saved
+Shop2SaveMessageTitel2: his buy Chest
 BankName: MultiWorldSystem ITEM Bank
 PlayerImmuneInBank: true
 Plevel: 1
@@ -36,8 +39,200 @@ Slots: 54
 VipBankName: MultiWorldSystem VIP ITEM Bank
 PlayerImmuneInVipBank: true
 Vlevel: 1
-Vupgrade_price: 500
 VipSlots: 54
+PlayerShopName: MultiWorldSystem BUY ITEM CHEST
+PlayerImmuneInShop2: true
+PlayerShopName: Buy Chest
+Shop2Slots: 54
+
+
+GuiName: "MultiWorldSystem Menu"
+Guipermission: mws.gui.use
+GuiRows: 6
+
+GuiOpeningCommand: "mwsgui"
+Items:
+  Home Teleport:
+    ItemID: 12
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 0
+    ItemAmmount: 1
+    Description: '&7Home'
+    Commands:
+    - home
+  Home Set:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 1
+    ItemAmmount: 1
+    Description: '&7set Home'
+    Commands:
+    - shome
+  Gamemode 1:
+    ItemID: 12
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 2
+    ItemAmmount: 1
+    Description: '&7Set Creative Gamemode'
+    Commands:
+    - g1
+  Gamemode 0:
+    ItemID: 12
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 3
+    ItemAmmount: 1
+    Description: '&7Survival Gamemode'
+    Commands:
+    - g0
+  Player Bank:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 4
+    ItemAmmount: 1
+    Description: '&7Player Bank'
+    Commands:
+    - bankopen
+  Vip Bank:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 5
+    ItemAmmount: 1
+    Description: '&7Vip Bank'
+    Commands:
+    - vipbank
+  Set Hub:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 6
+    ItemAmmount: 1
+    Description: '&7Set Hub'
+    Commands:
+    - shub
+  Weather clear:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 7
+    ItemAmmount: 1
+    Description: '&7Weather Clear'
+    Commands:
+    - wclear
+  hub tp:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 8
+    ItemAmmount: 1
+    Description: '&7tp to hub'
+    Commands:
+    - hub
+  Creeper on:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 9
+    ItemAmmount: 1
+    Description: '&7Creeper Dmg on'
+    Commands:
+    - creeper false
+  Creeper off:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 10
+    ItemAmmount: 1
+    Description: '&7Creeper Dmg off'
+    Commands:
+    - creeper true
+  Heal:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 11
+    ItemAmmount: 1
+    Description: '&7heal'
+    Commands:
+    - heal
+  Repair:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 12
+    ItemAmmount: 1
+    Description: '&7Creeper Dmg on'
+    Commands:
+    - mwsrepair
+  Flymode:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 13
+    ItemAmmount: 1
+    Description: '&7Fly on & off'
+    Commands:
+    - f
+  Flyspeed:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 14
+    ItemAmmount: 1
+    Description: '&7flyspeed double'
+    Commands:
+    - fs 50  
+  FlyspeedStandard:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 15
+    ItemAmmount: 1
+    Description: '&7flyspeed'
+    Commands:
+    - fs 20      
+  Walkpeed:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 16
+    ItemAmmount: 1
+    Description: '&7walkspeed double'
+    Commands:
+    - walk 50
+  Day:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 17
+    ItemAmmount: 1
+    Description: '&7set Day'
+    Commands:
+    - day
+  Kill all Mobs:
+    ItemID: 60
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 18
+    ItemAmmount: 1
+    Description: '&7killmobs'
+    Commands:
+    - killmob
+  nightvision:
+    ItemID: 1
+    ItemDataValue: 0
+    ItemDamage: 0
+    ItemSlot: 19
+    ItemAmmount: 1
+    Description: '&7Nightvision'
+    Commands:
+    - nightvision
+                          
 
 shopseterror1: Shop successfully set.
 shopplno: have not a shop.
