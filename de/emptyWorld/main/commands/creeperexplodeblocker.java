@@ -49,14 +49,14 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	    		        p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
 	    		        return false;
 	    		      }   if (args.length == 1)	
-	    	 if (args[0].equals("false"))
+	    	 if (args[0].equals("on"))
 	    	 {		    		
 	    		 plugin.getConfig().set("creeper", false);
 	    		 plugin.saveConfig();
 	    		 plugin.reload();
 	    		 sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getsysoData().get("creeperFalse")));
 	    		 return true;}
-	    	 if (args[0].equals("true"))
+	    	 if (args[0].equals("off"))
 	    		 if (args.length == 1);{ 	    			 
 	    		 plugin.getConfig().set("creeper", true);
 	    		 plugin.saveConfig();

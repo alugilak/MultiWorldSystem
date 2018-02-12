@@ -2,7 +2,11 @@ SystemName: MultiWorldSystem
 shopexistError: This shop doesn't exist!
 shopSellError: /ps s <itemname> <amount> <price> / If you have enough Items to sell?
 creeperFalse: you have activated Creeper Blockdestroy explosion
-creeperTrue: you have activated Creeper Blockdestroy explosion
+creeperTrue: you have deactivated Creeper Blockdestroy explosion
+thunderFalse: you have activated Thunder
+thunderTrue: you have deactivated Thunder
+rainFalse: you have activated rain
+rainTrue: you have deactivated rain
 mwspossave: Your Location was saved
 mwsNopossave: An Error with Saving! Please speak with a Admin!
 mwsNoposload: No Location found to load! Please set a save first with /possave

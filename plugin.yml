@@ -1,11 +1,17 @@
 name: MultiWorldSystem
-version: 3.8.8
+version: 3.8.9
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 
 commands:
+         rainset:
+                    description: activated storm for ever or deacitivated it (on activated and off deactivated
+                    usage: /stormset on or off 
+         stormset:
+                    description: activated storm for ever or deacitivated it
+                    usage: /stormset on or off 
          ps2:
-                    description: Items buy from Shop. 
+                    description: (out of function) Items buy from Shop. 
                     usage: /ps2 out of function at this time
          mwscommands:
                     description: check from spigot if there a Update for MultiworldSystem. 
@@ -17,8 +23,8 @@ commands:
                     description: show entity healthbar 
                     usage: /healthbar on  /healthbar off
          creeper:
-                    description: Creeper Blockdestroy on (true = block destroy off) and  off (aktivate block destroy) 
-                    usage: /crepper true  /creeper false
+                    description: Creeper Blockdestroy (off = block destroy off) and  on (aktivate block destroy) 
+                    usage: /crepper off  /creeper on
 
          pshelp:
                     description: Helpmenu for the playershop 

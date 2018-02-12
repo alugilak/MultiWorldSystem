@@ -14,6 +14,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import de.emptyWorld.main.commands.stormset;
+import de.emptyWorld.main.commands.rainset;
 import de.emptyWorld.main.commands.killmobs;
 import de.emptyWorld.main.signshop.pshop;
 import de.emptyWorld.main.commands.creeperexplodeblocker;
@@ -73,6 +75,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.event.weather.ThunderChangeEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.inventory.Inventory;
@@ -176,11 +180,27 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	
 	  private boolean display = false;
 	    private static int SCALE = 30;
+	    
+	    @EventHandler(priority=EventPriority.HIGHEST)
+	    public void onWeatherChange(WeatherChangeEvent event) {
+	    	boolean sstorm = (getConfig().getBoolean("rain"));
+	        boolean rain = event.toWeatherState();
+	        if(rain)
+	            event.setCancelled(sstorm);
+	    }
+	 
+	    @EventHandler(priority=EventPriority.HIGHEST)
+	    public void onThunderChange(ThunderChangeEvent event) {
+	     boolean sstorm = (getConfig().getBoolean("thunder"));
+	        boolean storm = event.toThunderState();
+	        if(storm)
+	            event.setCancelled(sstorm);	        
+	    }
 	   
 	static leerWelt plugin = (leerWelt) Bukkit.getServer().getPluginManager().getPlugin("MultiWorldSystem");
     @EventHandler
     public void onEntityExplode(EntityExplodeEvent event) {
-  	  Boolean ntrue = (getConfig().getBoolean("creeper"));
+  	  boolean ntrue = (getConfig().getBoolean("creeper"));
         if (event.getEntity() instanceof Creeper){
         float explosionPower = 0F;
         event.setCancelled(ntrue);
@@ -443,6 +463,8 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 
 
 public void InitComs() {
+	getCommand("rainset").setExecutor(new rainset(this));
+	getCommand("stormset").setExecutor(new stormset(this));
 	getCommand("mwscommands").setExecutor(new HelpCommand(this));
 	getCommand("mwsupdate").setExecutor(new Updatechecker(this));
 	getCommand("creeper").setExecutor(new creeperexplodeblocker(this));

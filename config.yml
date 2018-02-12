@@ -1,5 +1,6 @@
 checkForUpdates: true
 creeper: true
+thunder: true
 Line0: command
 invalidline1: Fehler
 invalidline2: Fehler
