@@ -1,0 +1,37 @@
+#Messages config file
+#shop.use
+NoPermission: '&cSorry, but you have not permission to do that.'
+#shop.tab.tabname
+NoTabPermission: '&cSorry, but you have not permission to open this tab.'
+#shop.gamemode
+CreativePermission: '&c&cSorry, but you not permited to use shop in creative gamemode'
+Error: '&cSomething goes wrong. Check the console!'
+#shop.reload
+Reloaded: '&aReload completed'
+#shop.setsale
+SaleInstalled: '&aFor tab &6{tab} &awas installed sale for &b{discount}% &adiscount. Reason:&r{reason}'
+NotNomber: '&cString &r{string} &cis not nomber, so it cannot be used as discount'
+TabNotFound: '&cTab not found'
+AvalibleTabs: '&aAvalible tabs: &6{tabs}'
+InShop: '&aYou are in shop'
+PressToBuy: 'Press to buy'
+PressToSell: 'Press to sell'
+BuyCost: '&fOne item cost: &6{cost}$'
+BuyCost16: '&f16 items cost: &6{cost}$'
+BuyCost64: '&f64 items cost: &6{cost}$'
+SellCost: '&fYou will get for one item: &6{cost}$'
+SellCost16: '&fYou will get for 16 items: &6{cost}$'
+SellCost64: '&fYou will get for 64 items: &6{cost}$'
+Sale: '&6Sale! &b{discount}% &6discount. &a{reason}'
+NoItems: '&cNot enough items!'
+NoMoney: '&cNot emough money!'
+NoPlace: '&cInventory full!'
+SuccesBought: '&aYou bought &6{item}&ax&6{count}&a and spend &6{cost}$'
+SuccesSold: '&aYou sold &6{item}&ax&6{count}&a and get &6{cost}$'
+NextPage: 'Next page'
+PreviosPage: 'Previos page'
+
+#This used for log, and color codes will be removed
+LogFormat: 'The player {player} {operation} item "{item}"x{count} at tab "{tab}". Discount: {discount}%({reason}). Total price: {cost}.'
+Sold: 'sold'
+Bought: 'bought'

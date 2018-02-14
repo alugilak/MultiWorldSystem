@@ -1,0 +1,128 @@
+298:
+  ID: 298
+  Name: '&0&lBlack &b&lHelmet'
+  Price: 2500
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 oxygen,3 thorns,3
+  Color: '#000000'
+299:
+  ID: 299
+  Name: '&0&lBlack &b&lChestplate'
+  Price: 4000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+  Color: '#000'
+300:
+  ID: 300
+  Name: '&0&lBlack &b&lLeggings'
+  Price: 3500
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+  Color: 0,0,0
+301:
+  ID: 301
+  Name: '&0&lBlack &b&lBoots'
+  Price: 2000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_fall,4 protection_explosions,4 protection_projectile,4 thorns,3
+  Color: '0,0,0'
+267_Black:
+  ID: 267
+  Name: '&0&lBlack &b&lSword'
+  Price: 5000
+  Enchantments: damage_all,5 durability,3 knockback,2 fire_aspect,2 loot_bonus_mobs,3
+261_Black:
+  ID: 261
+  Name: '&0&lBlack &b&lBow'
+  Price: 5000
+  Enchantments: arrow_damage,5 durability,3 arrow_knockback,2 arrow_fire,1 arrow_infinite,1
+empty1:
+  ID: 0
+
+empty2:
+  ID: 0
+empty3:
+  ID: 0
+empty4:
+  ID: 0
+empty5:
+  ID: 0
+empty6:
+  ID: 0
+empty7:
+  ID: 0
+empty8:
+  ID: 0
+306:
+  ID: 306
+  Name: '&6&lAdmin Helmet'
+  Price: 5000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 oxygen,3 thorns,3
+307:
+  ID: 307
+  Name: '&6&lAdmin Chestplate'
+  Price: 8000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+308:
+  ID: 308
+  Name: '&6&lAdmin Leggings'
+  Price: 7000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+309:
+  ID: 309
+  Name: '&6&lAdmin Boots'
+  Price: 4000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_fall,4 protection_explosions,4 protection_projectile,4 thorns,3
+267_Admin:
+  ID: 267
+  Name: '&6&lAdmin Sword'
+  Price: 5000
+  Enchantments: damage_all,5 durability,3 knockback,2 fire_aspect,2 loot_bonus_mobs,3
+261_Admin:
+  ID: 261
+  Name: '&6&lAdmin Bow'
+  Price: 5000
+  Enchantments: arrow_damage,5 durability,3 arrow_knockback,2 arrow_fire,1 arrow_infinite,1
+empty9:
+  ID: 0
+
+empty10:
+  ID: 0
+empty11:
+  ID: 0
+empty12:
+  ID: 0
+empty13:
+  ID: 0
+empty14:
+  ID: 0
+empty15:
+  ID: 0
+empty16:
+  ID: 0
+310:
+  ID: 310
+  Name: '&a&lGod Helmet'
+  Price: 7500
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 oxygen,3 thorns,3
+311:
+  ID: 311
+  Name: '&a&lGod Chestplate'
+  Price: 12000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+312:
+  ID: 312
+  Name: '&a&lGod Leggings'
+  Price: 10500
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_explosions,4 protection_projectile,4 thorns,3
+313:
+  ID: 313
+  Name: '&a&lGod Boots'
+  Price: 6000
+  Enchantments: protection_environmental,4 protection_fire,4 durability,3 protection_fall,4 protection_explosions,4 protection_projectile,4 thorns,3
+276_God:
+  ID: 276
+  Name: '&a&lGod Sword'
+  Price: 7500
+  Enchantments: damage_all,5 durability,3 knockback,2 fire_aspect,2 loot_bonus_mobs,3
+261_God:
+  ID: 261
+  Name: '&a&lGod Bow'
+  Price: 7500
+  Enchantments: arrow_damage,5 durability,3 arrow_knockback,2 arrow_fire,1 arrow_infinite,1

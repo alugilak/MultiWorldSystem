@@ -1,0 +1,300 @@
+Creeper_Spawner:
+  ID: 52
+  Monster: Creeper
+  BuyPrice: 15000
+  SellPrice: -1
+Skeleton_Spawner:
+  ID: 52
+  Monster: Skeleton
+  BuyPrice: 15000
+  SellPrice: -1
+Spider_Spawner:
+  ID: 52
+  Monster: Spider
+  BuyPrice: 15000
+  SellPrice: -1
+Zombie_Spawner:
+  ID: 52
+  Monster: Zombie
+  BuyPrice: 15000
+  SellPrice: -1
+Slime_Spawner:
+  ID: 52
+  Monster: Slime
+  BuyPrice: 15000
+  SellPrice: -1
+Ghast_Spawner:
+  ID: 52
+  Monster: Ghast
+  BuyPrice: 15000
+  SellPrice: -1
+PigZombie_Spawner:
+  ID: 52
+  Name: '&fZombie Pigman spawner'
+  Monster: PigZombie
+  BuyPrice: 15000
+  SellPrice: -1
+Enderman_Spawner:
+  ID: 52
+  Monster: Enderman
+  BuyPrice: 15000
+  SellPrice: -1
+CaveSpider_Spawner:
+  ID: 52
+  Monster: CaveSpider
+  Name: '&fCave Spider spawner'
+  BuyPrice: 15000
+  SellPrice: -1
+SilverFish_Spawner:
+  ID: 52
+  Monster: Silverfish
+  BuyPrice: 15000
+  SellPrice: -1
+Blaze_Spawner:
+  ID: 52
+  Monster: Blaze
+  BuyPrice: 15000
+  SellPrice: -1
+LavaSlime_Spawner:
+  ID: 52
+  Monster: LavaSlime
+  BuyPrice: 15000
+  SellPrice: -1
+Bat_Spawner:
+  ID: 52
+  Monster: Bat
+  BuyPrice: 15000
+  SellPrice: -1
+Witch_Spawner:
+  ID: 52
+  Monster: Witch
+  BuyPrice: 15000
+  SellPrice: -1
+Endermite_Spawner:
+  ID: 52
+  Monster: Endermite
+  BuyPrice: 15000
+  SellPrice: -1
+Guardian_Spawner:
+  ID: 52
+  Monster: Guardian
+  BuyPrice: 15000
+  SellPrice: -1
+Shulker_Spawner:
+  ID: 52
+  Monster: Shulker
+  BuyPrice: 15000
+  SellPrice: -1
+Pig_Spawner:
+  ID: 52
+  Monster: Pig
+  BuyPrice: 15000
+  SellPrice: -1
+Sheep_Spawner:
+  ID: 52
+  Monster: Sheep
+  BuyPrice: 15000
+  SellPrice: -1
+Cow_Spawner:
+  ID: 52
+  Monster: Cow
+  BuyPrice: 15000
+  SellPrice: -1
+Chicken_Spawner:
+  ID: 52
+  Monster: Chicken
+  BuyPrice: 15000
+  SellPrice: -1
+Squid_Spawner:
+  ID: 52
+  Monster: Squid
+  BuyPrice: 15000
+  SellPrice: -1
+Wolf_Spawner:
+  ID: 52
+  Monster: Wolf
+  BuyPrice: 15000
+  SellPrice: -1
+MushroomCow_Spawner:
+  ID: 52
+  Monster: MushroomCow
+  Name: Mooshroom spawner
+  BuyPrice: 15000
+  SellPrice: -1
+Ocelot_Spawner:
+  ID: 52
+  Monster: Ozelot
+  Name: '&fOcelot spawner'
+  BuyPrice: 15000
+  SellPrice: -1
+Horse_Spawner:
+  ID: 52
+  Monster: EntityHorse
+  Name: '&fHorse Spawner'
+  BuyPrice: 15000
+  SellPrice: -1
+Rabbit_Spawner:
+  ID: 52
+  Monster: Rabbit
+  BuyPrice: 15000
+  SellPrice: -1
+PolarBear_Spawner:
+  ID: 52
+  Monster: PolarBear
+  BuyPrice: 15000
+  SellPrice: -1
+Villager_Spawner:
+  ID: 52
+  Monster: Villager
+  BuyPrice: 15000
+  SellPrice: -1
+Boat_Spawner:
+  ID: 52
+  Monster: Boat
+  BuyPrice: 15000
+  SellPrice: -1
+Creeper_Egg:
+  ID: 383
+  Monster: Creeper
+  BuyPrice: 1000
+  SellPrice: 500
+Skeleton_Egg:
+  ID: 383
+  Monster: Skeleton
+  BuyPrice: 1000
+  SellPrice: 500
+Spider_Egg:
+  ID: 383
+  Monster: Spider
+  BuyPrice: 1000
+  SellPrice: 500
+Zombie_Egg:
+  ID: 383
+  Monster: Zombie
+  BuyPrice: 1000
+  SellPrice: 500
+Slime_Egg:
+  ID: 383
+  Monster: Slime
+  BuyPrice: 1000
+  SellPrice: 500
+Ghast_Egg:
+  ID: 383
+  Monster: Ghast
+  BuyPrice: 1000
+  SellPrice: 500
+PigZombie_Egg:
+  ID: 383
+  Monster: PigZombie
+  BuyPrice: 1000
+  SellPrice: 500
+Enderman_Egg:
+  ID: 383
+  Monster: Enderman
+  BuyPrice: 1000
+  SellPrice: 500
+CaveSpider_Egg:
+  ID: 383
+  Monster: CaveSpider
+  BuyPrice: 1000
+  SellPrice: 500
+SilverFish_Egg:
+  ID: 383
+  Monster: Silverfish
+  BuyPrice: 1000
+  SellPrice: 500
+Blaze_Egg:
+  ID: 383
+  Monster: Blaze
+  BuyPrice: 1000
+  SellPrice: 500
+LavaSlime_Egg:
+  ID: 383
+  Monster: LavaSlime
+  BuyPrice: 1000
+  SellPrice: 500
+Bat_Egg:
+  ID: 383
+  Monster: Bat
+  BuyPrice: 1000
+  SellPrice: 500
+Witch_Egg:
+  ID: 383
+  Monster: Witch
+  BuyPrice: 1000
+  SellPrice: 500
+Endermite_Egg:
+  ID: 383
+  Monster: Endermite
+  BuyPrice: 1000
+  SellPrice: 500
+Guardian_Egg:
+  ID: 383
+  Monster: Guardian
+  BuyPrice: 1000
+  SellPrice: 500
+Shulker_Egg:
+  ID: 383
+  Monster: Shulker
+  BuyPrice: 1000
+  SellPrice: 500
+Pig_Egg:
+  ID: 383
+  Monster: Pig
+  BuyPrice: 1000
+  SellPrice: 500
+Sheep_Egg:
+  ID: 383
+  Monster: Sheep
+  BuyPrice: 1000
+  SellPrice: 500
+Cow_Egg:
+  ID: 383
+  Monster: Cow
+  BuyPrice: 1000
+  SellPrice: 500
+Chicken_Egg:
+  ID: 383
+  Monster: Chicken
+  BuyPrice: 1000
+  SellPrice: 500
+Squid_Egg:
+  ID: 383
+  Monster: Squid
+  BuyPrice: 1000
+  SellPrice: 500
+Wolf_Egg:
+  ID: 383
+  Monster: Wolf
+  BuyPrice: 1000
+  SellPrice: 500
+MushroomCow_Egg:
+  ID: 383
+  Monster: MushroomCow
+  BuyPrice: 1000
+  SellPrice: 500
+Ocelot_Egg:
+  ID: 383
+  Monster: Ozelot
+  BuyPrice: 1000
+  SellPrice: 500
+Horse_Egg:
+  ID: 383
+  Monster: EntityHorse
+  BuyPrice: 1000
+  SellPrice: 500
+Rabbit_Egg:
+  ID: 383
+  Monster: Rabbit
+  BuyPrice: 1000
+  SellPrice: 500
+PolarBear_Egg:
+  ID: 383
+  Monster: PolarBear
+  BuyPrice: 1000
+  SellPrice: 500
+Villager_Egg:
+  ID: 383
+  Monster: Villager
+  BuyPrice: 1000
+  SellPrice: 500

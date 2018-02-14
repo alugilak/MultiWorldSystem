@@ -1,0 +1,162 @@
+dig_speed:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: dig_speed,5
+silk_touch:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: silk_touch,1
+durability:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: durability,3
+loot_bonus_blocks:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: loot_bonus_blocks,3
+luck:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: luck,3
+lure:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: lure,3
+mending:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: mending,1
+protection_environmental:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: protection_environmental,4
+protection_fire:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: protection_fire,4
+protection_fall:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: protection_fall,4
+protection_explosions:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: protection_explosions,4
+protection_projectile:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: protection_projectile,4
+oxygen:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: oxygen,3
+water_warker:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: water_worker,1
+thorns:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: thorns,3
+depth_striger:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: depth_strider,3
+frost_walker:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: frost_walker,2
+damage_all:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: damage_all,5
+damage_undead:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: damage_undead,5
+damage_arthropods:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: damage_arthropods,5
+knockback:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: knockback,2
+fire_aspect:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: fire_aspect,2
+loot_bonus_mobs:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: loot_bonus_mobs,3
+arrow_damage:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: arrow_damage,5
+arrow_knockback:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: arrow_knockback,2
+arrow_fire:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: arrow_fire,1
+arrow_infinite:
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Price: 1000
+  Enchantments: arrow_infinite,1

@@ -1,0 +1,57 @@
+Main:
+  Name: '&a&lMain menu'
+  ID: 388
+  Data: 0
+buyitem:
+  ID: 264
+  Data: 0
+  Ammount: 1
+  Name: '&6&lBuy Menu'
+sellitem:
+  ID: 56
+  Data: 0
+  Ammount: 1
+  Name: '&6&lSell Menu'
+vipmenu1:
+  Show: true
+  ID: 322
+  Data: 1
+  Ammount: 1
+  Name: '&b&lEnchanted &c&lcombat items'
+  Permission: 'vip1'
+  PermissionMessage: '&cTo access this section you need to have the privilege of not less than &e&lVIP'
+vipmenu2:
+  Show: true
+  ID: 403
+  Data: 0
+  Ammount: 1
+  Name: '&e&lEnchantment Books'
+  Permission: 'vip2'
+  PermissionMessage: '&cTo access this section you need to have the privilege of not less than &e&lVIP'
+vipmenu3:
+  Show: true
+  ID: 322
+  Data: 1
+  Ammount: 1
+  Name: '&b&lEnchanted &a&ltools'
+  Permission: 'premium'
+  PermissionMessage: '&cTo access this section you need to have the privilege of not less than &e&lVIP'
+help1:
+  ID: 323
+  Data: 0
+  Ammount: 1
+  Name: 'How to use'
+  Lore: 
+    - 'Click on item'
+    - 'to choose tab'
+    - 'Move your cursor over the object'
+    - 'to see its value'
+help2:
+  ID: 323
+  Data: 0
+  Ammount: 1
+  Name: 'How to use'
+  Lore: 
+    - 'Use left click to buy or sell 1 item'
+    - 'Use right click to buy or sell 16 items'
+    - 'Use shift click to buy or sell 64 items'

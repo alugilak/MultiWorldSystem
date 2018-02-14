@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import net.md_5.bungee.api.ChatColor;
 
 
 
@@ -42,11 +41,11 @@ public class worldlist implements CommandExecutor
         if (args.length == 0) {
         	
           int i = 0;
-          p.sendMessage(ChatColor.GREEN + "§7List of all §6MultiWorldSystem created worlds§7:");
+          p.sendMessage(org.bukkit.ChatColor.GREEN + "§7List of all §6MultiWorldSystem created worlds§7:");
           for (String key : this.settings.getwData().getKeys(true)) {
             if (!key.contains(".worlds.")) {
               i++;
-              p.sendMessage(ChatColor.AQUA +"§7" + i + ". §6'" + key + "'");
+              p.sendMessage(org.bukkit.ChatColor.AQUA +"§7" + i + ". §6'" + key + "'");
             }
           }
           

@@ -1,0 +1,37 @@
+#Mitteilungen config Datei
+#mw.shop.use
+NoPermission: '&4Du hast keine Berechtigung dies zu tun!'
+#shop.tab.tabname
+NoTabPermission: '&4Du hast keine Berechtigung, diesen Bereich des Shops zu nutzen'
+#mw.shop.gamemode
+CreativePermission: '&4&4Du hast keine Berechtigung den Shop im Kreatievmodus zu nutzen'
+Error: '&cSchwerer Fehler, schau in die Serverkonsole!'
+#mw.shop.reload
+Reloaded: '&aShop neu geladen'
+#mw.shop.setsale
+SaleInstalled: '&aTabs &6{tab} &aist installiert fuer &b{discount}% &aRabatt. Grund:&r{reason}'
+NotNomber: '&cString &r{string} &ckeine Nummer, somit nicht als Rabatt nutzbar'
+TabNotFound: '&cTab nicht gefunden'
+AvalibleTabs: '&anutzbare Tabs: &6{tabs}'
+InShop: '&aDu bist im Shop'
+PressToBuy: 'Klicken zum kaufen'
+PressToSell: 'Klicken zum verkaufen'
+BuyCost: '&fEin Gegenstand kostet: &6{cost}$'
+BuyCost16: '&f16 Gegenstaende kosten: &6{cost}$'
+BuyCost64: '&f64 Gegenstaende kosten: &6{cost}$'
+SellCost: '&fDu bekommst fuer einen Gegenstand: &6{cost}$'
+SellCost16: '&fDu bekommst fuer 16: &6{cost}$'
+SellCost64: '&fDu bekommst fuer 64: &6{cost}$'
+Sale: '&Verkauf! &b{discount}% &6discount. &a{reason}'
+NoItems: '&cNicht genug Gegenstaende!'
+NoMoney: '&cNicht genug Geld!'
+NoPlace: '&cDein Inventar ist voll!'
+SuccesBought: '&aDu kauftest &6{item}&ax&6{count}&a und bezahltest &6{cost}$'
+SuccesSold: '&aDu verkauftest &6{item}&ax&6{count}&a und bekamst &6{cost}$'
+NextPage: 'weitere Seite'
+PreviosPage: 'vorherige Seite'
+
+#Dies wird für das Protokoll verwendet und Farbcodes werden entfernt
+LogFormat: 'Der Spieler {player} {operation} Gegenstand "{item}"x{count} am Tab "{tab}". Rabatt: {discount}%({reason}). Gesamtpreis: {cost}.'
+Sold: 'verkauft'
+Bought: 'gekauft'

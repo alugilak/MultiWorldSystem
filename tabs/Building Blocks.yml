@@ -1,0 +1,385 @@
+'1':
+  ID: 1
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+stone1:
+  ID: 1
+  Data: 1
+  BuyPrice: 4
+  SellPrice: 2
+stone3:
+  ID: 1
+  Data: 3
+  BuyPrice: 4
+  SellPrice: 2
+stone5:
+  ID: 1
+  Data: 5
+  BuyPrice: 4
+  SellPrice: 2
+'2':
+  ID: 2
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'3':
+  ID: 3
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+dirt1:
+  ID: 3
+  Data: 1
+  BuyPrice: 4
+  SellPrice: 2
+dirt2:
+  ID: 3
+  Data: 2
+  BuyPrice: 4
+  SellPrice: 2
+'4':
+  ID: 4
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'5':
+  ID: 5
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+wood1:
+  ID: 5
+  Data: 1
+  BuyPrice: 4
+  SellPrice: 2
+wood2:
+  ID: 5
+  Data: 2
+  BuyPrice: 4
+  SellPrice: 2
+wood3:
+  ID: 5
+  Data: 3
+  BuyPrice: 4
+  SellPrice: 2
+wood4:
+  ID: 5
+  Data: 4
+  BuyPrice: 6
+  SellPrice: 3
+wood5:
+  ID: 5
+  Data: 5
+  BuyPrice: 6
+  SellPrice: 3
+'12':
+  ID: 12
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+sand1:
+  ID: 12
+  Data: 1
+  BuyPrice: 6
+  SellPrice: 3
+'13':
+  ID: 13
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'14':
+  ID: 14
+  Data: 0
+  BuyPrice: 45
+  SellPrice: 22
+'15':
+  ID: 15
+  Data: 0
+  BuyPrice: 18
+  SellPrice: 9
+'16':
+  ID: 16
+  Data: 0
+  BuyPrice: 15
+  SellPrice: 7
+'17':
+  ID: 17
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+log1:
+  ID: 17
+  Data: 1
+  BuyPrice: 20
+  SellPrice: 10
+log2:
+  ID: 17
+  Data: 2
+  BuyPrice: 20
+  SellPrice: 10
+log3:
+  ID: 17
+  Data: 3
+  BuyPrice: 20
+  SellPrice: 10
+log4:
+  ID: 162
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+log5:
+  ID: 162
+  Data: 1
+  BuyPrice: 30
+  SellPrice: 15
+'19':
+  ID: 19
+  Data: 0
+  BuyPrice: 80
+  SellPrice: 40
+'20':
+  ID: 20
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'21':
+  ID: 21
+  Data: 0
+  BuyPrice: 100
+  SellPrice: 50
+'22':
+  ID: 22
+  Data: 0
+  BuyPrice: 950
+  SellPrice: 475
+'24':
+  ID: 24
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+'35':
+  ID: 35
+  Data: 0
+  BuyPrice: 16
+  SellPrice: 8
+'41':
+  ID: 41
+  Data: 0
+  BuyPrice: 450
+  SellPrice: 225
+'42':
+  ID: 42
+  Data: 0
+  BuyPrice: 190
+  SellPrice: 95
+'45':
+  ID: 45
+  Data: 0
+  BuyPrice: 21
+  SellPrice: 10
+'47':
+  ID: 47
+  Data: 0
+  BuyPrice: 140
+  SellPrice: 70
+'48':
+  ID: 48
+  Data: 0
+  BuyPrice: 90
+  SellPrice: 45
+'49':
+  ID: 49
+  Data: 0
+  BuyPrice: 130
+  SellPrice: 65
+'56':
+  ID: 56
+  Data: 0
+  BuyPrice: 200
+  SellPrice: 100
+'57':
+  ID: 57
+  Data: 0
+  BuyPrice: 2000
+  SellPrice: 1000
+'73':
+  ID: 73
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+'79':
+  ID: 79
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+ice2:
+  ID: 174
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+'80':
+  ID: 80
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+'82':
+  ID: 82
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'86':
+  ID: 86
+  Data: 0
+  BuyPrice: 40
+  SellPrice: 20
+'87':
+  ID: 87
+  Data: 0
+  BuyPrice: 18
+  SellPrice: 9
+'88':
+  ID: 88
+  Data: 0
+  BuyPrice: 22
+  SellPrice: 11
+'89':
+  ID: 89
+  Data: 0
+  BuyPrice: 40
+  SellPrice: 20
+'91':
+  ID: 91
+  Data: 0
+  BuyPrice: 40
+  SellPrice: 20
+'98':
+  ID: 98
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+sbrk1:
+  ID: 98
+  Data: 1
+  BuyPrice: 100
+  SellPrice: 50
+sbrk2:
+  ID: 98
+  Data: 2
+  BuyPrice: 100
+  SellPrice: 50
+sbrk3:
+  ID: 98
+  Data: 3
+  BuyPrice: 250
+  SellPrice: 125
+'103':
+  ID: 103
+  Data: 0
+  BuyPrice: 14
+  SellPrice: 7
+'110':
+  ID: 110
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+'112':
+  ID: 112
+  Data: 0
+  BuyPrice: 16
+  SellPrice: 8
+'121':
+  ID: 121
+  Data: 0
+  BuyPrice: 500
+  SellPrice: 250
+'129':
+  ID: 129
+  Data: 0
+  BuyPrice: 60
+  SellPrice: 30
+'133':
+  ID: 133
+  Data: 0
+  BuyPrice: 600
+  SellPrice: 300
+'139':
+  ID: 139
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+brwall1:
+  ID: 139
+  Data: 1
+  BuyPrice: 120
+  SellPrice: 60
+'153':
+  ID: 153
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+'155':
+  ID: 155
+  Data: 0
+  BuyPrice: 70
+  SellPrice: 35
+'172':
+  ID: 172
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+'168':
+  ID: 168
+  Data: 0
+  BuyPrice: 50
+  SellPrice: 25
+'169':
+  ID: 169
+  Data: 0
+  BuyPrice: 70
+  SellPrice: 35
+'170':
+  ID: 170
+  Data: 0
+  BuyPrice: 40
+  SellPrice: 20
+'173':
+  ID: 173
+  Data: 0
+  BuyPrice: 120
+  SellPrice: 60
+'179':
+  ID: 179
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'201':
+  ID: 201
+  Data: 0
+  BuyPrice: 350
+  SellPrice: 175
+'206':
+  ID: 206
+  Data: 0
+  BuyPrice: 600
+  SellPrice: 300
+'213':
+  ID: 213
+  Data: 0
+  BuyPrice: 150
+  SellPrice: 75
+'214':
+  ID: 214
+  Data: 0
+  BuyPrice: 140
+  SellPrice: 70
+'215':
+  ID: 215
+  Data: 0
+  BuyPrice: 80
+  SellPrice: 40
+'216':
+  ID: 216
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10

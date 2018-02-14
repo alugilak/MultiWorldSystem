@@ -1,5 +1,7 @@
 package de.emptyWorld.main;
 
+
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -25,6 +27,14 @@ import de.emptyWorld.main.commands.back;
 import de.emptyWorld.main.poitions.jump;
 import de.emptyWorld.main.poitions.levitation;
 import de.emptyWorld.main.poitions.speed;
+import de.emptyWorld.main.sellShop.AllHandler;
+import de.emptyWorld.main.sellShop.Cmds;
+import de.emptyWorld.main.sellShop.ConfigUtil;
+import de.emptyWorld.main.sellShop.GUI;
+import de.emptyWorld.main.sellShop.Lang;
+import de.emptyWorld.main.sellShop.Phrases;
+import de.emptyWorld.main.sellShop.SU;
+import de.emptyWorld.main.sellShop.ShopLogger;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -37,12 +47,10 @@ import de.emptyWorld.main.poitions.confusion;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -62,7 +70,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.Sign;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -82,6 +92,7 @@ import org.bukkit.help.HelpTopic;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
@@ -89,13 +100,11 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.util.Vector;
-import de.emptyWorld.main.Updatechecker;
 import de.emptyWorld.main.pex.permGoupWorld;
 import de.emptyWorld.main.pex.permslist;
 import de.emptyWorld.main.pex.groupperms;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import de.emptyWorld.main.pex.permGroup;
-import de.emptyWorld.main.pex.defaultGroupset;
 import de.emptyWorld.main.pex.permPlayer;
 import de.emptyWorld.main.pex.permPlayerWorld;
 import de.emptyWorld.main.enchants.lootBonusBlock;
@@ -113,7 +122,6 @@ import de.emptyWorld.main.objects.SetHelpMap;
 import de.emptyWorld.main.enchants.armor;
 import de.emptyWorld.main.homes;
 import de.emptyWorld.main.fly;
-
 import de.emptyWorld.main.destroyworld;
 import de.emptyWorld.main.poitions.nightvision;
 import de.emptyWorld.main.poitions.removepoition;
@@ -172,12 +180,19 @@ import de.emptyWorld.main.commands.posload;
 import de.emptyWorld.main.Gui.GuiItemLoader;
 
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
 public class leerWelt extends JavaPlugin implements Listener, Entity
-{ 
-
-
-	
+{   
+	private static leerWelt instance;
+	protected static FileConfiguration main;
+	protected static FileConfiguration tabs;
+	private boolean currentlystarted = false;
+	private ShopLogger logger = null;
+	private static String pluginDataFolder;
+	public static String getPluginDataFolder() { return pluginDataFolder;}
+	  public DecimalFormat format = new DecimalFormat("$###,###");
+	  public ItemStack getPrices = createItem(Material.PAPER, 1, ChatColor.GOLD + "See Shop Prices", ChatColor.AQUA + "Click to see prices for the shop");
+	  public ItemStack sellAll = createItem(Material.EMERALD, 1, ChatColor.GOLD + "Sell All", ChatColor.AQUA + "Click to sell all eligible items\nIn inventory");
+	  public ItemStack goBack = createItem(Material.REDSTONE_BLOCK, 1, ChatColor.RED + "Go back", ChatColor.AQUA + "Go back to shop");
 	  private boolean display = false;
 	    private static int SCALE = 30;
 	    
@@ -206,22 +221,22 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
         event.setCancelled(ntrue);
         event.getLocation().getWorld().createExplosion(event.getLocation(), explosionPower);
         }}
-	public static Inventory inv = null;
+    public static Inventory inv = null;
 	public static Economy econ = null;
 	public static Permission permission = null;
 	public static Economy economy = null;
 	public static Chat chat = null;
 	  
-	  String prefix = "[Shop]";	  
+	  String prefix = "[MWS]";	  
 	  Inventory shopList = org.bukkit.Bukkit.createInventory(null, 54, ChatColor.GREEN + "Shop Items");
 
 	  private boolean setupEconomy() {
 		   if (!getServer().getPluginManager().getPlugin("Vault").isEnabled())
 		    {
-		      log.severe(this.prefix + "Fe is not found in this server!");
+		      log.severe(this.prefix + "Economy is not found in this server!");
 		      return false;
 		    }
-		    log.info(this.prefix + "Fe found in this server!");
+		    log.info(this.prefix + "Economy found in this server!");
 		    
 	    RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 	    if (rsp == null) {
@@ -269,6 +284,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
   List<String> wll = new ArrayList<String>();
   List<String> wlu = new ArrayList<String>();
 
+
   
   
 	  public void onDisable()
@@ -277,27 +293,51 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    
 	    log.info(desc.getName() + " " + desc.getVersion() + "  " + " Wird ausgeschaltet!");
 	    this.saveConfig();
+	    if(this.currentlystarted) {
+            this.currentlystarted = false;
+            if(this.logger != null) {
+                this.logger.endLogger();
+                this.logger = null;
+            }
+
+            GUI.endShop();
+        }
 	
 	}
 
 
 	  
 	  
-	  
-	  
   public void onEnable()
 
-  {		 
+  {		  
+	  instance = this;
+      if(!this.setupEconomy()) {
+          Bukkit.getConsoleSender().sendMessage(String.format("[%s] - Disabled due to no Vault dependency found!", new Object[]{this.getDescription().getName()}));
+          this.getServer().getPluginManager().disablePlugin(this);
+      } else {
+          new AllHandler();          
+          if(!this.loadConfig()) {
+              this.getServer().getPluginManager().disablePlugin(this);
+          } else {
+              if(this.getConfig().getBoolean("LogInfo")) {
+                  this.logger = new ShopLogger(this.getConfig().getString("LogFileName"), this.getConfig().getBoolean("LogToConsole"));
+              }
+
+              GUI.createShop();
+              this.currentlystarted = true;
+              pluginDataFolder = this.getDataFolder().getAbsolutePath();
+          }
+      }
+	  
+	  
+	  
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
-	  
-	  plugin = this;		
-	
-		reloadConfig(); 
-		
-	
+	    plugin = this;
+	   
 	  	InitComs();
 	  	this.sdata = getConfig();
 	  	this.b2data = getConfig();
@@ -340,6 +380,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    saveResource("SystemOut.yml", true);
 	    saveResource("permsList.yml", true);	    
 	    saveResource("config.yml", true);	
+	    saveResource("shops.yml", true);	
 	    saveResource("permcommands.yml", true);	
 	    this.saveConfig();
 	    saveConfig();	    
@@ -347,8 +388,9 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
-	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);
+	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);	    
 	    getServer().getPluginManager().registerEvents(new cmd_shop(this), this);
+	    getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
 	    	reloadConfig();
 		  this.settings.reloaddeData();
@@ -360,9 +402,9 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 		  this.settings.reloadbData();	
 		  this.settings.reloadb2Data();	
 		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
-		  getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
+		  
 		  pm.registerEvents(this, this); 
-		  checkUpdate();
+		  
 		  
 		  try {
 	           FakeCommandRegister.registerFakeCommand(new FakeCommandRegistry(this, "permission.to.command", "cmdname", "Command Description", "Usage Message", Arrays.asList("List","Of","Aliases")), this);
@@ -437,17 +479,6 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
   log.info(this.prefix + "Enabled successfully!");}
  }
 
-		    
-		    
-		
-
-
-		
-   
-  
-
-
-
 
 
   public WorldGuardPlugin getWorldGuard()
@@ -466,7 +497,6 @@ public void InitComs() {
 	getCommand("rainset").setExecutor(new rainset(this));
 	getCommand("stormset").setExecutor(new stormset(this));
 	getCommand("mwscommands").setExecutor(new HelpCommand(this));
-	getCommand("mwsupdate").setExecutor(new Updatechecker(this));
 	getCommand("creeper").setExecutor(new creeperexplodeblocker(this));
 	getCommand("mwsshoptp").setExecutor(new pshop(this));
 	getCommand("mwsdelshoptp").setExecutor(new pshop(this));
@@ -489,8 +519,6 @@ public void InitComs() {
 	getCommand("bank").setExecutor(new ChestBank(this));
 	getCommand("setbank").setExecutor(new ChestBank(this));	
 	getCommand("permsl").setExecutor(new permslist(this));
-	getCommand("dgroup+").setExecutor(new defaultGroupset(this));
-	getCommand("dgroupw+").setExecutor(new defaultGroupset(this));
 	getCommand("group+").setExecutor(new permGroup(this));
 	getCommand("group-").setExecutor(new permGroup(this));
 	getCommand("ppw-").setExecutor(new permPlayerWorld(this));
@@ -615,7 +643,10 @@ public void InitComs() {
 	  getCommand("undead").setExecutor(new damageundead(this));
 	  getCommand("knockback").setExecutor(new knockback(this));
 	  getCommand("damageall").setExecutor(new damageall(this));
-	  getCommand("depthstrider").setExecutor(new damagedeathstrider(this));}
+	  getCommand("depthstrider").setExecutor(new damagedeathstrider(this));
+	  getCommand("shop").setExecutor(new Cmds(this));
+}
+
 
 private String command;
 public void openGui(Player who) { who.openInventory(gui); }
@@ -666,7 +697,8 @@ public void reload() {
       shopList.clear();
     }
   }
-  
+ 
+
   @EventHandler
   public void onInvClose(InventoryCloseEvent e) {
     Inventory inventory = e.getInventory();
@@ -835,34 +867,14 @@ public void reload() {
 	  }
 	 
 
- 	  public static String updater = "MultiWorldSystem";
-	  public static int resource = 51764;
-	  public void checkUpdate() {
-	  	System.out.println(updater + "Checking for updates...");
-	  	try {
-	              HttpURLConnection con = (HttpURLConnection) new URL(
-	                      "http://www.spigotmc.org/api/general.php").openConnection();
-	              con.setDoOutput(true);
-	              con.setRequestMethod("POST");
-	              con.getOutputStream()
-	                      .write(("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=" + resource)
-	                              .getBytes("UTF-8"));
-	              String version = new BufferedReader(new InputStreamReader(con.getInputStream())).readLine();
-	              if (!version.equalsIgnoreCase(this.getDescription().getVersion())) {
-	                  System.err.println(updater + "A new update is aviable: version " + version);
-	              } else {
-	              	System.out.println(updater + "You're running the newest plugin version!");
-	              }
-	          } catch (Exception ex) {
-	             System.err.println(updater + "Failed to check for updates on spigotmc.org");
-	          }
-	  }
+ 	
   @EventHandler
   public void onJoin(PlayerJoinEvent e) {
 
 	  Player p = e.getPlayer();
 	  p.setGameMode(GameMode.SURVIVAL); 
-
+	   
+	  
 	  
   
   String motd = (String) this.settings.getsysoData().get("Motd"); 
@@ -905,6 +917,7 @@ public void reload() {
   String MissingPermissionDestoyPlayer = getConfig().getString("MissingPermnDelPl");
   
   public String version;
+ 
   
 public Inventory gui;
 
@@ -1055,7 +1068,111 @@ public Inventory gui;
   }
   }
 
-		
+  public void openShop(Player p, String shop)
+  {
+    String name = this.settings.getsData().getString(shop + ".name");
+    Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Shop " + ChatColor.RED + name);
+    inv.setItem(53, sellAll);
+    inv.setItem(52, getPrices);
+    p.openInventory(inv);
+  }
+  
+ 
+  
+  public double getPrice(ItemStack item, String shop)
+  {
+    ConfigurationSection cs = this.settings.getsData().getConfigurationSection(shop + ".items");
+    String id = getId(item);
+    return cs.getInt(id);
+  }
+  
+  public String getShop(String name)
+  {
+    return ChatColor.stripColor(name).replace("Shop ", "");
+  }
+  
+  public String getPrices(String name)
+  {
+    return ChatColor.stripColor(name).replace("Prices for ", "");
+  }
+  
+  
+  
+  public static ItemStack createItem(Material material, int amount, String name, String lore)
+  {
+    ItemStack item = new ItemStack(material, amount);
+    ItemMeta meta = item.getItemMeta();
+    ArrayList<String> Lore = new ArrayList();
+    Lore.add(lore);
+    meta.setLore(Lore);
+    meta.setDisplayName(name);
+    item.setItemMeta(meta);
+    return item;
+  }
+  
+ 
+public ItemStack getById(String id, int amount)
+  {
+    int amt;    
+    if (amount < 0) {
+      amt = 1;
+    } else {
+      amt = amount;
+    }
+    if (id.contains(":"))
+    {
+      String[] newId = id.split(":");
+      if (Material.getMaterial(Integer.parseInt(newId[0])) == null) {
+        return null;
+      }
+    
+	ItemStack item = new ItemStack(Material.getMaterial(Integer.parseInt(newId[0])), amt);
+      item.setDurability((short)Integer.parseInt(newId[1]));
+      return item;
+    }
+    if (Material.getMaterial(Integer.parseInt(id)) == null) {
+      return null;
+    }
+    ItemStack item = new ItemStack(Material.getMaterial(Integer.parseInt(id)), amt);
+    return item;
+  }
+  
+  public String getId(ItemStack item)
+  {
+    if (item.getDurability() != 0)
+    {
+      String id = String.valueOf(item.getTypeId());
+      String data = String.valueOf(item.getDurability());
+      return id + ":" + data;
+    }
+    return String.valueOf(item.getTypeId());
+  }
+  
+  public String formatNumber(int i)
+  {
+    String balance = String.valueOf(this.format.format(i));
+    if ((i >= 1000000) && (i < 1000000000)) {
+      balance = String.format("$%.1f Mil", new Object[] { Double.valueOf(i / 1000000.0D) });
+    }
+    if ((i >= 1000000000) && (i < 1000000000000L)) {
+      balance = String.format("$%.1f Bil", new Object[] { Double.valueOf(i / 1000000000.0D) });
+    }
+    if (i >= 1000000000000L) {
+      balance = String.format("$%.1f Tril", new Object[] { Double.valueOf(i / 1000000000000.0D) });
+    }
+    return balance;
+  }
+  
+  public int getPrice(String shop, String id)
+  {
+    List<String> items = this.settings.getsData().getStringList(shop + ".items");
+    for (String s : items) {
+      if (s.split("-")[0].equalsIgnoreCase(id)) {
+        return Integer.parseInt(s.split("-")[1]);
+      }
+    }
+    return -1;
+  }	
 
 
 
@@ -1864,9 +1981,91 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 
 
     
-	  
+	public void reloadPlugin() {
+        this.getLogger().log(Level.INFO, "Reloading plugin");
+        if(this.currentlystarted) {
+            GUI.endShop();
+            if(this.logger != null) {
+                this.logger.endLogger();
+                this.logger = null;
+            }
+        }
+
+        this.currentlystarted = false;
+        this.reloadConfig();
+        if(!this.loadConfig()) {
+            this.getServer().getPluginManager().disablePlugin(this);
+        } else {
+            if(this.getConfig().getBoolean("LogInfo")) {
+                this.logger = new ShopLogger(this.getConfig().getString("LogFileName"), this.getConfig().getBoolean("LogToConsole"));
+            }
+
+            GUI.createShop();
+            this.currentlystarted = true;
+            Bukkit.getConsoleSender().sendMessage(String.format("[%s] " + SU.genStrng(Phrases.Reloaded.getMessage()), new Object[]{this.getDescription().getName()}));
+        }
+    }
+
+    public boolean loadConfig() {
+        File config = new File(this.getDataFolder() + File.separator + "config.yml");
+        if(!config.exists()) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Can't find file config.yml");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "Creating new config file for you...");
+            this.saveDefaultConfig();
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Completed!");
+        }
+
+        if(!Lang.installLanguage(this.getConfig().getString("lang")) && !Lang.installLanguage("de_DE")) {
+            Bukkit.getConsoleSender().sendMessage(String.format("[%s] - Can't find any corerct lang file! Will used default messages", new Object[]{this.getDescription().getName()}));
+        }
+
+        main = ConfigUtil.loadYaml(instance, "main.yml");
+        if(main == null) {
+            Bukkit.getConsoleSender().sendMessage(String.format("[%s] - Can't load file \"main.yml\"! Please contact with developer.", new Object[]{this.getDescription().getName()}));
+            return false;
+        } else {
+            tabs = ConfigUtil.loadYaml(instance, "tabs.yml");
+            if(tabs == null) {
+                Bukkit.getConsoleSender().sendMessage(String.format("[%s] - Can't load file \"tabs.yml\"! Please contact with developer.", new Object[]{this.getDescription().getName()}));
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    public void save(FileConfiguration config, File file) {
+        try {
+            config.save(file);
+        } catch (IOException var4) {
+            ;
+        }
+
+    }
+
+    
     
 
+	 public static FileConfiguration getTabs() {
+	        return tabs;
+	    }
+
+	    public static FileConfiguration getMain() {
+	        return main;
+	    }
+
+	    public static Economy getEconomy() {
+	        return econ;
+	    }
+
+	    public static leerWelt instance() {
+	        return instance;
+	    }
+
+	    public void log(String message) {
+	        if(this.logger != null) {
+	            this.logger.log(message);}
+	        }
 
 
 
@@ -2664,20 +2863,6 @@ public void setVelocity(Vector arg0) {
 
 
 
-
-
-
-@Override
-public Spigot spigot() {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-
-
-
-
-
 @Override
 public boolean teleport(Location arg0) {
 	// TODO Auto-generated method stub
@@ -2716,8 +2901,52 @@ public boolean teleport(Entity arg0, TeleportCause arg1) {
 	// TODO Auto-generated method stub
 	return false;
 }
+public static FileConfiguration loadYaml(JavaPlugin instance, String path) {
+    if(instance == null) {
+        throw new IllegalArgumentException("Instance of the plugin is null!");
+    } else if(path != null && !path.equals("")) {
+        if(!path.endsWith(".yml")) {
+            path = path + ".yml";
+        }
 
+        boolean tab = path.toLowerCase().contains("tabs" + File.separator);
+        File file = new File(instance.getDataFolder(), path);
+        if(file.isDirectory()) {
+            file.delete();
+        }
+
+        if(!file.exists()) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "Can't find file \"" + path + "\"");
+            Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "Creating some one for you...");
+
+            try {
+                instance.saveResource(path, true);
+                Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Completed!");
+            } catch (Exception var7) {
+                if(!tab) {
+                    instance.getLogger().log(Level.SEVERE, "Failed to load resourse " + path);
+                    return null;
+                }
+
+                try {
+                    file.createNewFile();
+                    Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Completed!");
+                    Bukkit.getConsoleSender().sendMessage(ChatColor.GOLD + "File will be empty Fill it yourself!");
+                    return YamlConfiguration.loadConfiguration(file);
+                } catch (IOException var6) {
+                    return null;
+                }
+            }
+        }
+
+        return YamlConfiguration.loadConfiguration(file);
+    } else {
+        throw new IllegalArgumentException("Path can not be null or empty!");
+    }
 }
+}
+
+
 
 
 

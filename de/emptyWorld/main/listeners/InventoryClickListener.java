@@ -26,7 +26,7 @@ FileConfiguration sysodata;
   
   @org.bukkit.event.EventHandler
   public void click(InventoryClickEvent e) {
-    if (!e.getClickedInventory().equals(m.gui)) return;
+    if (!e.getInventory().equals(m.gui)) return;
     if (e.getCurrentItem() == null) return;
     GuiItem it = m.getGuiItem(e.getCurrentItem());
     if (it == null) return;

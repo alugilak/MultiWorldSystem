@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.leerWelt;
-import net.md_5.bungee.api.ChatColor;
 
 public class killmobs implements CommandExecutor {
 	einstellungen settings = einstellungen.getInstance();
@@ -42,15 +41,15 @@ public killmobs( leerWelt instance)
     		  if (cmd.getName().equalsIgnoreCase("killmob"))
     		    {    	    if (!sender.hasPermission((String)this.settings.getpermData().get("mwskillmobs")))
     		    {
-    		        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ((String)this.settings.getpermData().get("mwskillmobs")));
+    		        sender.sendMessage(org.bukkit.ChatColor.GOLD.toString() + org.bukkit.ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + org.bukkit.ChatColor.GOLD.toString() + org.bukkit.ChatColor.BOLD + " >" + ((String)this.settings.getpermData().get("mwskillmobs")));
     		        p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
     		        return false;
     		      }
-    	    sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GREEN + ((String)this.settings.getsysoData().get("mwsbeaplayer")));
+    	    sender.sendMessage(org.bukkit.ChatColor.GOLD.toString() + org.bukkit.ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + org.bukkit.ChatColor.GREEN + ((String)this.settings.getsysoData().get("mwsbeaplayer")));
     	    return false;}
     	  
     	killmobs1();
-        sender.sendMessage(ChatColor.AQUA + "Killed " + ChatColor.RED + mobsKilled + ChatColor.GOLD + " mobs!");}
+        sender.sendMessage(org.bukkit.ChatColor.AQUA + "Killed " + org.bukkit.ChatColor.RED + mobsKilled + org.bukkit.ChatColor.GOLD + " mobs!");}
 		return false;
     }
 

@@ -1,0 +1,37 @@
+#Конфигурационный файл сообщений
+#shop.use
+NoPermission: '&cИзвините, у вас нет прав для выполнения данного действия.'
+#shop.tab.tabname
+NoTabPermission: '&cИзвините, у вас нет прав для доступа к этой вкладке.'
+#shop.gamemode
+CreativePermission: '&cИзвините, у вас нет прав использовать магазин в креативе'
+Error: '&cПроизошла ошибка. Проверьте консоль!'
+#shop.reload
+Reloaded: '&aУспешная перезагрузка'
+#shop.setsale
+SaleInstalled: '&aДля вкладки &6"{tab}" &aбыла установлена скида &b{discount}% &a. Причина:&r{reason}'
+NotNomber: '&cСтрока &r{string} &cне число и не может быть использована как скидка!'
+TabNotFound: '&cУказанная вклада не найдена!'
+AvalibleTabs: '&aДоступные вкладки: &6{tabs}'
+InShop: '&aВы в магазине!'
+PressToBuy: 'Нажмите чтобы купить'
+PressToSell: 'Нажмите чтобы продать'
+BuyCost: '&fЦена за один предмет: &6{cost}$'
+BuyCost16: '&fЦена за 16 предметов: &6{cost}$'
+BuyCost64: '&fЦена за 64 предмета: &6{cost}$'
+SellCost: '&fВыручка за один предмет: &6{cost}$'
+SellCost16: '&fВыручка за 16 предметов: &6{cost}$'
+SellCost64: '&fВыручка за 64 предмета: &6{cost}$'
+Sale: '&6Скидка &b{discount}%. &a{reason}'
+NoItems: '&cУ вас не хватает предметов!'
+NoMoney: '&cУ вас не хватает денег!'
+NoPlace: '&cУ вас нет места в инвентаре!'
+SuccesBought: '&aВы купили &6{item} &aв количестве &6{count}&aшт за &6{cost}$'
+SuccesSold: '&aВы продали &6{item} &aв количестве &6{count}&aшт за &6{cost}$'
+NextPage: 'Следущая страница'
+PreviosPage: 'Предыдущая страница'
+
+#Эти сообщения используются для лога и цветовые коды в них будут удалены
+LogFormat: 'Игрок {player} {operation} "{item}"x{count} во вкладке "{tab}". Скидка: {discount}%({reason}). Общая стоимость: {cost}.'
+Sold: 'продал'
+Bought: 'купил'

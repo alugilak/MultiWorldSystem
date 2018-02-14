@@ -1,0 +1,169 @@
+'260':
+  ID: 260
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'282':
+  ID: 282
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+'297':
+  ID: 297
+  Data: 0
+  BuyPrice: 12
+  SellPrice: 6
+'319':
+  ID: 319
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'320':
+  ID: 320
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+apple0:
+  ID: 322
+  Data: 0
+  SellPrice: 0
+'322':
+  ID: 322
+  Data: 1
+  BuyPrice: 800
+  SellPrice: 400
+'349':
+  ID: 349
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+fish1:
+  ID: 349
+  Data: 1
+  BuyPrice: 6
+  SellPrice: 3
+fish2:
+  ID: 349
+  Data: 2
+  BuyPrice: 10
+  SellPrice: 5
+fish3:
+  ID: 349
+  Data: 3
+  BuyPrice: 10
+  SellPrice: 5
+'350':
+  ID: 350
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+efish1:
+  ID: 350
+  Data: 1
+  BuyPrice: 8
+  SellPrice: 4
+'354':
+  ID: 354
+  Data: 0
+  BuyPrice: 120
+  SellPrice: 60
+'357':
+  ID: 357
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'360':
+  ID: 360
+  Data: 0
+  BuyPrice: 2
+  SellPrice: 1
+'363':
+  ID: 363
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'364':
+  ID: 364
+  Data: 0
+  BuyPrice: 12
+  SellPrice: 6
+'365':
+  ID: 365
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+'366':
+  ID: 366
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+'367':
+  ID: 367
+  Data: 0
+  BuyPrice: 2
+  SellPrice: 1
+'375':
+  ID: 375
+  Data: 0
+  BuyPrice: 16
+  SellPrice: 8
+'391':
+  ID: 391
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'392':
+  ID: 392
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'393':
+  ID: 393
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'394':
+  ID: 394
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'400':
+  ID: 400
+  Data: 0
+  BuyPrice: 50
+  SellPrice: 25
+'411':
+  ID: 411
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+'412':
+  ID: 412
+  Data: 0
+  BuyPrice: 7
+  SellPrice: 3
+'413':
+  ID: 413
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'423':
+  ID: 423
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'424':
+  ID: 424
+  Data: 0
+  BuyPrice: 11
+  SellPrice: 5
+'434':
+  ID: 434
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+'436':
+  ID: 436
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4

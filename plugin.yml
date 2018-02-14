@@ -1,9 +1,14 @@
 name: MultiWorldSystem
-version: 3.8.9
+version: 3.9.2
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
+softdepend: [Vault]
 
 commands:
+
+         shop: 
+                    description: Open shop         
+                    usage: /<command>
          rainset:
                     description: activated storm for ever or deacitivated it (on activated and off deactivated
                     usage: /stormset on or off 
@@ -14,9 +19,6 @@ commands:
                     description: (out of function) Items buy from Shop. 
                     usage: /ps2 out of function at this time
          mwscommands:
-                    description: check from spigot if there a Update for MultiworldSystem. 
-                    usage: /mwsupdate
-         mwsupdate:
                     description: check from spigot if there a Update for MultiworldSystem. 
                     usage: /mwsupdate
          healthbar:
@@ -710,3 +712,28 @@ permissions:
        mws.world.player: false
        permissions.build: false
        mws.world.pladdmem: false
+       mwsshop.use: true
+       mwsshop.gamemode: false
+       mwsshop.reload: false
+       mwsshop.buy: true
+       mwsshop.sell: true
+       mwsshop.tab: true
+       mwsshop.vip: false
+       mwsshop.setsale: false
+       mwsshop.setprice: false
+     shop.*:
+       children:       
+       shop.use: true
+       shop.gamemode: op
+       shop.reload: op
+       shop.buy: true
+       shop.sell: true
+       shop.setsale: op
+       shop.setprice: op
+       shop.tab.*: true                                                   
+       shop.vip.*: true
+
+
+
+
+      

@@ -1,0 +1,365 @@
+'6':
+  ID: 6
+  Data: 0
+  BuyPrice: 2
+  SellPrice: 1
+sapling1:
+  ID: 6
+  Data: 1
+  BuyPrice: 2
+  SellPrice: 1
+sapling2:
+  ID: 6
+  Data: 2
+  BuyPrice: 2
+  SellPrice: 1
+sapling3:
+  ID: 6
+  Data: 3
+  BuyPrice: 2
+  SellPrice: 1
+sapling4:
+  ID: 6
+  Data: 4
+  BuyPrice: 4
+  SellPrice: 2
+sapling5:
+  ID: 6
+  Data: 5
+  BuyPrice: 4
+  SellPrice: 2
+'18':
+  ID: 18
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+leaves1:
+  ID: 18
+  Data: 1
+  BuyPrice: 4
+  SellPrice: 2
+leaves2:
+  ID: 18
+  Data: 2
+  BuyPrice: 4
+  SellPrice: 2
+leaves3:
+  ID: 18
+  Data: 3
+  BuyPrice: 4
+  SellPrice: 2
+leaves4:
+  ID: 161
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+leaves5:
+  ID: 161
+  Data: 1
+  BuyPrice: 6
+  SellPrice: 3
+'30':
+  ID: 30
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+'32':
+  ID: 32
+  Data: 0
+  BuyPrice: 2
+  SellPrice: 1
+grass1:
+  ID: 31
+  Data: 1
+  BuyPrice: 2
+  SellPrice: 1
+fern:
+  ID: 31
+  Data: 2
+  BuyPrice: 2
+  SellPrice: 1
+'37':
+  ID: 37
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+flower:
+  ID: 38
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+flower1:
+  ID: 38
+  Data: 1
+  BuyPrice: 3
+  SellPrice: 1
+flower2:
+  ID: 38
+  Data: 2
+  BuyPrice: 3
+  SellPrice: 1
+flower3:
+  ID: 38
+  Data: 3
+  BuyPrice: 3
+  SellPrice: 1
+flower4:
+  ID: 38
+  Data: 4
+  BuyPrice: 3
+  SellPrice: 1
+flower5:
+  ID: 38
+  Data: 5
+  BuyPrice: 3
+  SellPrice: 1
+flower6:
+  ID: 38
+  Data: 6
+  BuyPrice: 3
+  SellPrice: 1
+flower7:
+  ID: 38
+  Data: 7
+  BuyPrice: 3
+  SellPrice: 1
+flower8:
+  ID: 38
+  Data: 8
+  BuyPrice: 3
+  SellPrice: 1
+'175':
+  ID: 175
+  Data: 0
+  BuyPrice: 5
+  SellPrice: 2
+dflow1:
+  ID: 175
+  Data: 1
+  BuyPrice: 5
+  SellPrice: 2
+dflow2:
+  ID: 175
+  Data: 2
+  BuyPrice: 5
+  SellPrice: 2
+dflow3:
+  ID: 175
+  Data: 3
+  BuyPrice: 5
+  SellPrice: 2
+dflow4:
+  ID: 175
+  Data: 4
+  BuyPrice: 5
+  SellPrice: 2
+dflow5:
+  ID: 175
+  Data: 5
+  BuyPrice: 5
+  SellPrice: 2
+'81':
+  ID: 81
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'106':
+  ID: 106
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'111':
+  ID: 111
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'39':
+  ID: 39
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'40':
+  ID: 40
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'50':
+  ID: 50
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'54':
+  ID: 54
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'146':
+  ID: 146
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+'58':
+  ID: 58
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+'61':
+  ID: 61
+  Data: 0
+  BuyPrice: 8
+  SellPrice: 4
+'65':
+  ID: 65
+  Data: 0
+  BuyPrice: 4
+  SellPrice: 2
+'78':
+  ID: 78
+  Data: 0
+  BuyPrice: 6
+  SellPrice: 3
+'84':
+  ID: 84
+  Data: 0
+  BuyPrice: 80
+  SellPrice: 40
+'85':
+  ID: 85
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+'113':
+  ID: 113
+  Data: 0
+  BuyPrice: 16
+  SellPrice: 8
+'101':
+  ID: 101
+  Data: 0
+  BuyPrice: 16
+  SellPrice: 8
+'102':
+  ID: 102
+  Data: 0
+  BuyPrice: 2
+  SellPrice: 1
+'116':
+  ID: 116
+  Data: 0
+  BuyPrice: 100
+  SellPrice: 50
+'120':
+  ID: 120
+  Data: 0
+  BuyPrice: 5000
+  SellPrice: 2500
+'130':
+  ID: 130
+  Data: 0
+  BuyPrice: 100
+  SellPrice: 50
+'145':
+  ID: 145
+  Data: 0
+  BuyPrice: 120
+  SellPrice: 60
+anvil1:
+  ID: 145
+  Data: 1
+  BuyPrice: 80
+  SellPrice: 40
+'165':
+  ID: 165
+  Data: 0
+  BuyPrice: 400
+  SellPrice: 200
+'171':
+  ID: 171
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'198':
+  ID: 198
+  Data: 0
+  BuyPrice: 80
+  SellPrice: 40
+'199':
+  ID: 199
+  Data: 0
+  BuyPrice: 10
+  SellPrice: 5
+'200':
+  ID: 200
+  Data: 0
+  BuyPrice: 15
+  SellPrice: 7
+'321':
+  ID: 321
+  Data: 0
+  BuyPrice: 25
+  SellPrice: 12
+'323':
+  ID: 323
+  Data: 0
+  BuyPrice: 3
+  SellPrice: 1
+'355':
+  ID: 355
+  Data: 0
+  BuyPrice: 50
+  SellPrice: 25
+'389':
+  ID: 389
+  Data: 0
+  BuyPrice: 40
+  SellPrice: 20
+'390':
+  ID: 390
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+'397':
+  ID: 397
+  Data: 0
+  BuyPrice: 100
+  SellPrice: 50
+skull1:
+  ID: 397
+  Data: 1
+  BuyPrice: 1500
+  SellPrice: 750
+skull2:
+  ID: 397
+  Data: 2
+  BuyPrice: 100
+  SellPrice: 50
+skull3:
+  ID: 397
+  Data: 3
+  BuyPrice: 100
+  SellPrice: 50
+skull4:
+  ID: 397
+  Data: 4
+  BuyPrice: 100
+  SellPrice: 50
+skull5:
+  ID: 397
+  Data: 5
+  BuyPrice: 5000
+  SellPrice: 2500
+'416':
+  ID: 416
+  Data: 0
+  BuyPrice: 30
+  SellPrice: 15
+'425':
+  ID: 425
+  Data: 0
+  BuyPrice: 20
+  SellPrice: 10
+flag15:
+  ID: 425
+  Data: 15
+  BuyPrice: 20
+  SellPrice: 10

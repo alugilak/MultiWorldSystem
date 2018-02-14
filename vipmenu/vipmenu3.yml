@@ -1,0 +1,104 @@
+278:
+  ID: 278
+  Name: '&a&lGod Pickaxe'
+  Price: 4000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty0:
+  ID: 0
+257:
+  ID: 257
+  Name: '&b&lAdmin Pickaxe'
+  Price: 3000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty1:
+  ID: 0
+274:
+  ID: 274
+  Name: '&6&lPlayer Pickaxe'
+  Price: 2000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty2:
+  ID: 0
+285:
+  ID: 285
+  Name: '&4&lNoob Pickaxe'
+  Price: 1000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+279:
+  ID: 279
+  Name: '&a&lGod Axe'
+  Price: 4000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty3:
+  ID: 0
+258:
+  ID: 258
+  Name: '&b&lAdmin Axe'
+  Price: 3000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty4:
+  ID: 0
+275:
+  ID: 275
+  Name: '&6&lPlayer Axe'
+  Price: 2000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty5:
+  ID: 0
+286:
+  ID: 286
+  Name: '&4&lNoob Axe'
+  Price: 1000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+277:
+  ID: 277
+  Name: '&a&lGod Shovel'
+  Price: 4000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3 silk_touch,1
+empty6:
+  ID: 0
+256:
+  ID: 256
+  Name: '&b&lAdmin Shovel'
+  Price: 3000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3 silk_touch,1
+empty7:
+  ID: 0
+273:
+  ID: 273
+  Name: '&6&lPlayer Shovel'
+  Price: 2000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3 silk_touch,1
+empty8:
+  ID: 0
+284:
+  ID: 284
+  Name: '&4&lNoob Shovel'
+  Price: 1000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3 silk_touch,1
+293:
+  ID: 293
+  Name: '&a&lGod Hoe'
+  Price: 4000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty9:
+  ID: 0
+292:
+  ID: 292
+  Name: '&b&lAdmin Hoe'
+  Price: 3000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty10:
+  ID: 0
+291:
+  ID: 291
+  Name: '&6&lPlayer Hoe'
+  Price: 2000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3
+empty11:
+  ID: 0
+294:
+  ID: 294
+  Name: '&4&lNoob Hoe'
+  Price: 1000
+  Enchantments: dig_speed,5 durability,3 loot_bonus_blocks,3

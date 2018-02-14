@@ -1,0 +1,86 @@
+Building Blocks:
+  Name: 'Building Blocks'
+  ID: 45
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Decoration Blocks:
+  Name: 'Decoration Blocks'
+  ID: 38
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Redstone:
+  Name: 'Redstone'
+  ID: 331
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Transportation:
+  Name: 'Transportation'
+  ID: 27
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Miscellaneous:
+  Name: 'Miscellaneous'
+  ID: 327
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+FoodStuffs:
+  Name: 'FoodStuffs'
+  ID: 260
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Tools:
+  Name: 'Tools'
+  ID: 257
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Combat:
+  Name: 'Combat'
+  ID: 283
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Brewing:
+  Name: 'Brewing'
+  ID: 373
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Materials:
+  Name: 'Materials'
+  ID: 265
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+Spawners:
+  Name: '&fMob Creation'
+  ID: 383
+  Data: 0
+  EnableBuy: true
+  EnableSell: true
+  Permission: ''
+  Enchantments: arrow_infinite,1
+Fireworks:
+  Name: '&cF&6i&er&ae&bw&9o&5r&ck&6s'
+  ID: Firework
+  Data: 0
+  EnableBuy: true
+  EnableSell: false
+  Permission: ''
+  Enchantments: arrow_infinite,1  
