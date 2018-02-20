@@ -1,6 +1,8 @@
 package de.emptyWorld.main;
 
 import java.io.File;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -56,9 +58,12 @@ public class loadworld implements CommandExecutor
 	        this.settings.getData().set("warps." + name + ".y" , 165);
 	        this.settings.getData().set("warps." + name + ".z" , 0 );
 	        this.settings.saveData(); 
+	        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv" + " " + "import" + " " + name + " " + "normal");
+	        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv" + " " + "confirm"); 
 	      player.sendMessage(ChatColor.YELLOW + ((String)this.settings.getsysoData().get("worldtwcatch")));
 	      World world = org.bukkit.Bukkit.getServer().createWorld(new org.bukkit.WorldCreator(name));
 	      player.sendMessage(ChatColor.YELLOW + ((String)this.settings.getsysoData().get("loadWorlds")) + world.getName());
+	      player.getPlayer().teleport(world.getSpawnLocation());
 	      return true;
 	    }        
 	    player.sendMessage(ChatColor.RED + fileNew.getName() + ((String)this.settings.getsysoData().get("mwErrorWName")));

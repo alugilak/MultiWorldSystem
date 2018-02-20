@@ -2,6 +2,8 @@ package de.emptyWorld.main;
 
 
 import java.io.File;
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -37,16 +39,33 @@ public class rename implements CommandExecutor
 
     plugin = instance;
   }
+  public HashMap<String, Long> cooldowns = new HashMap<String, Long>();
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
   {
     Player player = (Player)sender;
     if ((player.hasPermission(((String) this.settings.getpermData().get("mwsworldrename"))) && 
-      (cmd.getName().equalsIgnoreCase("wren")))) {
+      (cmd.getName().equalsIgnoreCase("wren")))) {    	
       Rename(player, args[0], args[1]);
-    }
-    
-    return false;
-  }
+      this.settings.getData().set("warps." + args[0] , null);
+      this.settings.saveData();        
+      this.settings.getwData().set("worlds." + args[0], null);      
+      this.settings.getwData().set("worlds." + args[1] + ".type", "NORMAL");
+      this.settings.savewData();
+      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv" + " " + " remove" + " " + args[0]);
+      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv" + " " + "import" + " " + args[1] + " " + "normal");
+      Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv" + " " + "confirm"); 
+      player.sendMessage(ChatColor.YELLOW + "you are teleported now in world " + " " + ChatColor.GREEN + args[1] + " "+ ChatColor.YELLOW + "please wait");
+      Bukkit.dispatchCommand(player, "swarp" + " " + args[1]);
+      World world = org.bukkit.Bukkit.getServer().createWorld(new org.bukkit.WorldCreator(args[1]));
+      player.getPlayer().teleport(world.getSpawnLocation()); 
+      return true;
+      }
+	return false;}
+      
+
+
+	  
+  
   
   public void RenameFile(File target, String newName, Player player) {
     player.sendMessage(ChatColor.GREEN + "Trying to rename file...");

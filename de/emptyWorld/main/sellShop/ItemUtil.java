@@ -76,4 +76,9 @@ public class ItemUtil {
 
         return item.getItemMeta();
     }
+
+	public static <SpawnShopItem> SpawnShopItem getReturnedItem(ItemStack inh) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

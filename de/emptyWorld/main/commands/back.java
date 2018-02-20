@@ -42,20 +42,21 @@ public class back implements CommandExecutor
 	      {
 	    	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwsback")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
 	        p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
-	        return false;}	      
-          String world = this.settings.getData().getString("death." + p.getName() + ".world");
-          double x = this.settings.getData().getDouble("death." + p.getName() + ".x");
-          double y = this.settings.getData().getDouble("death." + p.getName() + ".y");
-          double z = this.settings.getData().getDouble("death." + p.getName() + ".z");          
+	        return false;}	
+	      if (this.settings.getData().getConfigurationSection("death." + p.getName()) == null) {
+		        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("nodeathpoint")));
+		        return false;}	 
+	    if (args.length == 0)	{
+          String world = this.settings.getData().getString("death." + p.getName() + ".world",  p.getLocation().getWorld().getName());
+          double x = this.settings.getData().getDouble("death." + p.getName() + ".x", Double.valueOf(p.getLocation().getX()));
+          double y = this.settings.getData().getDouble("death." + p.getName() + ".y", Double.valueOf(p.getLocation().getY()));
+          double z = this.settings.getData().getDouble("death." + p.getName() + ".z", Double.valueOf(p.getLocation().getZ()));          
           Location loc = new Location(org.bukkit.Bukkit.getWorld(world), x, y, z);
           p.teleport(loc);
 	      this.settings.getData().set("death." +  p.getName(), null);
 	      this.settings.saveData();
-	            p.sendMessage(ChatColor.GOLD + "Teleporting...");
-	        } else {
-	            p.sendMessage(ChatColor.RED + "No /back location was found!");
-	        }
-		return false;
-	}
-
-}
+	            p.sendMessage(ChatColor.GOLD + "Teleporting...");	     
+		return true;}}
+		return false;}}
+		
+	

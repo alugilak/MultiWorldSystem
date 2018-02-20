@@ -25,6 +25,7 @@ public class damageall implements CommandExecutor {
 	  FileConfiguration endata;
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
+	  FileConfiguration blockdata;
 	  World world;
 	  
 	  leerWelt plugin;  
@@ -62,5 +63,8 @@ if (args.length == 3);{
 				EnchantMeta.setLore(lore);	    				   
 				Enchant.setItemMeta(EnchantMeta);	    				
 			p.getInventory().setItemInMainHand(Enchant);
+			ItemStack Item = new ItemStack (p.getInventory().getItemInMainHand());
+			this.settings.getblockData().set("Item." + dname + ".ID", Item);
+			this.settings.saveblockData();
 			p.sendMessage("top");
-			return true;}}}			  
+			return true;}}}	  

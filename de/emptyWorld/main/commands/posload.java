@@ -39,24 +39,35 @@ public class posload implements CommandExecutor
 	    Player p = (Player)sender;	    
 	    if (cmd.getName().equalsIgnoreCase("posload"))
 	    {
-	      if (!sender.hasPermission((String) this.settings.getpermData().get("mwspossave")))
-	      {
+	      if (!sender.hasPermission((String) this.settings.getpermData().get("mwspossave"))) {	    	  
 	    	sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwspossave")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
 	        p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
-	        return false;}	      
-          String world = this.settings.getData().getString("save." + p.getName() + ".world");
-          double x = this.settings.getData().getDouble("save." + p.getName() + ".x");
+	        return false;}	
+	      if (args.length == 0)
+	    	  
+    	  {	      
+      if (this.settings.getData().getConfigurationSection("save." + p.getName()) == null)
+      {
+	        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("mwsNoposload")));
+	        return false;}
+	      String world = this.settings.getData().getString("save." + p.getName() + ".world");
+	      double x = this.settings.getData().getDouble("save." + p.getName() + ".x");
           double y = this.settings.getData().getDouble("save." + p.getName() + ".y");
-          double z = this.settings.getData().getDouble("save." + p.getName() + ".z");          
+          double z = this.settings.getData().getDouble("save." + p.getName() + ".z"); 
+	      String save = this.settings.getData().getString("save." + p.getName() + ".world");
+	      String check = save + x + y + z;
+    	  if ( this.settings.getData().contains(check));
           Location loc = new Location(org.bukkit.Bukkit.getWorld(world), x, y, z);
           p.teleport(loc);
 	      this.settings.getData().set("save." +  p.getName(), null);
 	      this.settings.saveData();
 	            p.sendMessage(((String)this.settings.getsysoData().get("mwsposload")));
-	        } else {
-	            p.sendMessage(((String)this.settings.getsysoData().get("mwsNoposload")));
-	        }
-		return false;
+				return true;
+	        } else  {
+	        	 p.sendMessage(((String)this.settings.getsysoData().get("mwsNoposload")));return false;
+		    }
+	        
 	}
+		return false;
 
-}
+}}

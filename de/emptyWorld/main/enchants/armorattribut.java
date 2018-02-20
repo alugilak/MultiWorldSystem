@@ -43,19 +43,25 @@ plugin = instance;
 }
 public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) { 
 	Player p = (Player)sender;		  	    
-	      if (commandLabel.equalsIgnoreCase("armor+")) {
+	      if (commandLabel.equalsIgnoreCase("armorchest")) {
 	    	  if (!sender.hasPermission((String)this.settings.getpermData().get("mwsenchant")))
 	        {
 	          sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsenchant")) + " " + ((String)this.settings.getsysoData().get("permError")));
 	          p.getWorld().playEffect(p.getLocation(), Effect.GHAST_SHRIEK, 50);
 	          return false;
 	        }
-	    	  if (args.length < 1);{
+	    	  StringBuilder str = new StringBuilder();
+	   		   for (int i = 0; i < args.length; i++) {
+	   		        str.append(args[i] + " ");
+	   		  }	if (args.length <= 2) {	
+	   		  p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.RED + "Use /armorchest <value> <Lore> <Displayname>");
+	   		  	return false;}}
+	   		  if (args.length == 3);{
 		  		
 	    		     ItemStack item = new ItemStack (p.getInventory().getItemInMainHand());
 	    		     ItemMeta itemmeta = item.getItemMeta();
-	    		    		 itemmeta.setDisplayName(ChatColor.GOLD + (String)this.settings.getpData().get("ARMOR_DisplayName_MYTHIC"));
-	    		    		 itemmeta.setLore(Arrays.asList(((String)this.settings.getpData().get("ARMOR_LORE"))));
+	    		     itemmeta.setDisplayName(ChatColor.GOLD + args[2]);
+		    		 itemmeta.setLore(Arrays.asList(ChatColor.BLUE + args[1]));
 	    		    		 item.setItemMeta(itemmeta);
 	    		net.minecraft.server.v1_12_R1.ItemStack nmsStack = CraftItemStack.asNMSCopy(item);	    		
 				NBTTagCompound compound = (nmsStack.hasTag()) ? nmsStack.getTag() : new NBTTagCompound();	    		
@@ -73,8 +79,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	    			compound.set("AttributeModifiers", modifiers);
 	    			nmsStack.setTag(compound);
 	    			item = CraftItemStack.asBukkitCopy(nmsStack);
-	    			compound.set(((String)this.settings.getpData().get("ARMOR_MYTHIC")), new NBTTagByte((byte) 1));
+	    			compound.set(ChatColor.GOLD + args[2], new NBTTagByte((byte) 1));
 	    			nmsStack.setTag(compound);	    			
 	    			 p.getInventory().setItemInMainHand(CraftItemStack.asBukkitCopy(nmsStack));
-	    			return true;}}else {return false;}}}
+	    			return true;}}}
   	  

@@ -53,8 +53,7 @@ public class Shop implements Listener
     }
     return (WorldGuardPlugin)wplugin;
   }
-  
-  @SuppressWarnings("deprecation")
+
 @EventHandler
   public void GrabGenerieren(PlayerDeathEvent event)
   {

@@ -17,17 +17,19 @@ import de.emptyWorld.main.leerWelt;
 public class warps implements CommandExecutor
 {
 	public static final String warpsName = null;
-	einstellungen settings = einstellungen.getInstance();
-	  FileConfiguration data;
-	  FileConfiguration wdata;
-	  FileConfiguration pdata;
-	  FileConfiguration dedata;	  
-	  FileConfiguration endata;
-	  FileConfiguration permdata;
-	  FileConfiguration sysodata;
-	  World world;
-	
+	 loadworld loader;
+		loadworld worldLoader;
+		einstellungen settings = einstellungen.getInstance();
+		  FileConfiguration data;
+		  FileConfiguration wdata;
+		  FileConfiguration pdata;
+		  FileConfiguration dedata;
+		  FileConfiguration endata;
+		  FileConfiguration permdata;
+		  FileConfiguration sysodata;
+		  
 	  leerWelt plugin;
+	  World world;
 	  
 	
   public warps( leerWelt instance)
@@ -58,21 +60,25 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 
     if (cmd.getName().equalsIgnoreCase("w"))    
     if (p.hasPermission((String) this.settings.getpermData().get("mwswarpuse"))) {
-      if (args.length == 1) {
-        if (this.settings.getData().getString("warps." + args[0]) != null)
-        {
+    	 if (args.length == 0)  {
+		        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + "Please use /w <warpname>");
+		        return false;}
+    		 if (this.settings.getData().getString("warps." + args[0]) != null) {
+ 		       loader = new loadworld(plugin);
+ 		      loader.LoadWorld(args[0], p);
+ 		     sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ("§7Warp §e" + args[0] + " §7not found! Now loading the World........"));
+ 		   
           String world = this.settings.getData().getString("warps." + args[0] + ".world");
           double x = this.settings.getData().getDouble("warps." + args[0] + ".x");
           double y = this.settings.getData().getDouble("warps." + args[0] + ".y");
           double z = this.settings.getData().getDouble("warps." + args[0] + ".z");          
           Location loc = new Location(org.bukkit.Bukkit.getWorld(world), x, y, z);
-          p.teleport(loc);
+          p.getPlayer().teleport(loc);          
           sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.AQUA.toString() + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.BOLD + " »" + ChatColor.YELLOW + ((String)this.settings.getsysoData().get("warpwelcome")) + "==>" + ChatColor.BLUE + args[0]);
           return true;
-        } else {
-          p.sendMessage("§7Warp §e" + args[0] + " §7not found!");        
-      }} else p.sendMessage("§c/warp <NAME>");
-    }    
+    		 }   sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ("§7Warp §e" + args[0] + " §7not found!"));
+    return false;}
+    
     if (cmd.getName().equalsIgnoreCase("spawn")) {
 	            	     if (!(this.settings.getData().get("spawn.world") != null))
 	            	      {
@@ -91,10 +97,10 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	            	            return true;
 	            	        }
 	            	      }
-	              
 
-    
 	return false;}}
+
+
 
 
 

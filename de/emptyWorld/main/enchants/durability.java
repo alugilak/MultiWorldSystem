@@ -22,7 +22,8 @@ public class durability implements CommandExecutor {
 
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
-
+	  FileConfiguration blockdata;
+	  
 	  
 	  leerWelt plugin;  
 	  
@@ -60,13 +61,11 @@ public boolean onCommand(CommandSender sender, Command cmd, String cmdLabel, Str
 		    				EnchantMeta.setLore(lore);	    				   
 		    				Enchant.setItemMeta(EnchantMeta);	    				
 		    			p.getInventory().setItemInMainHand(Enchant);
+		    			ItemStack Item = new ItemStack (p.getInventory().getItemInMainHand());
+		    			this.settings.getblockData().set("Item." + dname + ".ID", Item);
+		    			this.settings.saveblockData();
 		    			p.sendMessage("top");
 		    			return true;}}}
-			        
-	
-
-
-					 	
 	    	  
 
 		

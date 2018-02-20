@@ -1,15 +1,23 @@
 package de.emptyWorld.main.sellShop;
 
 import java.lang.reflect.InvocationTargetException;
+
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import de.emptyWorld.main.sellShop.MainHandler;
 import de.emptyWorld.main.leerWelt;
@@ -18,7 +26,7 @@ import de.emptyWorld.main.sellShop.Handler;
 import de.emptyWorld.main.sellShop.ItemMetaUtil;
 import de.emptyWorld.main.sellShop.SU;
 
-public class AllHandler implements Listener {
+public class AllHandler<SpawnShopItem> implements Listener {
     public AllHandler() {
         leerWelt.instance().getServer().getPluginManager().registerEvents(this, leerWelt.instance());
         new Handler();
@@ -26,7 +34,7 @@ public class AllHandler implements Listener {
     }
 
  
-	@SuppressWarnings("deprecation")
+	
 	@EventHandler(
             priority = EventPriority.MONITOR
     )
@@ -37,8 +45,9 @@ public class AllHandler implements Listener {
         }
 
     }
+    
+ 
 
-    @SuppressWarnings("deprecation")
 	@EventHandler(
             priority = EventPriority.MONITOR
     )
@@ -50,7 +59,7 @@ public class AllHandler implements Listener {
                     if(e.getCurrentItem() != null && e.getCurrentItem().getData().getItemType() != Material.AIR) {
                         if(p.getGameMode() == GameMode.CREATIVE && e.getCurrentItem().getType() == Material.MOB_SPAWNER) {
                             ((Player)e.getWhoClicked()).sendMessage(SU.genMessage("§cSorry, but moving Mobspawner in creative gamemode is unavalible!"));
-                            p.updateInventory();
+                           p.updateInventory();
                             e.setCancelled(true);
                         }
                     }

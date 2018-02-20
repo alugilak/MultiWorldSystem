@@ -1,11 +1,35 @@
 name: MultiWorldSystem
-version: 3.9.2
+version: 4.0.7
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
 
 commands:
-
+         enchantitem: 
+                    description: give saved enchant item          
+                    usage: /<enchantitem>  <Displayname>  
+         np:
+                    description: newspaper commands                    
+         newspaper:
+                    description: newspaper commands                   
+         xp: 
+                    description: manage Player xp         
+                    usage: /xp <+|-|set> <playername> <amount>
+         lvl: 
+                    description: manage Player level         
+                    usage: /lvl <+|-|set> <playername> <amount>
+         cc: 
+                    description: clear Chat         
+                    usage: /<cc>
+         displayname: 
+                    description: set Item Displayname          
+                    usage: /<displayname>  <Displayname>                      
+         lore: 
+                    description: set Item Lore          
+                    usage: /<lore>  <LoreTitel>                  
+         test: 
+                    description: Open shop         
+                    usage: /<command>
          shop: 
                     description: Open shop         
                     usage: /<command>
@@ -27,50 +51,6 @@ commands:
          creeper:
                     description: Creeper Blockdestroy (off = block destroy off) and  on (aktivate block destroy) 
                     usage: /crepper off  /creeper on
-
-         pshelp:
-                    description: Helpmenu for the playershop 
-                    usage: /pshelp
-         pshelpDe:
-                    description: Hilfemenue Player Shop 
-                    usage: /pshelp                    
-         ps:
-                    description: main command playershop. not usable alone
-                    usage: /ps                     
-         v:
-                    description: visit a player Shop
-                    usage: /ps v
-         create:
-                    description: create a Playershop
-                    usage: /ps create
-         upgrade:
-                    description: reload config
-                    usage: /ps upgrade 
-         delete:
-                    description: deelete a player Shop
-                    usage: /ps delete
-         remove:
-                    description: remove a item from playershop
-                    usage: /ps remove <playername> <ItemID from the Gui Shop>
-         s:
-                    description: sell
-                    usage: /ps s
-         b:
-                    description: buy
-                    usage: /ps b
-                               
-         mwssetshoptp:
-                    description: set a playershop TP Point for a SignShop
-                    usage: /mwssetshoptp
-         mwsshoptp:
-                    description: teleport to a Player SignShop
-                    usage: /mwsshoptp
-         mwsdelshoptp:
-                    description: delete a Player Shop TeleportPoint
-                    usage: /mwsdeltpshop 
-                                       
-
-
 
                                                             
          possave:
@@ -222,9 +202,18 @@ commands:
          tough+:
                     description: Armor durability bonus  
                     usage: /<command> <amount> 
-         armor+:
-                    description: Armor bonus 
-                    usage: /<command> <amount>
+         armorchest:
+                    description: Armor bonus on chest 
+                    usage: /armorchest <value> <Lore> <Displayname>
+         armorlegs:
+                    description: Armor bonus on legs 
+                    usage: /armorlegs <value> <Lore> <Displayname>
+         armorfeets:
+                    description: Armor bonus on feets 
+                    usage: /armorfeets <value> <Lore> <Displayname>
+         armorhead:
+                    description: Armor bonus on head 
+                    usage: /armorhead <value> <Lore> <Displayname>                                                                 
          spdm+:
                     description: entchant your mainHand Item with ATTACK SPEED and DAMAGE 
                     usage: /<command> <amountSpeed> <amountdamage>
@@ -652,7 +641,8 @@ commands:
         
 permissions:
      mws.*:
-       children:
+       children:       
+       mws.chat.clear: op
        mws.weather.clear: op
        mws.rain.use: op
        mws.storm.use: op
@@ -712,15 +702,7 @@ permissions:
        mws.world.player: false
        permissions.build: false
        mws.world.pladdmem: false
-       mwsshop.use: true
-       mwsshop.gamemode: false
-       mwsshop.reload: false
-       mwsshop.buy: true
-       mwsshop.sell: true
-       mwsshop.tab: true
-       mwsshop.vip: false
-       mwsshop.setsale: false
-       mwsshop.setprice: false
+       mwsshop.use: true   
      shop.*:
        children:       
        shop.use: true
@@ -732,6 +714,11 @@ permissions:
        shop.setprice: op
        shop.tab.*: true                                                   
        shop.vip.*: true
+     mws.xp.*:
+       mws.xp.set: op
+       mws.xp.give: op
+       mws.xp.set: op
+       mws.xp.take: op
 
 
 

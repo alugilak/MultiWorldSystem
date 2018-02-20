@@ -1,4 +1,19 @@
 permissions:
+- news.paper.* = give player news.paper.[and the permission from the xml file]
+- news.paper.give
+- news.paper.reload
+- news.paper.normal
+- news.paper.join
+- news.paper.create
+- shop.buy = let buy from GuiShop
+- shop.sell = let sell to GuiShop
+- shop.setsale = let set the sale GuiShop
+- shop.setprice = let the price GuiShop
+- shop.tab.* = give all Tab permissions GuiShop
+- shop.vip.* = give permission enchant Tabs GuiShop
+- shop.reload = /shop reload  reload the Shop config files
+- shop.gamemode = you can use the GUI Shop in creative
+- shop.use = /shop open the GuiShop
 - mws.gui.use = GuiCommand use
 - mws.heal.bar = /healthbar on /healthbar off
 - mws.creeper.use = /creaper true  /creeper false
@@ -9,7 +24,7 @@ permissions:
 - mws.shop.remove = ps remove
 - mws.shop.tpd = /mwsdelshop
 - mws.shop.tpa = /mwsdelshop <pplayername>
-- mws.shop.tp = /mwsshoptp
+- mws.shop.tp = /mwssetshoptp
 - mws.shop.tps = /mwssetshop
 - mws.shop.use = /ps v <playername> /
 - mws.pos.save = /possave /posload

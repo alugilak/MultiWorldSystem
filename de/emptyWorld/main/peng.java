@@ -29,7 +29,7 @@ public class peng implements CommandExecutor
 
     plugin = instance;
   }
-  @SuppressWarnings("deprecation")
+ 
 public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)  {
 	  Player p = (Player)sender;
 	  if (cmd.getName().equalsIgnoreCase("peng"))

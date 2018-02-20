@@ -1,3 +1,9 @@
+mwsxpset: set
+mwsxpgive: give
+mwsxptake: take
+mwsxp: mws.xp.
+mwslvl: mws.lvl.use
+mwsclearchat: mws.chat.clear
 mwsguiuse: mws.gui.use
 mwshealthbar: mws.heal.bar
 creeper: mws.creeper.use

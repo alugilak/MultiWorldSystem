@@ -22,7 +22,8 @@ public class homes implements CommandExecutor
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
 	  World world;
-	
+	  loadworld loader;
+		loadworld worldLoader;
 	  leerWelt plugin;   
   public homes( leerWelt instance)
   {
@@ -131,17 +132,14 @@ public class homes implements CommandExecutor
 	      p.getWorld().playEffect(p.getLocation(), Effect.PORTAL_TRAVEL, 50);
 	      return true;
 	    }
-	    if (cmd.getName().equalsIgnoreCase("hub"))	   { 
-	    	
-	    	 if (!(this.settings.getData().get("hub.world") != null))
-   	      {
+	    if (cmd.getName().equalsIgnoreCase("hub"))	   { 	    	
+	    	 if (this.settings.getData().getString("warps.world") != null) {
    	          p.sendMessage(ChatColor.RED + "SetHUB Error:");
-   	          p.sendMessage("HUB IS NOT SET!!!");
-   	          p.sendMessage("If you are Administrator, you can set HUB using /shub.");
-   	          return false;
-   	        }
-   	        else
-   	        {   
+   	          p.sendMessage("HUB IS NOT SET!!! or the world Hub is not loaded. please wait loading world hub...");
+   	          p.sendMessage("If you not teleport now in hub, the hub was not set. If you are Administrator, you can set HUB using /shub.");   	            	       
+   	          	String world = this.settings.getData().getString("warps.world");
+   	          	loader = new loadworld(plugin);
+   	          	loader.LoadWorld(world, p);   	           
 	            World w = Bukkit.getServer().getWorld(this.settings.getData().getString("hub.world"));
 	            double x = this.settings.getData().getDouble("hub.x");
 	            double y = this.settings.getData().getDouble("hub.y");
@@ -149,7 +147,15 @@ public class homes implements CommandExecutor
 	            p.teleport(new Location(w, x, y, z));
 	            p.sendMessage(ChatColor.GOLD.toString() + ChatColor.GOLD.toString() +  ChatColor.BOLD + " »" + ChatColor.GREEN + ((String)this.settings.getsysoData().get("Hubwelcome")));
 	            p.getWorld().playEffect(p.getLocation(), Effect.PORTAL_TRAVEL, 50);	              
-	             return true ; }}
+	             return true ; }	    	 	
+	          	loader = new loadworld(plugin);
+	          	loader.LoadWorld(label, p);   	           
+	          	World w = Bukkit.getServer().getWorld(this.settings.getData().getString("hub.world"));
+	            double x = this.settings.getData().getDouble("hub.x");
+	            double y = this.settings.getData().getDouble("hub.y");
+	            double z = this.settings.getData().getDouble("hub.z");
+	            p.teleport(new Location(w, x, y, z));
+	    }
 		return false;}}
 	    
 

@@ -41,7 +41,10 @@ public class einstellungen
   File b2;
   FileConfiguration sdata ;
   File s;
-  
+  FileConfiguration blockdata ;
+  File block;
+  FileConfiguration mobdata ;
+  File mob;
 leerWelt plugin;
 World world;
 
@@ -56,6 +59,8 @@ World world;
     if (!p.getDataFolder().exists()) {
       p.getDataFolder().mkdir();
       }
+    this.block = new File(p.getDataFolder(), "WeaponEnchant.yml");
+    this.mob = new File(p.getDataFolder(), "MobChange.yml");
     this.cp = new File(p.getDataFolder(), "permcommands.yml");
     this.en = new File(p.getDataFolder(), "en.yml");
     this.de = new File(p.getDataFolder(), "de.yml");
@@ -67,6 +72,34 @@ World world;
     this.b = new File(p.getDataFolder(), "bank.yml"); 
     this.b2 = new File(p.getDataFolder(), "vipbank.yml");
     this.s = new File(p.getDataFolder(), "shops.yml");
+    
+    if (!this.block.exists()) {
+        try
+        {
+          this.block.createNewFile();
+        }
+        catch (IOException d)
+        {
+          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen block-drops.yml!");
+        }
+      }
+      this.blockdata = YamlConfiguration.loadConfiguration(this.block);
+      
+      {
+    	  if (!this.mob.exists()) {
+    	        try
+    	        {
+    	          this.mob.createNewFile();
+    	        }
+    	        catch (IOException d)
+    	        {
+    	          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen mob-drops.yml!");
+    	        }
+    	      }
+    	      this.mobdata = YamlConfiguration.loadConfiguration(this.mob);
+    	      
+    	      {
+    
     if (!this.syso.exists()) {
         try
         {
@@ -214,8 +247,17 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}
-    	      }public FileConfiguration getcpData()
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}
+    	      }
+  public FileConfiguration getblockData()
+  {
+      return this.blockdata;
+    } 
+  public FileConfiguration getmobData()
+  {
+      return this.mobdata;
+    }
+  public FileConfiguration getcpData()
     	      {
     	          return this.cpdata;
     	        } 
@@ -259,6 +301,28 @@ World world;
   {
     return this.pdata;
   }
+  public void saveblockData()
+  {
+    try
+    {
+      this.blockdata.save(this.block);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern block-drops.yml!");
+    }}
+  
+  public void savemobData()
+  {
+    try
+    {
+      this.mobdata.save(this.mob);
+    }
+    catch (IOException d)
+    {
+      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern mob-drops.yml.yml!");
+    }}
+  
   public void savecpData()
   {
     try
@@ -376,6 +440,14 @@ World world;
   {
     return this.p.getDescription();
   }
+  
+  public void reloadblockData()
+  {
+    this.blockdata = YamlConfiguration.loadConfiguration(this.block);
+  } public void reloadmobData()
+  {
+	    this.mobdata = YamlConfiguration.loadConfiguration(this.mob);
+	  }
   public void reloadcpData()
   {
     this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
@@ -456,7 +528,14 @@ World world;
 		
 	  this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
   }
-
+  public void savemobDefaultConfig() {
+		
+	  this.mobdata = YamlConfiguration.loadConfiguration(this.mob);
+  }
+  public void saveblockDefaultConfig() {
+		
+	  this.blockdata = YamlConfiguration.loadConfiguration(this.block);
+  }
 }
 
 

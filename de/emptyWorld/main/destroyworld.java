@@ -42,10 +42,13 @@ public class destroyworld implements CommandExecutor
       try {
         player.sendMessage(ChatColor.YELLOW + ((String)this.settings.getsysoData().get("worlddelete ")) + args[0]);
         this.settings.getData().set("warps." + args[0] , null);
-        this.settings.saveData();
+        this.settings.saveData();        
         this.settings.getwData().set("worlds." + args[0], null);
         this.settings.savewData();
         DestroyWorld(args[0], player);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv remove" + " " + args[0]);
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "mv confirm" + " " + args[0]);
+        
       } catch (Exception e) {
         player.sendMessage(ChatColor.RED + ((String)this.settings.getsysoData().get("worlddeleteError")) + args[0]);
         player.sendMessage(ChatColor.RED + ((String)this.settings.getsysoData().get("worlddeleteErrorIs")) + e);

@@ -1,28 +1,53 @@
 package de.emptyWorld.main;
 
 
-import java.util.logging.Level;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import de.emptyWorld.main.books.Function;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.java.JavaPlugin;
+import java.util.logging.Level;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
+import de.emptyWorld.main.books.book;
+import de.emptyWorld.main.enchants.giveenchantitem;
+import de.emptyWorld.main.commands.displayname;
 import de.emptyWorld.main.commands.stormset;
+import de.emptyWorld.main.commands.lore;
+import de.emptyWorld.main.commands.clearchat;
+import de.emptyWorld.main.weltenonstart;
 import de.emptyWorld.main.commands.rainset;
 import de.emptyWorld.main.commands.killmobs;
-import de.emptyWorld.main.signshop.pshop;
 import de.emptyWorld.main.commands.creeperexplodeblocker;
 import de.emptyWorld.main.commands.HelpCommand;
-import de.emptyWorld.main.signshop.cmd_shop;
+import de.emptyWorld.main.signshop.Shop;
 import de.emptyWorld.main.commands.back;
 import de.emptyWorld.main.poitions.jump;
 import de.emptyWorld.main.poitions.levitation;
@@ -42,26 +67,25 @@ import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
 import de.emptyWorld.main.poitions.invisibility;
 import de.emptyWorld.main.enchants.waterbreathing;
+import de.emptyWorld.main.enchants.armorLegs;
+import de.emptyWorld.main.enchants.armorHelmet;
+import de.emptyWorld.main.enchants.armorFeet;
 import de.emptyWorld.main.poitions.glowing;
+import de.emptyWorld.main.commands.lvl;
+import de.emptyWorld.main.commands.xp;
 import de.emptyWorld.main.poitions.confusion;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -69,9 +93,7 @@ import org.bukkit.WorldType;
 import org.bukkit.block.Block;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.Sign;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventPriority;
@@ -82,7 +104,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.weather.ThunderChangeEvent;
@@ -90,19 +111,23 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.util.Vector;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
 import de.emptyWorld.main.pex.permGoupWorld;
 import de.emptyWorld.main.pex.permslist;
 import de.emptyWorld.main.pex.groupperms;
+
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import de.emptyWorld.main.pex.permGroup;
 import de.emptyWorld.main.pex.permPlayer;
@@ -180,8 +205,37 @@ import de.emptyWorld.main.commands.posload;
 import de.emptyWorld.main.Gui.GuiItemLoader;
 
 
+
 public class leerWelt extends JavaPlugin implements Listener, Entity
-{   
+{  
+	 
+public String c_prefix = "/a/[/5/newspaper/a/] /f/";
+		//Debug prefix
+public String d_prefix = "/a/[/5/newspaper Debug/a/] /f/";
+		//Player prefix
+public String p_prefix = "/a/[/5/newspaper/a/] /f/";
+public String no_permission = "/4/You have no permission to perform this command.";
+public boolean debug = false;
+
+			@EventHandler(priority=EventPriority.HIGHEST)
+			public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
+			{
+			  String worldName = ew.getPlayer().getWorld().getName();			  
+			  LinkedList<Player> recipients = new LinkedList<Player>();			  
+			  for (Player recipient : getServer().getOnlinePlayers()) {
+			    if (recipient.getWorld().getName().equals(worldName)) {
+			    	console.sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
+			    	
+			      recipients.add(recipient);
+			    } else {		
+			    	console.sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
+			    	
+			    }
+			  }
+			  
+			  ew.getRecipients().addAll(recipients);
+			}
+	public static Boolean useVault = Boolean.valueOf(true);
 	private static leerWelt instance;
 	protected static FileConfiguration main;
 	protected static FileConfiguration tabs;
@@ -202,7 +256,8 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	        boolean rain = event.toWeatherState();
 	        if(rain)
 	            event.setCancelled(sstorm);
-	    }
+	    }	    
+
 	 
 	    @EventHandler(priority=EventPriority.HIGHEST)
 	    public void onThunderChange(ThunderChangeEvent event) {
@@ -249,7 +304,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    
 
 	  
-	 private static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
+	 public static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
 	 private static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
 	 private static HashMap<Player, Inventory> playerShop2 = new HashMap<Player, Inventory>();
 	
@@ -265,6 +320,11 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	  FileConfiguration bdata;
 	  FileConfiguration b2data;
 	  FileConfiguration sdata;
+	  FileConfiguration blockdata;
+	  FileConfiguration mobdata;
+	  File block;
+	  File mob;
+	  File _file_newspaper;
 	   public static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
   File wfile;
@@ -308,9 +368,13 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 
 	  
 	  
-  public void onEnable()
+ 
+public void onEnable()
 
-  {		  
+  {		
+	
+	  
+	saveResource("example.txt", true);
 	  instance = this;
       if(!this.setupEconomy()) {
           Bukkit.getConsoleSender().sendMessage(String.format("[%s] - Disabled due to no Vault dependency found!", new Object[]{this.getDescription().getName()}));
@@ -329,16 +393,38 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
               pluginDataFolder = this.getDataFolder().getAbsolutePath();
           }
       }
-	  
-	  
-	  
+      if (getConfig().getBoolean("useVault"))
+      {
+        useVault = Boolean.valueOf(true);
+        if (!setupEconomy())
+        {
+          log.severe(String.format("[%s] - Disabled due to no Vault dependancy found!", new Object[] { getDescription().getName() }));
+          getServer().getPluginManager().disablePlugin(this);
+        }
+      }
+      else
+      {
+        log.warning("\"useVault\" in config.yml is set to false! You will not be able to reward money to anyone!");
+        log.warning("If you would like to reward money as a drop, please set \"useVault\" to true and restart your server!");
+      }	  
+      
+      
+      getServer().getPluginManager().registerEvents(new Shop(this), this);
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
+	  getServer().getPluginManager().registerEvents( new book(this), this);	  
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
 	    plugin = this;
-	   
+	    saveResource("enchant.yml", true);
+	    saveResource("en.yml", true);
+	    saveResource("de.yml", true);
+	    saveResource("SystemOut.yml", true);
+	    saveResource("permsList.yml", true);	    
+	    saveResource("config.yml", true);
+	    saveResource("permcommands.yml", true);
 	  	InitComs();
+	  	this.blockdata = getConfig();
 	  	this.sdata = getConfig();
 	  	this.b2data = getConfig();
 	  	this.bdata = getConfig();
@@ -350,6 +436,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    this.permdata = getConfig();
 	    this.sysodata = getConfig();
 	    this.cpdata = getConfig();
+	    this.blockdata.options().copyDefaults(true);
 	    this.sdata.options().copyDefaults(true);
 	    this.b2data.options().copyDefaults(true);
 	    this.bdata.options().copyDefaults(true);
@@ -362,6 +449,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    this.sysodata.options().copyDefaults(true);
 	    this.cpdata.options().copyDefaults(true);
 	    this.settings.setup(this);
+	    this.settings.saveblockData();
 	    this.settings.savesData();
 	    this.settings.savebData();
 	    this.settings.savecpData();
@@ -374,23 +462,16 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	    this.settings.savepData();
 	    this.settings.savebData();
 	    this.settings.saveb2Data();	   
-	    saveResource("enchant.yml", true);
-	    saveResource("en.yml", true);
-	    saveResource("de.yml", true);
-	    saveResource("SystemOut.yml", true);
-	    saveResource("permsList.yml", true);	    
-	    saveResource("config.yml", true);	
-	    saveResource("shops.yml", true);	
-	    saveResource("permcommands.yml", true);	
+	    
 	    this.saveConfig();
 	    saveConfig();	    
 	    getConfig().options().copyDefaults(true);
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
-	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);	    
-	    getServer().getPluginManager().registerEvents(new cmd_shop(this), this);
+	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);  
 	    getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
+
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
 	    	reloadConfig();
 		  this.settings.reloaddeData();
@@ -401,6 +482,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 		  this.settings.reloadcpData();	
 		  this.settings.reloadbData();	
 		  this.settings.reloadb2Data();	
+		  this.settings.reloadblockData();
 		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
 		  
 		  pm.registerEvents(this, this); 
@@ -418,7 +500,7 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
    	    command = getConfig().getString("GuiOpeningCommand");
    	    try {
    	      new FakeCommandRegister(new FakeCommandRegistry(this, "commandgui.viewgui", command, "Open CommandGui", 
-   	        "Usage: /" + command, new ArrayList()), this);
+   	        "Usage: /" + command, new ArrayList<String>()), this);
    	    }
    	    catch (NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException eg)
    	    {
@@ -464,20 +546,53 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
    	 log.severe(String.format("[%s] Disabled due to no Vault dependency found!", new Object[] { getDescription().getName() }));
      getServer().getPluginManager().disablePlugin(this);
      return;
-       }
-   if ((this.settings.getsData().get("shop_price") == null) && (this.settings.getsData().get("upgrade_price") == null))
-   {
-     this.settings.getsData().set("shop_price", Integer.valueOf(2500));
-     this.settings.getsData().set("upgrade_price", Integer.valueOf(500));
-     this.settings.savesData();
-   }
-   if (this.settings.getsData().get("lastTradeID") == null)
-   {
-     this.settings.getsData().set("lastTradeID", Integer.valueOf(0));
-     this.settings.savesData();
-   }
+       }  
   log.info(this.prefix + "Enabled successfully!");}
- }
+       
+       
+       getConfig().addDefault("debug", false);
+		getConfig().options().copyDefaults(true);
+	    saveConfig();
+	    debug = getConfig().getBoolean("debug");
+		//Generate plugin dir if not existant
+		File f = new File(getDataFolder() + "/");
+		if(!f.exists())
+		    f.mkdir();
+		_file_newspaper = new File(getDataFolder() + "/newspaper.xml");
+		if(!_file_newspaper.exists()){
+		    try {
+				if(_file_newspaper.createNewFile()){
+					sendMessage(replaceColors(c_prefix + "newspaper.xml did not exist, but was successfully created", true));
+				}else{
+					sendMessage(replaceColors(c_prefix + "newspaper.xml did not exist, and failed to be created", true));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		    //Copy the default file to the plugin directory
+		    saveResource("newspaper.xml", true);
+		}
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(_file_newspaper));     
+			if (br.readLine() == null) {
+			    sendMessage(replaceColors(c_prefix + "Empty newspaper.xml file", true));
+			    //Copy the default file to the plugin directory
+			    saveResource("newspaper.xml", true);
+			}else{
+				if(debug){
+					sendMessage(replaceColors(d_prefix + "newspaper.xml is not empty", true));
+				}
+			}
+			br.close();
+		}catch(FileNotFoundException e){
+			sendMessage(replaceColors(c_prefix + "Tried to get newspaper.xml file but file not found.", true));
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+
+		Function.verifyxmlVersion();
+		Function.initConfig();}
+		
 
 
 
@@ -494,13 +609,18 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 
 
 public void InitComs() {
+	getCommand("enchantitem").setExecutor(new giveenchantitem(this));
+	getCommand("displayname").setExecutor(new displayname(this));
+	getCommand("lore").setExecutor(new lore(this));
+	getCommand("np").setExecutor(new book(this));
+	getCommand("newspaper").setExecutor(new book(this));
+	getCommand("xp").setExecutor(new xp(this));
+	getCommand("lvl").setExecutor(new lvl(this));
+	getCommand("cc").setExecutor(new clearchat(this));
 	getCommand("rainset").setExecutor(new rainset(this));
 	getCommand("stormset").setExecutor(new stormset(this));
 	getCommand("mwscommands").setExecutor(new HelpCommand(this));
 	getCommand("creeper").setExecutor(new creeperexplodeblocker(this));
-	getCommand("mwsshoptp").setExecutor(new pshop(this));
-	getCommand("mwsdelshoptp").setExecutor(new pshop(this));
-	getCommand("mwssetshoptp").setExecutor(new pshop(this));
 	getCommand("possave").setExecutor(new possave(this));
 	getCommand("posload").setExecutor(new posload(this));
 	getCommand("back").setExecutor(new back(this));
@@ -542,7 +662,10 @@ public void InitComs() {
 	  getCommand("atboots+").setExecutor(new bootsArmorToughness(this));
 	  getCommand("atchest+").setExecutor(new cheastArmorToughness(this));
 	  getCommand("tough+").setExecutor(new toughness(this));
-	  getCommand("armor+").setExecutor(new armorattribut(this));
+	  getCommand("armorchest").setExecutor(new armorattribut(this));
+	  getCommand("armorlegs").setExecutor(new armorLegs(this));
+	  getCommand("armorfeets").setExecutor(new armorFeet(this));
+	  getCommand("armorhead").setExecutor(new armorHelmet(this));
 	  getCommand("spdm+").setExecutor(new atackkspeedanddamage(this));
 	  getCommand("speed+").setExecutor(new attackspeed(this));
 	  getCommand("attack+").setExecutor(new attackdamage(this));
@@ -595,15 +718,13 @@ public void InitComs() {
 	  getCommand("mwsenchantDe3").setExecutor(new customcreates(this));
 	  getCommand("mwspoitionDe").setExecutor(new customcreates(this));
 	  getCommand("mwspoitionDe1").setExecutor(new customcreates(this));
-	  getCommand("pshelpDe").setExecutor(new customcreates(this));
-
+	  getCommand("test").setExecutor(new weltenonstart(this));
 	  getCommand("mwsenchant").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant1").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant2").setExecutor(new customcreates(this));
 	  getCommand("mwsenchant3").setExecutor(new customcreates(this));
 	  getCommand("mwspoition").setExecutor(new customcreates(this));
 	  getCommand("mwspoition1").setExecutor(new customcreates(this));
-	  getCommand("pshelp").setExecutor(new customcreates(this));
 	  getCommand("smotd").setExecutor(new motd(this));
 	  getCommand("sysmotd").setExecutor(new motd(this));
 	  getCommand("motdl1").setExecutor(new motd(this));
@@ -664,9 +785,8 @@ public void reload() {
 	  Bukkit.getPluginManager().disablePlugin(plugin);
 	  Bukkit.getPluginManager().enablePlugin(plugin);} 
 
-  public leerWelt() {}
-  
-  ConsoleCommandSender console = Bukkit.getConsoleSender();
+  public leerWelt() {}  
+  public ConsoleCommandSender console = Bukkit.getConsoleSender();
   public ChunkGenerator getDefaultWorldGenerator(String worldName, String id)
   {
     return new AirWorldGenerator();
@@ -921,33 +1041,12 @@ public void reload() {
   
 public Inventory gui;
 
-
- 
-
   
 
-  
-	@EventHandler	
-		public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
-		{
-		  
-		  
-		  String worldName = ew.getPlayer().getWorld().getName();
-		  
-		  List<Player> recipients = new LinkedList<Player>();
-		  
-		  for (Player recipient : org.bukkit.Bukkit.getServer().getOnlinePlayers()) {
-		    if (recipient.getWorld().getName().equals(worldName)) {
-		    	
-		    	console.sendMessage(ChatColor.GREEN + recipient.getWorld().getName());
-		      recipients.add(recipient);
-		    } else {		    
-		    	console.sendMessage(ChatColor.GREEN + recipient.getWorld().getName());
-		    }
-		  }
-		  
-		  ew.getRecipients().addAll(recipients);
-		}
+
+
+
+
 		
     
 	
@@ -1067,24 +1166,11 @@ public Inventory gui;
   e.setMessage(ChatColor.translateAlternateColorCodes('&', msg));
   }
   }
-
-  public void openShop(Player p, String shop)
-  {
-    String name = this.settings.getsData().getString(shop + ".name");
-    Inventory inv = Bukkit.createInventory(null, 54, ChatColor.GOLD + "Shop " + ChatColor.RED + name);
-    inv.setItem(53, sellAll);
-    inv.setItem(52, getPrices);
-    p.openInventory(inv);
-  }
+ 
   
  
   
-  public double getPrice(ItemStack item, String shop)
-  {
-    ConfigurationSection cs = this.settings.getsData().getConfigurationSection(shop + ".items");
-    String id = getId(item);
-    return cs.getInt(id);
-  }
+  
   
   public String getShop(String name)
   {
@@ -1102,7 +1188,7 @@ public Inventory gui;
   {
     ItemStack item = new ItemStack(material, amount);
     ItemMeta meta = item.getItemMeta();
-    ArrayList<String> Lore = new ArrayList();
+    ArrayList<String> Lore = new ArrayList<String>();
     Lore.add(lore);
     meta.setLore(Lore);
     meta.setDisplayName(name);
@@ -1163,21 +1249,6 @@ public ItemStack getById(String id, int amount)
     return balance;
   }
   
-  public int getPrice(String shop, String id)
-  {
-    List<String> items = this.settings.getsData().getStringList(shop + ".items");
-    for (String s : items) {
-      if (s.split("-")[0].equalsIgnoreCase(id)) {
-        return Integer.parseInt(s.split("-")[1]);
-      }
-    }
-    return -1;
-  }	
-
-
-
-
-
 
 public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
   {
@@ -1213,8 +1284,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
       sender.sendMessage(ChatColor.GREEN + ((String)this.settings.getsysoData().get("mwSetBlock")));
       
       return true;
-    }
-    
+    }   
     if (cmd.getName().equalsIgnoreCase("ewua"))
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsewua")))
@@ -1939,44 +2009,15 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
                 p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("mwshealthbaroff")));
             }
         }
-        return true;
+        return true;}
+	return currentlystarted;
+	
     }
-  if ((cmd.getName().equalsIgnoreCase("ps")) && ((sender instanceof Player))) {
-      if ((args.length <= 0) || (args.length < 1)) {
-        return false;
-      }
-      new cmd_shop(this).cmd(sender, cmd, commandLabel, args);
-      return true; }
-    if ((sender instanceof ConsoleCommandSender)) {
-      sender.sendMessage(prefix + "Try this command as player!");
-    }
-    
-    return true;}
+ 
  
 
 
-	public void buyItem(Player buyer, OfflinePlayer seller, int ID)
-	  {
-	    Inventory inv = buyer.getInventory();
-	    if ((this.settings.getsData().getItemStack("shops." + seller.getName() + "." + ID + ".item") != null) && (econ.getBalance(buyer) >= this.settings.getsData().getInt("shops." + seller.getName() + "." + ID + ".price")))
-	    {
-	      ItemStack buyItem = new ItemStack(this.settings.getsData().getItemStack("shops." + seller.getName() + "." + ID + ".item"));
-	      inv.addItem(new ItemStack[] { buyItem });
-	      buyer.sendMessage(ChatColor.GREEN + "You have successfully bought " + buyItem.getAmount() + " of " + buyItem.getType() + " from " + seller.getName() + "! Price: $" + this.settings.getsData().getInt(new StringBuilder("shops.").append(seller.getName()).append(".").append(ID).append(".price").toString()));
-	      this.settings.savesData();	      
-	      EconomyResponse r = econ.withdrawPlayer(buyer, this.settings.getsData().getInt("shops." + seller.getName() + "." + ID + ".price"));
-	      EconomyResponse resp = econ.depositPlayer(seller, this.settings.getsData().getInt("shops." + seller.getName() + "." + ID + ".price"));
-	      if ((r.transactionSuccess()) || (resp.transactionSuccess())) {
-	        log.info("A PlayerShop transaction successfully completed!");
-	      }
-	      this.settings.getsData().set("shops." + seller.getName() + "." + ID, null);
-	      this.settings.getsData().set("shops." + seller.getName() + ".items_on_sale", Integer.valueOf(this.settings.getsData().getInt("shops." + seller.getName() + ".items_on_sale") - 1));
-	      this.settings.savesData();
-	    }
-	    else
-	    {
-	      buyer.sendMessage(ChatColor.RED + "This item has been sold or you have not enough money!");
-	    }}
+	
 	  
 
 
@@ -2894,8 +2935,6 @@ public boolean teleport(Location arg0, TeleportCause arg1) {
 
 
 
-
-
 @Override
 public boolean teleport(Entity arg0, TeleportCause arg1) {
 	// TODO Auto-generated method stub
@@ -2944,7 +2983,161 @@ public static FileConfiguration loadYaml(JavaPlugin instance, String path) {
         throw new IllegalArgumentException("Path can not be null or empty!");
     }
 }
+
+
+
+@Override
+public Spigot spigot() {
+	// TODO Auto-generated method stub
+	return null;
 }
+public static String replaceColorsInverse(String s){
+	return replaceColors(s, false, true);
+}
+public static String replaceColors(String s){
+	return replaceColors(s, false, false);
+}
+public static String replaceColors(String s, boolean console){
+	return replaceColors(s, console, false);
+}
+public static String replaceColors(String s, boolean console, boolean inverse){
+	String prefix = "/";
+	String suffix = "/";
+	
+	String res = "";
+	if(!inverse){
+		res = s.replaceAll(prefix + "0" + suffix, ChatColor.BLACK + "").replaceAll(prefix + "1" + suffix, ChatColor.DARK_BLUE + "")
+				.replaceAll(prefix + "2" + suffix, ChatColor.DARK_GREEN + "").replaceAll(prefix + "3" + suffix, ChatColor.DARK_AQUA + "")
+				.replaceAll(prefix + "4" + suffix, ChatColor.DARK_RED + "").replaceAll(prefix + "5" + suffix, ChatColor.DARK_PURPLE + "")
+				.replaceAll(prefix + "6" + suffix, ChatColor.GOLD + "").replaceAll(prefix + "7" + suffix, ChatColor.GRAY + "")
+				.replaceAll(prefix + "8" + suffix, ChatColor.DARK_GRAY + "").replaceAll(prefix + "9" + suffix, ChatColor.BLUE + "")
+				.replaceAll(prefix + "a" + suffix, ChatColor.GREEN + "").replaceAll(prefix + "b" + suffix, ChatColor.AQUA + "")
+				.replaceAll(prefix + "c" + suffix, ChatColor.RED + "").replaceAll(prefix + "d" + suffix, ChatColor.LIGHT_PURPLE + "")
+				.replaceAll(prefix + "e" + suffix, ChatColor.YELLOW + "").replaceAll(prefix + "f" + suffix, ChatColor.WHITE + "")
+				.replaceAll(prefix + "m" + suffix, ChatColor.STRIKETHROUGH + "").replaceAll(prefix + "n" + suffix, ChatColor.UNDERLINE + "")
+				.replaceAll(prefix + "l" + suffix, ChatColor.BOLD + "").replaceAll(prefix + "k" + suffix, ChatColor.MAGIC + "")
+				.replaceAll(prefix + "o" + suffix, ChatColor.ITALIC + "").replaceAll(prefix + "r" + suffix, ChatColor.RESET + "")
+				.replaceAll(prefix + "z" + suffix, "\n");
+	}else{
+		res = s.replaceAll(ChatColor.BLACK + "", prefix + "0" + suffix).replaceAll(ChatColor.DARK_BLUE + "", prefix + "1" + suffix)
+				.replaceAll(ChatColor.DARK_GREEN + "", prefix + "2" + suffix).replaceAll(ChatColor.DARK_AQUA + "", prefix + "3" + suffix)
+				.replaceAll(ChatColor.DARK_RED + "", prefix + "4" + suffix).replaceAll(ChatColor.DARK_PURPLE + "", prefix + "5" + suffix)
+				.replaceAll(ChatColor.GOLD + "", prefix + "6" + suffix).replaceAll(ChatColor.GRAY + "", prefix + "7" + suffix)
+				.replaceAll(ChatColor.DARK_GRAY + "", prefix + "8" + suffix).replaceAll(ChatColor.BLUE + "", prefix + "9" + suffix)
+				.replaceAll(ChatColor.GREEN + "", prefix + "a" + suffix).replaceAll(ChatColor.AQUA + "", prefix + "b" + suffix)
+				.replaceAll(ChatColor.RED + "", prefix + "c" + suffix).replaceAll(ChatColor.LIGHT_PURPLE + "", prefix + "d" + suffix)
+				.replaceAll(ChatColor.YELLOW + "", prefix + "e" + suffix).replaceAll(ChatColor.WHITE + "", prefix + "f" + suffix)
+				.replaceAll(ChatColor.STRIKETHROUGH + "", prefix + "m" + suffix).replaceAll(ChatColor.UNDERLINE + "", prefix + "n" + suffix)
+				.replaceAll(ChatColor.BOLD + "", prefix + "l" + suffix).replaceAll(ChatColor.MAGIC + "", prefix + "k" + suffix)
+				.replaceAll(ChatColor.ITALIC + "", prefix + "o" + suffix).replaceAll(ChatColor.RESET + "", prefix + "r" + suffix)
+.replaceAll("\n", prefix + "z" + suffix);}
+	return res;}
+
+@EventHandler
+public void onPlayerJoin(PlayerJoinEvent event){
+	Player p = event.getPlayer();
+	
+	//Read newspaper.xml
+	try{
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.parse(_file_newspaper);
+				
+		//optional, but recommended
+		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+		doc.getDocumentElement().normalize();
+		
+		for(int i = 0; i < doc.getElementsByTagName("newspaper").getLength(); i++){
+			Node nNode = doc.getElementsByTagName("newspaper").item(i);
+					
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+				Element newspaperData = (Element) nNode;
+				String[] types = newspaperData.getElementsByTagName("type").item(0).getTextContent().split(",");
+				boolean isJoinnewspaper = false;
+				for(int w = 0; w < types.length; w++){
+					if(types[w].trim().equalsIgnoreCase("join"))
+						isJoinnewspaper = true;
+					else if(types[w].trim().equalsIgnoreCase("firstjoin"))
+						if(!p.hasPlayedBefore())
+							isJoinnewspaper = true;
+				}
+				
+				if(isJoinnewspaper){
+			
+		    		//TODO find config / permissions to see which custom permissions are required
+		    		//Node config = newspaperData.getElementsByTagName("config").item(0);
+		    		
+    				boolean hasPermission = false;
+    				String[] permissions = newspaperData.getElementsByTagName("permissions").item(1).getTextContent().split(",");
+    				for(int z = 0; z < permissions.length; z++){
+    					if(p.hasPermission("news.paper.join" + permissions[z].trim())){
+    						hasPermission = true;
+    						z = permissions.length;
+    					}
+    				}
+	    			
+		    		if(p.hasPermission("news.paper.join") || p.hasPermission("news.paper.*") || hasPermission){
+		    			
+		    			String title = replaceColors(newspaperData.getElementsByTagName("title").item(0).getTextContent());
+		    			String author = replaceColors(newspaperData.getElementsByTagName("author").item(0).getTextContent());
+		    			List<String> lore = new ArrayList<>(newspaperData.getElementsByTagName("lore").getLength());
+		    			for(int z = 0; z < newspaperData.getElementsByTagName("lore").getLength(); z++){
+		    				lore.add(z, replaceColors(newspaperData.getElementsByTagName("lore").item(z).getTextContent()));
+		    			}
+		    			List<String> pages = new ArrayList<>(newspaperData.getElementsByTagName("page").getLength());
+		    			for(int z = 0; z < newspaperData.getElementsByTagName("page").getLength(); z++){
+		    				pages.add(z, replaceColors(newspaperData.getElementsByTagName("page").item(z).getTextContent()));
+		    			}
+		    			short durability = Short.parseShort(newspaperData.getElementsByTagName("durability").item(0).getTextContent());
+		    			int amount = Integer.parseInt(newspaperData.getElementsByTagName("amount").item(0).getTextContent());
+		    			
+		    			//Give newspaper
+		    			ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
+						BookMeta meta = (BookMeta) newspaper.getItemMeta();
+						meta.setTitle(title);
+						meta.setAuthor(author);
+						meta.setLore(lore);
+						meta.setPages(pages);
+						newspaper.setItemMeta(meta);
+						newspaper.setAmount(amount);
+						newspaper.setDurability(durability);
+				        p.getInventory().addItem(newspaper);
+		    		}else{
+		    			if(plugin.debug){
+			    			sendMessage(replaceColors(c_prefix + 
+			    					p.getName() + " has no permission to get the join newspaper '" + 
+			    					newspaperData.getElementsByTagName("title").item(0).getTextContent()
+			    					+ "/r/' by " + 
+			    					newspaperData.getElementsByTagName("author").item(0).getTextContent(), true));
+		    			}
+		    		}
+				}//ELSE newspaper is not a joinnewspaper
+    		}else{
+    			//Element is of wrong type
+    			if(plugin.debug){
+	    			sendMessage(replaceColors(c_prefix + 
+	    					"Element is of wrong type (misconfigured newspaper)", true));
+    			}
+    		}
+		}
+		if(doc.getElementsByTagName("newspaper").getLength() == 0 && plugin.debug){
+			sendMessage(replaceColors(
+					"No newspaper are created", true));
+		}
+	}catch(Exception e){
+		e.printStackTrace();
+		if(plugin.debug){
+			sendMessage(replaceColors(c_prefix + 
+					"Failed to read newspaper.xml", true));
+		}
+	}
+}
+
+
+}
+
+
 
 
 

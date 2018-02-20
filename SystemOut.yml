@@ -1,4 +1,6 @@
 SystemName: MultiWorldSystem
+nodeathpoint: There is no graveyard in your name. You did not die!
+ChatClear: You have cleared the Chat
 shopexistError: This shop doesn't exist!
 shopSellError: /ps s <itemname> <amount> <price> / If you have enough Items to sell?
 creeperFalse: you have activated Creeper Blockdestroy explosion
@@ -16,6 +18,7 @@ mwshealthbaroff: Healthbar over Entitys disabled
 flyonText: Now you can fly
 flyoffText: Now you cant fly use
 SpawnParticle: true
+permissionErrorText: You have no Permission to do that!
 Line0: command
 invalidline1: Error
 invalidline2: Error

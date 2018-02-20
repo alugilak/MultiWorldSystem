@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
@@ -205,8 +206,9 @@ public class ItemMetaUtil {
                     item = (ItemStack)getCraftbukkitClass("inventory.CraftItemStack").getMethod("asBukkitCopy", new Class[]{getNmsClass("ItemStack")}).invoke((Object)null, new Object[]{nmsStack});
                     ItemMeta im = item.getItemMeta();
                     if(im.getDisplayName() == null) {
-                        im.setDisplayName("§r" + AllHandler.getCreatureType(item) + " spawner");
+                        im.setDisplayName("§" + AllHandler.getCreatureType(item) + " spawner");
                         item.setItemMeta(im);
+                        
                     }
 
                     return item.getItemMeta();

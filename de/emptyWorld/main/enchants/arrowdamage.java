@@ -63,5 +63,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	    		  				EnchantMeta.setLore(lore);	    				   
 	    		  				Enchant.setItemMeta(EnchantMeta);	    				
 	    		  			p.getInventory().setItemInMainHand(Enchant);
-	    		  			p.sendMessage("top");
-	    		  			return true;}}}		
+	    		  			ItemStack Item = new ItemStack (p.getInventory().getItemInMainHand());
+			    			this.settings.getblockData().set("Item." + dname + ".ID", Item);
+			    			this.settings.saveblockData();
+			    			p.sendMessage("top");
+			    			return true;}}}	

@@ -1,5 +1,7 @@
 package de.emptyWorld.main;
 
+import java.io.File;
+
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -7,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import de.emptyWorld.main.leerWelt;
+
 
 
 public class reload implements CommandExecutor
@@ -18,16 +21,18 @@ public class reload implements CommandExecutor
 	  FileConfiguration dedata;
 	  FileConfiguration endata;
 	  FileConfiguration permdata;
-	  FileConfiguration sysodata;	
+	  FileConfiguration sysodata;
+	File blockConfigFile;
+	  File mobConfigFile;
 	  leerWelt plugin;
   World world;
   
   public reload(leerWelt instance)
   {
-
     plugin = instance;
   }
-
+  
+ 
 	  public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 {
 	  if (cmd.getName().equalsIgnoreCase("mwsr")) {		  
@@ -41,6 +46,10 @@ public class reload implements CommandExecutor
 		  this.settings.reloadsysoData();
 		  this.settings.reloadbData();
 		  this.settings.reloadb2Data();
+		  this.settings.reloadmobData();
+		  this.settings.reloadblockData();
+	      
+		  
 		  
 		  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + " " + ChatColor.GREEN + ((String) this.settings.getsysoData().get("SysConfigReload")));
 		return true;}	  

@@ -1,6 +1,7 @@
 package de.emptyWorld.main.enchants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -11,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import de.emptyWorld.main.einstellungen;
@@ -18,18 +20,16 @@ import de.emptyWorld.main.leerWelt;
 
 public  class armor implements CommandExecutor {	
 	einstellungen settings = einstellungen.getInstance();
-	  FileConfiguration data;
-	  FileConfiguration wdata;
-	  FileConfiguration pdata;
-	  FileConfiguration dedata;	  
-	  FileConfiguration endata;
+	  FileConfiguration blockdata;
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
 	  World world;
 	  
 	  leerWelt plugin;  
-	  
-	  
+	  static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
+	  public static HashMap<Player, Inventory> getPlayerBank()
+	  {
+	    return playerBank;}	  
   public armor( leerWelt instance)
   {
 
@@ -61,6 +61,9 @@ public  class armor implements CommandExecutor {
 	    		  				EnchantMeta.setDisplayName(ChatColor.GOLD + dname);
 	    		  				EnchantMeta.setLore(lore);	    				   
 	    		  				Enchant.setItemMeta(EnchantMeta);	    				
-	    		  			p.getInventory().setItemInMainHand(Enchant);
-	    		  			p.sendMessage("top");
-	    		  			return true;}}}		
+	    		  			p.getInventory().setItemInMainHand(Enchant);	    		  			
+	    		  			ItemStack Item = new ItemStack (p.getInventory().getItemInMainHand());
+			    			this.settings.getblockData().set("Item." + dname + ".ID", Item);
+			    			this.settings.saveblockData();
+			    			p.sendMessage("top");
+			    			return true;}}}

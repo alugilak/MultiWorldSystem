@@ -20,6 +20,7 @@ public class lootBonusBlock implements CommandExecutor {
 	einstellungen settings = einstellungen.getInstance();
 	  FileConfiguration permdata;
 	  FileConfiguration sysodata;
+	  FileConfiguration blockdata;
 	  leerWelt plugin;  
 public lootBonusBlock( leerWelt instance)
 {
@@ -38,7 +39,7 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	    		   for (int i = 0; i < args.length; i++) {
 	    		        str.append(args[i] + " ");
 	    		  }	if (args.length <= 2) {	
-	    		  p.sendMessage("Use /lootbonusblock <value> <Lore> <Displayname>");
+	    		  p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.RED + "Use /lootbonusblock <value> <Lore> <Displayname>");
 	    		  	return false;}}
 	    		  if (args.length == 3);{
 	    		  		 ItemStack Enchant = new ItemStack (p.getInventory().getItemInMainHand());
@@ -53,5 +54,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	    		  				EnchantMeta.setLore(lore);	    				   
 	    		  				Enchant.setItemMeta(EnchantMeta);	    				
 	    		  			p.getInventory().setItemInMainHand(Enchant);
-	    		  			p.sendMessage("top");
-	    		  			return true;}}}		
+	    		  			ItemStack Item = new ItemStack (p.getInventory().getItemInMainHand());
+			    			this.settings.getblockData().set("Item." + dname + ".ID", Item);
+			    			this.settings.saveblockData();
+			    			p.sendMessage("top");
+			    			return true;}}}
