@@ -1,0 +1,15 @@
+BuildToolName: DIAMOND
+PortalToolName: END_CRYSTAL
+permError: Yo have not the Permission to do that!
+PortalbuildTool: mws portal.set
+build: crazy.build.use
+buildTool: crazy.build.tool
+iteminfo: crazy.build.iinfo
+PluginName: CrazyBuild
+mwSetBlock: block beside you set
+ConfigReload: configuration reloaded
+ERROR: Could not load the configuration!
+JoinMessage: You have CrazyBuild installed. Help use /crazybuild! Have fun with it.
+Command: /<build> <NumberOutsideRadius> <x> <y> <z> <NumberInsideRadius> <BlockID>
+  <DataValue>
+Example: Example ==>  /build 8 1 9 9 1 128 0

@@ -1,11 +1,13 @@
 package de.emptyWorld.main.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -23,7 +25,7 @@ public class creeperexplodeblocker implements CommandExecutor, Listener
 	  World world;
 	
 	  leerWelt plugin;	 
-	
+	  ConsoleCommandSender console = Bukkit.getConsoleSender();
   public creeperexplodeblocker( leerWelt instance)
   {
 

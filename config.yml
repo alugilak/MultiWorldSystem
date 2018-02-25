@@ -9,7 +9,33 @@ TabPrefix: '&8[&eMWS Shop]'
 #prefix setups
 UseMessagePrefix: true
 Prefix: '&8[&eMWS Shop]'
+Tent: Tent
+BasicHouse: Basic House
+HouseSpongeBob: House Sponge bob
+#gamerules
+doDaylightCycle: true
+doDaylightCycleText: set DaylightCycle for 
+doEntityDrops: true
+doEntityDropsText: set EntityDrops for
+doMobLoot: true
+doMobLootText: set MobLoot for
+doMobSpawning: true
+doMobSpawningText: set MobSpawning for
 
+doTileDrops: true
+doTileDropsText: set TileDrops for
+doWeatherCycle: true
+doWeatherCycleText: set WeatherCycle for
+doLimitedCrafting: true
+doLimitedCraftingText: set LimitedCrafting for
+doFireTick: true
+doFireTickText: set FireTick for
+ElytraMovementCheck: true
+ElytraMovementCheckText: enable ElytraMovementCheck for
+docommandBlockOutput: true
+docommandBlockOutputText: set BlockOutput for
+doannounceAdvancements: true
+doannounceAdvancementsText: set Advancements for
 #Logging
 LogInfo: true
 LogFileName: log
@@ -47,8 +73,7 @@ PlayerBankSaveMessageTitel: MultiWorldSystem Saved
 PlayerBankSaveMesssageTitel2: his bank
 VipBankSaveMessageTitel: MultiWorldSystem Saved
 VipBankSaveMesssageTitel2: his VIP bank
-Shop2SaveMessageTitel: Shop Buy Chest saved
-Shop2SaveMessageTitel2: his buy Chest
+
 BankName: MultiWorldSystem ITEM Bank
 PlayerImmuneInBank: true
 Plevel: 1

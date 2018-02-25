@@ -1,0 +1,5 @@
+MagicItemID: 381
+MagicItemLore: Eye of Fate
+MagicItemDisplayName: MagicEye
+mwsItemperm: mws.magicitem.use
+MagicItemParticle: true

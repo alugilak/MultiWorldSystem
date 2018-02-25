@@ -1,5 +1,7 @@
 package de.emptyWorld.main.enchants;
 
+import java.util.Random;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
@@ -9,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.leerWelt;
@@ -30,7 +33,8 @@ public giveenchantitem( leerWelt instance)
 plugin = instance;
 }
 public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) { 
-	Player p = (Player)sender;	
+	Player p = (Player)sender;
+	Inventory pi = p.getInventory();
 	      if (commandLabel.equalsIgnoreCase("enchantitem")) {
 	    	  if (!sender.hasPermission((String)this.settings.getpermData().get("mwsenchant")))
 	          {
@@ -41,15 +45,23 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	  	    	 p.sendMessage("Use /enchantitem <Displayname> and/ore <Playername>");
 	  	    		return false;}
 	      if (args.length == 1) {
-    		  ItemStack Item = new ItemStack (this.settings.getblockData().getItemStack("Item." + args[0] + ".ID"));
-   	    	p.getInventory().setItem(8, Item); }
+    		  ItemStack Item = new ItemStack (this.settings.getblockData().getItemStack("Item." + args[0] + ".ID"));    		  	    	
+    		      			
+    			if(!(pi.firstEmpty() == -1)) {
+    				pi.addItem(Item); }else p.sendMessage( "not enough free slots");}
+  				
 	      if (args.length == 2) {
-	    	ItemStack Item = new ItemStack (this.settings.getblockData().getItemStack("Item." + args[0] + ".ID"));
+	    	ItemStack Item1 = new ItemStack (this.settings.getblockData().getItemStack("Item." + args[0] + ".ID"));
 	    	Player target = Bukkit.getServer().getPlayer(args[1]);
-	    	target.getInventory().setItem(8, Item);
+	    	Inventory targeti = target.getInventory();	    	
+	    	if(!(pi.firstEmpty() == -1)) {
+	    		targeti.addItem(Item1); }else target.sendMessage( "not enough free slots");}
+				
 		return true;}
-		return true;}
-		return true;}}
+		return false;}}
+
+
+		
 		
 		
 	

@@ -1,10 +1,88 @@
 name: MultiWorldSystem
-version: 4.0.7
+version: 4.1.8
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
 
 commands:
+         gamerulehelp: 
+                    description: Helpmenu for set Gamerules     
+                    usage: /gamerulehelp
+         daa: 
+                    description: handle announceAdvancements     
+                    usage: /daa <worldname> <on>  or <off>  
+         dcbo: 
+                    description: handle commandBlockOutput      
+                    usage:  /dcbo <worldname> <on>  or <off>
+         demc: 
+                    description: handle ElytraMovementCheck       
+                    usage: /demc <worldname> <on>  or <off>
+         dft: 
+                    description: handle FireTick     
+                    usage: /dft <worldname> <on>  or <off>
+         dlc: 
+                    description: handle LimitedCrafting     
+                    usage: /dlc <worldname> <on>  or <off>
+         dtd: 
+                    description: handle TileDrops      
+                    usage: /dtd <worldname> <on>  or <off>
+         dwc: 
+                    description: handle WeatherCycle
+                    usage: /dwc <worldname> <on>  or <off> 
+         dml: 
+                    description:  to handle MobLoot      
+                    usage: /dml <worldname> <on>  or <off>
+         dms: 
+                    description:  to handle MobSpawning      
+                    usage: /dms <worldname> <on>  or <off>
+         ded: 
+                    description:  to handle EntityDrops      
+                    usage: /ded <worldname> <on>  or <off>
+         ddc: 
+                    description: to handle DaylightCycle      
+                    usage: /ddc <worldname> <on>  or <off>
+         househelp: 
+                    description: Help menu house build       
+                    usage: /househelp
+         house4: 
+                    description: Biuld Tent        
+                    usage: /house4 <BlockID> <DataValue> <poleBlockID> <poleDataValue>
+         house3: 
+                    description: Biuld house 3        
+                    usage: /house3 <BlockID> <DataValue> <roofBlockID> <roofDataValue> <groundBlockID> <groundDataValue> <windowBlockID> <windowsDataValue>
+         house2: 
+                    description: Biuld house 2        
+                    usage: /house2 <BlockID> <DataValue> <WindowsID> <WindowsDataValue>
+         magicitem: 
+                    description: gives you a admin weapon Magicitem        
+                    usage: /<magicitem> 
+         pyramid: 
+                    description: not to use to many bugs its in testing        
+                    usage: /<pyramid> <BlockID> <DataValue> <BlockID> <DataValue> <BlockID> <DataValue>
+         house: 
+                    description: Biuld house1        
+                    usage: /<house> <BlockID> <DataValue> <BlockID> <DataValue> <hight>
+         tower: 
+                    description: Biuld a Tower        
+                    usage: /<tower> <Radius> <BlockID> <DataValue>
+         dome: 
+                    description: Build a bullet        
+                    usage: /<dome> <Radius> <NumberInsideRadius> <BlockID> <DataValue>
+         cube: 
+                    description: Build a Cube        
+                    usage: /<cube> <Radius> <BlockID> <DataValue>
+         fill: 
+                    description: fill Area that was setting with WandTool from MultiWorldSystem        
+                    usage: /<fill> <BlockID> <DataValue>                    
+         build: 
+                    description: build Forms with Block IDS        
+                    usage: /<build> <NumberOutsideRadius> <x> <y> <z> <NumberInsideRadius> <BlockID> <DataValue>
+         iisend: 
+                    description: send other Player Item Info from Main Hand         
+                    usage: /<iisend> <playerName>
+         iteminfo: 
+                    description: shows Item Info in Main Hand         
+                    usage: /<iteminfo>
          enchantitem: 
                     description: give saved enchant item          
                     usage: /<enchantitem>  <Displayname>  
@@ -39,9 +117,9 @@ commands:
          stormset:
                     description: activated storm for ever or deacitivated it
                     usage: /stormset on or off 
-         ps2:
-                    description: (out of function) Items buy from Shop. 
-                    usage: /ps2 out of function at this time
+         enchantbank:
+                    description: Player have a extra Enchant Bank 
+                    usage: /EnchantBank 
          mwscommands:
                     description: check from spigot if there a Update for MultiworldSystem. 
                     usage: /mwsupdate

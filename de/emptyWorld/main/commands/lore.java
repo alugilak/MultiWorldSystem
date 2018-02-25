@@ -50,12 +50,16 @@ for (int i = 0; i < args.length; i++) {
 p.sendMessage("Use /lore <Lore>");
 return false;}}
 if (args.length == 1);{
+	StringBuilder str = new StringBuilder();
+    for (int i = 0; i < args.length; i++) {
+      str.append(args[i] + " ");
+    }
+    String lore = str.toString();
 	 ItemStack Enchant = new ItemStack (p.getInventory().getItemInMainHand());
-	     ItemMeta EnchantMeta = Enchant.getItemMeta();
-	     String loreargs = args[0];	    
-	     	ArrayList<String> lore = new ArrayList<String>();	    		     	
-			lore.add(loreargs);			
-			EnchantMeta.setLore(lore);	    				   
+	     ItemMeta EnchantMeta = Enchant.getItemMeta();	        
+	     	ArrayList<String> lore1 = new ArrayList<String>();	    		     	
+			lore1.add(lore);			
+			EnchantMeta.setLore(lore1);	    				   
 			Enchant.setItemMeta(EnchantMeta);	    				
 		p.getInventory().setItemInMainHand(Enchant);
 		p.sendMessage("lore" + " " + args[0]+ " " + "set");

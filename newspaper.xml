@@ -24,7 +24,7 @@
 		<!-- You can place as many pages as you want -->
 		<page>Page 1/z/Line 2, page 1</page>
 		<page>Page 2</page>
-		<amount>1</amount>
+		<amount>0</amount>
 		<durability>0</durability>
 	</newspaper>
 	<newspaper>
@@ -51,7 +51,7 @@
 		<!-- You can place as many pages as you want -->
 		<page>Page 1/z/Line 2, page 1</page>
 		<page>Page 2</page>
-		<amount>1</amount>
+		<amount>0</amount>
 		<durability>0</durability>
 	</newspaper>
 </newspapers>

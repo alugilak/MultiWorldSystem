@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
+import org.bukkit.configuration.MemorySection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
@@ -44,7 +45,9 @@ public class einstellungen
   FileConfiguration blockdata ;
   File block;
   FileConfiguration mobdata ;
-  File mob;
+  File mob;  
+  FileConfiguration portaldata ;
+  File portal; 
 leerWelt plugin;
 World world;
 
@@ -60,7 +63,7 @@ World world;
       p.getDataFolder().mkdir();
       }
     this.block = new File(p.getDataFolder(), "WeaponEnchant.yml");
-    this.mob = new File(p.getDataFolder(), "MobChange.yml");
+    this.mob = new File(p.getDataFolder(), "WandTool.yml");
     this.cp = new File(p.getDataFolder(), "permcommands.yml");
     this.en = new File(p.getDataFolder(), "en.yml");
     this.de = new File(p.getDataFolder(), "de.yml");
@@ -72,6 +75,7 @@ World world;
     this.b = new File(p.getDataFolder(), "bank.yml"); 
     this.b2 = new File(p.getDataFolder(), "vipbank.yml");
     this.s = new File(p.getDataFolder(), "shops.yml");
+    this.portal = new File(p.getDataFolder(), "portals.yml");
     
     if (!this.block.exists()) {
         try
@@ -86,6 +90,19 @@ World world;
       this.blockdata = YamlConfiguration.loadConfiguration(this.block);
       
       {
+    	  if (!this.portal.exists()) {
+    	        try
+    	        {
+    	          this.portal.createNewFile();
+    	        }
+    	        catch (IOException d)
+    	        {
+    	          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen portal.yml!");
+    	        }
+    	      }
+    	      this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
+    	      
+    	      {
     	  if (!this.mob.exists()) {
     	        try
     	        {
@@ -247,8 +264,12 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}}
     	      }
+  public FileConfiguration getportalData()
+    	      {
+    	          return this.portaldata;
+    	        } 
   public FileConfiguration getblockData()
   {
       return this.blockdata;
@@ -300,7 +321,16 @@ World world;
   public FileConfiguration getpData()
   {
     return this.pdata;
-  }
+  }public void saveportalData()
+  {
+	    try
+	    {
+	      this.portaldata.save(this.portal);
+	    }
+	    catch (IOException d)
+	    {
+	      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern portal.yml!");
+	    }}
   public void saveblockData()
   {
     try
@@ -440,7 +470,10 @@ World world;
   {
     return this.p.getDescription();
   }
-  
+  public void reloadportalData()
+  {
+    this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
+  }
   public void reloadblockData()
   {
     this.blockdata = YamlConfiguration.loadConfiguration(this.block);
@@ -492,6 +525,10 @@ World world;
   {
     this.pdata = YamlConfiguration.loadConfiguration(this.pfile);
   }
+  public void saveportalDefaultConfig() {
+		
+	  this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
+  }
   public void savedeDefaultConfig() {
 		
 	  this.dedata = YamlConfiguration.loadConfiguration(this.de);
@@ -524,6 +561,10 @@ World world;
 		
 	  this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
   }
+  public void copyportalDefaults() {
+		
+	  this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
+  }
   public void copycpDefaults() {
 		
 	  this.cpdata = YamlConfiguration.loadConfiguration(this.cp);
@@ -536,6 +577,9 @@ World world;
 		
 	  this.blockdata = YamlConfiguration.loadConfiguration(this.block);
   }
+
+
+
 }
 
 

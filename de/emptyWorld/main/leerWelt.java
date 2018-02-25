@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -39,7 +40,11 @@ import org.bukkit.plugin.Plugin;
 import de.emptyWorld.main.books.book;
 import de.emptyWorld.main.enchants.giveenchantitem;
 import de.emptyWorld.main.commands.displayname;
+import de.emptyWorld.main.commands.blocks;
+
 import de.emptyWorld.main.commands.stormset;
+import de.emptyWorld.main.commands.iteminfo;
+import de.emptyWorld.main.commands.itemisend;
 import de.emptyWorld.main.commands.lore;
 import de.emptyWorld.main.commands.clearchat;
 import de.emptyWorld.main.weltenonstart;
@@ -49,9 +54,11 @@ import de.emptyWorld.main.commands.creeperexplodeblocker;
 import de.emptyWorld.main.commands.HelpCommand;
 import de.emptyWorld.main.signshop.Shop;
 import de.emptyWorld.main.commands.back;
+
 import de.emptyWorld.main.poitions.jump;
 import de.emptyWorld.main.poitions.levitation;
 import de.emptyWorld.main.poitions.speed;
+
 import de.emptyWorld.main.sellShop.AllHandler;
 import de.emptyWorld.main.sellShop.Cmds;
 import de.emptyWorld.main.sellShop.ConfigUtil;
@@ -97,7 +104,9 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -105,6 +114,7 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -160,6 +170,18 @@ import de.emptyWorld.main.rename;
 import de.emptyWorld.main.unloadworld;
 import de.emptyWorld.main.world;
 import de.emptyWorld.main.worlds;
+import de.emptyWorld.main.Gamerules.Advancements;
+import de.emptyWorld.main.Gamerules.BlockOutput;
+import de.emptyWorld.main.Gamerules.DaylightCycle;
+import de.emptyWorld.main.Gamerules.ElytraMovement;
+import de.emptyWorld.main.Gamerules.EntityDrops;
+import de.emptyWorld.main.Gamerules.FireTick;
+import de.emptyWorld.main.Gamerules.GameruleHelp;
+import de.emptyWorld.main.Gamerules.LimitedCrafting;
+import de.emptyWorld.main.Gamerules.MobLoot;
+import de.emptyWorld.main.Gamerules.MobSpawning;
+import de.emptyWorld.main.Gamerules.TileDrops;
+import de.emptyWorld.main.Gamerules.WeatherCycle;
 import de.emptyWorld.main.worldcheck;
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.warps;
@@ -203,6 +225,16 @@ import de.emptyWorld.main.enchants.bootsArmorToughness;
 import de.emptyWorld.main.commands.possave;
 import de.emptyWorld.main.commands.posload;
 import de.emptyWorld.main.Gui.GuiItemLoader;
+import de.emptyWorld.main.Portal.MagicItem;
+import de.emptyWorld.main.Wand.bighouse;
+import de.emptyWorld.main.Wand.cube;
+import de.emptyWorld.main.Wand.dome;
+import de.emptyWorld.main.Wand.house;
+import de.emptyWorld.main.Wand.house3;
+import de.emptyWorld.main.Wand.house4;
+import de.emptyWorld.main.Wand.pyramid;
+import de.emptyWorld.main.Wand.tower;
+import de.emptyWorld.main.Wand.wand;
 
 
 
@@ -236,7 +268,7 @@ public boolean debug = false;
 			  ew.getRecipients().addAll(recipients);
 			}
 	public static Boolean useVault = Boolean.valueOf(true);
-	private static leerWelt instance;
+	public static leerWelt instance;
 	protected static FileConfiguration main;
 	protected static FileConfiguration tabs;
 	private boolean currentlystarted = false;
@@ -257,7 +289,17 @@ public boolean debug = false;
 	        if(rain)
 	            event.setCancelled(sstorm);
 	    }	    
-
+	    @EventHandler
+	    public void onBlockFromTo(BlockFromToEvent event) {
+	      int id = event.getBlock().getTypeId();
+	    	 	if(id == 8 || id == 9 ) {
+	        event.setCancelled(true);
+	      }
+	    	 	if(id == 10) {
+	    	 		event.setCancelled(true);
+	    	 	}
+	    }
+	
 	 
 	    @EventHandler(priority=EventPriority.HIGHEST)
 	    public void onThunderChange(ThunderChangeEvent event) {
@@ -289,13 +331,13 @@ public boolean debug = false;
 		   if (!getServer().getPluginManager().getPlugin("Vault").isEnabled())
 		    {
 		      log.severe(this.prefix + "Economy is not found in this server!");
-		      return false;
+		      return true;
 		    }
 		    log.info(this.prefix + "Economy found in this server!");
 		    
 	    RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 	    if (rsp == null) {
-	      return false;
+	      return true;
 	    }
 	    econ = (Economy)rsp.getProvider();
 	    
@@ -306,7 +348,7 @@ public boolean debug = false;
 	  
 	 public static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
 	 private static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
-	 private static HashMap<Player, Inventory> playerShop2 = new HashMap<Player, Inventory>();
+	 public static HashMap<Player, Inventory> EnchantInv = new HashMap<Player, Inventory>();
 	
 	  einstellungen settings = einstellungen.getInstance();
 	  FileConfiguration data; 
@@ -322,8 +364,10 @@ public boolean debug = false;
 	  FileConfiguration sdata;
 	  FileConfiguration blockdata;
 	  FileConfiguration mobdata;
+	  FileConfiguration portaldata;
 	  File block;
 	  File mob;
+	  File portal;
 	  File _file_newspaper;
 	   public static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
@@ -411,18 +455,23 @@ public void onEnable()
       
       getServer().getPluginManager().registerEvents(new Shop(this), this);
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
-	  getServer().getPluginManager().registerEvents( new book(this), this);	  
+	  getServer().getPluginManager().registerEvents( new book(this), this);
+	  getServer().getPluginManager().registerEvents( new MagicItem(this), this);	
+
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
 	    plugin = this;
+	    instance = this;
 	    saveResource("enchant.yml", true);
 	    saveResource("en.yml", true);
 	    saveResource("de.yml", true);
 	    saveResource("SystemOut.yml", true);
 	    saveResource("permsList.yml", true);	    
 	    saveResource("config.yml", true);
+	    saveResource("WandTool.yml", true);
 	    saveResource("permcommands.yml", true);
+	    saveResource("portals.yml", true);	  
 	  	InitComs();
 	  	this.blockdata = getConfig();
 	  	this.sdata = getConfig();
@@ -436,6 +485,8 @@ public void onEnable()
 	    this.permdata = getConfig();
 	    this.sysodata = getConfig();
 	    this.cpdata = getConfig();
+	    this.mobdata = getConfig();
+	    this.portaldata = getConfig();
 	    this.blockdata.options().copyDefaults(true);
 	    this.sdata.options().copyDefaults(true);
 	    this.b2data.options().copyDefaults(true);
@@ -448,6 +499,8 @@ public void onEnable()
 	    this.permdata.options().copyDefaults(true);
 	    this.sysodata.options().copyDefaults(true);
 	    this.cpdata.options().copyDefaults(true);
+	    this.mobdata.options().copyDefaults(true);
+	    this.portaldata.options().copyDefaults(true);
 	    this.settings.setup(this);
 	    this.settings.saveblockData();
 	    this.settings.savesData();
@@ -461,7 +514,9 @@ public void onEnable()
 	    this.settings.savewData();
 	    this.settings.savepData();
 	    this.settings.savebData();
-	    this.settings.saveb2Data();	   
+	    this.settings.saveb2Data();	  
+	    this.settings.savemobData();
+	    this.settings.saveportalData();
 	    
 	    this.saveConfig();
 	    saveConfig();	    
@@ -469,11 +524,13 @@ public void onEnable()
 	    this.getConfig().options().copyDefaults(true);
 	    getServer().getPluginManager().registerEvents(this, this);  
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
-	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this);  
+	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this); 
 	    getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
-
+	     
+ 	    savePortalFile();
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
 	    	reloadConfig();
+	    	this.settings.reloadmobData();
 		  this.settings.reloaddeData();
 		  this.settings.reloadenData();
 		  this.settings.reloadpData();
@@ -483,6 +540,7 @@ public void onEnable()
 		  this.settings.reloadbData();	
 		  this.settings.reloadb2Data();	
 		  this.settings.reloadblockData();
+		  this.settings.reloadwData();
 		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
 		  
 		  pm.registerEvents(this, this); 
@@ -609,6 +667,32 @@ public void onEnable()
 
 
 public void InitComs() {
+	getCommand("gamerulehelp").setExecutor(new GameruleHelp(this));
+	getCommand("daa").setExecutor(new Advancements(this));
+	getCommand("dcbo").setExecutor(new BlockOutput(this));
+	getCommand("demc").setExecutor(new ElytraMovement(this));
+	getCommand("dft").setExecutor(new FireTick(this));
+	getCommand("dlc").setExecutor(new LimitedCrafting(this));
+	getCommand("dtd").setExecutor(new TileDrops(this));
+	getCommand("dwc").setExecutor(new WeatherCycle(this));
+	getCommand("dml").setExecutor(new MobLoot(this));
+	getCommand("dms").setExecutor(new MobSpawning(this));
+	getCommand("ded").setExecutor(new EntityDrops(this));
+	getCommand("ddc").setExecutor(new DaylightCycle(this));
+	getCommand("house4").setExecutor(new house4(this));
+	getCommand("house3").setExecutor(new house3(this));
+	getCommand("house2").setExecutor(new bighouse(this));
+	getCommand("pyramid").setExecutor(new pyramid(this));
+	getCommand("house").setExecutor(new house(this));
+	getCommand("househelp").setExecutor(new house(this));
+	getCommand("magicitem").setExecutor(new MagicItem(this));
+	getCommand("tower").setExecutor(new tower(this));
+	getCommand("dome").setExecutor(new dome(this));
+	getCommand("cube").setExecutor(new cube(this));	
+	getCommand("fill").setExecutor(new wand(this));	
+	getCommand("build").setExecutor(new blocks(this));	
+	getCommand("iisend").setExecutor(new itemisend(this));
+	getCommand("iteminfo").setExecutor(new iteminfo(this));
 	getCommand("enchantitem").setExecutor(new giveenchantitem(this));
 	getCommand("displayname").setExecutor(new displayname(this));
 	getCommand("lore").setExecutor(new lore(this));
@@ -767,8 +851,21 @@ public void InitComs() {
 	  getCommand("depthstrider").setExecutor(new damagedeathstrider(this));
 	  getCommand("shop").setExecutor(new Cmds(this));
 }
+public Map<String, Location> Port1pos1 = new HashMap<String, Location>();
+public Map<String, Location> Port1pos2 = new HashMap<String, Location>();
 
 
+public static java.io.File Datafile = new java.io.File("plugins/MultiWorldSystem/Portals", "Portal.yml");
+public static FileConfiguration Portal = org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(Datafile);
+
+public static void savePortalFile() {
+  try {
+    Portal.save(Datafile);
+  }
+  catch (IOException e) {
+    e.printStackTrace();
+  }
+}
 private String command;
 public void openGui(Player who) { who.openInventory(gui); }
 
@@ -801,9 +898,9 @@ public void reload() {
     return playerBank2;
   }
 
-  public static HashMap<Player, Inventory> getPlayerShop2()
+  public static HashMap<Player, Inventory> getEnchantInv()
   {
-    return playerShop2;
+    return EnchantInv;
   }
   private ArrayList<GuiItem> items = new ArrayList<GuiItem>();
   
@@ -817,7 +914,36 @@ public void reload() {
       shopList.clear();
     }
   }
- 
+  public static Map<String, Location> loc1 = new HashMap<String, Location>();
+  public static Map<String, Location> loc2 = new HashMap<String, Location>();
+
+
+  @EventHandler
+  public void onPlayerInteract(PlayerInteractEvent e) {
+  	String idt = this.settings.getmobData().getString("BuildToolName");	
+  	Material material = Material.matchMaterial(idt);
+      Player p = e.getPlayer();
+      if (p.hasPermission(this.settings.getmobData().getString("buildTool"))) {
+      if(p.getInventory().getItemInMainHand().getType() == material){
+      if(e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {    	         
+      	loc1.put(p.getName(), e.getClickedBlock().getLocation());
+      	p.sendMessage("Location 1 set!");
+      	this.settings.getmobData().set("loc1.world", e.getClickedBlock().getLocation().getWorld().getName());
+          this.settings.getmobData().set("loc1.x", Double.valueOf(e.getClickedBlock().getLocation().getX()));
+          this.settings.getmobData().set("loc1.y", Double.valueOf(e.getClickedBlock().getLocation().getY()));
+          this.settings.getmobData().set("loc1.z", Double.valueOf(e.getClickedBlock().getLocation().getZ()));
+          this.settings.savemobData();
+          e.setCancelled(true);
+      } else if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+      	loc2.put(p.getName(), e.getClickedBlock().getLocation());
+      	p.sendMessage("Location 2 set!");
+      	this.settings.getmobData().set("loc2.world", e.getClickedBlock().getLocation().getWorld().getName());
+          this.settings.getmobData().set("loc2.x", Double.valueOf(e.getClickedBlock().getLocation().getX()));
+          this.settings.getmobData().set("loc2.y", Double.valueOf(e.getClickedBlock().getLocation().getY()));
+          this.settings.getmobData().set("loc2.z", Double.valueOf(e.getClickedBlock().getLocation().getZ()));
+          this.settings.savemobData();
+          this.settings.reloadmobData();
+          e.setCancelled(true);}}}}
 
   @EventHandler
   public void onInvClose(InventoryCloseEvent e) {
@@ -889,8 +1015,8 @@ public void reload() {
     if (((event.getEntity() instanceof Player)) && (getPlayerBank2().containsKey(event.getEntity()))) {
         if (getConfig().getBoolean("PlayerImmuneInVipBank")) {
           event.setCancelled(true);}}
-    if (((event.getEntity() instanceof Player)) && (getPlayerShop2().containsKey(event.getEntity()))) {
-        if (getConfig().getBoolean("PlayerImmuneInShop2")) {
+    if (((event.getEntity() instanceof Player)) && (getEnchantInv().containsKey(event.getEntity()))) {
+        if (this.settings.getpData().getBoolean("ImmuneInEnchantInv")) {
           event.setCancelled(true);}}
       }
 	  @EventHandler
@@ -910,13 +1036,13 @@ public void reload() {
 			        
 			    	  this.settings.saveb2Data();}
 			      
-			      int shop2 = getConfig().getInt("ShopSlots");
-			      if (!this.settings.getb2Data().contains(event.getPlayer().getUniqueId().toString())) {
+			      int shop2 = this.settings.getpData().getInt("EnchSlots");
+			      if (!this.settings.getblockData().contains(event.getPlayer().getUniqueId().toString())) {
 				      for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
 				      {
-				    	  this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, new ItemStack(Material.AIR));
+				    	  this.settings.getblockData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, new ItemStack(Material.AIR));
 				        
-				    	  this.settings.saveb2Data();}
+				    	  this.settings.saveblockData();}
 		      Player p = event.getPlayer();
 			  p.setGameMode(GameMode.SURVIVAL);}}}}
   
@@ -965,10 +1091,10 @@ public void reload() {
 	  	      getPlayerBank2().remove(event.getPlayer());
 	  	    }
 	    if (((event.getPlayer() instanceof Player)) && 
-		  	      (getPlayerShop2().containsKey(event.getPlayer())))
+		  	      (getEnchantInv().containsKey(event.getPlayer())))
 		  	    {
-				 int shop2 = getConfig().getInt("ShopSlots");
-		  	      Inventory inventory2 = (Inventory)getPlayerShop2().get(event.getPlayer());
+				 int shop2 = this.settings.getpData().getInt("EnchSlots");
+		  	      Inventory inventory2 = (Inventory)getEnchantInv().get(event.getPlayer());
 		  	      for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
 		  	      {
 		  	        ItemStack itemStack2;	        
@@ -977,12 +1103,12 @@ public void reload() {
 		  	        } else {
 		  	          itemStack2 = new ItemStack(inventory2.getItem(slotIndex2));
 		  	        }
-		  	        this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, itemStack2);
-		  	        this.settings.saveb2Data();
+		  	        this.settings.getblockData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, itemStack2);
+		  	        this.settings.saveblockData();
 		  	      }
-		  	      ((Player)event.getPlayer()).sendMessage(ChatColor.YELLOW + getConfig().getString("Shop2SaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("Shop2SaveMesssageTitel2"));
+		  	      ((Player)event.getPlayer()).sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpData().get("EnchantBankMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + ((String)this.settings.getpData().get("EnchantBankSaveMessageTitel2"))));
 		  	      
-		  	      getPlayerShop2().remove(event.getPlayer());
+		  	      getEnchantInv().remove(event.getPlayer());
 		  	    }
 	  }
 	 
@@ -1449,20 +1575,21 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
 	return true;
 
   }
-  if (cmd.getName().equalsIgnoreCase("ps2"))
+  if (cmd.getName().equalsIgnoreCase("enchantbank"))
   {
-      if (!sender.hasPermission((String)this.settings.getpermData().get("mwsshop2")))
+      if (!sender.hasPermission((String)this.settings.getpermData().get("EnchantInv")))
       {Player player = (Player)sender;
-    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsshop2")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("EnchantInv")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
         player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
         return false;
       }  else { 
-	 int shop2 = getConfig().getInt("Shop2Slots");
-    	  Inventory inventory2 = Bukkit.createInventory(p, shop2, getConfig().getString("PlayerShopName"));
-      for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
-        inventory2.setItem(slotIndex2, this.settings.getb2Data().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex2));      
+	 int shop2 = this.settings.getpData().getInt("EnchSlots");
+    	  Inventory inventory2 = Bukkit.createInventory(p, shop2, ChatColor.GOLD.toString() + this.settings.getpData().getString("EnchantInv"));
+    	  
+    	        for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
+        inventory2.setItem(slotIndex2, this.settings.getblockData().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex2));      
       p.openInventory(inventory2);
-      playerShop2.put(p, inventory2);
+      EnchantInv.put(p, inventory2);
     }  
 	return true;
 
@@ -2985,7 +3112,6 @@ public static FileConfiguration loadYaml(JavaPlugin instance, String path) {
 }
 
 
-
 @Override
 public Spigot spigot() {
 	// TODO Auto-generated method stub
@@ -3135,7 +3261,17 @@ public void onPlayerJoin(PlayerJoinEvent event){
 }
 
 
+  
+
+  
+ 
+  
+  
+
+
+
 }
+
 
 
 
