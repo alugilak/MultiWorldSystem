@@ -1,10 +1,15 @@
 name: MultiWorldSystem
-version: 4.1.9
+version: 4.2.0
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
 
 commands:
+         superitem: 
+                    description: Create SuperItem     
+                    usage: /superitem <ItemID> <EnchantID> <EnchantLevel> without Displayname
+                           /superitem <ItemID> <EnchantID> <EnchantLevel> <Displayname>
+                           /superitem lore <LoreName> only after Enchanting
          gamerulehelp: 
                     description: Helpmenu for set Gamerules     
                     usage: /gamerulehelp

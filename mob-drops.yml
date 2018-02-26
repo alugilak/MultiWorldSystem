@@ -1,9 +1,0 @@
-MONEY: 1
-Materialfrom: STONE
-Materialadd: STONE
-Droppchance: 1
-MaterialAmount: 1
-GIVETEXT: erhalten
-MoneySign: $
-MonsterTyp: PIG
-MOB: true

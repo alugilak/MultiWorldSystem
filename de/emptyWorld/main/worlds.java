@@ -1,5 +1,9 @@
 package de.emptyWorld.main;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -35,36 +39,27 @@ public class worlds implements CommandExecutor
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
   {
     Player player = (Player)sender;
+	File[] directories = new File(plugin.getDataFolder() + File.separator + ".." + File.separator + "..").listFiles(File::isDirectory);
+	List<File> worlds = new ArrayList<>();
+	
+	for (File ia : directories) {
+		File levelDat = new File(ia + File.separator + "level.dat");
+		if (levelDat.exists()) {
+			worlds.add(ia);
+			
+			for (File w : worlds) {
+				File wFile = new File(ia + File.separator + "level.dat");
+				
+				if (wFile.exists()) {
+					
+					String allworlds = levelDat.getParentFile().getName();
     if (player.hasPermission((String)this.settings.getpermData().get("mwswlist"))) {
       if (cmd.getName().equalsIgnoreCase("wlist")) {
-        player.sendMessage(ChatColor.YELLOW + "There are: ");
-        player.sendMessage(ChatColor.WHITE + Worlds());
+        player.sendMessage(ChatColor.YELLOW + "There are: " + allworlds);
+        
       }
-    } else {
-      player.sendMessage(ChatColor.RED + "Invalid Perms!");
-    }
+    }}}}} 
     return false;
-  }
+  }}
   
-  public String Worlds() {
-    String[] worldNames = new String[Bukkit.getServer().getWorlds().size()];
-    int count = 0;
-    for (org.bukkit.World w : Bukkit.getServer().getWorlds()) {
-      worldNames[count] = w.getName();
-      count++;
-    }
-    for (String s : worldNames) {
-      System.out.println("World Names = " + s);
-    }
-    String FinalNames = "";
-    for (int i = 0; i < worldNames.length; i++) {
-      if (i != worldNames.length - 1) {
-        FinalNames = FinalNames + worldNames[i] + ", ";
-      } else {
-        FinalNames = FinalNames + worldNames[i] + ".";
-      }
-    }
-    return FinalNames;
-  }
-  
-}
+ 

@@ -73,6 +73,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
+import de.emptyWorld.main.poitions.poitionWeapon;
 import de.emptyWorld.main.poitions.invisibility;
 import de.emptyWorld.main.enchants.waterbreathing;
 import de.emptyWorld.main.enchants.armorLegs;
@@ -84,6 +85,7 @@ import de.emptyWorld.main.commands.xp;
 import de.emptyWorld.main.poitions.confusion;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.text.DecimalFormat;
@@ -105,6 +107,7 @@ import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
@@ -152,6 +155,7 @@ import de.emptyWorld.main.enchants.lure;
 import de.emptyWorld.main.enchants.mending;
 import de.emptyWorld.main.enchants.oxygen;
 import de.emptyWorld.main.enchants.waterwalker;
+import de.emptyWorld.main.enchants.util.DAMAGEALL;
 import de.emptyWorld.main.listeners.InventoryClickListener;
 import de.emptyWorld.main.objects.FakeCommandRegister;
 import de.emptyWorld.main.objects.FakeCommandRegistry;
@@ -192,7 +196,6 @@ import de.emptyWorld.main.motd;
 import de.emptyWorld.main.giveitem;
 import de.emptyWorld.main.warplist;
 import de.emptyWorld.main.warpset;
-import de.emptyWorld.main.worldlist;
 import de.emptyWorld.main.delwarp;
 import de.emptyWorld.main.repair;
 import de.emptyWorld.main.teleportxyz;
@@ -419,6 +422,10 @@ public boolean debug = false;
 public void onEnable()
 
   {		
+	
+	registerDAMAGEALL();
+
+	 
 	saveResource("example.txt", true);
 	  instance = this;
       if(!this.setupEconomy()) {
@@ -452,7 +459,6 @@ public void onEnable()
         log.warning("\"useVault\" in config.yml is set to false! You will not be able to reward money to anyone!");
         log.warning("If you would like to reward money as a drop, please set \"useVault\" to true and restart your server!");
       }	  
-      
       
       getServer().getPluginManager().registerEvents(new Shop(this), this);
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
@@ -691,6 +697,7 @@ public void onEnable()
 
 
 public void InitComs() {
+	getCommand("superitem").setExecutor(new poitionWeapon(this));
 	getCommand("gamerulehelp").setExecutor(new GameruleHelp(this));
 	getCommand("daa").setExecutor(new Advancements(this));
 	getCommand("dcbo").setExecutor(new BlockOutput(this));
@@ -842,7 +849,6 @@ public void InitComs() {
 	  getCommand("motdl5").setExecutor(new motd(this));
 	  getCommand("wlist").setExecutor(new worlds(this));
 	  getCommand("gi").setExecutor(new giveitem(this));
-	  getCommand("wlistall").setExecutor(new worldlist(this));
 	  getCommand("mwsrepair").setExecutor(new repair(this));
 	  getCommand("hub").setExecutor(new homes(this));
 	  getCommand("discord").setExecutor(new homepage(this));
@@ -3290,7 +3296,25 @@ public void onPlayerJoin(PlayerJoinEvent event){
   
  
   
-  
+public void registerDAMAGEALL() {
+    try {
+        Field f = Enchantment.class.getDeclaredField("acceptingNew");
+        f.setAccessible(true);
+        f.set(null, true);
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+    try {
+    	DAMAGEALL damageall = new DAMAGEALL(70);
+        Enchantment.registerEnchantment(damageall);
+    }
+    catch (IllegalArgumentException e){
+    }
+    catch(Exception e){
+        e.printStackTrace();
+    }
+}
 
 
 

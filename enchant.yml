@@ -20,3 +20,88 @@ ATTACK_SPEED_MYTHIC: MythiyItem
 ATTACK_DAMAGE_LORE: ZauschCraft
 ATTACK_DAMAGE_DisplayName_MYTHIC: Premium
 ATTACK_DAMAGE_MYTHIC: MYTHIC
+
+DAMAGE_ALL_int: 
+FROST_WALKER_int:
+PROTECTION_FALL_int:
+PROTECTION_EXPLOSIONS_int:  
+PROTECTION_FIRE_int:
+PROTECTION_ENVIRONMENTAL_int:
+PROTECTION_PROJECTILE_int:
+THORNS_int:
+DAMAGE_ARTHROPODS_int:
+DAMAGE_UNDEAD_int:
+DEPTH_STRIDER_int:
+KNOCKBACK_int:
+FIRE_ASPECT_int:
+
+Armor:
+- 0 protection <Schutz>
+- 1 fire_protection <Feuerschutz>
+- 2 feather_falling <Federfall>
+- 3 blast_protection <Explosionsschutz>
+- 4 projectile_protection <Schusssicher>
+- 5 respiration <Wasser Atmung>
+- 6 aqua_affinity <Abbaugeschwindigkeit unter Wasser>
+- 7 thorns <Dornen>
+- 8 depth_strider <Wasserläufer>
+- 9 frost_walker <Eisläufer>
+- 10 binding_curse <Fluch der Bindung>
+- 34 unbreaking <Haltbarkeit>
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+
+Sword:
+- 16 sharpness <Schärfe>
+- 17 smite <Erhöht Schaden gegen Zombies, Schweinezombies, Skelette, Witherskelette und Wither>
+- 18 bane_of_arthropods <Erhöht Schaden gegen Spinnen, Höhlenspinnen, Silberfischchen und Endermiten>
+- 19 knockback <Wirft Spieler und Kreaturen beim Schlagen ein Stück zurück >
+- 20 fire_aspect <Verbrennung>
+- 21 looting <Plünderung>
+- 22 sweeping <Der Schwungschlag von Schwertern macht mehr Schaden>
+- 34 unbreaking <Haltbarkeit>
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Axe:
+- 16 sharpness <Schärfe>
+- 17 smite <Erhöht Schaden gegen Zombies, Schweinezombies, Skelette, Witherskelette und Wither>
+- 18 bane_of_arthropods <Erhöht Schaden gegen Spinnen, Höhlenspinnen, Silberfischchen und Endermiten>
+- 32 efficiency <Abbaugeschwindigkeit>
+- 33 silk_touch <Lässt Blöcke sich selbst droppen, auch solche, die sonst einen Gegenstand droppen >
+- 34 unbreaking <Haltbarkeit>
+- 35 fortune <Erhöht die Drop-Anzahl beim Abbau von Blöcken >
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Shovel:
+- 32 efficiency <Abbaugeschwindigkeit>
+- 33 silk_touch <Lässt Blöcke sich selbst droppen, auch solche, die sonst einen Gegenstand droppen >
+- 34 unbreaking <Haltbarkeit>
+- 35 fortune <Erhöht die Drop-Anzahl beim Abbau von Blöcken >
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Pickaxe:
+- 32 efficiency <Abbaugeschwindigkeit>
+- 33 silk_touch <Lässt Blöcke sich selbst droppen, auch solche, die sonst einen Gegenstand droppen >
+- 34 unbreaking <Haltbarkeit>
+- 35 fortune <Erhöht die Drop-Anzahl beim Abbau von Blöcken >
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Hoe:
+- 34 unbreaking <Haltbarkeit>
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Bow:
+- 48 power <Erhöht Schaden gegen Spieler und Kreaturen>
+- 49 punch <Wirft Spieler und Kreaturen ein Stück zurück, wenn sie getroffen werden >
+- 50 flame <Setzt getroffene Gegner mithilfe von brennenden Pfeilen in Brand >
+- 51 infinity <Ermöglicht es mit dem Bogen unendlich Pfeile zu schießen, solange man mindestens einen Pfeil im Inventar hat>
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Elytra:
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>
+Rod:
+- 61 luck_of_the_sea <Verringert die Wahrscheinlichkeit, wertlosen Müll zu angeln>
+- 62 lure <Köder erhöht die Anzahl gefangener Fische in gleicher Zeit>
+- 70 mending <Reparatur>
+- 71 vanishing_curse <Fluch des Verschwindens>

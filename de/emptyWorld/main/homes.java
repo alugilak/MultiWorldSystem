@@ -121,12 +121,13 @@ public class homes implements CommandExecutor
 	      if (this.settings.getData().getConfigurationSection("home." + args[0]) != null)
 	      {
 	        sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("theHome")) + " " + ChatColor.GOLD + args[0] + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("notExist")));
-	        return false;
+	        return true;
 	      }
-	      World w = Bukkit.getServer().getWorld(this.settings.getData().getString("home." + args[0]));
-	      double x = this.settings.getData().getDouble("home." + args[0] + ".x");
-	      double y = this.settings.getData().getDouble("home." + args[0] + ".y");
-	      double z = this.settings.getData().getDouble("home." + args[0] + ".z");
+	      String phome = args[0];
+	      World w = Bukkit.getServer().getWorld(this.settings.getData().getString("home." + phome + "world."));
+	      double x = this.settings.getData().getDouble("home." + phome + ".x");
+	      double y = this.settings.getData().getDouble("home." + phome + ".y");
+	      double z = this.settings.getData().getDouble("home." + phome + ".z");
 	      p.teleport(new Location(w, x, y, z));
 	      sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " »" + ChatColor.BLUE + ((String)this.settings.getsysoData().get("teleportTrue")) + ChatColor.GOLD + args[0] + ChatColor.GREEN + "!");
 	      p.getWorld().playEffect(p.getLocation(), Effect.PORTAL_TRAVEL, 50);
