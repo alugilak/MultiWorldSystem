@@ -59,6 +59,7 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 			  return false;
 		  }if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Armor")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++ARMOR IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 0"+ ChatColor.GREEN +" protection  " + ChatColor.BLUE +" <Schutz>");
 				  p.sendMessage(ChatColor.AQUA + " ID 1"+ ChatColor.GREEN +" fire_protection  " + ChatColor.BLUE +" <Feuerschutz>");
 				  p.sendMessage(ChatColor.AQUA + " ID 2"+ ChatColor.GREEN +" feather_falling  " + ChatColor.BLUE +" <Federfall>");
@@ -76,6 +77,7 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 				  return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Sword")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++SWORD IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 16"+ ChatColor.GREEN +" sharpness  " + ChatColor.BLUE +" <Schärfe>");
 				  p.sendMessage(ChatColor.AQUA + " ID 17 " + ChatColor.GREEN +" smite  " + ChatColor.BLUE +" <Erhöht Schaden gegen Zombies, Schweinezombies, Skelette, Witherskelette und Wither>");
 				  p.sendMessage(ChatColor.AQUA + " ID 18 " + ChatColor.GREEN +"  bane_of_arthropods  " + ChatColor.BLUE +" <Erhöht Schaden gegen Spinnen, Höhlenspinnen, Silberfischchen und Endermiten>");
@@ -88,6 +90,7 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 				  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Axe")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++AXE IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 16 " + ChatColor.GREEN +"  sharpness  " + ChatColor.BLUE +" <Schärfe>");
 				  p.sendMessage(ChatColor.AQUA + " ID 17 " + ChatColor.GREEN +"  smite  " + ChatColor.BLUE +" <Erhöht Schaden gegen Zombies, Schweinezombies, Skelette, Witherskelette und Wither>");
 				  p.sendMessage(ChatColor.AQUA + " ID 18 " + ChatColor.GREEN +"  bane_of_arthropods  " + ChatColor.BLUE +" <Erhöht Schaden gegen Spinnen, Höhlenspinnen, Silberfischchen und Endermiten>");
@@ -99,6 +102,7 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 				  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Shovel")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++SHOVEL IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 32 " + ChatColor.GREEN +"  efficiency  " + ChatColor.BLUE +" <Abbaugeschwindigkeit>");
 				  p.sendMessage(ChatColor.AQUA + " ID 33 " + ChatColor.GREEN +"  silk_touch  " + ChatColor.BLUE +" <Lässt Blöcke sich selbst droppen, auch solche, die sonst einen Gegenstand droppen >");
 				  p.sendMessage(ChatColor.AQUA + " ID 34 " + ChatColor.GREEN +"  unbreaking  " + ChatColor.BLUE +" <Haltbarkeit>");
@@ -107,6 +111,7 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 				  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Pickaxe")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++PICKAXE IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 32 " + ChatColor.GREEN +"  efficiency  " + ChatColor.BLUE +" <Abbaugeschwindigkeit>");
 				  p.sendMessage(ChatColor.AQUA + " ID 33 " + ChatColor.GREEN +"  silk_touch  " + ChatColor.BLUE +" <Lässt Blöcke sich selbst droppen, auch solche, die sonst einen Gegenstand droppen >");
 				  p.sendMessage(ChatColor.AQUA + " ID 34 " + ChatColor.GREEN +"  unbreaking  " + ChatColor.BLUE +" <Haltbarkeit>");
@@ -115,11 +120,13 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 				  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Hoe")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++HOE IDS++++++++");
 				  p.sendMessage(ChatColor.AQUA + " ID 34 " + ChatColor.GREEN +"  unbreaking  " + ChatColor.BLUE +" <Haltbarkeit>");
 				  p.sendMessage(ChatColor.AQUA + " ID 70 " + ChatColor.GREEN +"  mending  " + ChatColor.BLUE +" <Reparatur>");
 				  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
-			  if (args[0].equalsIgnoreCase("Bow")) {				  
+			  if (args[0].equalsIgnoreCase("Bow")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++BOW IDS++++++++");
 					  p.sendMessage(ChatColor.AQUA + " ID 48 " + ChatColor.GREEN +"  power  " + ChatColor.BLUE +" <Erhöht Schaden gegen Spieler und Kreaturen>");
 					  p.sendMessage(ChatColor.AQUA + " ID 49 " + ChatColor.GREEN +"  punch  " + ChatColor.BLUE +" <Wirft Spieler und Kreaturen ein Stück zurück, wenn sie getroffen werden >");
 					  p.sendMessage(ChatColor.AQUA + " ID 50 " + ChatColor.GREEN +"  flame  " + ChatColor.BLUE +" <Setzt getroffene Gegner mithilfe von brennenden Pfeilen in Brand >");
@@ -127,11 +134,13 @@ public class poitionWeapon   implements CommandExecutor, Listener {
 					  p.sendMessage(ChatColor.AQUA + " ID 70 " + ChatColor.GREEN +"  mending  " + ChatColor.BLUE +" <Reparatur>");
 					  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
-			  if (args[0].equalsIgnoreCase("Elytra")) {				  
+			  if (args[0].equalsIgnoreCase("Elytra")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++ELYTRA IDS++++++++");
 					  p.sendMessage(ChatColor.AQUA + " ID 70 " + ChatColor.GREEN +"  mending  " + ChatColor.BLUE +" <Reparatur>");
 					  p.sendMessage(ChatColor.AQUA + " ID 71 " + ChatColor.GREEN +"  vanishing_curse  " + ChatColor.BLUE +" <Fluch des Verschwindens>");return false;}}
 		  if (args.length == 1) {
 			  if (args[0].equalsIgnoreCase("Rod")) {
+				  p.sendMessage(ChatColor.GREEN + "+++++++ROD IDS++++++++");
 					  p.sendMessage(ChatColor.AQUA + " ID 61 " + ChatColor.GREEN +"  luck_of_the_sea  " + ChatColor.BLUE +" <Verringert die Wahrscheinlichkeit, wertlosen Müll zu angeln>");
 					  p.sendMessage(ChatColor.AQUA + " ID 62 " + ChatColor.GREEN +"  lure  " + ChatColor.BLUE +" <Köder erhöht die Anzahl gefangener Fische in gleicher Zeit>");
 					  p.sendMessage(ChatColor.AQUA + " ID 70 " + ChatColor.GREEN +"  mending  " + ChatColor.BLUE +" <Reparatur>");
