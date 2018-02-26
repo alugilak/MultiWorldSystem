@@ -3,6 +3,7 @@ package de.emptyWorld.main;
 
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -84,6 +85,7 @@ import de.emptyWorld.main.poitions.confusion;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Set;
@@ -94,6 +96,7 @@ import org.bukkit.EntityEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
@@ -240,7 +243,7 @@ import de.emptyWorld.main.Wand.wand;
 
 public class leerWelt extends JavaPlugin implements Listener, Entity
 {  
-	 
+	private List<String> commands = new ArrayList<>(); 
 public String c_prefix = "/a/[/5/newspaper/a/] /f/";
 		//Debug prefix
 public String d_prefix = "/a/[/5/newspaper Debug/a/] /f/";
@@ -248,7 +251,6 @@ public String d_prefix = "/a/[/5/newspaper Debug/a/] /f/";
 public String p_prefix = "/a/[/5/newspaper/a/] /f/";
 public String no_permission = "/4/You have no permission to perform this command.";
 public boolean debug = false;
-
 			@EventHandler(priority=EventPriority.HIGHEST)
 			public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
 			{
@@ -409,6 +411,7 @@ public boolean debug = false;
 	
 	}
 
+	
 
 	  
 	  
@@ -416,8 +419,6 @@ public boolean debug = false;
 public void onEnable()
 
   {		
-	
-	  
 	saveResource("example.txt", true);
 	  instance = this;
       if(!this.setupEconomy()) {
@@ -649,7 +650,30 @@ public void onEnable()
 		}
 
 		Function.verifyxmlVersion();
-		Function.initConfig();}
+		Function.initConfig();
+		
+  
+		File[] directories = new File(this.getDataFolder() + File.separator + ".." + File.separator + "..").listFiles(File::isDirectory);
+		List<File> worlds = new ArrayList<>();
+		
+		for (File ia : directories) {
+			File levelDat = new File(ia + File.separator + "level.dat");
+			if (levelDat.exists()) {
+				worlds.add(ia);
+				
+				for (File w : worlds) {
+					File wFile = new File(ia + File.separator + "level.dat");
+					
+					if (wFile.exists()) {
+						
+						String allworlds = levelDat.getParentFile().getName();
+						WorldCreator nworld = new WorldCreator(allworlds);
+						nworld.createWorld();
+						
+		} else {return;}}}}}
+  
+  
+  
 		
 
 
