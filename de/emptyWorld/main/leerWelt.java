@@ -156,6 +156,8 @@ import de.emptyWorld.main.enchants.mending;
 import de.emptyWorld.main.enchants.oxygen;
 import de.emptyWorld.main.enchants.waterwalker;
 import de.emptyWorld.main.enchants.util.DAMAGEALL;
+import de.emptyWorld.main.kits.createKit;
+import de.emptyWorld.main.kits.kithelp;
 import de.emptyWorld.main.listeners.InventoryClickListener;
 import de.emptyWorld.main.objects.FakeCommandRegister;
 import de.emptyWorld.main.objects.FakeCommandRegistry;
@@ -370,6 +372,8 @@ public boolean debug = false;
 	  FileConfiguration blockdata;
 	  FileConfiguration mobdata;
 	  FileConfiguration portaldata;
+	  FileConfiguration kitdata ;
+	  File kit; 
 	  File block;
 	  File mob;
 	  File portal;
@@ -480,6 +484,7 @@ public void onEnable()
 	    saveResource("permcommands.yml", true);
 	    saveResource("portals.yml", true);	  
 	  	InitComs();
+	  	this.kitdata = getConfig();
 	  	this.blockdata = getConfig();
 	  	this.sdata = getConfig();
 	  	this.b2data = getConfig();
@@ -494,6 +499,7 @@ public void onEnable()
 	    this.cpdata = getConfig();
 	    this.mobdata = getConfig();
 	    this.portaldata = getConfig();
+	    this.kitdata.options().copyDefaults(true);
 	    this.blockdata.options().copyDefaults(true);
 	    this.sdata.options().copyDefaults(true);
 	    this.b2data.options().copyDefaults(true);
@@ -509,6 +515,7 @@ public void onEnable()
 	    this.mobdata.options().copyDefaults(true);
 	    this.portaldata.options().copyDefaults(true);
 	    this.settings.setup(this);
+	    this.settings.savekitData();
 	    this.settings.saveblockData();
 	    this.settings.savesData();
 	    this.settings.savebData();
@@ -537,6 +544,7 @@ public void onEnable()
  	    savePortalFile();
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
 	    	reloadConfig();
+	    	this.settings.reloadkitData();
 	    	this.settings.reloadmobData();
 		  this.settings.reloaddeData();
 		  this.settings.reloadenData();
@@ -697,6 +705,11 @@ public void onEnable()
 
 
 public void InitComs() {
+	getCommand("mwskit").setExecutor(new kithelp(this));
+	getCommand("listkit").setExecutor(new createKit(this));
+	getCommand("getkit").setExecutor(new createKit(this));
+	getCommand("removekit").setExecutor(new createKit(this));
+	getCommand("createkit").setExecutor(new createKit(this));
 	getCommand("superitem").setExecutor(new poitionWeapon(this));
 	getCommand("gamerulehelp").setExecutor(new GameruleHelp(this));
 	getCommand("daa").setExecutor(new Advancements(this));

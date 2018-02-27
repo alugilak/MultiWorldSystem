@@ -45,22 +45,26 @@ public class house implements CommandExecutor {
 			double z = blockLocation.getBlockZ();
 			x = x + 0;
 			
-			World currentWorld = player.getWorld();
-			if (sender instanceof Player)
-			{
-			if(cmd.getName().equalsIgnoreCase("house"))
-			{
-				if (!player.hasPermission((String)this.settings.getpermData().get("mwshouse")))
-				{
-					  if (args.length <= 4) {
-							player.sendMessage(ChatColor.GREEN + "/house <BlockID> <DataValue> <BlockID> <DataValue> <high> ");	
-					  }
-					  if (args.length >= 5) {
+			World currentWorld = player.getWorld();			
+				      if (cmd.getName().equalsIgnoreCase("house"))
+					    {
+					      if (!sender.hasPermission((String) this.settings.getpermData().get("mwshouse")))
+					      {
+					    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshouse3")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
+					        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
+					        return false;
+					      }else {
+					    	  if (args.length <= 2) {	
+								  
+					    		  player.sendMessage(ChatColor.GREEN + "/house <BlockID> <DataValue> <roofBlockID> <roofDataValue> <groundBlockID> <groundDataValue>  <high>");	
+							  }
+							  if (args.length >= 3) {
 						  int id = Integer.parseInt(args[0]);
 							int sid = Integer.parseInt(args[1]);
 							int tid = Integer.parseInt(args[2]);
 							int tsid = Integer.parseInt(args[3]);
 							int high = Integer.parseInt(args[4]);
+							
 							
 				boolean roof = true;
 				boolean brickUp = true;
@@ -237,28 +241,23 @@ public class house implements CommandExecutor {
 					{				
 						x++;
 						Location rightBlock = new Location(currentWorld, x, y, z);
-						rightBlock.getBlock().setTypeId(tid);
-						rightBlock.getBlock().setData((byte)tsid);
-						blockx3++;
+						rightBlock.getBlock().setTypeId(id);
+						rightBlock.getBlock().setData((byte)sid);
 					}
-					roof = false;				
+						
+					return true;}
+					roof = true;				
 				}
 				player.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.AQUA +  player.getName() + ChatColor.GREEN +" has made a house.");
-			}
-				else
-				{
-					sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshouse")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
-				}
-				return true;
-			}			
-			
-			else if(cmd.getName().equalsIgnoreCase("househelp"))
+			}}
+								
+			 if(cmd.getName().equalsIgnoreCase("househelp"))
 			{
 				if (!player.hasPermission(this.settings.getpermData().getString("mwshouseHelp")));	
 				sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String) this.settings.getpermData().get("mwshouseHelp")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
 					
 					return false;
-				}}
+				}
 				else
 				{
 					player.sendMessage(ChatColor.GREEN + "/househelp -shows this page.");
@@ -267,9 +266,7 @@ public class house implements CommandExecutor {
 					player.sendMessage(ChatColor.GREEN + "/house3 <BlockID> <DataValue> <roofBlockID> <roofDataValue> <groundBlockID> <groundDataValue> <windowBlockID> <windowsDataValue> -makes a house.");
 					player.sendMessage(ChatColor.GREEN + "/house4 <BlockID> <DataValue> <poleBlockID> <poleDataValue> -makes a house.");
 				return true;}
-			}
-			
-			return false;
+		
 		}
 			
 			

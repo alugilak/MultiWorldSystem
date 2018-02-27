@@ -1,5 +1,5 @@
 name: MultiWorldSystem
-version: 4.2.0
+version: 4.2.1
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
@@ -10,6 +10,21 @@ commands:
                     usage: /superitem <ItemID> <EnchantID> <EnchantLevel> without Displayname
                            /superitem <ItemID> <EnchantID> <EnchantLevel> <Displayname>
                            /superitem lore <LoreName> only after Enchanting
+         mwskit: 
+                    description: Open Kit Helpmenu      
+                    usage: /mwskit                           
+         createkit: 
+                    description: Create Kit from Inventory      
+                    usage: /createkit <kitname>
+         listkit: 
+                    description: list  Kits from File     
+                    usage: /listkit                                                 
+         removekit: 
+                    description: Removes Kit from File     
+                    usage: /removekit                           
+         getkit: 
+                    description: give Kit from File    
+                    usage: /getkit <kitname> ond or <playnername>
          gamerulehelp: 
                     description: Helpmenu for set Gamerules     
                     usage: /gamerulehelp

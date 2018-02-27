@@ -44,7 +44,7 @@ import org.bukkit.potion.PotionEffect;
 import de.emptyWorld.main.einstellungen;
 import de.emptyWorld.main.leerWelt;
 
-public class MagicItem<PlayergetInventoryEvent>  implements CommandExecutor, Listener {	
+public class MagicItem implements CommandExecutor, Listener {	
 	einstellungen settings = einstellungen.getInstance();
 	  FileConfiguration mobdata;	
 	  leerWelt plugin;  

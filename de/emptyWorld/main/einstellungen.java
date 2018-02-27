@@ -48,6 +48,8 @@ public class einstellungen
   File mob;  
   FileConfiguration portaldata ;
   File portal; 
+  FileConfiguration kitdata ;
+  File kit; 
 leerWelt plugin;
 World world;
 
@@ -62,6 +64,7 @@ World world;
     if (!p.getDataFolder().exists()) {
       p.getDataFolder().mkdir();
       }
+    this.kit = new File(p.getDataFolder(), "kits.yml");
     this.block = new File(p.getDataFolder(), "WeaponEnchant.yml");
     this.mob = new File(p.getDataFolder(), "WandTool.yml");
     this.cp = new File(p.getDataFolder(), "permcommands.yml");
@@ -77,6 +80,19 @@ World world;
     this.s = new File(p.getDataFolder(), "shops.yml");
     this.portal = new File(p.getDataFolder(), "portals.yml");
     
+    if (!this.kit.exists()) {
+        try
+        {
+          this.kit.createNewFile();
+        }
+        catch (IOException d)
+        {
+          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen kits.yml!");
+        }
+      }
+      this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
+      
+      {
     if (!this.block.exists()) {
         try
         {
@@ -264,8 +280,12 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}}
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}}}
     	      }
+  public FileConfiguration getkitData()
+    	      {
+    	          return this.kitdata;
+    	        } 
   public FileConfiguration getportalData()
     	      {
     	          return this.portaldata;
@@ -321,7 +341,8 @@ World world;
   public FileConfiguration getpData()
   {
     return this.pdata;
-  }public void saveportalData()
+  }
+  public void saveportalData()
   {
 	    try
 	    {
@@ -331,6 +352,16 @@ World world;
 	    {
 	      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern portal.yml!");
 	    }}
+  public void savekitData()
+	    {
+	  	    try
+	  	    {
+	  	      this.kitdata.save(this.kit);
+	  	    }
+	  	    catch (IOException d)
+	  	    {
+	  	      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern kits.yml!");
+	  	    }}
   public void saveblockData()
   {
     try
@@ -470,6 +501,10 @@ World world;
   {
     return this.p.getDescription();
   }
+  public void reloadkitData()
+  {
+    this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
+  }
   public void reloadportalData()
   {
     this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
@@ -525,6 +560,10 @@ World world;
   {
     this.pdata = YamlConfiguration.loadConfiguration(this.pfile);
   }
+  public void savekitDefaultConfig() {
+		
+	  this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
+  }
   public void saveportalDefaultConfig() {
 		
 	  this.portaldata = YamlConfiguration.loadConfiguration(this.portal);
@@ -560,6 +599,10 @@ World world;
   public void savesysoDefaultConfig() {
 		
 	  this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
+  }
+  public void copykitDefaults() {
+		
+	  this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
   }
   public void copyportalDefaults() {
 		
