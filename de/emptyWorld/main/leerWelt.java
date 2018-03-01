@@ -71,6 +71,7 @@ import de.emptyWorld.main.sellShop.ShopLogger;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
+import net.minecraft.server.v1_12_R1.ChatModifier;
 import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
 import de.emptyWorld.main.poitions.poitionWeapon;
@@ -85,6 +86,7 @@ import de.emptyWorld.main.commands.xp;
 import de.emptyWorld.main.poitions.confusion;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
@@ -235,6 +237,7 @@ import de.emptyWorld.main.commands.posload;
 import de.emptyWorld.main.Gui.GuiItemLoader;
 import de.emptyWorld.main.Portal.MagicItem;
 import de.emptyWorld.main.Wand.bighouse;
+import de.emptyWorld.main.Wand.buildTool;
 import de.emptyWorld.main.Wand.cube;
 import de.emptyWorld.main.Wand.dome;
 import de.emptyWorld.main.Wand.house;
@@ -256,24 +259,7 @@ public String d_prefix = "/a/[/5/newspaper Debug/a/] /f/";
 public String p_prefix = "/a/[/5/newspaper/a/] /f/";
 public String no_permission = "/4/You have no permission to perform this command.";
 public boolean debug = false;
-			@EventHandler(priority=EventPriority.HIGHEST)
-			public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
-			{
-			  String worldName = ew.getPlayer().getWorld().getName();			  
-			  LinkedList<Player> recipients = new LinkedList<Player>();			  
-			  for (Player recipient : getServer().getOnlinePlayers()) {
-			    if (recipient.getWorld().getName().equals(worldName)) {
-			    	console.sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
-			    	
-			      recipients.add(recipient);
-			    } else {		
-			    	console.sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
-			    	
-			    }
-			  }
-			  
-			  ew.getRecipients().addAll(recipients);
-			}
+			
 	public static Boolean useVault = Boolean.valueOf(true);
 	public static leerWelt instance;
 	protected static FileConfiguration main;
@@ -705,6 +691,8 @@ public void onEnable()
 
 
 public void InitComs() {
+	
+	getCommand("buildTool").setExecutor(new buildTool(this));
 	getCommand("mwskit").setExecutor(new kithelp(this));
 	getCommand("listkit").setExecutor(new createKit(this));
 	getCommand("getkit").setExecutor(new createKit(this));
@@ -1210,12 +1198,27 @@ public void reload() {
   
 public Inventory gui;
 
+
+
+@EventHandler
+public void onPlayerChatEvent(AsyncPlayerChatEvent ew)
+{Player sender = ew.getPlayer();
+  String worldName = ew.getPlayer().getWorld().getName();			  
+  LinkedList<Player> recipients = new LinkedList<Player>();			  
+  for (Player recipient : Bukkit.getServer().getOnlinePlayers()) {
+    if (recipient.getWorld().getName().equals(worldName)) {
+    	recipients.add(recipient);
+    	((CommandSender) recipients).sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
+    	
+      
+    } else {		
+    	((CommandSender) recipients).sendMessage(ChatColor.YELLOW + recipient.getWorld().getName());
+    	
+    }
+  }
   
-
-
-
-
-
+  ew.getRecipients().addAll(recipients);
+}
 		
     
 	

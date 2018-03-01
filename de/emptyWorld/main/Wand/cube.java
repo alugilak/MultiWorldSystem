@@ -36,11 +36,11 @@ if (commandLabel.equalsIgnoreCase("cube")) {
 {	    	        
 sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + this.settings.getmobData().getString("PluginName") + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + this.settings.getmobData().getString("build") + " " + this.settings.getmobData().getString("permError"));
 p.getWorld().playEffect(p.getLocation(), Effect.BLAZE_SHOOT, 50);
-return true ;}
+return false ;}
 	  if (args.length <= 2) {	
-		  p.sendMessage(ChatColor.GOLD + "please use /crazybuild for help. You must use alle commands!");
+		  p.sendMessage(ChatColor.GOLD + "please use /cube radius block ");
 	  }
-	  if (args.length == 3) {
+	  if (args.length >= 3) {
 		  Location o = p.getLocation().getBlock().getLocation();
 		  int r = Integer.parseInt(args[0]);		
 			int id = Integer.parseInt(args[1]);
@@ -55,10 +55,11 @@ return true ;}
 			     
 			     }
 			 }
-			}}}	}		
+			}}}		
 				return true;}
+return false;
 
-}   
+}   }
 
 
 

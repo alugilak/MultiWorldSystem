@@ -12,6 +12,7 @@ MobLoot: mws.dml.set
 MobSpawning: mws.dms.set
 DaylightCycle: mws.ddc.set
 EntityDrops: mws.ded.set
+buildTool: mws.buildtool.use
 mwshouse: mws.house.one
 mwshouse2: mws.house.two
 mwshouse3: mws.house.three
