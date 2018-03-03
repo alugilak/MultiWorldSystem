@@ -1,5 +1,5 @@
 name: MultiWorldSystem
-version: 4.2.2
+version: 4.2.3
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
@@ -202,21 +202,21 @@ commands:
          pg+:
                     description: give a group permissions
                     usage: /pg+  <permission> <groupname>
-         bankopen:
+         mwsbanking:
                     description: open everywhere your bank
-                    usage: /bankopen
-         vipbank:
+                    usage: /Banking Helpmenu                    
+         pbo:
+                    description: open everywhere your bank
+                    usage: /pbo
+         ebo:
+                    description: open everywhere your bank
+                    usage: /pb2o                     
+         vbo:
                     description: open everywhere your bank
                     usage: /bankopen1                    
          killmob:
                     description: kill all mobs in your world
-                    usage: /killmob                    
-         bank:
-                    description: first argument for banking
-                    usage: /bank This command ist alone without function
-         setbank:
-                    description: set bank on a chest
-                    usage: /bank setbank
+                    usage: /killmob
          permsl:
                     description: List all permissions and commands from this plugin
                     usage: /<permsl>

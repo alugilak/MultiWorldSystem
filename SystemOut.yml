@@ -1,4 +1,7 @@
 SystemName: MultiWorldSystem
+mwsbankingSlotset: Item Bank Slots now set to
+mwsEnchantbankingSlotset: Enchant Item Bank Slots now set to  
+mwsVipBankingSlotset: Vip Item Bank Slots now set to 
 nodeathpoint: There is no graveyard in your name. You did not die!
 ChatClear: You have cleared the Chat
 shopexistError: This shop doesn't exist!

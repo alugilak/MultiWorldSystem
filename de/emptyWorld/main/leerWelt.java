@@ -25,6 +25,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -158,6 +159,9 @@ import de.emptyWorld.main.enchants.mending;
 import de.emptyWorld.main.enchants.oxygen;
 import de.emptyWorld.main.enchants.waterwalker;
 import de.emptyWorld.main.enchants.util.DAMAGEALL;
+import de.emptyWorld.main.itemBank.bankmanager;
+import de.emptyWorld.main.itemBank.playerbank;
+import de.emptyWorld.main.itemBank.vipbank;
 import de.emptyWorld.main.kits.createKit;
 import de.emptyWorld.main.kits.kithelp;
 import de.emptyWorld.main.listeners.InventoryClickListener;
@@ -210,7 +214,7 @@ import de.emptyWorld.main.groupset;
 import de.emptyWorld.main.playerWorlds;
 import de.emptyWorld.main.bans;
 import de.emptyWorld.main.peng;
-import de.emptyWorld.main.bank.ChestBank;
+
 import de.emptyWorld.main.enchants.frostwalker;
 import de.emptyWorld.main.enchants.arrowdamage;
 import de.emptyWorld.main.enchants.arrowfire;
@@ -340,7 +344,7 @@ public boolean debug = false;
 
 	  
 	 public static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
-	 private static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
+	 public static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
 	 public static HashMap<Player, Inventory> EnchantInv = new HashMap<Player, Inventory>();
 	
 	  einstellungen settings = einstellungen.getInstance();
@@ -526,6 +530,7 @@ public void onEnable()
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.bans(), this);
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this); 
 	    getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
+	    getServer().getPluginManager().registerEvents(new vipbank(this), this); 
 	     
  	    savePortalFile();
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
@@ -691,7 +696,10 @@ public void onEnable()
 
 
 public void InitComs() {
-	
+	getCommand("mwsbanking").setExecutor(new bankmanager(this));
+	getCommand("vbo").setExecutor(new vipbank(this));
+	getCommand("ebo").setExecutor(new playerbank(this));
+	getCommand("pbo").setExecutor(new playerbank(this));
 	getCommand("buildTool").setExecutor(new buildTool(this));
 	getCommand("mwskit").setExecutor(new kithelp(this));
 	getCommand("listkit").setExecutor(new createKit(this));
@@ -752,8 +760,7 @@ public void InitComs() {
 	getCommand("pgw+").setExecutor(new permGoupWorld(this));
 	getCommand("pg-").setExecutor(new groupperms(this));
 	getCommand("pg+").setExecutor(new groupperms(this));
-	getCommand("bank").setExecutor(new ChestBank(this));
-	getCommand("setbank").setExecutor(new ChestBank(this));	
+
 	getCommand("permsl").setExecutor(new permslist(this));
 	getCommand("group+").setExecutor(new permGroup(this));
 	getCommand("group-").setExecutor(new permGroup(this));
@@ -1037,54 +1044,43 @@ public void reload() {
 	}
 	
   
-  @EventHandler
-  public void entityDamageEvent(EntityDamageEvent event)
-  {
-    if (((event.getEntity() instanceof Player)) && (getPlayerBank().containsKey(event.getEntity()))) {
-      if (getConfig().getBoolean("PlayerImmuneInBank")) {
-        event.setCancelled(true);}}
-    if (((event.getEntity() instanceof Player)) && (getPlayerBank2().containsKey(event.getEntity()))) {
-        if (getConfig().getBoolean("PlayerImmuneInVipBank")) {
-          event.setCancelled(true);}}
-    if (((event.getEntity() instanceof Player)) && (getEnchantInv().containsKey(event.getEntity()))) {
-        if (this.settings.getpData().getBoolean("ImmuneInEnchantInv")) {
-          event.setCancelled(true);}}
-      }
-	  @EventHandler
-	  public void PlayerJoin(PlayerLoginEvent event) {		  
-		int b1 = getConfig().getInt("Slots");		  
+	public void PlayerJoin(PlayerLoginEvent event) {
+		if (!event.getPlayer().hasPlayedBefore()){
+		getConfig().set(event.getPlayer().getName() + ".Pslots", (9)); 
+		int b1 = getConfig().getInt(event.getPlayer().getName() + ".Pslots");		  
 		  if (!this.settings.getbData().contains(event.getPlayer().getUniqueId().toString())) {
 		      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
 		      {
 		    	  this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, new ItemStack(Material.AIR));
 		    	  this.settings.savebData();}
-		    	  			  
-			int b2 = getConfig().getInt("VipSlots");
+			getConfig().set(event.getPlayer().getName() + ".Vslots", (9)); 
+			int b2 = getConfig().getInt(event.getPlayer().getName() + ".Vslots");
 		      if (!this.settings.getb2Data().contains(event.getPlayer().getUniqueId().toString())) {
 			      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
 			      {
 			    	  this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex1, new ItemStack(Material.AIR));
 			        
 			    	  this.settings.saveb2Data();}
-			      
-			      int shop2 = this.settings.getpData().getInt("EnchSlots");
+			      getConfig().set(event.getPlayer().getName() + ".P2slots", (9));
+			      int b3 = getConfig().getInt(event.getPlayer().getName() + ".P2slots");	
 			      if (!this.settings.getblockData().contains(event.getPlayer().getUniqueId().toString())) {
-				      for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
+				      for (int slotIndex2 = 0; slotIndex2 != b3; slotIndex2++)
 				      {
 				    	  this.settings.getblockData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, new ItemStack(Material.AIR));
 				        
 				    	  this.settings.saveblockData();}
 		      Player p = event.getPlayer();
-			  p.setGameMode(GameMode.SURVIVAL);}}}}
+			  p.setGameMode(GameMode.SURVIVAL);}}}}}
+
   
 	    
-	  @EventHandler
+	@EventHandler
 	  public void inventoryCloseEvent(InventoryCloseEvent event)
 	  {
 	    if (((event.getPlayer() instanceof Player)) && 
 	      (getPlayerBank().containsKey(event.getPlayer())))
 	    {
-		 int b1 = getConfig().getInt("Slots");
+	    int b1 = getConfig().getInt(event.getPlayer().getName() + ".Pslots");
 	      Inventory inventory = (Inventory)getPlayerBank().get(event.getPlayer());
 	      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
 	      {
@@ -1092,41 +1088,19 @@ public void reload() {
 	        if (inventory.getItem(slotIndex) == null) {
 	          itemStack = new ItemStack(Material.AIR);
 	        } else {
-	          itemStack = new ItemStack(inventory.getItem(slotIndex));
-	        }
+	          itemStack = new ItemStack(inventory.getItem(slotIndex));	       
 	        this.settings.getbData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex, itemStack);
-	        this.settings.savebData();
-	      }
-	      ((Player)event.getPlayer()).sendMessage(ChatColor.YELLOW + getConfig().getString("PlayerBankSaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("PlayerBankSaveMesssageTitel2"));
+	        this.settings.savebData();	     
+	      event.getPlayer().sendMessage(ChatColor.YELLOW + getConfig().getString("PlayerBankSaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("PlayerBankSaveMesssageTitel2"));
 	      
 	      getPlayerBank().remove(event.getPlayer());
-	    }
-	    if (((event.getPlayer() instanceof Player)) && 
-	  	      (getPlayerBank2().containsKey(event.getPlayer())))
-	  	    {
-			 int b2 = getConfig().getInt("VipSlots");
-	  	      Inventory inventory1 = (Inventory)getPlayerBank2().get(event.getPlayer());
-	  	      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
-	  	      {
-	  	        ItemStack itemStack1;	        
-	  	        if (inventory1.getItem(slotIndex1) == null) {
-	  	          itemStack1 = new ItemStack(Material.AIR);
-	  	        } else {
-	  	          itemStack1 = new ItemStack(inventory1.getItem(slotIndex1));
-	  	        }
-	  	        this.settings.getb2Data().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex1, itemStack1);
-	  	        this.settings.saveb2Data();
-	  	      }
-	  	      ((Player)event.getPlayer()).sendMessage(ChatColor.YELLOW + getConfig().getString("VipBankSaveMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + getConfig().getString("VipBankSaveMesssageTitel2"));
-	  	      
-	  	      getPlayerBank2().remove(event.getPlayer());
-	  	    }
+	    }}}
 	    if (((event.getPlayer() instanceof Player)) && 
 		  	      (getEnchantInv().containsKey(event.getPlayer())))
 		  	    {
-				 int shop2 = this.settings.getpData().getInt("EnchSlots");
+	    		  int b2 = getConfig().getInt(event.getPlayer().getName() + ".P2slots");
 		  	      Inventory inventory2 = (Inventory)getEnchantInv().get(event.getPlayer());
-		  	      for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
+		  	      for (int slotIndex2 = 0; slotIndex2 != b2; slotIndex2++)
 		  	      {
 		  	        ItemStack itemStack2;	        
 		  	        if (inventory2.getItem(slotIndex2) == null) {
@@ -1137,11 +1111,13 @@ public void reload() {
 		  	        this.settings.getblockData().set(event.getPlayer().getUniqueId().toString() + ".item" + slotIndex2, itemStack2);
 		  	        this.settings.saveblockData();
 		  	      }
-		  	      ((Player)event.getPlayer()).sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpData().get("EnchantBankMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + ((String)this.settings.getpData().get("EnchantBankSaveMessageTitel2"))));
+		  	      event.getPlayer().sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpData().get("EnchantBankMessageTitel") + ChatColor.AQUA + " " + event.getPlayer().getName() + ChatColor.GOLD + " " + ((String)this.settings.getpData().get("EnchantBankSaveMessageTitel2"))));
 		  	      
 		  	      getEnchantInv().remove(event.getPlayer());
 		  	    }
 	  }
+	  	  
+
 	 
 
  	
@@ -1150,7 +1126,7 @@ public void reload() {
 
 	  Player p = e.getPlayer();
 	  p.setGameMode(GameMode.SURVIVAL); 
-	   
+	
 	  
 	  
   
@@ -1584,63 +1560,8 @@ public boolean onCommand(CommandSender sender, Command cmd, String commandLabel,
         
         return true;}}
        
-  }if (cmd.getName().equalsIgnoreCase("bankopen"))
-  {
-      if (!sender.hasPermission((String)this.settings.getpermData().get("mwsbanking")))
-      {Player player = (Player)sender;
-    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsbanking")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
-        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
-        return false;
-      }  else {  
-	  int b1 = getConfig().getInt("Slots");
-    	  Inventory inventory = Bukkit.createInventory(p, b1, getConfig().getString("BankName"));
-      for (int slotIndex = 0; slotIndex != b1; slotIndex++)
-        inventory.setItem(slotIndex, this.settings.getbData().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex));      
-      p.openInventory(inventory);
-      playerBank.put(p, inventory);
-    }
-  
-	return true;
-
   }
-  if (cmd.getName().equalsIgnoreCase("vipbank"))
-  {
-      if (!sender.hasPermission((String)this.settings.getpermData().get("mwsvipbanking")))
-      {Player player = (Player)sender;
-    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("mwsvipbanking")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
-        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
-        return false;
-      }  else { 
-	 int b2 = getConfig().getInt("VipSlots");
-    	  Inventory inventory1 = Bukkit.createInventory(p, b2, getConfig().getString("VipBankName"));
-      for (int slotIndex1 = 0; slotIndex1 != b2; slotIndex1++)
-        inventory1.setItem(slotIndex1, this.settings.getb2Data().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex1));      
-      p.openInventory(inventory1);
-      playerBank2.put(p, inventory1);
-    }  
-	return true;
-
-  }
-  if (cmd.getName().equalsIgnoreCase("enchantbank"))
-  {
-      if (!sender.hasPermission((String)this.settings.getpermData().get("EnchantInv")))
-      {Player player = (Player)sender;
-    	  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + ChatColor.BLUE + ((String)this.settings.getpermData().get("EnchantInv")) + " " + ChatColor.GREEN + ((String)this.settings.getsysoData().get("permError")));
-        player.getWorld().playEffect(player.getLocation(), Effect.GHAST_SHRIEK, 50);
-        return false;
-      }  else { 
-	 int shop2 = this.settings.getpData().getInt("EnchSlots");
-    	  Inventory inventory2 = Bukkit.createInventory(p, shop2, ChatColor.GOLD.toString() + this.settings.getpData().getString("EnchantInv"));
-    	  
-    	        for (int slotIndex2 = 0; slotIndex2 != shop2; slotIndex2++)
-        inventory2.setItem(slotIndex2, this.settings.getblockData().getItemStack(p.getUniqueId().toString() + ".item" + slotIndex2));      
-      p.openInventory(inventory2);
-      EnchantInv.put(p, inventory2);
-    }  
-	return true;
-
-  }
-  
+ 
     if (cmd.getName().equalsIgnoreCase("cflat"))
     {
       if (!sender.hasPermission((String)this.settings.getpermData().get("mwsfcreate")))

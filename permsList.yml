@@ -7,7 +7,7 @@ FireTick: mws.dft.set
 ElytraMovementCheck: mws.demc.set
 commandBlockOutput: mws.dcbo.set
 announceAdvancements: mws.daa.set
-EnchantInv: mws.enchant.inv
+mwsbanking2: mws.bank2.player
 MobLoot: mws.dml.set
 MobSpawning: mws.dms.set
 DaylightCycle: mws.ddc.set
@@ -41,9 +41,10 @@ mwsshop2: mws.buyinv.use
 mwsshopvisit: mws.shop.vis
 mwspossave: mws.pos.save
 mwsback: mws.back.tp
-mwsbanking: mws.bank.use
+mwsbanking: mws.bank.player
 mwskillmobs: mws.kill.mob
 mwsvipbanking: mws.bank.vip
+mwsadminbanking: konto.bank.admin
 mwsgrave: mws.grave.use
 mwsrain: mws.rain.use 
 mwsstorm: mws.storm.use 
