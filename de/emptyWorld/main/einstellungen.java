@@ -50,6 +50,8 @@ public class einstellungen
   File portal; 
   FileConfiguration kitdata ;
   File kit; 
+  FileConfiguration moblootdata ;
+  File mobloot; 
 leerWelt plugin;
 World world;
 
@@ -64,6 +66,7 @@ World world;
     if (!p.getDataFolder().exists()) {
       p.getDataFolder().mkdir();
       }
+    this.mobloot = new File(p.getDataFolder(), "MobLoot.yml");
     this.kit = new File(p.getDataFolder(), "kits.yml");
     this.block = new File(p.getDataFolder(), "WeaponEnchant.yml");
     this.mob = new File(p.getDataFolder(), "WandTool.yml");
@@ -79,7 +82,19 @@ World world;
     this.b2 = new File(p.getDataFolder(), "vipbank.yml");
     this.s = new File(p.getDataFolder(), "shops.yml");
     this.portal = new File(p.getDataFolder(), "portals.yml");
-    
+    if (!this.kit.exists()) {
+        try
+        {
+          this.mobloot.createNewFile();
+        }
+        catch (IOException d)
+        {
+          Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen MobLoot.yml!");
+        }
+      }
+      this.moblootdata = YamlConfiguration.loadConfiguration(this.mobloot);
+      
+      {
     if (!this.kit.exists()) {
         try
         {
@@ -280,8 +295,12 @@ World world;
         Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann die datei nicht lesen Spieler/enchant.yml!");
       }
     }
-    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}}}
+    this.pdata = YamlConfiguration.loadConfiguration(this.pfile);}}}}}}}}}}}}}}
     	      }
+  public FileConfiguration getmoblootData()
+  {
+      return this.moblootdata;
+    } 
   public FileConfiguration getkitData()
     	      {
     	          return this.kitdata;
@@ -342,6 +361,16 @@ World world;
   {
     return this.pdata;
   }
+  public void savemoblootData()
+  {
+	    try
+	    {
+	      this.moblootdata.save(this.mobloot);
+	    }
+	    catch (IOException d)
+	    {
+	      Bukkit.getServer().getLogger().severe(ChatColor.RED + "Kann Datei nicht speichern MobLoot.yml!");
+	    }}
   public void saveportalData()
   {
 	    try
@@ -501,6 +530,10 @@ World world;
   {
     return this.p.getDescription();
   }
+  public void reloadmoblootData()
+  {
+    this.moblootdata = YamlConfiguration.loadConfiguration(this.mobloot);
+  }
   public void reloadkitData()
   {
     this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
@@ -560,6 +593,10 @@ World world;
   {
     this.pdata = YamlConfiguration.loadConfiguration(this.pfile);
   }
+  public void savemoblootDefaultConfig() {
+		
+	  this.moblootdata = YamlConfiguration.loadConfiguration(this.mobloot);
+  }
   public void savekitDefaultConfig() {
 		
 	  this.kitdata = YamlConfiguration.loadConfiguration(this.kit);
@@ -599,6 +636,10 @@ World world;
   public void savesysoDefaultConfig() {
 		
 	  this.sysodata = YamlConfiguration.loadConfiguration(this.syso);
+  }
+  public void copymoblootDefaults() {
+		
+	  this.moblootdata = YamlConfiguration.loadConfiguration(this.mobloot);
   }
   public void copykitDefaults() {
 		

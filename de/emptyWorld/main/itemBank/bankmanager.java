@@ -49,7 +49,7 @@ public class bankmanager implements CommandExecutor
 		  p.sendMessage(ChatColor.GREEN +  "************************************************************");
 		  p.sendMessage(ChatColor.AQUA+ "For Player Item Bank use " + ChatColor.DARK_PURPLE + " /mwsbanking pb <PlayerName> <SlotAmount> !");
 		  p.sendMessage(ChatColor.AQUA+ "************************************************************");
-		  p.sendMessage(ChatColor.AQUA+ "For VIP Player Item Bank use " + ChatColor.DARK_PURPLE + " /mwsbanking eb <PlayerName> <SlotAmount> ");  		 
+		  p.sendMessage(ChatColor.AQUA+ "For Enchant Player Item Bank use " + ChatColor.DARK_PURPLE + " /mwsbanking eb <PlayerName> <SlotAmount> ");  		 
 		  p.sendMessage(ChatColor.GREEN +  "************************************************************");
 		  p.sendMessage(ChatColor.AQUA+ "For VIP Player Item Bank use " + ChatColor.DARK_PURPLE + " /mwsbanking vb <PlayerName> <SlotAmount> ");  		 
 		  p.sendMessage(ChatColor.GREEN +  "************************************************************");

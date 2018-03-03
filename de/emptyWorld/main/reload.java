@@ -48,7 +48,7 @@ public class reload implements CommandExecutor
 		  this.settings.reloadb2Data();
 		  this.settings.reloadmobData();
 		  this.settings.reloadblockData();
-	      
+		  this.settings.reloadmoblootData();
 		  
 		  
 		  sender.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String) this.settings.getsysoData().get("SystemName")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + " " + ChatColor.GREEN + ((String) this.settings.getsysoData().get("SysConfigReload")));

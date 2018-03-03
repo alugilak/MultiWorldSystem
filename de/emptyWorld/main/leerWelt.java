@@ -51,6 +51,7 @@ import de.emptyWorld.main.commands.lore;
 import de.emptyWorld.main.commands.clearchat;
 import de.emptyWorld.main.weltenonstart;
 import de.emptyWorld.main.commands.rainset;
+import de.emptyWorld.main.commands.snow;
 import de.emptyWorld.main.commands.killmobs;
 import de.emptyWorld.main.commands.creeperexplodeblocker;
 import de.emptyWorld.main.commands.HelpCommand;
@@ -165,6 +166,8 @@ import de.emptyWorld.main.itemBank.vipbank;
 import de.emptyWorld.main.kits.createKit;
 import de.emptyWorld.main.kits.kithelp;
 import de.emptyWorld.main.listeners.InventoryClickListener;
+import de.emptyWorld.main.mob.Config;
+import de.emptyWorld.main.mob.MobListener;
 import de.emptyWorld.main.objects.FakeCommandRegister;
 import de.emptyWorld.main.objects.FakeCommandRegistry;
 import de.emptyWorld.main.objects.GuiItem;
@@ -254,7 +257,7 @@ import de.emptyWorld.main.Wand.wand;
 
 
 public class leerWelt extends JavaPlugin implements Listener, Entity
-{  
+{  public static Map<EntityType, leerWelt> lootByEntity = new HashMap<EntityType, leerWelt>();
 	private List<String> commands = new ArrayList<>(); 
 public String c_prefix = "/a/[/5/newspaper/a/] /f/";
 		//Debug prefix
@@ -269,7 +272,7 @@ public boolean debug = false;
 	protected static FileConfiguration main;
 	protected static FileConfiguration tabs;
 	private boolean currentlystarted = false;
-	private ShopLogger logger = null;
+	public ShopLogger logger = null;
 	private static String pluginDataFolder;
 	public static String getPluginDataFolder() { return pluginDataFolder;}
 	  public DecimalFormat format = new DecimalFormat("$###,###");
@@ -363,6 +366,8 @@ public boolean debug = false;
 	  FileConfiguration mobdata;
 	  FileConfiguration portaldata;
 	  FileConfiguration kitdata ;
+	  FileConfiguration moblootdata ;
+	  File mobloot; 
 	  File kit; 
 	  File block;
 	  File mob;
@@ -457,8 +462,9 @@ public void onEnable()
       getServer().getPluginManager().registerEvents(new Shop(this), this);
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
 	  getServer().getPluginManager().registerEvents( new book(this), this);
-	  getServer().getPluginManager().registerEvents( new MagicItem(this), this);	
-
+	  getServer().getPluginManager().registerEvents( new MagicItem(this), this);
+	  getServer().getPluginManager().registerEvents( new MobListener(this), this);
+	  getServer().getPluginManager().registerEvents( new Config(this), this);
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
@@ -474,6 +480,7 @@ public void onEnable()
 	    saveResource("permcommands.yml", true);
 	    saveResource("portals.yml", true);	  
 	  	InitComs();
+	  	this.moblootdata = getConfig();
 	  	this.kitdata = getConfig();
 	  	this.blockdata = getConfig();
 	  	this.sdata = getConfig();
@@ -489,6 +496,7 @@ public void onEnable()
 	    this.cpdata = getConfig();
 	    this.mobdata = getConfig();
 	    this.portaldata = getConfig();
+	    this.moblootdata.options().copyDefaults(true);
 	    this.kitdata.options().copyDefaults(true);
 	    this.blockdata.options().copyDefaults(true);
 	    this.sdata.options().copyDefaults(true);
@@ -505,6 +513,7 @@ public void onEnable()
 	    this.mobdata.options().copyDefaults(true);
 	    this.portaldata.options().copyDefaults(true);
 	    this.settings.setup(this);
+	    this.settings.savemoblootData();
 	    this.settings.savekitData();
 	    this.settings.saveblockData();
 	    this.settings.savesData();
@@ -547,6 +556,7 @@ public void onEnable()
 		  this.settings.reloadb2Data();	
 		  this.settings.reloadblockData();
 		  this.settings.reloadwData();
+		  this.settings.reloadmoblootData();
 		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
 		  
 		  pm.registerEvents(this, this); 
@@ -696,6 +706,7 @@ public void onEnable()
 
 
 public void InitComs() {
+	getCommand("blocks").setExecutor(new snow(this));
 	getCommand("mwsbanking").setExecutor(new bankmanager(this));
 	getCommand("vbo").setExecutor(new vipbank(this));
 	getCommand("ebo").setExecutor(new playerbank(this));

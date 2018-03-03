@@ -1,10 +1,13 @@
 name: MultiWorldSystem
-version: 4.2.3
+version: 4.2.4
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
 
 commands:
+         blocks: 
+                    description: put snow in radius      
+                    usage: /snow <radius>
          buildtool: 
                     description: gives player a Wand Item to build      
                     usage: /buildtool or /buildtool <playername>
