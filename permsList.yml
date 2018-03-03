@@ -7,7 +7,7 @@ FireTick: mws.dft.set
 ElytraMovementCheck: mws.demc.set
 commandBlockOutput: mws.dcbo.set
 announceAdvancements: mws.daa.set
-mwsbanking2: mws.bank2.player
+mwsbanking2: mws.bank.enchant
 MobLoot: mws.dml.set
 MobSpawning: mws.dms.set
 DaylightCycle: mws.ddc.set
