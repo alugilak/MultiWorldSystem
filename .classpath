@@ -4,8 +4,8 @@
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Server/plugins/worldedit-bukkit-6.1.7.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/plugins1/PermissionsEx.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/root/Desktop/BuildTools/spigot-1.12.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/MCSS/servers/TESTSERVER/plugins/worldguard-6.2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Testserver/pluginZwischenspeicher/Vault.jar"/>
+	<classpathentry kind="lib" path="C:/Users/root/Desktop/PluginScripting/Testserver/spigot-1.12.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

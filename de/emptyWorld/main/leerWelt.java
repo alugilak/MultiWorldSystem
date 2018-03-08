@@ -3,7 +3,6 @@ package de.emptyWorld.main;
 
 
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,14 +24,15 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Level;
 import org.bukkit.entity.Entity;
@@ -72,8 +74,6 @@ import de.emptyWorld.main.sellShop.SU;
 import de.emptyWorld.main.sellShop.ShopLogger;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
-import net.minecraft.server.v1_12_R1.ChatModifier;
 import de.emptyWorld.main.poitions.regeneration;
 import de.emptyWorld.main.poitions.poison;
 import de.emptyWorld.main.poitions.poitionWeapon;
@@ -88,10 +88,8 @@ import de.emptyWorld.main.commands.xp;
 import de.emptyWorld.main.poitions.confusion;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Set;
@@ -101,15 +99,12 @@ import org.bukkit.Effect;
 import org.bukkit.EntityEffect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.block.Block;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.Sign;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Creeper;
@@ -124,7 +119,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.event.weather.ThunderChangeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -147,6 +141,7 @@ import org.w3c.dom.Node;
 import de.emptyWorld.main.pex.permGoupWorld;
 import de.emptyWorld.main.pex.permslist;
 import de.emptyWorld.main.pex.groupperms;
+
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import de.emptyWorld.main.pex.permGroup;
@@ -217,7 +212,6 @@ import de.emptyWorld.main.groupset;
 import de.emptyWorld.main.playerWorlds;
 import de.emptyWorld.main.bans;
 import de.emptyWorld.main.peng;
-
 import de.emptyWorld.main.enchants.frostwalker;
 import de.emptyWorld.main.enchants.arrowdamage;
 import de.emptyWorld.main.enchants.arrowfire;
@@ -257,7 +251,18 @@ import de.emptyWorld.main.Wand.wand;
 
 
 public class leerWelt extends JavaPlugin implements Listener, Entity
-{  public static Map<EntityType, leerWelt> lootByEntity = new HashMap<EntityType, leerWelt>();
+{  
+	public List<Material> drops = new ArrayList<Material>();
+	public static FileConfiguration fc;
+	public HashMap<UUID,Integer> dropMulti = new HashMap<UUID,Integer>();
+	public HashMap<UUID,Integer> pickupMulti = new HashMap<UUID,Integer>();
+
+	public List<UUID> spawners = new ArrayList<>();
+	public String regex="[0-9]+\\.[0-9]+";
+
+	
+	
+	public static Map<EntityType, leerWelt> lootByEntity = new HashMap<EntityType, leerWelt>();
 	private List<String> commands = new ArrayList<>(); 
 public String c_prefix = "/a/[/5/newspaper/a/] /f/";
 		//Debug prefix
@@ -344,8 +349,10 @@ public boolean debug = false;
 	    return econ != null;
 	  }
 	    
-
-	  
+	 
+	  public HashMap<String, Double> max = new HashMap<String, Double>();
+	  public HashMap<String, Double> min = new HashMap<String, Double>();
+	  public ItemStack i;
 	 public static HashMap<Player, Inventory> playerBank = new HashMap<Player, Inventory>();
 	 public static HashMap<Player, Inventory> playerBank2 = new HashMap<Player, Inventory>();
 	 public static HashMap<Player, Inventory> EnchantInv = new HashMap<Player, Inventory>();
@@ -416,11 +423,12 @@ public boolean debug = false;
 	
 
 	  
-	  
  
 public void onEnable()
 
   {		
+
+	 
 	
 	registerDAMAGEALL();
 
@@ -464,7 +472,7 @@ public void onEnable()
 	  getServer().getPluginManager().registerEvents( new book(this), this);
 	  getServer().getPluginManager().registerEvents( new MagicItem(this), this);
 	  getServer().getPluginManager().registerEvents( new MobListener(this), this);
-	  getServer().getPluginManager().registerEvents( new Config(this), this);
+	  getServer().getPluginManager().registerEvents( new Config(this), this);	 
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
@@ -557,9 +565,7 @@ public void onEnable()
 		  this.settings.reloadblockData();
 		  this.settings.reloadwData();
 		  this.settings.reloadmoblootData();
-		  org.bukkit.plugin.PluginManager pm = org.bukkit.Bukkit.getPluginManager();
-		  
-		  pm.registerEvents(this, this); 
+		 
 		  
 		  
 		  try {
@@ -3263,9 +3269,15 @@ public void registerDAMAGEALL() {
         e.printStackTrace();
     }
 }
-
-
-
+public String getMoney(String name) {
+	Pattern pattern = Pattern.compile(regex);
+	Matcher matcher = pattern.matcher(name);
+	if(matcher.find()) return matcher.group(0);
+	return "0";
+}
+public void giveMoney(float amount, Player p) {
+	economy.depositPlayer(p, amount);
+}
 }
 
 

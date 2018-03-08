@@ -2,6 +2,7 @@ package de.emptyWorld.main.mob;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -68,8 +69,14 @@ leerWelt plugin;
 
 	    addDefault(configuration, "mob-loot-enabled", Boolean.valueOf(true));
 	    enabled = configuration.getBoolean("mob-loot-enabled");
-	    
-
+	      addDefault(configuration, "main.droppedItem", "266");
+	      addDefault(configuration, "main.droppedItemLore", "Schatz");
+	      addDefault(configuration, "main.DropMoneyMin", 1);
+	      addDefault(configuration, "main.DropMoneyMax", 20);
+	      addDefault(configuration, "main.sendpickupmessage", Boolean.valueOf(true));
+	      addDefault(configuration, "main.sendpickupmessageText", "You have added");
+	      
+	      addDefault(configuration, "main.pickup", "Picked up ");
 
 	    addDefault(configuration, "mob-loot.player", "");
 	    
@@ -160,7 +167,7 @@ leerWelt plugin;
 	    }
 	   
 	    
-	    lootByEntity.put(EntityType.valueOf("PLAYER"), Loot.deserialize(configuration.getString("mob-loot.player"), false));
+	    lootByEntity.put(EntityType.valueOf("PLAYER"), Loot.deserialize(configuration.getString("mob-loot.player"), true));
 	    lootByEntity.put(EntityType.valueOf("BAT"), Loot.deserialize(configuration.getString("mob-loot.bat"), configuration.getBoolean("cancel-default-mob-loot.bat")));
 	    lootByEntity.put(EntityType.valueOf("CHICKEN"), Loot.deserialize(configuration.getString("mob-loot.chicken"), configuration.getBoolean("cancel-default-mob-loot.chicken")));
 	    lootByEntity.put(EntityType.valueOf("COW"), Loot.deserialize(configuration.getString("mob-loot.cow"), configuration.getBoolean("cancel-default-mob-loot.cow")));

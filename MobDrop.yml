@@ -1,0 +1,110 @@
+main:
+  AllowSpawnEggs: true
+  AllowMonsterSpawner: true
+  AllowCreativeMode: true
+  pickupsound: ENTITY_PLAYER_LEVELUP
+  pickupsound-volume: 5
+  pickupsound-pitch: 1
+  droppedItem: Gold_Ingot
+  sendpickupmessage: true
+  double_event: false
+  ChanceToDropMoney: 100
+rewards:
+  bat:
+    minimum: 5
+    maximum: 10
+  blaze:
+    minimum: 5
+    maximum: 10
+  cave_spider:
+    minimum: 5
+    maximum: 10
+  chicken:
+    minimum: 5
+    maximum: 10
+  cow:
+    minimum: 5
+    maximum: 10
+  creeper:
+    minimum: 5
+    maximum: 10
+  ender_dragon:
+    minimum: 5
+    maximum: 10
+  enderman:
+    minimum: 5
+    maximum: 10
+  endermite:
+    minimum: 5
+    maximum: 10
+  ghast:
+    minimum: 5
+    maximum: 10
+  giant:
+    minimum: 5
+    maximum: 10
+  guardian:
+    minimum: 5
+    maximum: 10
+  horse:
+    minimum: 5
+    maximum: 10
+  iron_golem:
+    minimum: 5
+    maximum: 10
+  magma_cube:
+    minimum: 5
+    maximum: 10
+  mushroom_cow:
+    minimum: 5
+    maximum: 10
+  ocelot:
+    minimum: 5
+    maximum: 10
+  pig:
+    minimum: 5
+    maximum: 10
+  pig_zombie:
+    minimum: 5
+    maximum: 10
+  sheep:
+    minimum: 5
+    maximum: 10
+  silverfish:
+    minimum: 5
+    maximum: 10
+  skeleton:
+    minimum: 5
+    maximum: 10
+  slime:
+    minimum: 5
+    maximum: 10
+  snowman:
+    minimum: 5
+    maximum: 10
+  spider:
+    minimum: 5
+    maximum: 10
+  squid:
+    minimum: 5
+    maximum: 10
+  villager:
+    minimum: 5
+    maximum: 10
+  witch:
+    minimum: 5
+    maximum: 10
+  wither:
+    minimum: 5
+    maximum: 10
+  wolf:
+    minimum: 5
+    maximum: 10
+  zombie:
+    minimum: 5
+    maximum: 10
+World_Blacklist:
+- world1
+- world2
+language:
+  pickup: '&ePicked up %money%'

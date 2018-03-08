@@ -1,5 +1,5 @@
 name: MultiWorldSystem
-version: 4.2.4
+version: 4.2.5
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
