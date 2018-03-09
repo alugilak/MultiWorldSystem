@@ -73,35 +73,9 @@ public class KitBook implements CommandExecutor, Listener {
  }
 	return false;}
 	  
-	  @EventHandler
-	  public void onJoin(PlayerJoinEvent e) {
 
-		  Player p = e.getPlayer();		
-			Inventory pi = p.getInventory();
-			if (plugin.getConfig().getBoolean("JoinKit")==true)
-				if (this.settings.getkitData().getStringList("Kits").contains("JoinKit"))
-			      {
-			        if ((p.hasPermission(this.settings.getpermData().getString("JoinKit"))))
-			        {
-			          for (int i = 0; i < 36; i++) {
-			            if (this.settings.getkitData().getItemStack("JoinKit" + i) != null)
-			            {
-			              ItemStack loading = this.settings.getkitData().getItemStack("JoinKit" + i);
-			              pi.addItem(new ItemStack[] { loading });
-			            }
-			          }
-			          p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aYou successfully recieved the kit&7: &b" + "JoinKit"));
-			        }
-			        else
-			        {
-			          p.sendMessage(ChatColor.RED + "You don't have permissions. " + this.settings.getpermData().getString("JoinKit"));
-			        }
-			      }
-			      else {
-			        p.sendMessage(ChatColor.RED + "There is no such kit.");
-			      }
 
-}}
+}
 	 
 
 			
