@@ -1,4 +1,7 @@
 SystemName: MultiWorldSystem
+mwsJoinItemDefault: JoinKit default set
+mwsJoinItemOn: Now every Player become on Join this Book ==>>
+mwsJoinItemOff: Join Book is deaktivated!
 mwsbankingSlotset: Item Bank Slots now set to
 mwsEnchantbankingSlotset: Enchant Item Bank Slots now set to  
 mwsVipBankingSlotset: Vip Item Bank Slots now set to 
@@ -171,8 +174,8 @@ mwsconfusion: CONFUSION activated
 mwsglowing: GLOWING activated
 Motd: '&aWelcome to ZauschCraft '
 Line1: '&bthis server uses the MultiWorld system '
-Line2: '&aUse your own warehouse /bankopen '
-Line3: '&bor create a cheap shop with /ps create '
+Line2: '&aLINE2 '
+Line3: '&bLine3 '
 Line4: '&dMany functions are available with MultiWorldSystem '
 Line5: '&b for owner = /mwsgui '
 Motdsys: '§fTest1 '

@@ -1,0 +1,27 @@
+Kits:
+- JoinKit
+JoinKit0:
+  ==: org.bukkit.inventory.ItemStack
+  type: WRITTEN_BOOK
+  meta:
+    ==: ItemMeta
+    meta-type: BOOK_SIGNED
+    title: Welcome
+    author: Therinau
+    pages:
+    - "Hallo. Danke dass du dieses Plugin benutzt.§0\n§0Mittlerweile über 1000 Downloads,\
+      \ zeigt, dass es etwas besonderes ist. Solltest du Fragen haben oder einen Fehler\
+      \ entdecken, scheue dich nicht mich anzusprechen. Du kannst dazu unter Spigotmc\
+      \ einen Kommentar "
+    - |-
+      senden oder über Github. Den Link zu Github findest du unter der Pluginbeschreibung auf §0Spigotmc.org§0
+      §0
+      §0Vielen Dank§0
+      §0
+      §0Liebe Grüße§0
+      §0
+      §0Alugilak
+    generation: 0
+JoinKit1:
+  ==: org.bukkit.inventory.ItemStack
+  type: STONE_AXE

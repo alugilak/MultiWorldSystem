@@ -1,4 +1,5 @@
 MagicItem: mws.item.magic
+JoinKit: mws.kit.join
 GameruleHelp: mws.help.gamerole
 WeatherCycle: mws.dws.set
 TileDrops: mws.dtd.set

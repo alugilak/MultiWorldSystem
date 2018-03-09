@@ -2,6 +2,7 @@
 # This plugin has integrated the shop year 2013 from [Blc_Dragon] https://repos.bukkit.org/minecraft/guishop guishop
 #name of language file, you can use de_DE,en_US,ru_RU. After change reload the server, thats do the lang file in the folder from plugin
 useVault: true
+JoinKit: true
 lang: 'de_DE'
 #prefix of your shop menu
 UseTabPrefix: true

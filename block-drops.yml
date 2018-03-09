@@ -1,7 +1,60 @@
-MONEY: 1
-Materialfrom: STONE
-Materialadd: STONE
-Droppchance: 1
-MaterialAmount: 1
-GIVETEXT: erhalten
-MoneySign: $
+# http://www.minecraftinfo.com/idlist.htm
+# ID List for every Minecraft item/block
+#
+# Required and spelled like so
+blocks: 
+  # Name can be anything that you like
+  Stone:
+    # ID of the trigger block
+    id: 1
+    # Trigger block id value || Stone is id 1 dataID 0, Polished Granite is id 1 dataID 2
+    dataID: 0
+    # (Optional) ID list of items to trigger the drop
+    requiredTools: 
+    - 278
+    - 285
+    # (Optional) If the mob drops its regular drops along with the item or not
+    defaultDrops: true 
+    # Required and spelled like so
+    drops:
+      # Names can be whatever you like
+      DropExample: 
+        # (Optional) Name just for Ctrl+F searching
+        holderName: "Enchanted Iron Ore/Money"
+        # (Optional is money is set) ID of the dropped item
+        id: 15
+        # (Optional if money is set) Trigger block id value || Stone is id 1 dataID 0, Polished Granite is id 1 dataID 2
+        dataID: 0
+        # (Optional) Classes that have access to this drop
+        # If not set, drops work for everyone
+        classes: 
+        - Jester
+        - Testing
+        # min: 1 || These are both required for variable dropping.
+        # max: 5 || Remove amount if using these
+        amount: 1 # Used if min/max is not set
+        # (Optional) Percentage chance of the drop, if not set, defaults to 100%
+        chance: 1
+        # (Optional if id is set) Money holder
+        money:
+          # Amount of money dropped
+          value: 100
+          # Percentage chance of money to drop
+          chance: 5
+        # (Optional) Meta values holder
+        meta:
+          # (Optional) Display name of the dropped item
+          name: "The Mighty &7&oIron"
+          # (Optional) Lore of the dropped item, has to be in quotes
+          lore: 
+          - "Some might say it's..."
+          - "&n&oMighty"
+          # (Optional) Enchantments holder
+          enchants:
+            # Names can be whatever you like
+            Unbreaking:
+              # ID of the enchantment you'd like
+              # IDs found here: http://minecraft.gamepedia.com/Enchanting/ID
+              id: 34
+              # Level of the enchantment (Max 127)
+              level: 127

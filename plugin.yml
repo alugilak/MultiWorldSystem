@@ -1,13 +1,11 @@
 name: MultiWorldSystem
-version: 4.2.5
+version: 4.2.6
 author: Alugilak
 main: de.emptyWorld.main.leerWelt
 softdepend: [Vault]
 
 commands:
-         blocks: 
-                    description: put snow in radius      
-                    usage: /snow <radius>
+
          buildtool: 
                     description: gives player a Wand Item to build      
                     usage: /buildtool or /buildtool <playername>
@@ -112,10 +110,9 @@ commands:
          enchantitem: 
                     description: give saved enchant item          
                     usage: /<enchantitem>  <Displayname>  
-         np:
-                    description: newspaper commands                    
-         newspaper:
-                    description: newspaper commands                   
+         JoinKit: 
+                    description: Give Player Kit on Join         
+                    usage: /JoinKit <on> or <off>                   
          xp: 
                     description: manage Player xp         
                     usage: /xp <+|-|set> <playername> <amount>

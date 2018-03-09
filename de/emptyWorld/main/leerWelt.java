@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import de.emptyWorld.main.books.Function;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,6 +27,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -41,7 +42,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.plugin.Plugin;
-import de.emptyWorld.main.books.book;
+
 import de.emptyWorld.main.enchants.giveenchantitem;
 import de.emptyWorld.main.commands.displayname;
 import de.emptyWorld.main.commands.blocks;
@@ -53,7 +54,7 @@ import de.emptyWorld.main.commands.lore;
 import de.emptyWorld.main.commands.clearchat;
 import de.emptyWorld.main.weltenonstart;
 import de.emptyWorld.main.commands.rainset;
-import de.emptyWorld.main.commands.snow;
+
 import de.emptyWorld.main.commands.killmobs;
 import de.emptyWorld.main.commands.creeperexplodeblocker;
 import de.emptyWorld.main.commands.HelpCommand;
@@ -247,6 +248,8 @@ import de.emptyWorld.main.Wand.house4;
 import de.emptyWorld.main.Wand.pyramid;
 import de.emptyWorld.main.Wand.tower;
 import de.emptyWorld.main.Wand.wand;
+import de.emptyWorld.main.books.KitBook;
+
 
 
 
@@ -260,17 +263,9 @@ public class leerWelt extends JavaPlugin implements Listener, Entity
 	public List<UUID> spawners = new ArrayList<>();
 	public String regex="[0-9]+\\.[0-9]+";
 
-	
-	
 	public static Map<EntityType, leerWelt> lootByEntity = new HashMap<EntityType, leerWelt>();
-	private List<String> commands = new ArrayList<>(); 
-public String c_prefix = "/a/[/5/newspaper/a/] /f/";
-		//Debug prefix
-public String d_prefix = "/a/[/5/newspaper Debug/a/] /f/";
-		//Player prefix
-public String p_prefix = "/a/[/5/newspaper/a/] /f/";
-public String no_permission = "/4/You have no permission to perform this command.";
-public boolean debug = false;
+	
+public static boolean debug = false;
 			
 	public static Boolean useVault = Boolean.valueOf(true);
 	public static leerWelt instance;
@@ -379,7 +374,7 @@ public boolean debug = false;
 	  File block;
 	  File mob;
 	  File portal;
-	  File _file_newspaper;
+	
 	   public static Logger log = Logger.getLogger("ZauschCraft");
   File dfile;
   File wfile;
@@ -469,10 +464,11 @@ public void onEnable()
       
       getServer().getPluginManager().registerEvents(new Shop(this), this);
 	  getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
-	  getServer().getPluginManager().registerEvents( new book(this), this);
+
 	  getServer().getPluginManager().registerEvents( new MagicItem(this), this);
 	  getServer().getPluginManager().registerEvents( new MobListener(this), this);
-	  getServer().getPluginManager().registerEvents( new Config(this), this);	 
+	  getServer().getPluginManager().registerEvents( new Config(this), this);
+	  getServer().getPluginManager().registerEvents( new KitBook(this), this);
 	  PluginDescriptionFile pla = getDescription();
 	   
 	    log.info(pla.getName() + " " + pla.getVersion() + " " + "https://www.spigotmc.org/resources/multiworldsystem-create-world-cleanroom.51764/" + " ist aktiviert!");
@@ -548,6 +544,7 @@ public void onEnable()
 	    getServer().getPluginManager().registerEvents(new de.emptyWorld.main.signshop.Shop(this), this); 
 	    getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);
 	    getServer().getPluginManager().registerEvents(new vipbank(this), this); 
+
 	     
  	    savePortalFile();
 	    Bukkit.getServer().getPluginManager().registerEvents(new creeperexplodeblocker(), this);	
@@ -635,43 +632,13 @@ public void onEnable()
 	    saveConfig();
 	    debug = getConfig().getBoolean("debug");
 		//Generate plugin dir if not existant
-		File f = new File(getDataFolder() + "/");
-		if(!f.exists())
-		    f.mkdir();
-		_file_newspaper = new File(getDataFolder() + "/newspaper.xml");
-		if(!_file_newspaper.exists()){
-		    try {
-				if(_file_newspaper.createNewFile()){
-					sendMessage(replaceColors(c_prefix + "newspaper.xml did not exist, but was successfully created", true));
-				}else{
-					sendMessage(replaceColors(c_prefix + "newspaper.xml did not exist, and failed to be created", true));
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		    //Copy the default file to the plugin directory
-		    saveResource("newspaper.xml", true);
-		}
-		try{
-			BufferedReader br = new BufferedReader(new FileReader(_file_newspaper));     
-			if (br.readLine() == null) {
-			    sendMessage(replaceColors(c_prefix + "Empty newspaper.xml file", true));
-			    //Copy the default file to the plugin directory
-			    saveResource("newspaper.xml", true);
-			}else{
-				if(debug){
-					sendMessage(replaceColors(d_prefix + "newspaper.xml is not empty", true));
-				}
-			}
-			br.close();
-		}catch(FileNotFoundException e){
-			sendMessage(replaceColors(c_prefix + "Tried to get newspaper.xml file but file not found.", true));
-		}catch(IOException e){
-			e.printStackTrace();
-		}
 
-		Function.verifyxmlVersion();
-		Function.initConfig();
+		//TODO calculate if any newspaper have too long pages, too long titles, etc.
+		
+		
+		this.getServer().getPluginManager().registerEvents(this, this);
+	
+	
 		
   
 		File[] directories = new File(this.getDataFolder() + File.separator + ".." + File.separator + "..").listFiles(File::isDirectory);
@@ -712,7 +679,6 @@ public void onEnable()
 
 
 public void InitComs() {
-	getCommand("blocks").setExecutor(new snow(this));
 	getCommand("mwsbanking").setExecutor(new bankmanager(this));
 	getCommand("vbo").setExecutor(new vipbank(this));
 	getCommand("ebo").setExecutor(new playerbank(this));
@@ -740,7 +706,6 @@ public void InitComs() {
 	getCommand("house3").setExecutor(new house3(this));
 	getCommand("house2").setExecutor(new bighouse(this));
 	getCommand("pyramid").setExecutor(new pyramid(this));
-	getCommand("house").setExecutor(new house(this));
 	getCommand("househelp").setExecutor(new house(this));
 	getCommand("magicitem").setExecutor(new MagicItem(this));
 	getCommand("tower").setExecutor(new tower(this));
@@ -753,8 +718,8 @@ public void InitComs() {
 	getCommand("enchantitem").setExecutor(new giveenchantitem(this));
 	getCommand("displayname").setExecutor(new displayname(this));
 	getCommand("lore").setExecutor(new lore(this));
-	getCommand("np").setExecutor(new book(this));
-	getCommand("newspaper").setExecutor(new book(this));
+	getCommand("JoinKit").setExecutor(new KitBook(this));
+	
 	getCommand("xp").setExecutor(new xp(this));
 	getCommand("lvl").setExecutor(new lvl(this));
 	getCommand("cc").setExecutor(new clearchat(this));
@@ -777,7 +742,6 @@ public void InitComs() {
 	getCommand("pgw+").setExecutor(new permGoupWorld(this));
 	getCommand("pg-").setExecutor(new groupperms(this));
 	getCommand("pg+").setExecutor(new groupperms(this));
-
 	getCommand("permsl").setExecutor(new permslist(this));
 	getCommand("group+").setExecutor(new permGroup(this));
 	getCommand("group-").setExecutor(new permGroup(this));
@@ -1142,11 +1106,10 @@ public void reload() {
   public void onJoin(PlayerJoinEvent e) {
 
 	  Player p = e.getPlayer();
-	  p.setGameMode(GameMode.SURVIVAL); 
-	
-	  
-	  
-  
+	  p.setGameMode(GameMode.SURVIVAL);
+		
+	  	        	
+
   String motd = (String) this.settings.getsysoData().get("Motd"); 
   motd = motd.replaceAll("&", "§");  
   p.sendMessage(ChatColor.GOLD.toString() + ChatColor.BOLD + ((String)this.settings.getsysoData().get("MOTDS")) + ChatColor.GOLD.toString() + ChatColor.BOLD + " >" + motd + " " + ChatColor.GOLD.toString() + p.getDisplayName());
@@ -3143,106 +3106,6 @@ public static String replaceColors(String s, boolean console, boolean inverse){
 .replaceAll("\n", prefix + "z" + suffix);}
 	return res;}
 
-@EventHandler
-public void onPlayerJoin(PlayerJoinEvent event){
-	Player p = event.getPlayer();
-	
-	//Read newspaper.xml
-	try{
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(_file_newspaper);
-				
-		//optional, but recommended
-		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-		doc.getDocumentElement().normalize();
-		
-		for(int i = 0; i < doc.getElementsByTagName("newspaper").getLength(); i++){
-			Node nNode = doc.getElementsByTagName("newspaper").item(i);
-					
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-				Element newspaperData = (Element) nNode;
-				String[] types = newspaperData.getElementsByTagName("type").item(0).getTextContent().split(",");
-				boolean isJoinnewspaper = false;
-				for(int w = 0; w < types.length; w++){
-					if(types[w].trim().equalsIgnoreCase("join"))
-						isJoinnewspaper = true;
-					else if(types[w].trim().equalsIgnoreCase("firstjoin"))
-						if(!p.hasPlayedBefore())
-							isJoinnewspaper = true;
-				}
-				
-				if(isJoinnewspaper){
-			
-		    		//TODO find config / permissions to see which custom permissions are required
-		    		//Node config = newspaperData.getElementsByTagName("config").item(0);
-		    		
-    				boolean hasPermission = false;
-    				String[] permissions = newspaperData.getElementsByTagName("permissions").item(1).getTextContent().split(",");
-    				for(int z = 0; z < permissions.length; z++){
-    					if(p.hasPermission("news.paper.join" + permissions[z].trim())){
-    						hasPermission = true;
-    						z = permissions.length;
-    					}
-    				}
-	    			
-		    		if(p.hasPermission("news.paper.join") || p.hasPermission("news.paper.*") || hasPermission){
-		    			
-		    			String title = replaceColors(newspaperData.getElementsByTagName("title").item(0).getTextContent());
-		    			String author = replaceColors(newspaperData.getElementsByTagName("author").item(0).getTextContent());
-		    			List<String> lore = new ArrayList<>(newspaperData.getElementsByTagName("lore").getLength());
-		    			for(int z = 0; z < newspaperData.getElementsByTagName("lore").getLength(); z++){
-		    				lore.add(z, replaceColors(newspaperData.getElementsByTagName("lore").item(z).getTextContent()));
-		    			}
-		    			List<String> pages = new ArrayList<>(newspaperData.getElementsByTagName("page").getLength());
-		    			for(int z = 0; z < newspaperData.getElementsByTagName("page").getLength(); z++){
-		    				pages.add(z, replaceColors(newspaperData.getElementsByTagName("page").item(z).getTextContent()));
-		    			}
-		    			short durability = Short.parseShort(newspaperData.getElementsByTagName("durability").item(0).getTextContent());
-		    			int amount = Integer.parseInt(newspaperData.getElementsByTagName("amount").item(0).getTextContent());
-		    			
-		    			//Give newspaper
-		    			ItemStack newspaper = new ItemStack(Material.WRITTEN_BOOK);
-						BookMeta meta = (BookMeta) newspaper.getItemMeta();
-						meta.setTitle(title);
-						meta.setAuthor(author);
-						meta.setLore(lore);
-						meta.setPages(pages);
-						newspaper.setItemMeta(meta);
-						newspaper.setAmount(amount);
-						newspaper.setDurability(durability);
-				        p.getInventory().addItem(newspaper);
-		    		}else{
-		    			if(plugin.debug){
-			    			sendMessage(replaceColors(c_prefix + 
-			    					p.getName() + " has no permission to get the join newspaper '" + 
-			    					newspaperData.getElementsByTagName("title").item(0).getTextContent()
-			    					+ "/r/' by " + 
-			    					newspaperData.getElementsByTagName("author").item(0).getTextContent(), true));
-		    			}
-		    		}
-				}//ELSE newspaper is not a joinnewspaper
-    		}else{
-    			//Element is of wrong type
-    			if(plugin.debug){
-	    			sendMessage(replaceColors(c_prefix + 
-	    					"Element is of wrong type (misconfigured newspaper)", true));
-    			}
-    		}
-		}
-		if(doc.getElementsByTagName("newspaper").getLength() == 0 && plugin.debug){
-			sendMessage(replaceColors(
-					"No newspaper are created", true));
-		}
-	}catch(Exception e){
-		e.printStackTrace();
-		if(plugin.debug){
-			sendMessage(replaceColors(c_prefix + 
-					"Failed to read newspaper.xml", true));
-		}
-	}
-}
 
 
   
@@ -3278,6 +3141,7 @@ public String getMoney(String name) {
 public void giveMoney(float amount, Player p) {
 	economy.depositPlayer(p, amount);
 }
+
 }
 
 
